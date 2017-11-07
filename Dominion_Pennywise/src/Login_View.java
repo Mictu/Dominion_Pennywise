@@ -4,6 +4,7 @@ public class Login_View {
 		System.out.println("sali");
 		
 		System.out.println("DIES IST EIN TESCHT!!");
+		System.out.println("Sojo");
 	}
 
 }
