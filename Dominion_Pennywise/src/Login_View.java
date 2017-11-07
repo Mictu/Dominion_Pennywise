@@ -5,7 +5,9 @@ public class Login_View {
 		
 		System.out.println("DIES IST EIN TESCHT!!");
 		System.out.println("Sojo");
-		System.out.println("New Sojo");
+		System.out.println("New Sojo"); 
+		
+		System.out.println("new new Sojo");
 	}
 
 }
