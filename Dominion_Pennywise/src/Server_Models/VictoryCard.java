@@ -1,5 +1,10 @@
 package Server_Models;
 
-public class VictoryCard {
+public class VictoryCard{
 
+
+	
+	
+	
+	
 }

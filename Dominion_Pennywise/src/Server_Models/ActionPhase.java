@@ -17,11 +17,11 @@ public class ActionPhase {
 	}
 	
 	protected void playActionCard() {
-		if (Player.deck.contains(kingdomCard)) {
-			
-		} else {
-			endPhase();
-		}
+//		if (Player.deck.contains(kingdomCard)) {
+//			
+//		} else {
+//			endPhase();
+//		}
 		
 	}
 	

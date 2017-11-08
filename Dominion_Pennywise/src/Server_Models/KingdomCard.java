@@ -17,7 +17,7 @@ public class KingdomCard {
 		countAction += 2; 
 	}
 	
-
+	
 	
 	
 	protected int getActionPoint(){
