@@ -1,5 +1,9 @@
 package Server_Models;
 
+import java.util.ArrayList;
+
+import javafx.scene.control.Button;
+
 public class Player {
 	private int point;
 	private int totalTurn = 0;
@@ -7,7 +11,11 @@ public class Player {
 	private int actionPoint;
 	private boolean turn;
 	private int buyPoints;
-	private CardPile deck;
+	
+	protected Button[] hand = new Button[5];
+	protected ArrayList<Button> deck = new ArrayList<Button>();
+	protected ArrayList<Button> discard = new ArrayList<Button>();
+	
 	
 	protected void player() {
 		

@@ -23,7 +23,7 @@ public class Server {
 
 		while (true) {
 			try {
-				server = new ServerSocket(2303, 10);
+				server = new ServerSocket(2303, 4);
 				System.out.println("Waiting for Connection");
 
 				InetAddress iAddress = InetAddress.getLocalHost();
