@@ -13,5 +13,10 @@ public abstract class Card {
 		
 		System.out.println("Sojo schreibt");
 		
+		
+		System.out.println("Puuh");
+		System.out.println("test");
+		
+		
 	}
 }
