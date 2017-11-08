@@ -12,4 +12,6 @@ public abstract class Card {
 		this.cost = cost;
 		
 	}
+	
+	
 }

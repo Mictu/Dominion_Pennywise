@@ -6,12 +6,13 @@ public class KingdomCard {
 	
 	
 	//Konstruktor vom Kingdom Card
-	public KingdomCard(){
+	public KingdomCard(int index){
 		this.action = 0; 
 		this.countAction = 0; 
 		this.countMoney = 0; 
 		this.countBuy = 0; 
 		this.countCard = 0; 
+		
 	}
 	
 	
