@@ -13,7 +13,10 @@ public abstract class Card {
 		this.cost = cost;
 	}
 	
+<<<<<<< HEAD
+=======
 	public abstract void eatThat();
 	
+>>>>>>> branch 'master' of https://github.com/Mictu/Dominion_Pennywise.git
 	
 }
