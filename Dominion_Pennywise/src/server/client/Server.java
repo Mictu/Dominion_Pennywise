@@ -20,7 +20,7 @@ public class Server {
 
 	public void connect() {
 		try {
-			server = new ServerSocket(2303);
+			server = new ServerSocket(2303,10);
 			System.out.println("Waiting for Connection");
 
 			socket = server.accept();
