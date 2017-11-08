@@ -11,12 +11,5 @@ public abstract class Card {
 		this.name = name;
 		this.cost = cost;
 		
-		System.out.println("Sojo schreibt");
-		
-		
-		System.out.println("Puuh");
-		System.out.println("test");
-		
-		
 	}
 }
