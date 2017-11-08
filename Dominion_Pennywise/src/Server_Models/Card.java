@@ -12,7 +12,7 @@ public abstract class Card {
 		this.name = name;
 		this.cost = cost;
 		
-		
+		System.out.println("Puuh");
 		System.out.println("test");
 		
 		
