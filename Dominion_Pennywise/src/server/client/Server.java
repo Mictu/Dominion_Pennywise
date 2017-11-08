@@ -3,6 +3,7 @@ package server.client;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -19,21 +20,25 @@ public class Server {
 	}
 
 	public void connect() {
-		try {
-			server = new ServerSocket(2303,10);
-			System.out.println("Waiting for Connection");
 
-			socket = server.accept();
+		while (true) {
+			try {
+				server = new ServerSocket(2303, 10);
+				System.out.println("Waiting for Connection");
 
-			System.out.println("Connection received from: " + socket.getInetAddress().getHostName());
+				InetAddress iAddress = InetAddress.getLocalHost();
+				System.out.println("Server IP address : " + iAddress.getHostAddress());
 
-			output = new ObjectOutputStream(socket.getOutputStream());
-			output.flush();
-			input = new ObjectInputStream(socket.getInputStream());
+				socket = server.accept();
 
-			sendMsg("Connection successful");
+				System.out.println("Connection received from: " + socket.getInetAddress().getHostName());
 
-			do {
+				output = new ObjectOutputStream(socket.getOutputStream());
+				output.flush();
+				input = new ObjectInputStream(socket.getInputStream());
+
+				sendMsg("Connection successful");
+
 				try {
 					msg = (String) input.readObject();
 					System.out.println("client:>" + msg);
@@ -44,17 +49,17 @@ public class Server {
 				} catch (ClassNotFoundException notFound) {
 					System.err.println("Class not found");
 				}
-			} while (!msg.equals("bye"));
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				input.close();
-				output.close();
-				server.close();
 			} catch (IOException e) {
 				e.printStackTrace();
+			} finally {
+				try {
+					input.close();
+					output.close();
+					server.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}
