@@ -10,7 +10,6 @@ public abstract class Card {
 		this.value = value;
 		this.name = name;
 		this.cost = cost;
-		
 	}
 
 }
