@@ -4,8 +4,7 @@ public abstract class Card {
 	private String value;
 	private String name;
 	private int cost;
-	
-	
+
 	public void card(String value, String name, int cost) {
 		this.value = value;
 		this.name = name;
