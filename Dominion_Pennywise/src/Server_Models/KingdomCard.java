@@ -22,7 +22,7 @@ public class KingdomCard {
 		countAction += 2; 
 	}
 	
-<<<<<<< HEAD
+
 	//KingdomCard für Market - Karth 
 	protected void actionMaket(){
 		countCard++; 
@@ -63,9 +63,6 @@ public class KingdomCard {
 		this.countBuy = 0; 
 		this.countCard = 0; 
 	}
-=======
-	
->>>>>>> branch 'master' of https://github.com/Mictu/Dominion_Pennywise.git
 	
 	
 	protected int getActionPoint(){
