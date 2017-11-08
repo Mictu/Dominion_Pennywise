@@ -11,5 +11,4 @@ public abstract class Card {
 		this.name = name;
 		this.cost = cost;
 	}
-
 }
