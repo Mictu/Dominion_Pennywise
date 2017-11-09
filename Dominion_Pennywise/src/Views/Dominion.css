@@ -4,3 +4,10 @@
 	-fx-padding: -1;
 
 }
+
+.root {
+	-fx-background-image: url("landscape.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+}
