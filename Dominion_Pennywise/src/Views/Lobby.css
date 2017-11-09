@@ -1,0 +1,33 @@
+.hboxBottom {
+	-fx-spacing: 10px;
+}
+
+.rightBox {
+	-fx-padding: 20px 20px 20px 20px;
+	-fx-spacing: 20px;
+}
+
+.topBox {
+	-fx-padding: 10px 40px 10px 40px;
+	-fx-spacing: 10px;
+	-fx-alignment: center;
+}
+
+.btn {
+	-fx-min-height: 40px;
+	-fx-min-width: 200px;
+}
+
+.leftBox {
+	-fx-padding: 20px 20px 20px 20px;
+	-fx-spacing: 20px;
+	-fx-alignment: center;
+}
+
+#mainpane {
+	-fx-background-image: url("");
+	-fx-background-repeat: strech;
+	-fx-background-size:900 596;
+	-fx-background-position: center center;
+}
+
