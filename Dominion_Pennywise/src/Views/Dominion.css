@@ -1,4 +1,119 @@
+
+
+/*
 .button{
 	-fx-padding: -1;
 
+}
+*/
+
+
+.root {
+	-fx-background-image: url("landscape.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+}
+
+
+
+/*
+ * CARDS (BUTTONS)
+ */
+
+#copper {
+	-fx-background-image: url("copper.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-pref-height: 200px;
+    -fx-pref-width: 130px;
+}
+#duchy {
+	-fx-background-image: url("duchy.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-pref-height: 200px;
+    -fx-pref-width: 130px;
+}
+#estate {
+	-fx-background-image: url("estate.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-pref-height: 200px;
+    -fx-pref-width: 130px;
+}
+#funfair {
+	-fx-background-image: url("funfair.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-pref-height: 200px;
+    -fx-pref-width: 130px;
+}
+#gold {
+	-fx-background-image: url("gold.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-pref-height: 200px;
+    -fx-pref-width: 130px;
+}
+#laboratory {
+	-fx-background-image: url("laboratory.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-pref-height: 200px;
+    -fx-pref-width: 130px;
+}
+#market {
+	-fx-background-image: url("market.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-pref-height: 200px;
+    -fx-pref-width: 130px;
+}
+#province {
+	-fx-background-image: url("province.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-pref-height: 200px;
+    -fx-pref-width: 130px;
+}
+#silver {
+	-fx-background-image: url("silver.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-pref-height: 200px;
+    -fx-pref-width: 130px;
+}
+#smith {
+	-fx-background-image: url("smith.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-pref-height: 200px;
+    -fx-pref-width: 130px;
+}
+#village {
+	-fx-background-image: url("village.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-pref-height: 200px;
+    -fx-pref-width: 130px;
+}
+#woodcutter {
+	-fx-background-image: url("woodcutter.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-pref-height: 200px;
+    -fx-pref-width: 130px;
 }

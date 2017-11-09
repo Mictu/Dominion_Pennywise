@@ -13,7 +13,7 @@ public class CardPile {
 	}//close constructor
 	
 	
-	
+				//	USE BUTTONS AS 'CARDS'
 	
 	
 	
