@@ -1,119 +1,246 @@
-
-
 /*
-.button{
-	-fx-padding: -1;
-
-}
-*/
-
-
-.root {
+ * ROOTs
+ */
+ 
+#boardRoot {
 	-fx-background-image: url("landscape.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
+	-fx-max-height: 650;
+}
+
+#boxes {
+	-fx-alignment: center;
+}
+
+/*
+ * LABELs
+ */
+
+#handLabel {
+	-fx-background-color: darkslategrey;
+	-fx-border-radius: 20px;
+	-fx-background-radius: 20px;
+	-fx-opacity: 1;
+	-fx-alignment: top_center;
+	-fx-text-fill: white;
+	-fx-font-weight: bold;
+	-fx-font-size: 15;
+	-fx-pref-height: 180;
+	-fx-pref-width: 550;
+}
+#phaseLabels {
+	-fx-background-color: yellow;
+	-fx-border-radius: 20px;
+	-fx-background-radius: 20px;
+	-fx-opacity: 0.5;
+	-fx-text-alignment: center;
+	-fx-alignment: center;
+	-fx-font-weight: bold;
+	-fx-font-size: 15;
+	-fx-pref-height: 40;
+	-fx-pref-width: 82;
 }
 
 
+/*
+ * TEXT-AREAs
+ */
+ 
+.text-area {
+	-fx-pref-width: 260px;
+	-fx-pref-height: 300px;
+	-fx-background-color: transparent;
+	-fx-text-fill: black;
+	-fx-font-weight: bold;
+	-fx-font-size: 15;
+	-fx-wrap-text: true;
+}
+.text-area .viewport {
+    -fx-opacity: 0.3;
+}
+#playerStats {
+	-fx-pref-width: 260px;
+	-fx-pref-height: 300px;
+	-fx-background-color: transparent;
+	-fx-text-fill: black;
+	-fx-font-weight: bold;
+	-fx-font-size: 15;
+	-fx-wrap-text: true;
+}
+#playerStats .viewport {
+    -fx-opacity: 0.3;
+}
 
+/*
+ * TEXT-FIELD
+ */ 
+
+
+/*
+ * BUTTONS
+ */ 
+ 
+ 
 /*
  * CARDS (BUTTONS)
  */
+
 
 #copper {
 	-fx-background-image: url("copper.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 200px;
-    -fx-pref-width: 130px;
+	-fx-pref-height: 130px;
+    -fx-pref-width: 82px;
+    -fx-opacity: 0.8;
+    -fx-background-color: transparent;
+}
+#copper:hover{
+	-fx-opacity: 1;
 }
 #duchy {
 	-fx-background-image: url("duchy.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 200px;
-    -fx-pref-width: 130px;
+	-fx-pref-height: 130px;
+    -fx-pref-width: 82px;
+    -fx-opacity: 0.8;
+    -fx-background-color: transparent;
+}
+#duchy:hover{
+	-fx-opacity: 1;
 }
 #estate {
 	-fx-background-image: url("estate.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 200px;
-    -fx-pref-width: 130px;
+	-fx-pref-height: 130px;
+    -fx-pref-width: 82px;
+    -fx-opacity: 0.8;
+    -fx-background-color: transparent;
+}
+#estate:hover{
+	-fx-opacity: 1;
 }
 #funfair {
 	-fx-background-image: url("funfair.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 200px;
-    -fx-pref-width: 130px;
+	-fx-pref-height: 130px;
+    -fx-pref-width: 82px;
+    -fx-opacity: 0.8;
+    -fx-background-color: transparent;
+}
+#funfair:hover{
+	-fx-opacity: 1;
 }
 #gold {
 	-fx-background-image: url("gold.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 200px;
-    -fx-pref-width: 130px;
+	-fx-pref-height: 130px;
+    -fx-pref-width: 82px;
+    -fx-opacity: 0.8;
+    -fx-background-color: transparent;
+}
+#gold:hover{
+	-fx-opacity: 1;
 }
 #laboratory {
 	-fx-background-image: url("laboratory.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 200px;
-    -fx-pref-width: 130px;
+	-fx-pref-height: 130px;
+    -fx-pref-width: 82px;
+    -fx-opacity: 0.8;
+    -fx-background-color: transparent;
+}
+#laboratory:hover{
+	-fx-opacity: 1;
 }
 #market {
 	-fx-background-image: url("market.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 200px;
-    -fx-pref-width: 130px;
+	-fx-pref-height: 130px;
+    -fx-pref-width: 82px;
+    -fx-opacity: 0.8;
+    -fx-background-color: transparent;
+}
+#market:hover{
+	-fx-opacity: 1;
 }
 #province {
 	-fx-background-image: url("province.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 200px;
-    -fx-pref-width: 130px;
+	-fx-pref-height: 130px;
+    -fx-pref-width: 82px;
+    -fx-opacity: 0.8;
+    -fx-background-color: transparent;
+}
+#province:hover{
+	-fx-opacity: 1;
 }
 #silver {
 	-fx-background-image: url("silver.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 200px;
-    -fx-pref-width: 130px;
+	-fx-pref-height: 130px;
+    -fx-pref-width: 82px;
+    -fx-opacity: 0.8;
+    -fx-background-color: transparent;
+}
+#silver:hover{
+	-fx-opacity: 1;
 }
 #smith {
 	-fx-background-image: url("smith.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 200px;
-    -fx-pref-width: 130px;
+	-fx-pref-height: 130px;
+    -fx-pref-width: 82px;
+    -fx-opacity: 0.8;
+    -fx-background-color: transparent;
+}
+#smith:hover{
+	-fx-opacity: 1;
 }
 #village {
 	-fx-background-image: url("village.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 200px;
-    -fx-pref-width: 130px;
+	-fx-pref-height: 130px;
+    -fx-pref-width: 82px;
+    -fx-opacity: 0.8;
+    -fx-background-color: transparent;
+}
+#village:hover{
+	-fx-opacity: 1;
 }
 #woodcutter {
 	-fx-background-image: url("woodcutter.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 200px;
-    -fx-pref-width: 130px;
+	-fx-pref-height: 130px;
+    -fx-pref-width: 82px;
+    -fx-opacity: 0.8;
+    -fx-background-color: transparent;
+}
+#woodcutter:hover{
+	-fx-opacity: 1;
 }
