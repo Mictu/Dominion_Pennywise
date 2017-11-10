@@ -14,6 +14,11 @@ import javafx.stage.Stage;
 
 public class Lobby_View extends Application{
 	
+//	protected Lobby_View(Stage stage, Game gamemodel){
+//	this.stage = stage; 
+//	this.gamemodel = gamemodel; 
+//}
+	
 	BorderPane mainPane; 
 	Stage stage; 
 	Game gamemodel;
@@ -33,19 +38,15 @@ public class Lobby_View extends Application{
 	//controls button
 	Button btnNewGame = new Button("Spiel erstellen");
 	Button btnLeaveGame = new Button("Verlassen");
+	Button btnStartGame = new Button("Spiel starten");
 	
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-//	protected Lobby_View(Stage stage, Game gamemodel){
-//		this.stage = stage; 
-//		this.gamemodel = gamemodel; 
-//	}
 
 	@Override
 	public void start(Stage stage) {
-//		stage.setResizable(false);
+		stage.setResizable(false);
 		stage.setTitle("Dominion Lobby");
 		
 		HBox bottomChatBox = new HBox(txtChatMessage,btnSend);
@@ -54,12 +55,14 @@ public class Lobby_View extends Application{
 		
 		btnNewGame.getStyleClass().add("btn");
 		btnLeaveGame.getStyleClass().add("btn");
+		btnStartGame.getStyleClass().add("btn");
 		
-		VBox topBox = new VBox(btnNewGame, btnLeaveGame);
+		HBox topBox = new HBox(btnNewGame, btnStartGame, btnLeaveGame);
 		topBox.getStyleClass().add("topBox");
 		
 		VBox rightBox = new VBox(topBox, txtHistory,txtChatArea, bottomChatBox);
 		rightBox.getStyleClass().add("rightBox");
+		VBox.setVgrow(txtChatArea, Priority.ALWAYS);
 		
 		VBox leftBox = new VBox(txtConnectedPlayers, txtOnlinePlayers);
 		leftBox.getStyleClass().add("leftBox");
@@ -67,9 +70,9 @@ public class Lobby_View extends Application{
 		VBox.setVgrow(txtOnlinePlayers, Priority.ALWAYS);
 		
 		mainPane = new BorderPane(); 
-		mainPane.setId("mainPane");
 		mainPane.setLeft(leftBox);
 		mainPane.setCenter(rightBox);
+		mainPane.getStyleClass().add("mainPane");
 		
 		Scene scene = new Scene(mainPane);
 		scene.getStylesheets().add(getClass().getResource("Lobby.css").toExternalForm());
