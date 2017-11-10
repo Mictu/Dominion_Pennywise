@@ -1,9 +1,9 @@
-package Views;
+package view;
 
-import Server_Models.Game;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import server_Models.Game;
 
 public class Login_View {
 

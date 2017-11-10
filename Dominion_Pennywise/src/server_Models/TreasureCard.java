@@ -1,4 +1,4 @@
-package Server_Models;
+package server_Models;
 
 public class TreasureCard {
 
