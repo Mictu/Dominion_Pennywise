@@ -1,4 +1,4 @@
-package Views;
+package view;
 
 public class Result_View {
 

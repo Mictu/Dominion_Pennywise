@@ -1,4 +1,4 @@
-package Controllers;
+package controllers;
 
 public class Result_Controller {
 

@@ -1,4 +1,4 @@
-package Main_Class;
+package main_Class;
 
 public class Main {
 
