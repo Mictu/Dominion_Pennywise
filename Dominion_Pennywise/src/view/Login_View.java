@@ -94,8 +94,6 @@ public class Login_View {
 	}
 	
 	public void stop() {
-		Lobby_View lobby = new Lobby_View(stage);
-		lobby.start(stage);
 		this.stage.hide();
 	}
 	

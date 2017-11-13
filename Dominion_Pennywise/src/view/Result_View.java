@@ -17,7 +17,7 @@ public class Result_View {
 
 	VBox vbox = new VBox();
 
-	protected Result_View(Stage stage) {
+	public Result_View(Stage stage) {
 		this.stage = stage;
 		stage.setHeight(600.0);
 		stage.setWidth(400.0);
@@ -38,17 +38,14 @@ public class Result_View {
 		Scene scene = new Scene(mainPane);
 		// scene.getStylesheets().add(getClass().getResource("Result.css").toExternalForm());
 		stage.setScene(scene);
-		stage.show();
 
 	}
 
-	public void start(Stage stage) {
+	public void start() {
 		stage.show();
 	}
 	
 	public void stop () {
-		Lobby_View lobby = new Lobby_View(stage);
-		lobby.start(stage);
 		stage.hide();
 	}
 	

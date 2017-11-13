@@ -14,7 +14,7 @@ public class Lobby_View {
 	
 	protected Stage stage;
 	
-	protected Lobby_View(Stage stage){
+	public Lobby_View(Stage stage){
 	BorderPane mainPane; 
 	this.stage = stage; 
 	
@@ -69,16 +69,13 @@ public class Lobby_View {
 		scene.getStylesheets().add(getClass().getResource("Lobby.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setFullScreen(true);
-		stage.show();
 	}
 	
-	public void start(Stage stage) {
+	public void start() {
 		stage.show();
 	}
 	
 	public void stop() {
-		Board_View board = new Board_View(stage);
-		board.start(stage);
 		this.stage.hide();
 	}
 	

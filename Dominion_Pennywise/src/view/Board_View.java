@@ -23,7 +23,7 @@ public class Board_View {
 		
 		
 //	 constructor
-	protected Board_View(Stage s) {
+	public Board_View(Stage s) {
 		CardDesign_View cdV = new CardDesign_View();
 		this.stage = s;
 
@@ -152,13 +152,11 @@ public class Board_View {
 	} // Close the Constructor
 
 	
-	public void start(Stage stage) {
+	public void start() {
 		stage.show();
 	}
 	
 	public void stop () {
-		Result_View result = new Result_View(stage);
-		result.start(stage);
 		this.stage.hide();
 	}
 	
