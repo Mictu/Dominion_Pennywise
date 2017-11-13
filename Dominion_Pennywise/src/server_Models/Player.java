@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import javafx.scene.control.Button;
 
 public class Player {
-	private int point;
+	private int point, money;
 	private int totalTurn = 0;
-	private int money;
 	private int actionPoint;
 	private boolean turn;
 	private int buyPoints;
