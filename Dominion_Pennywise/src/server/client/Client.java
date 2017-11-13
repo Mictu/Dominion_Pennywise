@@ -19,8 +19,7 @@ public class Client {
 
 	public void run() {
 		try {
-			socket = new Socket("localhost", 2303);
-			System.out.println("connected to localhost port 2303");
+			socket = new Socket("172.20.10.4", 2303);
 
 			input = new ObjectInputStream(socket.getInputStream());
 			output = new ObjectOutputStream(socket.getOutputStream());
