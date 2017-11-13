@@ -1,16 +1,17 @@
 package server.client;
 
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class Client {
 	Socket socket = null;
-	ObjectOutputStream output = null;
-	ObjectInputStream input = null;
-	String msg;
+	InputStreamReader reader = null;
+	BufferedReader buffReader = null;
+	PrintWriter print = null;
+	String msg, message;
 
 	public Client() {
 
@@ -21,43 +22,21 @@ public class Client {
 			socket = new Socket("localhost", 2303);
 			System.out.println("connected to localhost port 2303");
 
-			output = new ObjectOutputStream(socket.getOutputStream());
-			output.flush();
-			input = new ObjectInputStream(socket.getInputStream());
+			reader = new InputStreamReader(socket.getInputStream());
+			buffReader = new BufferedReader(reader);
+			message = buffReader.readLine();
+			System.out.println("Ausgabe: " + message);
 
-			do {
-				try {
-					msg = (String) input.readObject();
-					System.out.println("server>" + msg);
-					sendMessage("Hi server");
-					msg = "bye";
-					sendMessage(msg);
-				} catch (ClassNotFoundException notFound) {
-					System.err.println("data received in unknown format");
-				}
-			} while (!msg.equals("bye"));
-		} catch (UnknownHostException unknownHost) {
-			System.err.println("You are trying to connect to an unknown host!");
+			print = new PrintWriter(socket.getOutputStream());
+
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
 		} finally {
 			try {
-				input.close();
-				output.close();
 				socket.close();
 			} catch (IOException ioException) {
 				ioException.printStackTrace();
 			}
-		}
-	}
-
-	void sendMessage(String msg) {
-		try {
-			output.writeObject(msg);
-			output.flush();
-			System.out.println("client>" + msg);
-		} catch (IOException ioException) {
-			ioException.printStackTrace();
 		}
 	}
 
