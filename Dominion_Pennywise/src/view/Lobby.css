@@ -33,7 +33,7 @@
 
 .text-area {
 	-fx-background-color: /*rgba(119, 99, 66, 0.4)*/ rgba(255, 255, 255, 0.4);
-	-fx-font: 20px;	
+	-fx-font-size: 14px;	
 }
 
 .text-area .scroll-pane .viewport{
