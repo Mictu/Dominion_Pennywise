@@ -51,7 +51,7 @@ public class Result_View extends Application{
 	mainPane.setCenter(vbox);
 	
 	Scene scene = new Scene(mainPane); 
-	scene.getStylesheets().add(getClass().getResource("Result.css").toExternalForm());
+	//scene.getStylesheets().add(getClass().getResource("Result.css").toExternalForm());
 	stage.setScene(scene);	
 	stage.show();
 		

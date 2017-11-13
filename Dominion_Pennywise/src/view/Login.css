@@ -1,0 +1,12 @@
+#mainPane {
+	-fx-background-image: url("LoginBackground.jpg");
+	-fx-background-position: center; 
+	-fx-background-size: cover, auto;
+}
+
+
+#welcomeLbl{
+	-fx-text-fill: yellow; 
+	-fx-font-size: 20; 
+	
+}
