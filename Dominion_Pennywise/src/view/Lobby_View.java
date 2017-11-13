@@ -1,6 +1,5 @@
 package view;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -10,18 +9,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import server_Models.Game;
 
-public class Lobby_View extends Application{
+public class Lobby_View {
 	
-//	protected Lobby_View(Stage stage, Game gamemodel){
-//	this.stage = stage; 
-//	this.gamemodel = gamemodel; 
-//}
+	protected Stage stage;
 	
+	protected Lobby_View(Stage stage){
 	BorderPane mainPane; 
-	Stage stage; 
-	Game gamemodel;
+	this.stage = stage; 
 	
 	//connected Players and online players area
 	TextArea txtConnectedPlayers = new TextArea();
@@ -39,14 +34,8 @@ public class Lobby_View extends Application{
 	Button btnNewGame = new Button("Spiel erstellen");
 	Button btnLeaveGame = new Button("Verlassen");
 	Button btnStartGame = new Button("Spiel starten");
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
 
-	@Override
-	public void start(Stage stage) {
-//		stage.setResizable(false);
+		stage.setResizable(false);
 		stage.setTitle("Dominion Lobby");
 		
 		txtConnectedPlayers.setEditable(false);
@@ -83,7 +72,15 @@ public class Lobby_View extends Application{
 		stage.show();
 	}
 	
+	public void start(Stage stage) {
+		stage.show();
+	}
 	
+	public void stop() {
+		Board_View board = new Board_View(stage);
+		board.start(stage);
+		this.stage.hide();
+	}
 	
 }
 

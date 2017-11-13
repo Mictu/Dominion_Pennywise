@@ -1,8 +1,5 @@
 package view;
 
-import org.ietf.jgss.GSSName;
-
-import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,11 +11,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Login_View extends Application {
+public class Login_View {
 
 	BorderPane mainPane;
 	Stage stage; 
-	GSSName gamemodel; 
 	
 	Button lobbyBtn; 
 	Button exitBtn; 
@@ -35,14 +31,8 @@ public class Login_View extends Application {
 	HBox hbox2 = new HBox(); //for laguage and dropdown 
 	
 	
-	public static void main (String[] args){
-		launch(args);
-	}
-	
-	public void start(Stage stage){
-//	protected Login_View(Stage stage, Game gamemodel){
-//		this.stage = stage; 
-//		this.gamemodel = gamemodel; 	
+	public Login_View(Stage stage){
+		this.stage = stage; 
 		stage.setResizable(false);
 		stage.setTitle("Dominion Login");		
 	
@@ -60,7 +50,7 @@ public class Login_View extends Application {
 		
 		//BORDER PANE TOP
 		
-		//Wilkommens Label erstelle nund Top
+		//Wilkommens Label erstellen und Top
 		welcomeLbl = new Label("Willkommen"); 
 		welcomeLbl.setId("welcomeLbl");
 		topvbox.getChildren().add(welcomeLbl);
@@ -91,17 +81,23 @@ public class Login_View extends Application {
 		
 		
 		
-		
-		
-		
 		vbox.getChildren().addAll(hbox1, hbox2,lobbyBtn,exitBtn); 
 		Scene scene = new Scene(mainPane); 
 		scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm()); 
 		stage.setScene(scene);
 		stage.setFullScreen(true);
-		stage.show();
 		
 	}
-
+	
+	public void start() {
+		this.stage.show();
+	}
+	
+	public void stop() {
+		Lobby_View lobby = new Lobby_View(stage);
+		lobby.start(stage);
+		this.stage.hide();
+	}
+	
 
 }

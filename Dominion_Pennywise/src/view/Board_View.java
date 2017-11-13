@@ -1,6 +1,5 @@
 package view;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,25 +15,17 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Board_View extends Application {
+public class Board_View {
 
-//	protected Stage stage;
-//	private Game model;
+	protected Stage stage;
 	
-	public static void main (String[] args) {
-		launch(args);
-	}
-
-	public void start(Stage stage) {
-		CardDesign_View cdV = new CardDesign_View();
-		
 	// Initialize the GUI Content here
 		
 		
-	// constructor
-//	protected Board_View(Stage s, Game m) {
-//		this.stage = s;
-//		this.model = m;
+//	 constructor
+	protected Board_View(Stage s) {
+		CardDesign_View cdV = new CardDesign_View();
+		this.stage = s;
 
 		// Set up the GUI in here
 		stage.setTitle("Dominion");
@@ -43,15 +34,8 @@ public class Board_View extends Application {
 		BorderPane root = new BorderPane();
 		root.setId("boardRoot");
 		root.setPadding(new Insets(10,10,10,10));
-		
-		
-		
-		//Add an Icon for all the Windows
-//		try {
-//		stage.getIcons().add(new Image(Board_View.class.getResourceAsStream("gold.jpg")));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		root.autosize();
+		root.layoutBoundsProperty();
 		
 	//SET TOP
 	//SET CENTER
@@ -61,11 +45,6 @@ public class Board_View extends Application {
 		HBox hCenter1 = new HBox(20); //add Victory cards
 		HBox hCenter2 = new HBox(20); //add Kingdom-/ Action card
 		HBox hCenter3 = new HBox(20); //add Treasure cards
-		
-		vCenter.autosize();
-		hCenter1.autosize();
-		hCenter2.autosize();
-		hCenter3.autosize();
 		
 		vCenter.setPadding(new Insets(0,10,0,0));
 		hCenter1.setId("boxes");
@@ -170,10 +149,19 @@ public class Board_View extends Application {
 		scene.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		stage.setScene(scene);
 		
-		stage.show();
-
 	} // Close the Constructor
 
+	
+	public void start(Stage stage) {
+		stage.show();
+	}
+	
+	public void stop () {
+		Result_View result = new Result_View(stage);
+		result.start(stage);
+		this.stage.hide();
+	}
+	
 	
 }// close class
 
