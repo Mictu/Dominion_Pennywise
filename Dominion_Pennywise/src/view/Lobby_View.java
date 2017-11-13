@@ -49,6 +49,8 @@ public class Lobby_View extends Application{
 		stage.setResizable(false);
 		stage.setTitle("Dominion Lobby");
 		
+		txtConnectedPlayers.setEditable(false);
+		
 		HBox bottomChatBox = new HBox(txtChatMessage,btnSend);
 		bottomChatBox.getStyleClass().add("hboxBottom");
 		HBox.setHgrow(txtChatMessage, Priority.ALWAYS);
@@ -77,6 +79,7 @@ public class Lobby_View extends Application{
 		Scene scene = new Scene(mainPane);
 		scene.getStylesheets().add(getClass().getResource("Lobby.css").toExternalForm());
 		stage.setScene(scene);
+		stage.setFullScreen(true);
 		stage.show();
 	}
 	

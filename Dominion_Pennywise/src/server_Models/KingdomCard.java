@@ -1,10 +1,12 @@
 package server_Models;
 
-public class KingdomCard {
-	
+public class KingdomCard extends Card{
+
 	
 	//Konstruktor Kingdom Card
-	public KingdomCard(){
+	public KingdomCard(String name, int cost){
+		super(name, cost);
+		
 	}
 	
 	
