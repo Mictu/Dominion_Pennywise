@@ -3,7 +3,6 @@ package server.client;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -14,7 +13,6 @@ public class Server {
 	ServerSocket server = null;
 	ObjectInputStream input;
 	ObjectOutputStream output;
-	PrintWriter writer;
 	String msg;
 
 	public Server() {
@@ -32,15 +30,10 @@ public class Server {
 
 			while (true) {
 				socket = server.accept();
-
 				System.out.println("Connection received from: " + socket.getInetAddress().getHostName());
 
 				output = new ObjectOutputStream(socket.getOutputStream());
 				input = new ObjectInputStream(socket.getInputStream());
-
-				writer = new PrintWriter(socket.getOutputStream());
-				writer.println("Hellooooow");
-				writer.close();
 
 			}
 		}
@@ -60,8 +53,7 @@ public class Server {
 	}
 
 	public static void main(String[] args) {
-		Server server = new Server();
-		server.connect();
+		new Server().connect();
 	}
 
 }
