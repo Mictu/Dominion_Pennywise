@@ -35,6 +35,13 @@ public class Server {
 				output = new ObjectOutputStream(socket.getOutputStream());
 				input = new ObjectInputStream(socket.getInputStream());
 
+				try {
+					System.out.println(input.readObject());
+					System.out.println("döööne");
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+
 			}
 		}
 
@@ -49,6 +56,10 @@ public class Server {
 				e.printStackTrace();
 			}
 		}
+
+	}
+
+	public void writeObject() {
 
 	}
 

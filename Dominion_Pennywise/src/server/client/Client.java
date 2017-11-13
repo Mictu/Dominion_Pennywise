@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import javax.swing.JOptionPane;
+
 public class Client {
 	Socket socket = null;
 	ObjectOutputStream output;
@@ -20,9 +22,13 @@ public class Client {
 			socket = new Socket("localhost", 2303);
 			System.out.println("connected to localhost port 2303");
 
-			output = new ObjectOutputStream(socket.getOutputStream());
 			input = new ObjectInputStream(socket.getInputStream());
-			
+			output = new ObjectOutputStream(socket.getOutputStream());
+			output.flush();
+
+			msg = JOptionPane.showInputDialog("Enter something: ");
+			output.writeObject(msg);
+
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
 		} finally {
