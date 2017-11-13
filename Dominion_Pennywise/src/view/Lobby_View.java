@@ -46,7 +46,7 @@ public class Lobby_View extends Application{
 
 	@Override
 	public void start(Stage stage) {
-		stage.setResizable(false);
+//		stage.setResizable(false);
 		stage.setTitle("Dominion Lobby");
 		
 		txtConnectedPlayers.setEditable(false);
