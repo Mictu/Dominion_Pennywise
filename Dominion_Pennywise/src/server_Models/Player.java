@@ -12,6 +12,8 @@ public class Player {
 	private boolean turn;
 	private int buyPoints;
 	
+	private int gaggi;
+	
 	protected Button[] hand = new Button[5];
 	protected ArrayList<Button> deck = new ArrayList<Button>();
 	protected ArrayList<Button> discard = new ArrayList<Button>();
