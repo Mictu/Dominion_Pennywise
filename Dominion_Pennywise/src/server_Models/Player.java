@@ -5,25 +5,50 @@ import java.util.ArrayList;
 import javafx.scene.control.Button;
 
 public class Player {
-	private int point, money;
+	private int point, money, actionPoint, buyPoints;
 	private int totalTurn = 0;
-	private int actionPoint;
 	private boolean turn;
-	private int buyPoints;
 	
-	private int gaggi;
-	
-	protected Button[] hand = new Button[5];
+	ActionPhase actionPhase;
+
+	protected ArrayList<Button> hand = new ArrayList<Button>();
 	protected ArrayList<Button> deck = new ArrayList<Button>();
 	protected ArrayList<Button> discard = new ArrayList<Button>();
-	
-	
-	protected void player() {
+
+	public Player() {
+
+	}
+
+	protected void handleActionPoints() {
+		String testString = "Action.Dorf.PlusZweiKarte";
+
+		String[] extractCardType = testString.split("\\.");
+		String cardName = extractCardType[1].toString();
+		String cardDescription = extractCardType[2].toString();
 		
+		actionPhase = new ActionPhase(cardName, cardDescription);
+		
+		if (extractCardType[0].equals("Action")) {
+			actionPhase.startPhase(cardName, cardDescription);
+		}
+
+	}
+
+	protected void increaseActionPoints(int actionPoint) {
+		System.out.println(actionPoint + "Aktionspunkte");
 	}
 	
+	protected void increaseCard(int card) {
+		System.out.println(card + "Karte");
+	}
+
 	protected void incrementTurn() {
 		totalTurn++;
 	}
-	
+
+	public static void main(String args[]) {
+		Player player = new Player();
+		player.handleActionPoints();
+	}
+
 }
