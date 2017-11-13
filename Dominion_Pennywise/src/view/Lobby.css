@@ -25,7 +25,7 @@
 }
 
 .mainPane {
-	-fx-background-image:url("landscape.jpg");
+	-fx-background-image:url("castle_landscape.jpg");
 	-fx-background-repeat: stretch, no-repeat;
 	-fx-background-position: center center;
 	-fx-background-size: cover, auto;
