@@ -37,7 +37,6 @@ public class Server {
 
 				try {
 					System.out.println(input.readObject());
-					System.out.println("döööne");
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}

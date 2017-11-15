@@ -19,7 +19,7 @@ public class Client {
 
 	public void run() {
 		try {
-			socket = new Socket("192.168.43.102", 2303);
+			socket = new Socket("localhost", 2303);
 
 			input = new ObjectInputStream(socket.getInputStream());
 			output = new ObjectOutputStream(socket.getOutputStream());
@@ -39,9 +39,5 @@ public class Client {
 		}
 	}
 
-	public static void main(String args[]) {
-		Client client = new Client();
-		client.run();
-	}
 
 }

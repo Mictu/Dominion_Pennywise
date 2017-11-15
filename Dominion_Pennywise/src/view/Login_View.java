@@ -98,5 +98,9 @@ public class Login_View {
 		this.stage.hide();
 	}
 	
+	public Stage getStage() {
+		return this.stage;
+	}
+	
 
 }
