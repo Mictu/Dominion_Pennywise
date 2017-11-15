@@ -1,5 +1,7 @@
 package view;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -139,6 +141,16 @@ public class Board_View {
 		root.setRight(vRight);
 		
 	//SET BOTTOM
+
+		
+		
+//		view.menuItem2.setOnAction(new EventHandler<ActionEvent>() {
+//			public void handle(ActionEvent event) {
+//					clear();
+//					model.cleanTries();
+//					view.countTries.setText("Anzahl Versuche: "+model.getTries());
+//			}
+//		});
 		
 		
 		

@@ -33,8 +33,9 @@ public class Login_View {
 	
 	public Login_View(Stage stage){
 		this.stage = stage; 
-		stage.setResizable(false);
+//		stage.setResizable(false);
 		stage.setTitle("Dominion Login");		
+		stage.setFullScreen(true);
 	
 		//Hauptpane as Grundgerüst  
 		mainPane = new BorderPane();

@@ -28,8 +28,17 @@ public class Main extends Application {
 
 	public void start(Stage primaryStage) {
 			
-			loginView = new Login_View(primaryStage);
-			loginView.start();
+//			loginView = new Login_View(primaryStage);
+//			loginView.start();
+		
+			lobbyView = new Lobby_View(primaryStage);
+			lobbyView.start();
+			
+//			boardView = new Board_View(primaryStage);
+//			boardView.start();
+			
+//			resultView = new Result_View(primaryStage);
+//			resultView.start();
 			
 	}
 
