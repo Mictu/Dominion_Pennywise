@@ -14,9 +14,7 @@ public class Lobby_View {
 	
 	protected Stage stage;
 	
-	public Lobby_View(Stage stage){
 	BorderPane mainPane; 
-	this.stage = stage; 
 	
 	//connected Players and online players area
 	TextArea txtConnectedPlayers = new TextArea();
@@ -35,8 +33,11 @@ public class Lobby_View {
 	Button btnLeaveGame = new Button("Verlassen");
 	Button btnStartGame = new Button("Spiel starten");
 
-		stage.setResizable(false);
+	public Lobby_View(Stage stage){
+		this.stage = stage; 
+//		stage.setResizable(false);
 		stage.setTitle("Dominion Lobby");
+		stage.setFullScreen(true);
 		
 		txtConnectedPlayers.setEditable(false);
 		
@@ -77,6 +78,10 @@ public class Lobby_View {
 	
 	public void stop() {
 		this.stage.hide();
+	}
+	
+	public Stage getStage() {
+		return this.stage;
 	}
 	
 }

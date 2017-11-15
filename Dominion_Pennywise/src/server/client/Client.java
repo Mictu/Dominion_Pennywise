@@ -27,6 +27,7 @@ public class Client {
 			
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
+			System.out.println("Verbindung fehlgeschlagen");
 		} finally {
 			try {
 				socket.close();

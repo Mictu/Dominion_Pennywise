@@ -9,6 +9,7 @@ import view.Board_View;
 import view.Result_View;
 import view.Client_Controller;
 
+
 public class Main extends Application {
 
 	Login_View loginView;

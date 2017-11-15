@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import server_Models.Game_Controller;
 
 public class Server {
 
@@ -13,7 +14,8 @@ public class Server {
 	ServerSocket server = null;
 	ObjectInputStream input;
 	ObjectOutputStream output;
-	String msg;
+	
+	Game_Controller game;
 
 	public Server() {
 
@@ -34,7 +36,8 @@ public class Server {
 
 				output = new ObjectOutputStream(socket.getOutputStream());
 				input = new ObjectInputStream(socket.getInputStream());
-
+				
+				game = new Game_Controller();
 			}
 		}
 

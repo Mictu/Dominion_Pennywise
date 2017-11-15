@@ -142,17 +142,6 @@ public class Board_View {
 
 		
 		
-//		view.menuItem2.setOnAction(new EventHandler<ActionEvent>() {
-//			public void handle(ActionEvent event) {
-//					clear();
-//					model.cleanTries();
-//					view.countTries.setText("Anzahl Versuche: "+model.getTries());
-//			}
-//		});
-		
-		
-		
-		
 		
 		// SET SCENE
 		Scene scene = new Scene(root);

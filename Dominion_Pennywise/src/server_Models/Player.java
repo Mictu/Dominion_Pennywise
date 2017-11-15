@@ -15,8 +15,10 @@ public class Player {
 	protected ArrayList<Button> deck = new ArrayList<Button>();
 	protected ArrayList<Button> discard = new ArrayList<Button>();
 
+	protected Deck newDeck;
+	
 	public Player() {
-
+		deck = newDeck.startDeck();
 	}
 
 	protected void handleActionPoints() {
