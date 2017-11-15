@@ -1,26 +1,29 @@
 package server_Models;
 
-public class VictoryCard extends Card{
-	int valuePoints; // estates 1, duchies 3, province 6
+public class VictoryCard extends Cards{
+	
+	public enum VictoryCardType {
+		Estate,
+		Duchy,
+		Province;
+	}
+	
+	public VictoryCardType victoryCardType;
+	public int valuePoints; // estate 1, duchy 3, province 6
+	//costs: estate 2, duchy 5, province 8
 
-	public VictoryCard(String name, int cost) {
-		super(name, cost);
-		// TODO Auto-generated constructor stub
-	} 
-
-	public void getActionPoints() {
-		
+	public VictoryCard(CardType cardType, int cost, VictoryCardType victoryCardType,int valuePoints) {
+		super(cardType, cost);
+		this.victoryCardType = victoryCardType;
+		this.valuePoints = valuePoints;
 	}
 	
-	public void getBuyPoint() {
-		
+	public VictoryCardType getVType() {
+		return victoryCardType;
 	}
 	
-	public void getMoney() {
-		
+	public int getValuePoints() {
+		return valuePoints;
 	}
-	
-	
-	
-	
+		
 }
