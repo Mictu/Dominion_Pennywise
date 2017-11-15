@@ -27,8 +27,12 @@ public class Client_Controller {
 				// Kontrolle ob Name eingegeben wurde!
 
 				// Connect to Server
+				try {
 				client = new Client();
 				client.run();
+				} catch (Exception e) {
+					System.out.println(e);
+				}
 				
 				// Open Lobby
 				lobbyView = new Lobby_View(loginView.getStage());

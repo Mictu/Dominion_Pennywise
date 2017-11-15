@@ -24,10 +24,7 @@ public class Client {
 			input = new ObjectInputStream(socket.getInputStream());
 			output = new ObjectOutputStream(socket.getOutputStream());
 			output.flush();
-
-			msg = JOptionPane.showInputDialog("Enter something: ");
-			output.writeObject(msg);
-
+			
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
 		} finally {
