@@ -55,7 +55,7 @@ public class Player {
 	}
 	
 	public String getName(){
-		return this.name; // gibt name zurück 
+		return this.name; // gibt name zurück nur zum testen
 	}
 	public void setName(String name){
 		this.name = name; // gibt den name ein 
