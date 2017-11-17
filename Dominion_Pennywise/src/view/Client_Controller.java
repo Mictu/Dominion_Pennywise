@@ -39,6 +39,14 @@ public class Client_Controller {
  			}
 		});
 		
+		loginView.exitBtn.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent event) {
+				exit(loginView.getStage()); 
+			}
+			
+		});
 		
 		
 
@@ -57,6 +65,17 @@ public class Client_Controller {
 				board();
 			}
 		});
+		
+		lobbyView.btnLeaveGame.setOnAction(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent event) {
+				exit(lobbyView.getStage());
+				
+			}
+			
+		});
+		
 	}
 	
 	
@@ -72,6 +91,15 @@ public class Client_Controller {
 //			}
 //		});
 	}
+	
+	
+// ExitMethode for all Views
+	public void exit(Stage stage){
+		stage.hide();
+	}
+	
+	
+	
 	
 	
 } // Close Class
