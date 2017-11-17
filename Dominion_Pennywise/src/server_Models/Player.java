@@ -58,7 +58,7 @@ public class Player {
 		return this.name; 
 	}
 	public void setName(String name){
-		this.name = name; 
+		this.name = name; // gibt den name ein 
 	}
 
 }
