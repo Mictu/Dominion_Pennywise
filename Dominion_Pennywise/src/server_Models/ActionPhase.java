@@ -8,56 +8,55 @@ public class ActionPhase {
 	
 
 	// Constructor
-	protected ActionPhase(String cardName, String cardDescription) {
-	}
+	protected ActionPhase(String cardName, Player player) {
+	} // Close Constructor
 
-	protected void startPhase(String cardName, String cardDescription) {
+	protected void startPhase(String cardName, Player player) {
 		this.phase = true;
 		
 		
 		switch (cardName) {
 		case "Dorf":
-			actionVillage();
+			actionVillage(player);
 		case "Holzfaeller":
-			actionWoodcutter();
+			actionWoodcutter(player);
 		case "Jahrmarkt":
-			actionFestival();
+			actionFestival(player);
 		case "Laboratorium":
-			actionLaboratory();
+			actionLaboratory(player);
 		case "Markt":
-			actionMarket();
+			actionMarket(player);
 		case "Schmiede":
-			actionSmith();
+			actionSmith(player);
 			break;
 		}
 	}
 
-	private void actionSmith() {
+	private void actionSmith(Player player) {
 		// TODO Auto-generated method stub
 
 	}
 
-	private void actionMarket() {
+	private void actionMarket(Player player) {
 		// TODO Auto-generated method stub
 
 	}
 
-	private void actionLaboratory() {
+	private void actionLaboratory(Player player) {
 		// TODO Auto-generated method stub
 
 	}
 
-	private void actionFestival() {
+	private void actionFestival(Player player) {
 		// TODO Auto-generated method stub
 
 	}
 
-	private void actionWoodcutter() {
-		// TODO Auto-generated method stub
-
+	private void actionWoodcutter(Player player) {
+		
 	}
 
-	private void actionVillage() {
+	private void actionVillage(Player player) {
 		player.increaseActionPoints(2);
 		player.increaseCard(1);
 	}

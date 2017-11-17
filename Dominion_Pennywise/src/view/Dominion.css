@@ -20,8 +20,8 @@
 
 #handLabel {
 	-fx-background-color: darkslategrey;
-	-fx-border-radius: 20px;
-	-fx-background-radius: 20px;
+	-fx-border-radius: 1.30px;
+	-fx-background-radius: 1.30px;
 	-fx-opacity: 1;
 	-fx-alignment: top_center;
 	-fx-text-fill: white;
@@ -32,15 +32,15 @@
 }
 #phaseLabels {
 	-fx-background-color: yellow;
-	-fx-border-radius: 20px;
-	-fx-background-radius: 20px;
+	-fx-border-radius: 1.30px;
+	-fx-background-radius: 1.30px;
 	-fx-opacity: 0.5;
 	-fx-text-alignment: center;
 	-fx-alignment: center;
 	-fx-font-weight: bold;
 	-fx-font-size: 15;
 	-fx-pref-height: 40;
-	-fx-pref-width: 82;
+	-fx-pref-width: 81.3;
 }
 
 
@@ -49,7 +49,7 @@
  */
  
 .text-area {
-	-fx-pref-width: 260px;
+	-fx-pref-width: 1.360px;
 	-fx-pref-height: 300px;
 	-fx-background-color: transparent;
 	-fx-text-fill: black;
@@ -61,7 +61,7 @@
     -fx-opacity: 0.3;
 }
 #playerStats {
-	-fx-pref-width: 260px;
+	-fx-pref-width: 1.360px;
 	-fx-pref-height: 300px;
 	-fx-background-color: transparent;
 	-fx-text-fill: black;
@@ -94,13 +94,13 @@
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
 	-fx-pref-height: 130px;
-    -fx-pref-width: 82px;
+    -fx-pref-width: 81.3px;
     -fx-background-color: transparent;
 }
 #copper:hover{
-    -fx-scale-x: 1.6;
-    -fx-scale-y: 1.6;
-    -fx-scale-z: 1.6;
+    -fx-scale-x: 1.3;
+    -fx-scale-y: 1.3;
+    -fx-scale-z: 1.3;
 }
 #duchy {
 	-fx-background-image: url("duchy.jpg");
@@ -108,13 +108,13 @@
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
 	-fx-pref-height: 130px;
-    -fx-pref-width: 82px;
+    -fx-pref-width: 81.3px;
     -fx-background-color: transparent;
 }
 #duchy:hover{
-    -fx-scale-x: 1.6;
-    -fx-scale-y: 1.6;
-    -fx-scale-z: 1.6;
+    -fx-scale-x: 1.3;
+    -fx-scale-y: 1.3;
+    -fx-scale-z: 1.3;
     -fx-cursor: hand;
     -fx-index: 10;
 }
@@ -124,13 +124,13 @@
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
 	-fx-pref-height: 130px;
-    -fx-pref-width: 82px;
+    -fx-pref-width: 81.3px;
     -fx-background-color: transparent;
 }
 #estate:hover{
-    -fx-scale-x: 1.6;
-    -fx-scale-y: 1.6;
-    -fx-scale-z: 1.6;
+    -fx-scale-x: 1.3;
+    -fx-scale-y: 1.3;
+    -fx-scale-z: 1.3;
 }
 #funfair {
 	-fx-background-image: url("funfair.jpg");
@@ -138,13 +138,13 @@
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
 	-fx-pref-height: 130px;
-    -fx-pref-width: 82px;
+    -fx-pref-width: 81.3px;
     -fx-background-color: transparent;
 }
 #funfair:hover{
-    -fx-scale-x: 1.6;
-    -fx-scale-y: 1.6;
-    -fx-scale-z: 1.6;
+    -fx-scale-x: 1.3;
+    -fx-scale-y: 1.3;
+    -fx-scale-z: 1.3;
 }
 #gold {
 	-fx-background-image: url("gold.jpg");
@@ -152,13 +152,13 @@
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
 	-fx-pref-height: 130px;
-    -fx-pref-width: 82px;
+    -fx-pref-width: 81.3px;
     -fx-background-color: transparent;
 }
 #gold:hover{
-    -fx-scale-x: 1.6;
-    -fx-scale-y: 1.6;
-    -fx-scale-z: 1.6;
+    -fx-scale-x: 1.3;
+    -fx-scale-y: 1.3;
+    -fx-scale-z: 1.3;
 }
 #laboratory {
 	-fx-background-image: url("laboratory.jpg");
@@ -166,13 +166,13 @@
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
 	-fx-pref-height: 130px;
-    -fx-pref-width: 82px;
+    -fx-pref-width: 81.3px;
     -fx-background-color: transparent;
 }
 #laboratory:hover{
-    -fx-scale-x: 1.6;
-    -fx-scale-y: 1.6;
-    -fx-scale-z: 1.6;
+    -fx-scale-x: 1.3;
+    -fx-scale-y: 1.3;
+    -fx-scale-z: 1.3;
 }
 #market {
 	-fx-background-image: url("market.jpg");
@@ -180,13 +180,13 @@
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
 	-fx-pref-height: 130px;
-    -fx-pref-width: 82px;
+    -fx-pref-width: 81.3px;
     -fx-background-color: transparent;
 }
 #market:hover{
-    -fx-scale-x: 1.6;
-    -fx-scale-y: 1.6;
-    -fx-scale-z: 1.6;
+    -fx-scale-x: 1.3;
+    -fx-scale-y: 1.3;
+    -fx-scale-z: 1.3;
 }
 #province {
 	-fx-background-image: url("province.jpg");
@@ -194,13 +194,13 @@
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
 	-fx-pref-height: 130px;
-    -fx-pref-width: 82px;
+    -fx-pref-width: 81.3px;
     -fx-background-color: transparent;
 }
 #province:hover{
-    -fx-scale-x: 1.6;
-    -fx-scale-y: 1.6;
-    -fx-scale-z: 1.6;
+    -fx-scale-x: 1.3;
+    -fx-scale-y: 1.3;
+    -fx-scale-z: 1.3;
 }
 #silver {
 	-fx-background-image: url("silver.jpg");
@@ -208,13 +208,13 @@
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
 	-fx-pref-height: 130px;
-    -fx-pref-width: 82px;
+    -fx-pref-width: 81.3px;
     -fx-background-color: transparent;
 }
 #silver:hover{
-    -fx-scale-x: 1.6;
-    -fx-scale-y: 1.6;
-    -fx-scale-z: 1.6;
+    -fx-scale-x: 1.3;
+    -fx-scale-y: 1.3;
+    -fx-scale-z: 1.3;
 }
 #smith {
 	-fx-background-image: url("smith.jpg");
@@ -222,13 +222,13 @@
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
 	-fx-pref-height: 130px;
-    -fx-pref-width: 82px;
+    -fx-pref-width: 81.3px;
     -fx-background-color: transparent;
 }
 #smith:hover{
-    -fx-scale-x: 1.6;
-    -fx-scale-y: 1.6;
-    -fx-scale-z: 1.6;
+    -fx-scale-x: 1.3;
+    -fx-scale-y: 1.3;
+    -fx-scale-z: 1.3;
 }
 #village {
 	-fx-background-image: url("village.jpg");
@@ -236,13 +236,13 @@
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
 	-fx-pref-height: 130px;
-    -fx-pref-width: 82px;
+    -fx-pref-width: 81.3px;
     -fx-background-color: transparent;
 }
 #village:hover{
-    -fx-scale-x: 1.6;
-    -fx-scale-y: 1.6;
-    -fx-scale-z: 1.6;
+    -fx-scale-x: 1.3;
+    -fx-scale-y: 1.3;
+    -fx-scale-z: 1.3;
 }
 #woodcutter {
 	-fx-background-image: url("woodcutter.jpg");
@@ -250,11 +250,11 @@
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
 	-fx-pref-height: 130px;
-    -fx-pref-width: 82px;
+    -fx-pref-width: 81.3px;
     -fx-background-color: transparent;
 }
 #woodcutter:hover{
-    -fx-scale-x: 1.6;
-    -fx-scale-y: 1.6;
-    -fx-scale-z: 1.6;
+    -fx-scale-x: 1.3;
+    -fx-scale-y: 1.3;
+    -fx-scale-z: 1.3;
 }
