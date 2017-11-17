@@ -7,6 +7,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import server.client.*;
+import server_Models.Player;
 
 
 public class Client_Controller {
@@ -29,7 +30,9 @@ public class Client_Controller {
 		loginView.lobbyBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				// Kontrolle ob Name eingegeben wurde!
+				Player p1 = new Player(); 
 
+				
 				// Connect to Server
 				try {
 				client = new Client();
@@ -111,7 +114,10 @@ public class Client_Controller {
 		stage.hide();
 	}
 	
-
+	public void setPlayerName(Player p){
+		String pname = loginView.nameLbl.getText(); 
+		p.setName(pname);
+	}
 	
 	
 	
