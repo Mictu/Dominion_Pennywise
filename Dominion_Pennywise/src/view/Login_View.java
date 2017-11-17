@@ -19,7 +19,7 @@ public class Login_View {
 	Button lobbyBtn; 
 	Button exitBtn; 
 	Label welcomeLbl; 
-	Label nameLbl; 
+	public Label nameLbl; 
 	Label languageLbl; 
 	
 	TextField nameTxtfield; 

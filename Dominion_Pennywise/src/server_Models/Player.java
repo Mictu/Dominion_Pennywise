@@ -8,6 +8,7 @@ public class Player {
 	private int point, money, actionPoint, buyPoints;
 	private int totalTurn = 0;
 	private boolean turn;
+	private String name; 
 	
 	ActionPhase actionPhase;
 
@@ -51,6 +52,13 @@ public class Player {
 	public static void main(String args[]) {
 		Player player = new Player();
 		player.handleActionPoints();
+	}
+	
+	public String getName(){
+		return this.name; 
+	}
+	public void setName(String name){
+		this.name = name; 
 	}
 
 }

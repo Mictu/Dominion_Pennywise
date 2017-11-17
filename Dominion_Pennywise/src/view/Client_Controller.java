@@ -1,11 +1,13 @@
 package view;
 
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import server.client.*;
+
 
 public class Client_Controller {
 	
@@ -16,7 +18,6 @@ public class Client_Controller {
 	Lobby_View lobbyView;
 	Board_View boardView;
 	Stage stage;
-
 	
 	// Constructor
 	public Client_Controller(Login_View loginView) {
@@ -38,7 +39,8 @@ public class Client_Controller {
 				}
 				// Open Lobby
 				lobby();
- 			}
+		
+			}
 		});
 		
 		loginView.exitBtn.setOnAction(new EventHandler<ActionEvent>(){
@@ -109,7 +111,7 @@ public class Client_Controller {
 		stage.hide();
 	}
 	
-	
+
 	
 	
 	
@@ -117,3 +119,4 @@ public class Client_Controller {
 
 
 //Written by all
+
