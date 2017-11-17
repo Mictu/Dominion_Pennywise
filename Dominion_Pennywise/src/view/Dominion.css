@@ -115,6 +115,8 @@
     -fx-scale-x: 1.6;
     -fx-scale-y: 1.6;
     -fx-scale-z: 1.6;
+    -fx-cursor: hand;
+    -fx-index: 10;
 }
 #estate {
 	-fx-background-image: url("estate.jpg");
