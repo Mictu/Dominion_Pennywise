@@ -21,7 +21,7 @@ public class Result_View {
 		this.stage = stage;
 		stage.setHeight(600.0);
 		stage.setWidth(400.0);
-		stage.setResizable(false);
+//		stage.setResizable(false);
 		stage.setTitle("WINNER");
 		mainPane = new BorderPane();
 		mainPane.setId("mainPaneResult");
@@ -42,6 +42,7 @@ public class Result_View {
 	}
 
 	public void start() {
+		stage.setFullScreen(true);
 		stage.show();
 	}
 	

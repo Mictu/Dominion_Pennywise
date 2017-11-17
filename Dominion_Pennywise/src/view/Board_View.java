@@ -29,7 +29,6 @@ public class Board_View {
 
 		// Set up the GUI in here
 		stage.setTitle("Dominion");
-		stage.setFullScreen(true);
 //		stage.setResizable(false);
 		BorderPane root = new BorderPane();
 		root.setId("boardRoot");
@@ -152,6 +151,7 @@ public class Board_View {
 
 	
 	public void start() {
+		stage.setFullScreen(true);
 		stage.show();
 	}
 	

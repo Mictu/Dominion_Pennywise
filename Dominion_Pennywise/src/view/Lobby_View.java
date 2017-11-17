@@ -37,7 +37,6 @@ public class Lobby_View {
 		this.stage = stage; 
 //		stage.setResizable(false);
 		stage.setTitle("Dominion Lobby");
-		stage.setFullScreen(true);
 		
 		txtConnectedPlayers.setEditable(false);
 		
@@ -73,6 +72,7 @@ public class Lobby_View {
 	}
 	
 	public void start() {
+		stage.setFullScreen(true);
 		stage.show();
 	}
 	
