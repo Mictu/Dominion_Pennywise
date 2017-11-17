@@ -2,6 +2,8 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import server.client.*;
 
@@ -85,11 +87,20 @@ public class Client_Controller {
 		lobbyView.stop();
 		boardView.start();
 		
-//		lobbyView.btnStartGame.setOnAction(new EventHandler<ActionEvent>() {
-//			public void handle(ActionEvent event) {
-//				
-//			}
-//		});
+		
+		// Close Window with EscapeBtn
+		boardView.stage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+			public void handle(KeyEvent t) {
+				if (t.getCode() == KeyCode.ESCAPE) {
+					System.out.println("Here should come a question if u really want to close the window");     // DONT FORGET!
+					if (boardView.stage.isShowing())
+						boardView.stop();
+				}
+			}
+		});
+		
+		
+		
 	}
 	
 	

@@ -2,7 +2,12 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 public class CardDesign_View {
 
@@ -37,8 +42,48 @@ public class CardDesign_View {
 		copperBtn.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		copperBtn.setId("copper");
 		setForAction(copperBtn);
+
+
+		
+		
+//MAYBE DELETE
+	        copperBtn.setOnAction(e -> imagePopupWindowShow(copperBtn));
+//
+
+	
+
+	    
+// Don't delete
 		return copperBtn;
 	}
+//	
+	
+	
+	
+	
+	
+	public void imagePopupWindowShow(Button btn) {
+        BorderPane x = new BorderPane();
+        Scene scene = new Scene(x);
+        x.setCenter(btn);        
+
+        Stage stage = new Stage();
+        stage.setScene(scene);
+
+        stage.setOnCloseRequest(
+            e -> {
+                e.consume();
+                stage.close();
+            }
+        );
+        stage.show();
+    }
+	
+	
+	
+	
+	
+	
 	protected Button getDuchyBtn() {
 		duchyBtn = new Button();
 		duchyBtn.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
