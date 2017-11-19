@@ -2,19 +2,16 @@ package server_Models;
 
 import java.util.ArrayList;
 
-import javafx.scene.control.Button;
+import server_Models.Cards.CardType;
 
 public class Player {
 	
 	// initialize sector here
-	protected int point, money;
+	protected int winPoint, money, amountOfTurns;
 	protected int actionPoint, buyPoint;
-	protected boolean turn;
 	
 	protected String name; 
 	
-	ActionPhase actionPhase;
-
 	protected ArrayList<Cards> hand = new ArrayList<Cards>();
 	protected ArrayList<Cards> deck = new ArrayList<Cards>();
 	protected ArrayList<Cards> discard = new ArrayList<Cards>();
@@ -23,39 +20,98 @@ public class Player {
 	
 	// Constructor
 	public Player() {
-		turn = false;
-		point = 0;
+		winPoint = 0;
+		amountOfTurns = 0;
+		
 		money = 0;
+		actionPoint = 0;
+		buyPoint = 0;
 		
-		actionPoint = 0; // maybe 1
-		buyPoint = 0; // maybe 1
-		
-		deck = newDeck.startDeck();
+		deck = newDeck.startDeck();							// set player stats through a methode (e.g. winPoints)
+//		cleanUpPhase = new cleanUpPhase();					// CleanUpPhase if Player starts playing (Do in deck-class)
 		
 	} // Close Constructor
 
-	protected void increaseActionPoints(int actionPoint) {
-		System.out.println(actionPoint + "Aktionspunkte");
+	
+	// set up for a new round
+	protected void startRound() {
+		amountOfTurns++;
+		actionPoint = 1;
+		buyPoint = 1;
+		money = getCashHand(); // Get money you have in your hands
 	}
 	
-	protected void increaseCard(int card) {
-		System.out.println(card + "Karte");
+	// Get how many money you have in your hands to buy something
+	protected int getCashHand() {
+		int cash = 0;
+			for (Cards x : this.hand){
+				if (x.getType() == CardType.Treasure) {			// Watch out for Cards class and enums..
+				}
+			}
+		return cash;
 	}
-
-	protected void incrementTurn() {
-		totalTurn++;
+	
+// Increase the stats of the player in the following lines
+	
+	// increase the amount of actions for the player
+	protected void increaseActionPoints(int points) {
+		this.actionPoint += points;
 	}
-
+	
+	// decrease the amount of actions for the player
+	protected void decreaseActionPoints() {
+		this.actionPoint--;
+	}
+	
+	// increase the winning points of the player
+	protected void increasePoints(int points) {
+		this.winPoint += points;
+	}
+	
+	// increase money in the same round
+	protected void increaseMoney(int money) {
+		this.money += money;
+	}
+	
+	// decrease money from hands (Buy-phase)
+	protected void decreaseMoney(int money) {
+		this.money -= money;
+	}
+	
+	// Set player's name
+	protected void setName(String name){
+		this.name = name;										// Easter Eggs? Same name twice?
+	}
 
 	
 	
-	public String getName(){
-		return this.name; // gibt name zurück nur zum testen
+// Get stats of the Player in the following lines	
+	
+	// get the name (easter eggs, player with same name)
+	protected String getName() {
+		return this.name;
 	}
-	public void setName(String name){
-		this.name = name; // gibt den name ein 
+	
+	// Get the money which the player has in his hands
+	protected int getMoney() {
+		return this.money;
 	}
-
+	
+	// return action-points
+	protected int getActionPoints() {
+		return this.actionPoint;
+	}
+	
+	// return win - points
+	protected int getWinPoints() {
+		return this.winPoint;
+	}
+	
+	// return buy - points
+	protected int getBuyPoints() {
+		return this.buyPoint;
+	}
+	
 }
 
 // Patrick
