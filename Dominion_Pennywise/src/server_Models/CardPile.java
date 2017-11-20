@@ -1,19 +1,19 @@
 package server_Models;
 
+import java.util.ArrayList;
+
 import javafx.scene.control.Button;
 
 public class CardPile {
+	protected ArrayList<String> startPile;
+	Cards cards;
 	
-	//initialize zone here
-
-	
-	//Constructor
 	protected CardPile() {
-		
-	}//close constructor
+		this.startPile = cards.startDeck;
+	}
 	
 	
-				//	USE BUTTONS AS 'CARDS'
+	//	USE BUTTONS AS 'CARDS'
 	
 	
 	

@@ -13,10 +13,11 @@ public class Player {
 	protected String name; 
 	
 	protected ArrayList<Cards> hand = new ArrayList<Cards>();
-	protected ArrayList<Cards> deck = new ArrayList<Cards>();
+	protected ArrayList<String> deck = new ArrayList<String>();
 	protected ArrayList<Cards> discard = new ArrayList<Cards>();
 
 	protected Deck newDeck;
+	CardPile cardPile;
 	
 	// Constructor
 	public Player() {
@@ -27,7 +28,8 @@ public class Player {
 		actionPoint = 0;
 		buyPoint = 0;
 		
-		deck = newDeck.startDeck();							// set player stats through a methode (e.g. winPoints)
+		deck = cardPile.startPile;
+		// set player stats through a methode (e.g. winPoints)
 //		cleanUpPhase = new cleanUpPhase();					// CleanUpPhase if Player starts playing (Do in deck-class)
 		
 	} // Close Constructor
@@ -79,7 +81,7 @@ public class Player {
 	}
 	
 	// Set player's name
-	protected void setName(String name){
+	public void setName(String name){
 		this.name = name;										// Easter Eggs? Same name twice?
 	}
 

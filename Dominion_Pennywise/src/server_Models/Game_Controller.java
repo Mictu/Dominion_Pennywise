@@ -3,16 +3,17 @@ package server_Models;
 public class Game_Controller {
 	
 	Player player;
+	Cards cards;
+	Deck deck;
 	
 	// Constructor
 	public Game_Controller() {
-
-		
-		for (int i = 0; i < 10; i++)
-
-			
-			
+		deck = new Deck();
 	} // Close Constructor
+	
+	public void firstRound() {
+	}
+	
 	
 			
 }

@@ -1,5 +1,7 @@
 package server_Models;
 
+import server_Models.VictoryCard.VictoryCardType;
+
 public class TreasureCard extends Cards{
 	
 	public enum TreasureCardType {
@@ -11,18 +13,29 @@ public class TreasureCard extends Cards{
 	private int valueMoney; //copper 1,silver 2,gold 3 
 	// costs: copper 0, silver 2, gold 6
 	
-	public TreasureCard(CardType cardType,int cost,TreasureCardType treasureCardType, int valueMoney) {
-		super(cardType,cost);
-		this.treasureCardType = treasureCardType;
-		this.valueMoney = valueMoney;
+	public TreasureCard() {
+//		super();
+//		this.treasureCardType = treasureCardType;
+//		this.valueMoney = valueMoney;
 	}
 	
-	public TreasureCardType getTType() {
-		return treasureCardType;
+	public String getCard(String tCardType) {
+		if(tCardType.equals(TreasureCardType.Copper)) {
+			return "add the right card";
+		}else if(tCardType.equals(TreasureCardType.Silver)) {
+			return "add the right card";
+		}else if(tCardType.equals(TreasureCardType.Gold)) {
+			return "add the right card"; 
+		}
+		return "";
 	}
 	
 	public int getValuePoints() {
 		return valueMoney;
+	}
+	
+	public String setUpGame() {
+		return "1 Copper";
 	}
 	
 	

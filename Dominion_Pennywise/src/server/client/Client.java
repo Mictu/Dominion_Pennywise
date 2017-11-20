@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-
-import javax.swing.JOptionPane;
+import server_Models.*;
 
 public class Client {
 	Socket socket = null;
@@ -24,6 +23,8 @@ public class Client {
 			input = new ObjectInputStream(socket.getInputStream());
 			output = new ObjectOutputStream(socket.getOutputStream());
 			output.flush();
+			Game_Controller gc = new Game_Controller();
+			gc.firstRound();
 			
 		} catch (IOException ioException) {
 			ioException.printStackTrace();

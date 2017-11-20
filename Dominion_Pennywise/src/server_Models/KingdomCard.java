@@ -1,5 +1,7 @@
 package server_Models;
 
+import server_Models.VictoryCard.VictoryCardType;
+
 public class KingdomCard extends Cards {
 
 	public enum KingdomCardType {
@@ -14,15 +16,28 @@ public class KingdomCard extends Cards {
 	private String description;
 	
 
-	// Konstruktor Kingdom Card
-	public KingdomCard(CardType cardType, int cost, KingdomCardType kingdomCardType, String description) {
-		super(cardType, cost);
-		this.kingdomCardType = kingdomCardType;
-		this.description = description;
+	public KingdomCard() {
+//		super();
+//		this.kingdomCardType = kingdomCardType;
+//		this.description = description;
 	}
 	
-	public KingdomCardType getKType() {
-		return kingdomCardType;
+	public String getCard(String kCardType) {
+		if(kCardType.equals(KingdomCardType.Village)) {
+			return "add the right Card";
+		}else if(kCardType.equals(KingdomCardType.Woodcutter)) {
+			return "add the right Card";
+		}else if(kCardType.equals(KingdomCardType.Festival)) {
+			return "add the right Card";
+		}else if(kCardType.equals(KingdomCardType.Laboratory)) {
+			return "add the right Card";
+		}else if(kCardType.equals(KingdomCardType.Market)) {
+			return "add the right Card";
+		}else if(kCardType.equals(KingdomCardType.Smith)) {
+			return "add the right Card";
+		}
+
+		return "";
 	}
 	
 	public String getDescription() {

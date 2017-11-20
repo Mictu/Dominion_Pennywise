@@ -12,14 +12,27 @@ public class VictoryCard extends Cards{
 	public int valuePoints; // estate 1, duchy 3, province 6
 	//costs: estate 2, duchy 5, province 8
 
-	public VictoryCard(CardType cardType, int cost, VictoryCardType victoryCardType,int valuePoints) {
-		super(cardType, cost);
-		this.victoryCardType = victoryCardType;
-		this.valuePoints = valuePoints;
+	public VictoryCard() {
+//		super();
+//		this.victoryCardType = victoryCardType;
+//		this.valuePoints = valuePoints;
 	}
 	
-	public VictoryCardType getVType() {
-		return victoryCardType;
+	public String setUpGame(){
+		return "1 Estate";
+	}
+	
+	public String getCard(String vCardType) {
+		
+		if(vCardType.equals(VictoryCardType.Estate)) {
+			return "add the right card";
+		}else if(vCardType.equals(VictoryCardType.Duchy)) {
+			return "add the right card";
+		}else if(vCardType.equals(VictoryCardType.Province)) {
+			return "add the right card"; 
+		}
+		
+		return "";
 	}
 	
 	public int getValuePoints() {

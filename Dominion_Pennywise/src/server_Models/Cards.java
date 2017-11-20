@@ -1,28 +1,52 @@
 package server_Models;
 
-public abstract class Cards {
-	
-	
-	public enum CardType {
-		Action,
-		Treasure,
-		Kingdom;
-	}
-	
-	private final CardType cardType;
-	private int cost;
-	
-	public Cards(CardType cardType, int cost) {
-		this.cardType = cardType;
-		this.cost = cost;
-	}
-	
-	public CardType getType() {
-		return cardType;
+import java.util.ArrayList;
+
+public class Cards {
+
+	TreasureCard tCard = new TreasureCard();
+	KingdomCard kCard = new KingdomCard();
+	VictoryCard vCard = new VictoryCard();
+	ArrayList<String> startDeck = new ArrayList<String>();
+
+	public Cards() {
+		setUpFirstRound();
 	}
 
-	public int getCost() {
-		return cost;
+	public enum CardType {
+		Victory, Treasure, Kingdom;
 	}
-	
+
+	public void setUpFirstRound() {
+		for (int i = 0; i < 7; i++) {
+			startDeck.add(tCard.setUpGame());
+		}
+
+		for (int i = 0; i < 3; i++) {
+			startDeck.add(vCard.setUpGame());
+		}
+
+	}
+
+	public String getCard(CardType type) {
+		
+		String vCardType = null;
+		String tCardType = null;
+		String kCardType = null;
+		
+		switch (type) {
+		case Victory:
+			vCard.getCard(vCardType);
+			break;
+		case Treasure:
+			tCard.getCard(tCardType);
+			break;
+		case Kingdom:
+			kCard.getCard(kCardType);
+			break;
+		}
+
+		return "";
+	}
+
 }
