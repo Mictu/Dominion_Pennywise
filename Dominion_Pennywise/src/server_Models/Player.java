@@ -27,7 +27,7 @@ public class Player {
 		actionPoint = 0;
 		buyPoint = 0;
 		
-		deck = newDeck.startDeck();							// set player stats through a methode (e.g. winPoints)
+		discard = newDeck.startDeck();						// set player stats through a methode (e.g. winPoints)
 //		cleanUpPhase = new cleanUpPhase();					// CleanUpPhase if Player starts playing (Do in deck-class)
 		
 	} // Close Constructor
