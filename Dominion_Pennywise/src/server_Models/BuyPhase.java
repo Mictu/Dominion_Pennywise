@@ -13,7 +13,6 @@ public class BuyPhase {
 	
 	// Add Card to discard deck of player
 	protected void buyCard() {
-		player.discard.add();			// Add Card to Deck
 	}
 	
 	protected void playCard() {

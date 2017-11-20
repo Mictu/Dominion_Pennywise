@@ -11,6 +11,7 @@ public class Client {
 	ObjectOutputStream output;
 	ObjectInputStream input;
 	String msg;
+	Game_Controller gc;
 
 	public Client() {
 
@@ -23,8 +24,7 @@ public class Client {
 			input = new ObjectInputStream(socket.getInputStream());
 			output = new ObjectOutputStream(socket.getOutputStream());
 			output.flush();
-			Game_Controller gc = new Game_Controller();
-			gc.firstRound();
+			gc = new Game_Controller();
 			
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
