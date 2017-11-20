@@ -24,6 +24,13 @@ public class Client_Controller {
 	public Client_Controller(Login_View loginView) {
 		this.loginView = loginView;
 		
+		try {
+			client = new Client();
+			client.run();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
 
 //LOGIN		
 		// Open Lobby
@@ -35,14 +42,8 @@ public class Client_Controller {
 				String name = loginView.nameTxtfield.getText();
 				if (!name.isEmpty()) {
 					// Connect to Server
-					try {
-						client = new Client();
-						client.run();
-					} catch (Exception e) {
-						System.out.println(e);
-					}
 					client.send(name);
-					System.out.println(name);
+					System.out.println(name);				// info if name is missed
 					// Open Lobby
 					lobby();
 				}
