@@ -13,7 +13,7 @@ public class Login_Controller {
 		this.loginview = loginview; 
 		// 
 		
-		String text = loginview.nameLbl.getText(); 
+		String text = loginview.nameLbl.getText(); // useless 
 		player.setName(text);// name als text wurde als text
 
 	}
