@@ -30,6 +30,7 @@ public class Player {
 		
 		deck = cardPile.startPile;
 		// set player stats through a methode (e.g. winPoints)
+		discard = newDeck.startDeck();						// set player stats through a methode (e.g. winPoints)
 //		cleanUpPhase = new cleanUpPhase();					// CleanUpPhase if Player starts playing (Do in deck-class)
 		
 	} // Close Constructor
