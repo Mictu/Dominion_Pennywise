@@ -6,7 +6,9 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+
 import server_Models.Game_Controller;
+import server_Models.Player;
 
 public class Server {
 
@@ -16,8 +18,10 @@ public class Server {
 	ObjectOutputStream output;
 	
 	Game_Controller game;
+	Player player;
 
 	public Server() {
+		player = new Player();
 
 	}
 
@@ -37,9 +41,6 @@ public class Server {
 				output = new ObjectOutputStream(socket.getOutputStream());
 				input = new ObjectInputStream(socket.getInputStream());
 				
-				String text = input.readUTF();
-				System.out.println(text);
-				
 				game = new Game_Controller();
 			}
 		}
@@ -58,8 +59,14 @@ public class Server {
 
 	}
 
-	public void writeObject() {
-
+	public void setPlayersName() {
+		try {
+			String text = input.readUTF();
+			player.setName(text);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	public static void main(String[] args) throws ClassNotFoundException {

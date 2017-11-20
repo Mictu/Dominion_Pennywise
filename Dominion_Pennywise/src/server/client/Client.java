@@ -38,7 +38,7 @@ public class Client {
 		}
 	}
 	
-	public void send(String info) {
+	public void sendName(String info) {
 		try {
 			output.writeUTF(info);
 			output.flush();

@@ -41,9 +41,7 @@ public class Client_Controller {
 
 				String name = loginView.nameTxtfield.getText();
 				if (!name.isEmpty()) {
-					// Connect to Server
-					client.send(name);
-					System.out.println(name);				// info if name is missed
+					client.sendName(name);
 					// Open Lobby
 					lobby();
 				}
