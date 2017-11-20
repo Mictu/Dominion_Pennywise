@@ -11,10 +11,10 @@ public class Login_Controller {
 	public Login_Controller(Login_View loginview  ){
 		
 		this.loginview = loginview; 
-		
+		// 
 		
 		String text = loginview.nameLbl.getText(); 
-		player.setName(text);
+		player.setName(text);// name als text
 
 	}
 	
