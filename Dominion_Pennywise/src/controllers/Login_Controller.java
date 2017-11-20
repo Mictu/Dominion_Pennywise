@@ -14,7 +14,7 @@ public class Login_Controller {
 		// 
 		
 		String text = loginview.nameLbl.getText(); 
-		player.setName(text);// name als text
+		player.setName(text);// name als text wurde als text
 
 	}
 	
