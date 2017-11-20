@@ -21,7 +21,7 @@ public class Server {
 
 	}
 
-	public void connect() {
+	public void connect() throws ClassNotFoundException {
 
 		try {
 			server = new ServerSocket(2303);
@@ -36,6 +36,9 @@ public class Server {
 
 				output = new ObjectOutputStream(socket.getOutputStream());
 				input = new ObjectInputStream(socket.getInputStream());
+				
+				String text = input.readUTF();
+				System.out.println(text);
 				
 				game = new Game_Controller();
 			}
@@ -59,7 +62,7 @@ public class Server {
 
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 		new Server().connect();
 	}
 

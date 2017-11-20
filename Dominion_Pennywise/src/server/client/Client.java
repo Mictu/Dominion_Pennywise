@@ -14,7 +14,6 @@ public class Client {
 	Game_Controller gc;
 
 	public Client() {
-
 	}
 
 	public void run() {
@@ -23,18 +22,28 @@ public class Client {
 
 			input = new ObjectInputStream(socket.getInputStream());
 			output = new ObjectOutputStream(socket.getOutputStream());
-			output.flush();
-			gc = new Game_Controller();
 			
+			output.flush();
+
+			gc = new Game_Controller();
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
 			System.out.println("Verbindung fehlgeschlagen");
-		} finally {
-			try {
-				socket.close();
-			} catch (IOException ioException) {
-				ioException.printStackTrace();
-			}
+//		} finally {
+//			try {
+//				socket.close();
+//			} catch (IOException ioException) {
+//				ioException.printStackTrace();
+//			}
+		}
+	}
+	
+	public void send(String info) {
+		try {
+			output.writeUTF(info);
+			output.flush();
+		}catch (Exception e) {
+			System.out.println(e);
 		}
 	}
 

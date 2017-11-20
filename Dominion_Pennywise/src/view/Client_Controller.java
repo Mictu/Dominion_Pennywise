@@ -30,33 +30,34 @@ public class Client_Controller {
 		loginView.lobbyBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				// Kontrolle ob Name eingegeben wurde!
-				Player p1 = new Player(); 
+				Player p1 = new Player();
 
-				
-				// Connect to Server
-				try {
-				client = new Client();
-				client.run();
-				} catch (Exception e) {
-					System.out.println(e);
+				String name = loginView.nameTxtfield.getText();
+				if (!name.isEmpty()) {
+					// Connect to Server
+					try {
+						client = new Client();
+						client.run();
+					} catch (Exception e) {
+						System.out.println(e);
+					}
+					client.send(name);
+					System.out.println(name);
+					// Open Lobby
+					lobby();
 				}
-				// Open Lobby
-				lobby();
-		
 			}
 		});
 		
 		loginView.exitBtn.setOnAction(new EventHandler<ActionEvent>(){
-
-			@Override
 			public void handle(ActionEvent event) {
 				exit(loginView.getStage()); 
 			}
 			
 		});
 		
-		
 
+		
 	} // Close Constructor
 
 	
