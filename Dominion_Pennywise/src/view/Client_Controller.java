@@ -114,11 +114,6 @@ public class Client_Controller {
 		stage.hide();
 	}
 	
-	public void setPlayerName(Player p){
-		String pname = loginView.nameLbl.getText(); 
-		p.setName(pname);
-	}
-	
 	
 	
 } // Close Class
