@@ -2,6 +2,8 @@ package server_Models;
 
 import java.util.ArrayList;
 
+import server.client.Server;
+
 public class Player {
 
 	// initialize sector here
@@ -9,8 +11,9 @@ public class Player {
 	protected int actionPoint, buyPoint;
 
 	protected String name;
+	Server server;
 
-	protected ArrayList<String> hand = new ArrayList<String>();
+	public ArrayList<String> hand = new ArrayList<String>();
 	protected ArrayList<String> deck = new ArrayList<String>();
 	protected ArrayList<String> discard = new ArrayList<String>();
 
@@ -100,6 +103,10 @@ public class Player {
 	// return buy - points
 	protected int getBuyPoints() {
 		return this.buyPoint;
+	}
+	
+	public void sendHandDeckToDisplay() {
+		server.showPlayersCardsOnHand();
 	}
 
 }

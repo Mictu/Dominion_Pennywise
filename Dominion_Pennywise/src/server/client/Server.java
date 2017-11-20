@@ -68,6 +68,15 @@ public class Server {
 		}
 		
 	}
+	
+	public void showPlayersCardsOnHand() {
+		try {
+			output.writeObject(player.hand);
+			output.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static void main(String[] args) throws ClassNotFoundException {
 		new Server().connect();
