@@ -40,7 +40,14 @@ public class Player {
 	protected int getCashHand() {
 		int cash = 0;
 		for (String x : this.hand) {
-			if (x.equalsIgnoreCase("Treasure")) { // Watch out for Cards class and enums..
+			if (x.equalsIgnoreCase("gold")) {
+				money += 3;
+			}
+			if (x.equalsIgnoreCase("silver")) {
+				money += 2;
+			}
+			if (x.equalsIgnoreCase("copper")) {
+				money += 1;
 			}
 		}
 		return cash;
@@ -56,6 +63,16 @@ public class Player {
 	// decrease the amount of actions for the player
 	protected void decreaseActionPoints() {
 		this.actionPoint--;
+	}
+	
+	// increase the buy points of the player
+	protected void increaseBuyPoints(int points) {
+		this.buyPoint += points;
+	}
+	
+	// decrease the amount of buy options
+	protected void decreaseBuyPoints() {
+		this.buyPoint--;
 	}
 
 	// increase the winning points of the player
