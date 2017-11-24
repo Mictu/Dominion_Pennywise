@@ -32,7 +32,7 @@ public class Lobby_View {
 	Button btnSend = new Button("Send");
 	
 	//controls button
-	Button btnNewGame = new Button(client.getPlayersName());
+	Button btnNewGame = new Button("Test");
 	public Button btnLeaveGame = new Button("Verlassen");
 	public Button btnStartGame = new Button("Spiel starten");
 

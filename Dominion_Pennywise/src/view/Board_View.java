@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 public class Board_View {
 
-	protected Stage stage;
+	public Stage stage;
 	
 	// Initialize the GUI Content here
 		

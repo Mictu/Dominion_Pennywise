@@ -12,33 +12,39 @@ public class Lobby_Controller {
 
 	Lobby_View lobbyView; 
 	Login_View loginView; 
-	Board_View bordView;
+	Board_View boardView;
 	
 	
-	public Lobby_Controller(){
-	
+	public Lobby_Controller(Lobby_View lobbyView){
+		this.lobbyView = lobbyView; 
+		
+		
+		
+		
 		//LOBBY		
+		
+		lobbyView.btnStartGame.setOnAction(new EventHandler <ActionEvent>(){
 
-			lobbyView = new Lobby_View(loginView.getStage());
-			loginView.stop();
-			lobbyView.start();
-			
-			
-			lobbyView.btnStartGame.setOnAction((ereignis)->{
+			@Override
+			public void handle(ActionEvent event) {
 				
-				board();
+				System.out.println("sadf");
+				boardView = new Board_View(lobbyView.getStage()); 
+				boardView.start();
+				
+			}
+						
+		});
+			
+
+			
+			
+			lobbyView.btnLeaveGame.setOnAction((event) -> {
+			
+				exit(lobbyView.getStage());
+				
 			});
 			
-			
-			lobbyView.btnLeaveGame.setOnAction(new EventHandler<ActionEvent>(){
-
-				@Override
-				public void handle(ActionEvent event) {
-					exit(lobbyView.getStage());
-					
-				}
-				
-			});
 			
 		
 		

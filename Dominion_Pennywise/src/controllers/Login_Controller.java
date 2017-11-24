@@ -12,6 +12,7 @@ public class Login_Controller {
 	Login_View loginView;
 	Client client = new Client();
 	Lobby_View lobbyView;
+	Lobby_Controller lobbyController; 
 
 	public Login_Controller(Login_View loginView) {
 		this.loginView = loginView;
@@ -24,9 +25,10 @@ public class Login_Controller {
 			// Kontrolle ob Name eingegeben wurde!
 			String name = loginView.nameTxtfield.getText();
 			if (!name.isEmpty()) {
-				client.sendName(name);
+//				client.sendName(name);
 
 				lobbyView = new Lobby_View(loginView.getStage());
+				lobbyController = new Lobby_Controller(lobbyView); 
 				// Open Lobby
 				lobbyView.start();
 			}
