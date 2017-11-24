@@ -1,7 +1,5 @@
 package controllers;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import server.client.Client;
 import view.Lobby_View;
@@ -24,7 +22,8 @@ public class Login_Controller {
 			// Kontrolle ob Name eingegeben wurde!
 			String name = loginView.nameTxtfield.getText();
 			if (!name.isEmpty()) {
-				client.sendName(name);
+			//	client.sendName(name);
+				client.sendToServer(name);
 
 				lobbyView = new Lobby_View(loginView.getStage());
 				// Open Lobby

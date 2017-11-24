@@ -19,7 +19,7 @@ public class Server {
 
 	Game_Controller game;
 	Player player;
-	String name;
+	String msg;
 
 	public Server() {
 		player = new Player();
@@ -59,34 +59,29 @@ public class Server {
 		}
 
 	}
-
-	public void setPlayersName() {
+	
+	public String getMsgFromClient() {
 		try {
-			String text = input.readUTF();
-			player.setName(text);
+			msg = input.readObject().toString();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
+		System.out.println(msg);
+		return msg;
 	}
-
-	public void showPlayersCardsOnHand() {
+	
+	public void sendToClient(String info) {
 		try {
-			output.writeObject(player.hand);
+			output.writeObject(info);
 			output.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void showPlayersName() {
-		try {
-			output.writeObject(player.getName());
-			output.flush();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public static void main(String[] args) throws ClassNotFoundException {
 		new Server().connect();

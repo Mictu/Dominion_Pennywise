@@ -12,7 +12,7 @@ public class Client {
 	ObjectInputStream input;
 	String msg;
 	Game_Controller gc;
-	String playerName;
+	String info;
 	Server server;
 	
 	public Client() {
@@ -40,24 +40,24 @@ public class Client {
 		}
 	}
 	
-	public void sendName(String info) {
+	public void sendToServer(String msg) {
 		try {
-			output.writeUTF(info);
+			output.writeObject(msg);
 			output.flush();
-		}catch (Exception e) {
-			System.out.println(e);
-		}
-	}
-
-	public String getPlayersName() {
-		try {
-			server.showPlayersName();
-			playerName = input.readUTF();
-		}catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		return playerName;
 	}
-
+	
+	public String getMsgFromServer() {
+		try {
+			info = input.readObject().toString();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return info;
+	}
+	
 }

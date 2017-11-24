@@ -64,12 +64,12 @@ public class Player {
 	protected void decreaseActionPoints() {
 		this.actionPoint--;
 	}
-	
+
 	// increase the buy points of the player
 	protected void increaseBuyPoints(int points) {
 		this.buyPoint += points;
 	}
-	
+
 	// decrease the amount of buy options
 	protected void decreaseBuyPoints() {
 		this.buyPoint--;
@@ -92,7 +92,6 @@ public class Player {
 
 	// Set player's name
 	public void setName(String name) {
-		server.setPlayersName();
 		this.name = name;
 	}
 
@@ -121,10 +120,6 @@ public class Player {
 	// return buy - points
 	protected int getBuyPoints() {
 		return this.buyPoint;
-	}
-	
-	public void sendHandDeckToDisplay() {
-		server.showPlayersCardsOnHand();
 	}
 
 }
