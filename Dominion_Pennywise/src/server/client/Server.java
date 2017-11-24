@@ -16,9 +16,10 @@ public class Server {
 	ServerSocket server = null;
 	ObjectInputStream input;
 	ObjectOutputStream output;
-	
+
 	Game_Controller game;
 	Player player;
+	String name;
 
 	public Server() {
 		player = new Player();
@@ -40,7 +41,7 @@ public class Server {
 
 				output = new ObjectOutputStream(socket.getOutputStream());
 				input = new ObjectInputStream(socket.getInputStream());
-				
+
 				game = new Game_Controller();
 			}
 		}
@@ -66,12 +67,21 @@ public class Server {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public void showPlayersCardsOnHand() {
 		try {
 			output.writeObject(player.hand);
+			output.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void showPlayersName() {
+		try {
+			output.writeObject(player.getName());
 			output.flush();
 		} catch (IOException e) {
 			e.printStackTrace();

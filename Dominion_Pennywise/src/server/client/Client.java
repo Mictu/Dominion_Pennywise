@@ -12,7 +12,9 @@ public class Client {
 	ObjectInputStream input;
 	String msg;
 	Game_Controller gc;
-
+	String playerName;
+	Server server;
+	
 	public Client() {
 	}
 
@@ -47,5 +49,15 @@ public class Client {
 		}
 	}
 
+	public String getPlayersName() {
+		try {
+			server.showPlayersName();
+			playerName = input.readUTF();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return playerName;
+	}
 
 }

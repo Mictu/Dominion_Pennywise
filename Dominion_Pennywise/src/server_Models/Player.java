@@ -92,13 +92,14 @@ public class Player {
 
 	// Set player's name
 	public void setName(String name) {
-		this.name = name; // Easter Eggs? Same name twice?
+		server.setPlayersName();
+		this.name = name;
 	}
 
 	// Get stats of the Player in the following lines
 
 	// get the name (easter eggs, player with same name)
-	protected String getName() {
+	public String getName() {
 		return this.name;
 	}
 
