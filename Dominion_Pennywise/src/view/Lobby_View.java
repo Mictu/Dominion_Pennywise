@@ -33,8 +33,8 @@ public class Lobby_View {
 	
 	//controls button
 	Button btnNewGame = new Button(client.getPlayersName());
-	Button btnLeaveGame = new Button("Verlassen");
-	Button btnStartGame = new Button("Spiel starten");
+	public Button btnLeaveGame = new Button("Verlassen");
+	public Button btnStartGame = new Button("Spiel starten");
 
 	public Lobby_View(Stage stage){
 		this.stage = stage; 

@@ -32,32 +32,7 @@ public class Client_Controller {
 		}
 		
 
-//LOGIN		
-		// Open Lobby
-		loginView.lobbyBtn.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				// Kontrolle ob Name eingegeben wurde!
-				Player p1 = new Player();
-
-				String name = loginView.nameTxtfield.getText();
-				if (!name.isEmpty()) {
-					client.sendName(name);
-					// Open Lobby
-					lobby();
-				}
-			}
-		});
-		
-		loginView.exitBtn.setOnAction(new EventHandler<ActionEvent>(){
-			public void handle(ActionEvent event) {
-				exit(loginView.getStage()); 
-			}
-			
-		});
-		
-
-		
-	} // Close Constructor
+	}
 
 	
 	

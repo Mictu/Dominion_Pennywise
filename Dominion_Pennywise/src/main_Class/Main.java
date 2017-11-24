@@ -1,8 +1,10 @@
 package main_Class;
 
+import controllers.Login_Controller;
 import javafx.application.Application;
 
 import javafx.stage.Stage;
+import server.client.Server;
 import view.Login_View;
 import view.Lobby_View;
 import view.Board_View;
@@ -17,7 +19,8 @@ public class Main extends Application {
 	Board_View boardView;
 	Result_View resultView;
 	Stage stage;
-	Client_Controller cController;
+	Login_Controller loginController; 
+
 
 	// MVC STARTS THE PROGRAMM AND INITIALIZES THE MVC-CLASSES (MODEL, VIEW,
 	// CONTROLLER)
@@ -32,20 +35,10 @@ public class Main extends Application {
 
 	public void start(Stage primaryStage) {
 		
-			
-			
 			loginView = new Login_View(primaryStage);
-			cController = new Client_Controller(loginView);
+			loginController = new Login_Controller(loginView);
 			loginView.start();
 		
-//			lobbyView = new Lobby_View(primaryStage);
-//			lobbyView.start();
-			
-//			boardView = new Board_View(primaryStage);
-//			boardView.start();
-			
-//			resultView = new Result_View(primaryStage);
-//			resultView.start();
 			
 	}
 

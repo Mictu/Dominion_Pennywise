@@ -16,13 +16,13 @@ public class Login_View {
 	BorderPane mainPane;
 	Stage stage; 
 	
-	Button lobbyBtn; 
-	Button exitBtn; 
+	public Button lobbyBtn; 
+	public Button exitBtn; 
 	Label welcomeLbl; 
 	public Label nameLbl; 
 	Label languageLbl; 
 	
-	TextField nameTxtfield; 
+	public TextField nameTxtfield; 
 	ComboBox <String> language = new ComboBox<String>(); 
 
 	VBox topvbox = new VBox(); 
