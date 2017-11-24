@@ -14,17 +14,31 @@ public class BuyPhase {
 	// Add Card to discard deck of player
 	protected void buyCard(String cardName) {
 		int cost = getCost(cardName);
+		// only if player has enough money to buy 'the' clicked card
 		if (player.money >= cost) {
 			player.discard.add(cardName);							// Karte vom Stapel abziehen !!!
 			
 			
-			// Calculate how player is going to pay
-			if (cost == 1 && player.hand.contains("copper"))
-				player.hand.remove(player.hand.lastIndexOf("copper"));
-			if (cost == 2 && player.hand.contains("silver"))
-				player.hand.remove(player.hand.lastIndexOf("silver"));
-			if (cost == 3 && player.hand.contains("gold"))
-				player.hand.remove(player.hand.lastIndexOf("gold"));
+			// Calculate how player is going to pay -gold : 3--silver : 2--copper : 1-
+			// How NOT to get too much money from players hand
+			// maybe start with the cheapest / highest or even wait for player to pick how he wants to pay
+			
+			// 1 - copper / silver / gold
+			// 2 - 2*copper / silver / gold
+			// 3 - 3*copper / silver + copper / 2*silver / gold
+			// 4 - 4*copper / 2*silver / 2*copper + silver/ copper + gold / silver + gold / gold + gold
+			// etc....
+			// Maybe a method which pays up to 3 or 4 gold and do this in a loop (still not the best, e.g. 5)
+			
+			// -- >> seems the player has to chose how to pay the price
+			// Otherwise there will be a shit-load of code which doesn't look very nice and is copy-pasted from itself
+			
+			// maybe set a golden border around the buttons with money to show what to press
+			// player.Button(getText).setId("goldenBorder");
+			
+			
+			
+			player.getCashHand(); // show players money again
 			
 			
 		} else {
@@ -32,7 +46,7 @@ public class BuyPhase {
 		}
 	}
 	
-	
+	// get the costs of every card
 	protected int getCost(String cardName) {
 		int costs = 0;
 		
