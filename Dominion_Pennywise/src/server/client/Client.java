@@ -1,33 +1,49 @@
 package server.client;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.Socket;
-import server_Models.*;
 
 public class Client {
 	Socket socket = null;
-	ObjectOutputStream output;
-	ObjectInputStream input;
-	String msg;
-	Game_Controller gc;
+//	ObjectOutputStream output;
+//	ObjectInputStream input;
+	OutputStream output;
+	OutputStreamWriter writer;
+	BufferedWriter bw;
+	InputStream input;
+	InputStreamReader reader;
+	BufferedReader br;
 	String info;
 	Server server;
 	
 	public Client() {
+		server = new Server();
 	}
 
 	public void run() {
 		try {
 			socket = new Socket("localhost", 2303);
 
-			input = new ObjectInputStream(socket.getInputStream());
-			output = new ObjectOutputStream(socket.getOutputStream());
+//			input = new ObjectInputStream(socket.getInputStream());
+//			output = new ObjectOutputStream(socket.getOutputStream());
 			
-			output.flush();
+//			output.flush();
+			input = socket.getInputStream();
+			reader = new InputStreamReader(input);
+			br = new BufferedReader(reader);
+			
+			output = socket.getOutputStream();
+			writer = new OutputStreamWriter(output);
+			bw = new BufferedWriter(writer);
+			
+			
 
-			gc = new Game_Controller();
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
 			System.out.println("Verbindung fehlgeschlagen");
@@ -42,22 +58,23 @@ public class Client {
 	
 	public void sendToServer(String msg) {
 		try {
-			output.writeObject(msg);
-			output.flush();
+			System.out.println("nach try");
+			bw.write(msg);
+			System.out.println("nach utf");
+			server.getMsgFromClient();
+//			output.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public String getMsgFromServer() {
-		try {
-			info = input.readObject().toString();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return info;
-	}
+//	
+//	public String getMsgFromServer() {
+//		try {
+//			info = input.readUTF();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		return info;
+//	}
 	
 }

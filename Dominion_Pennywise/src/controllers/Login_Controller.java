@@ -13,6 +13,7 @@ public class Login_Controller {
 
 	public Login_Controller(Login_View loginView) {
 		this.loginView = loginView;
+		client.run();
 
 		// LOGIN
 		// Open Lobby
