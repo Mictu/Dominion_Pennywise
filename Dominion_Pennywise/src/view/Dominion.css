@@ -87,6 +87,11 @@
  * CARDS (BUTTONS)
  */
 
+#goldenBorder {
+	-fx-border-color: darkred;
+	-fx-border-width: 5px;
+	-fx-border-insets: -2px;
+}
 
 #copper {
 	-fx-background-image: url("copper.jpg");
