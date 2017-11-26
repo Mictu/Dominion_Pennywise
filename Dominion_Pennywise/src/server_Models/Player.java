@@ -2,6 +2,8 @@ package server_Models;
 
 import java.util.ArrayList;
 
+import server.client.Server;
+
 public class Player {
 
 	// initialize sector here
@@ -9,8 +11,9 @@ public class Player {
 	protected int actionPoint, buyPoint;
 
 	protected String name;
+	Server server;
 
-	protected ArrayList<String> hand = new ArrayList<String>();
+	public ArrayList<String> hand = new ArrayList<String>();
 	protected ArrayList<String> deck = new ArrayList<String>();
 	protected ArrayList<String> discard = new ArrayList<String>();
 
@@ -37,7 +40,14 @@ public class Player {
 	protected int getCashHand() {
 		int cash = 0;
 		for (String x : this.hand) {
-			if (x.equalsIgnoreCase("Treasure")) { // Watch out for Cards class and enums..
+			if (x.equalsIgnoreCase("gold")) {
+				money += 3;
+			}
+			if (x.equalsIgnoreCase("silver")) {
+				money += 2;
+			}
+			if (x.equalsIgnoreCase("copper")) {
+				money += 1;
 			}
 		}
 		return cash;
@@ -53,6 +63,16 @@ public class Player {
 	// decrease the amount of actions for the player
 	protected void decreaseActionPoints() {
 		this.actionPoint--;
+	}
+
+	// increase the buy points of the player
+	protected void increaseBuyPoints(int points) {
+		this.buyPoint += points;
+	}
+
+	// decrease the amount of buy options
+	protected void decreaseBuyPoints() {
+		this.buyPoint--;
 	}
 
 	// increase the winning points of the player
@@ -72,13 +92,13 @@ public class Player {
 
 	// Set player's name
 	public void setName(String name) {
-		this.name = name; // Easter Eggs? Same name twice?
+		this.name = name;
 	}
 
 	// Get stats of the Player in the following lines
 
 	// get the name (easter eggs, player with same name)
-	protected String getName() {
+	public String getName() {
 		return this.name;
 	}
 

@@ -1,5 +1,6 @@
 package main_Class;
 
+import controllers.Login_Controller;
 import javafx.application.Application;
 
 import javafx.stage.Stage;
@@ -18,7 +19,7 @@ public class Main extends Application {
 	Board_View boardView;
 	Result_View resultView;
 	Stage stage;
-	Client_Controller cController;
+	Login_Controller loginController; 
 	private ServiceLocator serviceLocator; 
 
 	// MVC STARTS THE PROGRAMM AND INITIALIZES THE MVC-CLASSES (MODEL, VIEW,
@@ -40,24 +41,12 @@ public class Main extends Application {
 		serviceLocator.setTranslator(new Translator(language));
 		
 		loginView = new Login_View(primaryStage);
-		cController = new Client_Controller(loginView);
+		Client_Controller cController = new Client_Controller(loginView);
 		loginView.start();
-		
-		
-
-		// lobbyView = new Lobby_View(primaryStage);
-		// lobbyView.start();
-
-		// boardView = new Board_View(primaryStage);
-		// boardView.start();
-
-		// resultView = new Result_View(primaryStage);
-		// resultView.start();
-
 	}
 
 	public void stop() {
-//		serviceLocator.getConfiguration().save();
+		serviceLocator.getConfiguration().save();
 		
 		if (loginView != null) {
 			loginView.stop();

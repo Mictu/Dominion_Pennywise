@@ -9,9 +9,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import server.client.Client;
+import server_Models.Player;
 
 public class Lobby_View {
 	
+	Client client = new Client();
 	protected Stage stage;
 	
 	BorderPane mainPane; 
@@ -29,9 +32,9 @@ public class Lobby_View {
 	Button btnSend = new Button("Send");
 	
 	//controls button
-	Button btnNewGame = new Button("Spiel erstellen");
-	Button btnLeaveGame = new Button("Verlassen");
-	Button btnStartGame = new Button("Spiel starten");
+	Button btnNewGame = new Button("Test");
+	public Button btnLeaveGame = new Button("Verlassen");
+	public Button btnStartGame = new Button("Spiel starten");
 
 	public Lobby_View(Stage stage){
 		this.stage = stage; 

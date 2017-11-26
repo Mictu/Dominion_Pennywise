@@ -19,8 +19,8 @@ public class Login_View {
 	BorderPane mainPane;
 	Stage stage;
 
-	Button lobbyBtn;
-	Button exitBtn;
+	public Button lobbyBtn;
+	public Button exitBtn;
 	Label welcomeLbl;
 	public Label nameLbl;
 	Label languageLbl;
@@ -41,11 +41,11 @@ public class Login_View {
 		// stage.setResizable(false);
 		stage.setTitle("Dominion Login");
 		stage.setFullScreen(true);
-
-		// Hauptpane as Grundgerüst
+	
+		//Hauptpane as Grundgerüst  
 		mainPane = new BorderPane();
 		mainPane.setId("mainPane");
-
+		
 		mainPane.setCenter(vbox);
 		vbox.setAlignment(Pos.CENTER);
 		vbox.setSpacing(20.00);

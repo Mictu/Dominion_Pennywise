@@ -1,24 +1,36 @@
 package server.client;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import server_Models.Game_Controller;
+
+import server_Models.Player;
 
 public class Server {
 
 	Socket socket = null;
 	ServerSocket server = null;
-	ObjectInputStream input;
-	ObjectOutputStream output;
-	
-	Game_Controller game;
+//	ObjectInputStream input;
+//	ObjectOutputStream output;
+	OutputStream output;
+	OutputStreamWriter writer;
+	BufferedWriter bw;
+	InputStream input;
+	InputStreamReader reader;
+	BufferedReader br;
+
+	Player player;
+	String msg;
 
 	public Server() {
-
+		player = new Player();
 	}
 
 	public void connect() throws ClassNotFoundException {
@@ -34,13 +46,17 @@ public class Server {
 				socket = server.accept();
 				System.out.println("Connection received from: " + socket.getInetAddress().getHostName());
 
-				output = new ObjectOutputStream(socket.getOutputStream());
-				input = new ObjectInputStream(socket.getInputStream());
+//				output = new ObjectOutputStream(socket.getOutputStream());
+//				input = new ObjectInputStream(socket.getInputStream());
+				output = socket.getOutputStream();
+				writer = new OutputStreamWriter(output);
+				bw = new BufferedWriter(writer);
+				input = socket.getInputStream();
+				reader = new InputStreamReader(input);
+				br = new BufferedReader(reader);
 				
-				String text = input.readUTF();
-				System.out.println(text);
 				
-				game = new Game_Controller();
+
 			}
 		}
 
@@ -57,10 +73,29 @@ public class Server {
 		}
 
 	}
-
-	public void writeObject() {
-
+	
+	public String getMsgFromClient() {
+		System.out.println("Endlich server");
+		try {
+			msg = br.readLine();
+		} catch (IOException e) {
+			System.out.println("shit");
+			e.printStackTrace();
+		}
+		System.out.println("HIER LÄUFTS");
+		System.out.println(msg);
+		return msg;
 	}
+	
+//	public void sendToClient(String info) {
+//		try {
+//			output.writeUTF(info);
+//			output.flush();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+
 
 	public static void main(String[] args) throws ClassNotFoundException {
 		new Server().connect();
