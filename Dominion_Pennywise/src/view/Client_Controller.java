@@ -6,13 +6,17 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import main_Class.ServiceLocator;
 import server.client.*;
 import server_Models.Player;
+import server_Models.Translator;
 
 
 public class Client_Controller {
 	
 	// Initializing Sector
+	ServiceLocator serviceLocator;
+	Translator t;
 	
 	Client client;
 	Login_View loginView;
@@ -57,6 +61,8 @@ public class Client_Controller {
 		});
 		
 
+		serviceLocator = ServiceLocator.getServiceLocator();
+		t = serviceLocator.getTranslator();
 		
 	} // Close Constructor
 
