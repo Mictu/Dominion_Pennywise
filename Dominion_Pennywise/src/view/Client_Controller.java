@@ -44,7 +44,7 @@ public class Client_Controller {
 					} catch (Exception e) {
 						System.out.println(e);
 					}
-					client.send(name);
+//					client.send(name);
 					System.out.println(name);
 					// Open Lobby
 					lobby();

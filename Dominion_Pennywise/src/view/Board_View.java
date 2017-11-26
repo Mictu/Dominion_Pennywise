@@ -14,6 +14,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import main_Class.ServiceLocator;
+import server_Models.Translator;
 
 public class Board_View {
 
@@ -24,6 +26,8 @@ public class Board_View {
 		
 //	 constructor
 	public Board_View(Stage s) {
+		ServiceLocator sl = ServiceLocator.getServiceLocator();
+		Translator t = sl.getTranslator();
 		CardDesign_View cdV = new CardDesign_View();
 		this.stage = s;
 
@@ -65,11 +69,11 @@ public class Board_View {
 		
 		
 		HBox labels = new HBox(20) ;
-			Label firstPhase = new Label("Phase 1");
+			Label firstPhase = new Label(t.getString("dominion.board.lbl.actionPhase"));
 			firstPhase.setId("phaseLabels");
-			Label secondPhase = new Label("Phase 2");
+			Label secondPhase = new Label(t.getString("dominion.board.lbl.buyPhase"));
 			secondPhase.setId("phaseLabels");
-			Label thirdPhase = new Label("Phase 3");
+			Label thirdPhase = new Label(t.getString("dominion.board.lbl.cleanupPhase"));
 			thirdPhase.setId("phaseLabels");
 			
 		labels.getChildren().addAll(firstPhase,secondPhase,thirdPhase);
@@ -80,7 +84,7 @@ public class Board_View {
 		StackPane stackPane = new StackPane();
 		stackPane.setPadding(new Insets(0,10,0,0));
 		
-		Label hand = new Label("Spielerhand");
+		Label hand = new Label(t.getString("dominion.board.lbl.hand"));
 		hand.setId("handLabel");
 
 		HBox hBoxHand = new HBox(20);
@@ -119,7 +123,7 @@ public class Board_View {
 		TextField chatText = new TextField();
 		Button send = new Button();
 		send.setId("sendButton");
-		send.setText("Senden");
+		send.setText(t.getString("dominion.lobby.btn.send"));
 		
 		chatInput.getChildren().addAll(chatText, send);
 		chatInput.setAlignment(Pos.CENTER);

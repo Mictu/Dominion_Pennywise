@@ -9,8 +9,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import main_Class.ServiceLocator;
 import server.client.Client;
 import server_Models.Player;
+import server_Models.Translator;
 
 public class Lobby_View {
 	
@@ -32,14 +34,20 @@ public class Lobby_View {
 	Button btnSend = new Button("Send");
 	
 	//controls button
-	Button btnNewGame = new Button("Test");
-	public Button btnLeaveGame = new Button("Verlassen");
-	public Button btnStartGame = new Button("Spiel starten");
+	Button btnTest;
+	public Button btnLeaveGame;
+	public Button btnStartGame;
 
 	public Lobby_View(Stage stage){
+		ServiceLocator sl = ServiceLocator.getServiceLocator();
+		Translator t = sl.getTranslator();
 		this.stage = stage; 
 //		stage.setResizable(false);
 		stage.setTitle("Dominion Lobby");
+		
+		 btnTest = new Button(t.getString("dominion.lobby.btn.test"));
+		 btnLeaveGame = new Button(t.getString("dominion.lobby.btn.quit"));
+		 btnStartGame = new Button(t.getString("dominion.lobby.btn.start"));
 		
 		txtConnectedPlayers.setEditable(false);
 		
@@ -47,11 +55,11 @@ public class Lobby_View {
 		bottomChatBox.getStyleClass().add("hboxBottom");
 		HBox.setHgrow(txtChatMessage, Priority.ALWAYS);
 		
-		btnNewGame.getStyleClass().add("btn");
+		btnTest.getStyleClass().add("btn");
 		btnLeaveGame.getStyleClass().add("btn");
 		btnStartGame.getStyleClass().add("btn");
 		
-		HBox topBox = new HBox(btnNewGame, btnStartGame, btnLeaveGame);
+		HBox topBox = new HBox(btnTest, btnStartGame, btnLeaveGame);
 		topBox.getStyleClass().add("topBox");
 		
 		VBox rightBox = new VBox(topBox, txtHistory,txtChatArea, bottomChatBox);
