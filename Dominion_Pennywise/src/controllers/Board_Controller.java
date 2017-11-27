@@ -4,16 +4,21 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import view.Board_View;
+import view.CardDesign_View;
 import view.Lobby_View;
 
 public class Board_Controller {
 	
 	Lobby_View lobbyView; 
 	Board_View boardView; 
+	CardDesign_View cardView; 
 	
 	
-	
-	public Board_Controller(){
+	public Board_Controller(Board_View boardView, CardDesign_View cardView){
+		this.boardView = boardView; 
+		this.cardView = cardView; 
+		
+		
 		
 		
 		boardView = new Board_View(lobbyView.getStage());
@@ -33,6 +38,10 @@ public class Board_Controller {
 				}
 			}
 		});
+		
+		
+		
+		
 		
 		
 		
