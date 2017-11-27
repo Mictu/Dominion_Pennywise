@@ -23,7 +23,7 @@ public class BuyPhase {
 			// player.Button(getText).setId("goldenBorder");
 			
 			
-			// Also show bonus money somewhere to chose for buyoption
+			// Also show bonus money somewhere to chose for buyoption - button?
 			
 			
 			

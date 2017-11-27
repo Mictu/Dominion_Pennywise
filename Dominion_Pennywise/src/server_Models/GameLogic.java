@@ -21,7 +21,6 @@ public class GameLogic {
 	protected String actualPhase;
 	
 	protected Server server;
-	protected Player player;
 	protected CleanUpPhase cleanPhase;
 	protected TreasureCard tCard = new TreasureCard();
 	protected VictoryCard vCard = new VictoryCard();
@@ -79,8 +78,15 @@ public class GameLogic {
 		Collections.shuffle(playerList); // Random StartList
 	}
 
+	// get the actual phase to let the client know what cards can be pressed
 	protected String getPhase() {
 		return this.actualPhase;
+	}
+	
+	// This method should actualize the hand on the view (e.g. call it in buy phase when u gave away a copper card)
+	protected void setHandView(Player player) {
+		for (String o : player.hand)
+			server.sendToClient(o);
 	}
 	
 	
