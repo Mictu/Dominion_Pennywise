@@ -18,7 +18,8 @@ public class Player {
 	protected ArrayList<String> discard = new ArrayList<String>();
 
 	// Constructor
-	public Player() {
+	public Player(String name) {
+		this.name = name;
 		winPoint = 0;
 		amountOfTurns = 0;
 

@@ -23,6 +23,10 @@ public class BuyPhase {
 			// player.Button(getText).setId("goldenBorder");
 			
 			
+			// Also show bonus money somewhere to chose for buyoption
+			
+			
+			
 			for (String x : player.hand) {
 				if (x.equals("copper"))
 					x.setId("goldenBorder");

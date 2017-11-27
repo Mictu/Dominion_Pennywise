@@ -30,7 +30,6 @@ public class Server {
 	String msg;
 
 	public Server() {
-		player = new Player();
 	}
 
 	public void connect() throws ClassNotFoundException {

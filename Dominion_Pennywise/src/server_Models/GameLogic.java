@@ -3,6 +3,8 @@ package server_Models;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import server.client.Server;
+
 public class GameLogic {
 
 	// Initialize sector here
@@ -15,10 +17,14 @@ public class GameLogic {
 	protected int countRounds;
 	protected final int START_MONEY = 7;
 	protected final int START_ESTATE = 3;
-	Player player;
-	CleanUpPhase cleanPhase;
-	TreasureCard tCard = new TreasureCard();
-	VictoryCard vCard = new VictoryCard();
+	
+	protected String actualPhase;
+	
+	protected Server server;
+	protected Player player;
+	protected CleanUpPhase cleanPhase;
+	protected TreasureCard tCard = new TreasureCard();
+	protected VictoryCard vCard = new VictoryCard();
 
 	// Constructor
 	protected GameLogic() {
@@ -47,8 +53,17 @@ public class GameLogic {
 					gameStart(player);
 				}
 				player.startRound();
+				
+				actualPhase = "action";
+				server.sendToClient(actualPhase);
 				actionPhase = new ActionPhase(player);
+				
+				actualPhase = "buy";
+				server.sendToClient(actualPhase);
 				buyPhase = new BuyPhase(player);
+
+				actualPhase = "cleanup";
+				server.sendToClient(actualPhase);
 				cleanUpPhase = new CleanUpPhase(player);
 			}
 
@@ -64,6 +79,11 @@ public class GameLogic {
 		Collections.shuffle(playerList); // Random StartList
 	}
 
+	protected String getPhase() {
+		return this.actualPhase;
+	}
+	
+	
 }
 
 // Patrick

@@ -9,10 +9,9 @@ public class ActionPhase {
 	protected boolean phase;
 
 	// Constructor
-	protected ActionPhase(Player player, String cardName) {
+	protected ActionPhase(Player player) {
 		this.player = player;
 		phase = true;
-		chosenCard(cardName);						// Call Class and end phase - rethink..
 	} // Close Constructor
 
 	// choose this method if a card is pressed
