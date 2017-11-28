@@ -69,6 +69,14 @@ public class Client {
 			e.printStackTrace();
 		}
 	}
+	
+	public void getStringFromServer() {
+		try {
+			System.out.println(input.readUTF());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 //	
 //	public String getMsgFromServer() {
 //		try {

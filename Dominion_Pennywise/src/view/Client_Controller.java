@@ -47,6 +47,7 @@ public class Client_Controller {
 						System.out.println(e);
 					}
 						client.sendToServer(name);
+						client.getStringFromServer();
 					// Open Lobby
 					lobby();
 				}

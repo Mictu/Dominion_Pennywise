@@ -56,6 +56,8 @@ public class Server {
 				output = new DataOutputStream(socket.getOutputStream());
 
 				System.out.println(input.readUTF());
+				
+				output.writeUTF("hiii");
 			}
 		}
 
