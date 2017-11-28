@@ -8,19 +8,19 @@ import java.net.UnknownHostException;
 
 public class Client {
 	Socket socket = null;
-//	ObjectOutputStream output;
-//	ObjectInputStream input;
-//	OutputStream output;
-//	OutputStreamWriter writer;
-//	BufferedWriter bw;
-//	InputStream input;
-//	InputStreamReader reader;
-//	BufferedReader br;
+	// ObjectOutputStream output;
+	// ObjectInputStream input;
+	// OutputStream output;
+	// OutputStreamWriter writer;
+	// BufferedWriter bw;
+	// InputStream input;
+	// InputStreamReader reader;
+	// BufferedReader br;
 	DataInputStream input;
 	DataOutputStream output;
 	String info;
 	Server server;
-	
+
 	public Client() {
 		server = new Server();
 	}
@@ -29,54 +29,58 @@ public class Client {
 		try {
 			socket = new Socket("localhost", 2303);
 
-//			input = new ObjectInputStream(socket.getInputStream());
-//			output = new ObjectOutputStream(socket.getOutputStream());
-			
-//			output.flush();
-//			input = socket.getInputStream();
-//			reader = new InputStreamReader(input);
-//			br = new BufferedReader(reader);
-//			
-//			output = socket.getOutputStream();
-//			writer = new OutputStreamWriter(output);
-//			bw = new BufferedWriter(writer);
-			
+			// input = new ObjectInputStream(socket.getInputStream());
+			// output = new ObjectOutputStream(socket.getOutputStream());
+
+			// output.flush();
+			// input = socket.getInputStream();
+			// reader = new InputStreamReader(input);
+			// br = new BufferedReader(reader);
+			//
+			// output = socket.getOutputStream();
+			// writer = new OutputStreamWriter(output);
+			// bw = new BufferedWriter(writer);
+
 			input = new DataInputStream(socket.getInputStream());
 			output = new DataOutputStream(socket.getOutputStream());
-			
-			
 
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
 			System.out.println("Verbindung fehlgeschlagen");
-//		} finally {
-//			try {
-//				socket.close();
-//			} catch (IOException ioException) {
-//				ioException.printStackTrace();
-//			}
+			// } finally {
+			// try {
+			// socket.close();
+			// } catch (IOException ioException) {
+			// ioException.printStackTrace();
+			// }
 		}
 	}
-	
-	public void sendToServer(String msg){
-//		socket = new Socket("localhost", 2303);
-//		input = new DataInputStream(socket.getInputStream());
-//		output = new DataOutputStream(socket.getOutputStream());
+
+	public void sendToServer(String msg) {
 		try {
 			output.writeUTF(msg);
 			output.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+
 	}
-//	
-//	public String getMsgFromServer() {
-//		try {
-//			info = input.readUTF();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return info;
-//	}
-	
+
+	public void getStringFromServer() {
+		try {
+			System.out.println(input.readUTF());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	//
+	// public String getMsgFromServer() {
+	// try {
+	// info = input.readUTF();
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// }
+	// return info;
+	// }
+
 }

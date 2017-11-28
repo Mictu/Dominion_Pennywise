@@ -14,16 +14,11 @@ public class Server {
 
 	static Socket socket = null;
 	static ServerSocket server = null;
-	// ObjectInputStream input;
-	// ObjectOutputStream output;
-	// OutputStream output;
-	// OutputStreamWriter writer;
-	// BufferedWriter bw;
-	// InputStream input;
-	// InputStreamReader reader;
 	BufferedReader br;
 	static DataInputStream input;
 	static DataOutputStream output;
+	
+	ServerHandler sh = new ServerHandler();
 
 	Player player;
 	String msg;
@@ -44,18 +39,13 @@ public class Server {
 				socket = server.accept();
 				System.out.println("Connection received from: " + socket.getInetAddress().getHostName());
 
-				// output = new ObjectOutputStream(socket.getOutputStream());
-				// input = new ObjectInputStream(socket.getInputStream());
-				// output = socket.getOutputStream();
-				// writer = new OutputStreamWriter(output);
-				// bw = new BufferedWriter(writer);
-				// input = socket.getInputStream();
-				// reader = new InputStreamReader(input);
-
 				input = new DataInputStream(socket.getInputStream());
 				output = new DataOutputStream(socket.getOutputStream());
+				
+				msg = input.readUTF();
 
-				System.out.println(input.readUTF());
+				sh.getMessageFromServer(msg);
+				
 			}
 		}
 
@@ -71,6 +61,15 @@ public class Server {
 			}
 		}
 	}
+
+	// public void getStringFromClient() {
+	// try {
+	// String testString = input.readUTF();
+	// System.out.println(testString);
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// }
+	// }
 
 	public static void main(String[] args) throws ClassNotFoundException {
 		Server s = new Server();

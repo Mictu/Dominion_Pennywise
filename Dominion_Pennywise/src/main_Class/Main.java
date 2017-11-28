@@ -10,7 +10,6 @@ import view.Login_View;
 import view.Lobby_View;
 import view.Board_View;
 import view.Result_View;
-import view.Client_Controller;
 
 public class Main extends Application {
 
@@ -41,7 +40,7 @@ public class Main extends Application {
 		serviceLocator.setTranslator(new Translator(language));
 		
 		loginView = new Login_View(primaryStage);
-		Client_Controller cController = new Client_Controller(loginView);
+		Login_Controller loginController = new Login_Controller(loginView);
 		loginView.start();
 	}
 
