@@ -4,6 +4,7 @@ import Splash.S_View;
 import controllers.Login_Controller;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import server.client.Server;
 import server_Models.Configuration;
 import server_Models.Translator;
 import view.Login_View;

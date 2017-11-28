@@ -28,6 +28,7 @@ public class Login_Controller {
 				client.sendToServer(msg);
 
 				lobbyView = new Lobby_View(loginView.getStage());
+				Lobby_Controller lobbyController = new Lobby_Controller(lobbyView);
 				// Open Lobby
 				lobbyView.start();
 			}

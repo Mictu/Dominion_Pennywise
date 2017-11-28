@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import server.client.Server;
 import view.Login_View;
 
 public class S_View {
@@ -59,11 +60,24 @@ public class S_View {
 		initialize();
 	}
 	
+	Task<Void> startServer = new Task<Void>() {
+		protected Void call() throws Exception {
+			try {
+				Server server = new Server();
+				server.connect();
+			} catch (Exception e) {
+				System.out.println("Failed Server-Connection");
+			}
+			return null;
+		}
+	};
+	
 		Task<Void> initializer = new Task<Void>() {
 			protected Void call() throws Exception {
 				Integer i = 0;
 				for (; i < 1000000000; i++) {
-					if ((i % 20) == 0)
+//					if ((i % 20) == 0)										// Set LoadSpeed
+						if ((i % 10000) == 0)
 						this.updateProgress(i, 1000000000);
 				}
 				return null;
@@ -73,6 +87,8 @@ public class S_View {
 	
 	public void initialize() {
 		new Thread(initializer).start();
+																			// Start Server automatically
+//		new Thread(startServer).start();							
 	}
 	
 	public void runnable(Stage primaryStage) {
