@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import server_Models.Player;
 
@@ -22,6 +23,7 @@ public class Server {
 
 	Player player;
 	String msg;
+	ArrayList<String> fromServer;
 
 	public Server() {
 	}
@@ -70,6 +72,10 @@ public class Server {
 	// e.printStackTrace();
 	// }
 	// }
+	
+	public void setMessage(ArrayList<String> message) {
+		this.fromServer = message;
+	}
 
 	public static void main(String[] args) throws ClassNotFoundException {
 		Server s = new Server();
