@@ -4,4 +4,24 @@
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
+	-fx-min-width: 650;
+	
+}
+
+#ownLable {
+	-fx-min-width: 250.0px;
+	-fx-min-height: 10.0px;
+	-fx-text-fill: black;
+	-fx-font-size: 24;
+	-fx-font-weight: bold;
+	-fx-alignment: center;
+}
+
+.progress-bar {
+	-fx-text-box-border: transparent;
+	-fx-control-inner-background: black;
+	-fx-opacity: 0.7;
+	-fx-min-width: 400;
+	-fx-min-height: 30;
+	-fx-accent: yellow;
 }
