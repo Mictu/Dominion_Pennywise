@@ -25,7 +25,7 @@ public class Login_View {
 	public Label nameLbl;
 	Label languageLbl;
 
-	TextField nameTxtfield;
+	public TextField nameTxtfield;
 	ComboBox<String> boxLanguage = new ComboBox<String>();
 
 	VBox topvbox = new VBox();
@@ -42,7 +42,7 @@ public class Login_View {
 		stage.setTitle("Dominion Login");
 		stage.setFullScreen(true);
 	
-		//Hauptpane as Grundgerüst  
+		//Hauptpane as Grundgerï¿½st  
 		mainPane = new BorderPane();
 		mainPane.setId("mainPane");
 		

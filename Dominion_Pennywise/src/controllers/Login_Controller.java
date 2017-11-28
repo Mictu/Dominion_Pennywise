@@ -1,7 +1,5 @@
 package controllers;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import server.client.Client;
 import view.Lobby_View;
@@ -10,24 +8,24 @@ import view.Login_View;
 public class Login_Controller {
 
 	Login_View loginView;
-	Client client = new Client();
+	Client client;
 	Lobby_View lobbyView;
 
 	public Login_Controller(Login_View loginView) {
 		this.loginView = loginView;
-		client.run();
 
 		// LOGIN
 		// Open Lobby
 
 		loginView.lobbyBtn.setOnAction((Event) -> {
-			// public void handle(ActionEvent event) {
-			// Kontrolle ob Name eingegeben wurde!
 			String name = loginView.nameTxtfield.getText();
 			if (!name.isEmpty()) {
-//				client.sendName(name);
-			//	client.sendName(name);
-				client.sendToServer(name);
+
+				client = new Client();
+				client.run();
+
+				String msg = "lobby".concat(name);
+				client.sendToServer(msg);
 
 				lobbyView = new Lobby_View(loginView.getStage());
 				// Open Lobby
