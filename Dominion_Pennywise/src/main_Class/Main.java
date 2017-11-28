@@ -1,8 +1,8 @@
 package main_Class;
 
+import Splash.S_View;
 import controllers.Login_Controller;
 import javafx.application.Application;
-
 import javafx.stage.Stage;
 import server_Models.Configuration;
 import server_Models.Translator;
@@ -17,9 +17,10 @@ public class Main extends Application {
 	Lobby_View lobbyView;
 	Board_View boardView;
 	Result_View resultView;
-	Stage stage;
 	Login_Controller loginController; 
 	private ServiceLocator serviceLocator; 
+	
+	S_View splashScreen;
 
 	// MVC STARTS THE PROGRAMM AND INITIALIZES THE MVC-CLASSES (MODEL, VIEW,
 	// CONTROLLER)
@@ -34,14 +35,18 @@ public class Main extends Application {
 
 	public void start(Stage primaryStage) {
 
+		// start the splash-screen
+		try {
+			splashScreen = new S_View();
+			splashScreen.run(primaryStage);
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+		
 		serviceLocator = ServiceLocator.getServiceLocator();
 		serviceLocator.setConfiguration(new Configuration());
 		String language = serviceLocator.getConfiguration().getOption("Language");
 		serviceLocator.setTranslator(new Translator(language));
-		
-		loginView = new Login_View(primaryStage);
-		Login_Controller loginController = new Login_Controller(loginView);
-		loginView.start();
 	}
 
 	public void stop() {
