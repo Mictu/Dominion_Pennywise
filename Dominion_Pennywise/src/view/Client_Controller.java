@@ -1,5 +1,8 @@
 package view;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
@@ -33,7 +36,6 @@ public class Client_Controller {
 		loginView.lobbyBtn.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				// Kontrolle ob Name eingegeben wurde!
-				Player p1 = new Player();
 
 				String name = loginView.nameTxtfield.getText();
 				if (!name.isEmpty()) {
@@ -44,8 +46,7 @@ public class Client_Controller {
 					} catch (Exception e) {
 						System.out.println(e);
 					}
-//					client.send(name);
-					System.out.println(name);
+						client.sendToServer(name);
 					// Open Lobby
 					lobby();
 				}

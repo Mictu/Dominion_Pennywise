@@ -1,24 +1,23 @@
 package server.client;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class Client {
 	Socket socket = null;
 //	ObjectOutputStream output;
 //	ObjectInputStream input;
-	OutputStream output;
-	OutputStreamWriter writer;
-	BufferedWriter bw;
-	InputStream input;
-	InputStreamReader reader;
-	BufferedReader br;
+//	OutputStream output;
+//	OutputStreamWriter writer;
+//	BufferedWriter bw;
+//	InputStream input;
+//	InputStreamReader reader;
+//	BufferedReader br;
+	DataInputStream input;
+	DataOutputStream output;
 	String info;
 	Server server;
 	
@@ -34,13 +33,16 @@ public class Client {
 //			output = new ObjectOutputStream(socket.getOutputStream());
 			
 //			output.flush();
-			input = socket.getInputStream();
-			reader = new InputStreamReader(input);
-			br = new BufferedReader(reader);
+//			input = socket.getInputStream();
+//			reader = new InputStreamReader(input);
+//			br = new BufferedReader(reader);
+//			
+//			output = socket.getOutputStream();
+//			writer = new OutputStreamWriter(output);
+//			bw = new BufferedWriter(writer);
 			
-			output = socket.getOutputStream();
-			writer = new OutputStreamWriter(output);
-			bw = new BufferedWriter(writer);
+			input = new DataInputStream(socket.getInputStream());
+			output = new DataOutputStream(socket.getOutputStream());
 			
 			
 
@@ -56,13 +58,13 @@ public class Client {
 		}
 	}
 	
-	public void sendToServer(String msg) {
+	public void sendToServer(String msg){
+//		socket = new Socket("localhost", 2303);
+//		input = new DataInputStream(socket.getInputStream());
+//		output = new DataOutputStream(socket.getOutputStream());
 		try {
-			System.out.println("nach try");
-			bw.write(msg);
-			System.out.println("nach utf");
-			server.getMsgFromClient();
-//			output.flush();
+			output.writeUTF(msg);
+			output.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
