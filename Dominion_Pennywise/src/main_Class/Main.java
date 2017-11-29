@@ -1,8 +1,10 @@
 package main_Class;
 
 import Splash.S_View;
+import Splash.Server_View;
 import controllers.Login_Controller;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import server.client.Server;
 import server_Models.Configuration;
@@ -22,6 +24,8 @@ public class Main extends Application {
 	private ServiceLocator serviceLocator; 
 	
 	S_View splashScreen;
+	Server_View serverView;
+	Server server;
 
 	// MVC STARTS THE PROGRAMM AND INITIALIZES THE MVC-CLASSES (MODEL, VIEW,
 	// CONTROLLER)
@@ -36,13 +40,8 @@ public class Main extends Application {
 
 	public void start(Stage primaryStage) {
 
-		// start the splash-screen
-		try {
-			splashScreen = new S_View();
-			splashScreen.run(primaryStage);
-		} catch (Exception e) {
-			System.err.println(e);
-		}
+		// decide if a Server needs to get started, then start Splashscreen
+		serverView = new Server_View(primaryStage);
 		
 		serviceLocator = ServiceLocator.getServiceLocator();
 		serviceLocator.setConfiguration(new Configuration());
@@ -65,6 +64,7 @@ public class Main extends Application {
 		if (resultView != null) {
 			resultView.stop();
 		}
+		Platform.exit();							// Close Server if it is running
 	}
 
 }

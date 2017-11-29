@@ -1,6 +1,5 @@
 package server.client;
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -15,7 +14,6 @@ public class Server {
 
 	static Socket socket = null;
 	static ServerSocket server = null;
-	BufferedReader br;
 	static DataInputStream input;
 	static DataOutputStream output;
 	
@@ -76,7 +74,7 @@ public class Server {
 	public void setMessage(ArrayList<String> message) {
 		this.fromServer = message;
 	}
-
+	
 	public static void main(String[] args) throws ClassNotFoundException {
 		Server s = new Server();
 		s.connect();

@@ -17,11 +17,13 @@ import view.Login_View;
 
 public class S_View {
 	
+	protected Server server;
 	protected ProgressBar progress;
     protected Label lblText;
     
     protected Stage stage;
     
+    protected boolean startTheServer;
     protected double percent;
 
     public S_View() {
@@ -53,17 +55,18 @@ public class S_View {
 		stage.setScene(scene);
     }
     
-	public void run(Stage primaryStage) {
+	public void run(Stage primaryStage, boolean server) {
 		stage.show();
+		this.startTheServer = server;
 		
 		runnable(primaryStage);
 		initialize();
 	}
 	
-	Task<Void> startServer = new Task<Void>() {
+	Task<Void> loadServer = new Task<Void>() {
 		protected Void call() throws Exception {
 			try {
-				Server server = new Server();
+				server = new Server();
 				server.connect();
 			} catch (Exception e) {
 				System.out.println("Failed Server-Connection");
@@ -77,7 +80,7 @@ public class S_View {
 				Integer i = 0;
 				for (; i < 1000000000; i++) {
 //					if ((i % 20) == 0)										// Set LoadSpeed
-						if ((i % 10000) == 0)
+						if ((i % 10000000) == 0)
 						this.updateProgress(i, 1000000000);
 				}
 				return null;
@@ -87,8 +90,10 @@ public class S_View {
 	
 	public void initialize() {
 		new Thread(initializer).start();
-																			// Start Server automatically
-//		new Thread(startServer).start();							
+		
+		if (startTheServer) {
+			new Thread(loadServer).start();
+		}
 	}
 	
 	public void runnable(Stage primaryStage) {
