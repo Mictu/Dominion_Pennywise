@@ -8,33 +8,18 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import server.client.Client;
 
 public class CardDesign_View {
 
+	protected Client client;
 	// private Button cardBtn;
 	protected Button copperBtn, duchyBtn, estateBtn, funfairBtn, goldBtn, laboratoryBtn;
 	protected Button marketBtn, provinceBtn, silverBtn, smithBtn, villageBtn, woodcutterBtn;
 
-	public CardDesign_View() {
-		
-//		Image image = new Image(getClass().getResource("/Card_Images/Dorf.jpg").toExternalForm(),300,300,true,true);
-//		ImageView view = new ImageView(image);
-//
-//		cardBtn.setGraphic(view);
-		
-		
-		
-//		villageBtn.setOnAction(new EventHandler<ActionEvent>() {
-//			@Override
-//			public void handle(ActionEvent e) {
-//				System.out.println("card clicked");
-//			}
-//		});
-		
-		
-
+	public CardDesign_View(Client client) {
+		this.client = client;
 	} // close constructor
-
 	
 	// Getters for every Button (Card)
 	protected Button getCopperBtn() {
@@ -122,12 +107,11 @@ public class CardDesign_View {
 		return woodcutterBtn;
 	}
 	
-	// Activate every created Button (Card)
+	// Activate every created Button (Card) and send string to server handler
 	protected void setForAction (Button x) {
 		x.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
 			public void handle(ActionEvent e) {
-				System.out.println(x.getId());
+				client.sendToServer(x.getId());
 			}
 		});
 	}

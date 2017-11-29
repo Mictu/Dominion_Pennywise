@@ -26,7 +26,7 @@ public class GameLogic {
 	protected VictoryCard vCard = new VictoryCard();
 
 	// Constructor
-	protected GameLogic() {
+	public GameLogic() {
 		theGame();
 	} // Close Constructor
 
@@ -54,15 +54,15 @@ public class GameLogic {
 				player.startRound();
 				
 				actualPhase = "action";
-				server.sendToClient(actualPhase);
+//				server.sendToClient(actualPhase);
 				actionPhase = new ActionPhase(player);
 				
 				actualPhase = "buy";
-				server.sendToClient(actualPhase);
+//				server.sendToClient(actualPhase);
 				buyPhase = new BuyPhase(player);
 
 				actualPhase = "cleanup";
-				server.sendToClient(actualPhase);
+//				server.sendToClient(actualPhase);
 				cleanUpPhase = new CleanUpPhase(player);
 			}
 
@@ -73,18 +73,18 @@ public class GameLogic {
 	}
 
 	// Add Players to playerList
-	protected void addPlayers(Player newPlayer) {
+	public void addPlayers(Player newPlayer) {
 		playerList.add(newPlayer);
 		Collections.shuffle(playerList); // Random StartList
 	}
 
 	// get the actual phase to let the client know what cards can be pressed
-	protected String getPhase() {
+	public String getPhase() {
 		return this.actualPhase;
 	}
 	
 	// This method should actualize the hand on the view (e.g. call it in buy phase when u gave away a copper card)
-	protected void setHandView(Player player) {
+	public void setHandView(Player player) {
 		for (String o : player.hand)
 			server.sendToClient(o);
 	}

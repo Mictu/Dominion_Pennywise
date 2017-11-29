@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import server_Models.GameLogic;
 import server_Models.Player;
 
 public class Server {
@@ -17,7 +18,8 @@ public class Server {
 	static DataInputStream input;
 	static DataOutputStream output;
 	
-	ServerHandler sh = new ServerHandler();
+	GameLogic gl = new GameLogic();						// Just for testing
+	ServerHandler sh = new ServerHandler(gl);
 
 	Player player;
 	String msg;

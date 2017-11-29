@@ -33,7 +33,7 @@ public class Login_Controller {
 				client.sendToServer(msg);
 
 				lobbyView = new Lobby_View(loginView.getStage());
-				Lobby_Controller lobbyController = new Lobby_Controller(lobbyView);
+				Lobby_Controller lobbyController = new Lobby_Controller(lobbyView, client);
 				// Open Lobby
 				lobbyView.start();
 			} else {
@@ -53,5 +53,5 @@ public class Login_Controller {
 	private void exit(Stage stage) {
 		stage.hide();
 	}
-
+	
 }
