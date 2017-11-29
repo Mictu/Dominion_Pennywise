@@ -81,6 +81,7 @@ public class Login_View {
 		languageLbl = new Label(t.getString("dominion.login.language") + ": ");
 		languageLbl.setId("lblText");
 		nameTxtfield = new TextField();
+		nameTxtfield.setId("textField");
 
 		hbox1.getChildren().addAll(nameLbl, nameTxtfield);
 		vbox2.getChildren().addAll(languageLbl, boxLanguage);

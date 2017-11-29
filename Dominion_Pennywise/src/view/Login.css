@@ -1,5 +1,8 @@
 #mainPane {
+	/* 
 	-fx-background-image: url("LoginBackground.jpg");
+	*/
+	-fx-background-image: url("aaa.png");
 	-fx-background-position: center; 
 	-fx-background-size: cover, auto;
 }
@@ -13,6 +16,7 @@
 }
 
 #warning {
+	-fx-font-weight: bold;
 	-fx-text-fill: darkorange;
 	-fx-font-size: 30; 
 }
@@ -20,5 +24,50 @@
 
 #lblText {
 	-fx-font-weight: bold;
+	-fx-font-size: 16;
+	-fx-text-fill: white;
 	
+}
+
+#textField {
+    -fx-background-color: lightblue;
+    -fx-background-radius: 6;
+    -fx-border-color: darkorchid;
+    -fx-border-width: 3;
+    -fx-border-insets: -1;
+    -fx-border-radius: 5px;
+	-fx-font-weight: bold;
+}
+
+.combo-box {
+    -fx-background-color: 
+        #a6b5c9,
+        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),
+        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);
+    -fx-text-fill: #242d35;
+    -fx-font-size: 12px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+
+.button {
+    -fx-background-color: 
+        #a6b5c9,
+        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),
+        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);
+    -fx-background-insets: 0 0 -1 0,0,1;
+    -fx-background-radius: 5,5,4;
+    -fx-padding: 7 30 7 30;
+    -fx-text-fill: #242d35;
+    -fx-font-size: 12px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+.button:armed {
+	 -fx-background-color: darkgrey;
+}
+
+.button Text {
+    -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 0, 0.0 , 0 , -1 );
 }

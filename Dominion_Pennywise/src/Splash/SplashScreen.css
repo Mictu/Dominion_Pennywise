@@ -16,18 +16,17 @@
 }
 
 .progress-bar {
-	-fx-text-box-border: transparent;
-	-fx-control-inner-background: black;
+	-fx-control-inner-background: lightgrey;
 	-fx-opacity: 0.7;
 	-fx-min-width: 450;
 	-fx-min-height: 30;
-	-fx-accent: lightskyblue;
+	-fx-accent: green;
 }
 
 .button {
 	-fx-min-height: 40.0px;
 	-fx-min-width: 140.0px;
-	-fx-background-color: coral;
+	-fx-background-color: crimson;
 	-fx-text-fill: black;
 	-fx-font-weight: bold;
 	-fx-font-style: italic;
