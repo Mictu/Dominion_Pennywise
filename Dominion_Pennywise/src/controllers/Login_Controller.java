@@ -31,6 +31,8 @@ public class Login_Controller {
 				Lobby_Controller lobbyController = new Lobby_Controller(lobbyView);
 				// Open Lobby
 				lobbyView.start();
+			} else {
+				loginView.warning.setText("Bitte Namen eingeben");
 			}
 
 		});

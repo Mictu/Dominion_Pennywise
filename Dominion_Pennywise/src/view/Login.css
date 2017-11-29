@@ -10,3 +10,9 @@
 	-fx-font-size: 30; 
 	
 }
+
+#warning {
+	-fx-text-fill: darkorange;
+	-fx-font-weight: bold;
+	-fx-font-size: 30; 
+}
