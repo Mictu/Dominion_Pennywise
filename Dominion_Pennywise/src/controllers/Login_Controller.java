@@ -1,8 +1,5 @@
 package controllers;
 
-import java.util.Locale;
-
-import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 import main_Class.ServiceLocator;
 import server.client.Client;
@@ -32,7 +29,7 @@ public class Login_Controller {
 				client = new Client();
 				client.run();
 
-				String msg = "lobby".concat(name);
+				String msg = "lobby".concat(name);						// Send if u connect to a server
 				client.sendToServer(msg);
 
 				lobbyView = new Lobby_View(loginView.getStage());

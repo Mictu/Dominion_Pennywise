@@ -40,7 +40,7 @@
 }
 
 #root2 {
-	-fx-background-image: url("loading2.gif");
+	-fx-background-image: url("loading.gif");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
