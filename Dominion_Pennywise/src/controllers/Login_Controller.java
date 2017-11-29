@@ -1,7 +1,12 @@
 package controllers;
 
+import java.util.Locale;
+
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import main_Class.ServiceLocator;
 import server.client.Client;
+import server_Models.Translator;
 import view.Lobby_View;
 import view.Login_View;
 
@@ -13,6 +18,9 @@ public class Login_Controller {
 
 	public Login_Controller(Login_View loginView) {
 		this.loginView = loginView;
+		
+		ServiceLocator sl = ServiceLocator.getServiceLocator();
+		Translator t = sl.getTranslator();
 
 		// LOGIN
 		// Open Lobby
@@ -32,7 +40,7 @@ public class Login_Controller {
 				// Open Lobby
 				lobbyView.start();
 			} else {
-				loginView.warning.setText("Bitte Namen eingeben");
+				loginView.warning.setText(t.getString("dominion.login.warning"));
 			}
 
 		});

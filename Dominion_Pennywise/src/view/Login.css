@@ -7,12 +7,18 @@
 
 #welcomeLbl{
 	-fx-text-fill: yellow; 
-	-fx-font-size: 30; 
+	-fx-font-weight: bold;
+	-fx-font-size: 40; 
 	
 }
 
 #warning {
 	-fx-text-fill: darkorange;
-	-fx-font-weight: bold;
 	-fx-font-size: 30; 
+}
+
+
+#lblText {
+	-fx-font-weight: bold;
+	
 }

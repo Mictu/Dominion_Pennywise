@@ -30,7 +30,7 @@ public class Login_View {
 	ComboBox<String> boxLanguage = new ComboBox<String>();
 	
 	VBox topvbox = new VBox(180);
-	VBox vbox = new VBox(); // for the center
+	VBox vbox = new VBox(30); // for the center
 	HBox hbox1 = new HBox(); // for name and textfield
 	VBox vbox2 = new VBox(5); // for laguage and dropdown
 
@@ -49,7 +49,6 @@ public class Login_View {
 		
 		mainPane.setCenter(vbox);
 		vbox.setAlignment(Pos.CENTER);
-		vbox.setSpacing(20.00);
 		hbox1.setAlignment(Pos.CENTER);
 		vbox2.setAlignment(Pos.CENTER);
 
@@ -78,9 +77,9 @@ public class Login_View {
 
 		//
 		nameLbl = new Label(t.getString("dominion.login.name") + ": ");
-		nameLbl.setId("nameLbl");
+		nameLbl.setId("lblText");
 		languageLbl = new Label(t.getString("dominion.login.language") + ": ");
-		languageLbl.setId("languageLbl");
+		languageLbl.setId("lblText");
 		nameTxtfield = new TextField();
 
 		hbox1.getChildren().addAll(nameLbl, nameTxtfield);
@@ -106,6 +105,7 @@ public class Login_View {
 		languageLbl.setText(t.getString("dominion.login.language") + ": ");
 		lobbyBtn.setText(t.getString("dominion.login.button.lobby"));
 		exitBtn.setText(t.getString("dominion.login.button.quit"));
+		warning.setText(t.getString("dominion.login.warning"));
 //		boxLanguage.getSelectionModel().select(t.getString("dominion.login.choseLanguage"));
 	}
 

@@ -20,6 +20,14 @@ import server_Models.Translator;
 public class Board_View {
 
 	public Stage stage;
+				
+	
+		/* WRITE DYNAMIC HAND
+		 * CARDS ARE COVERED IF HOVERED
+		 * SET CHAT
+		 * GOLDEN BORDER IF U CAN PLAY CARDS
+		 * DECK AND DISCARD DECK SHOULD BE SEEN FROM BEHIND
+		 */
 	
 	// Initialize the GUI Content here
 		
