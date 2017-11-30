@@ -1,11 +1,9 @@
 .root {
-	
 	-fx-background-image: url("shuffle.gif");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
 	-fx-min-width: 650;
-	
 }
 
 #ownLable {
@@ -18,10 +16,32 @@
 }
 
 .progress-bar {
-	-fx-text-box-border: transparent;
-	-fx-control-inner-background: black;
+	-fx-control-inner-background: lightgrey;
 	-fx-opacity: 0.7;
-	-fx-min-width: 400;
+	-fx-min-width: 450;
 	-fx-min-height: 30;
-	-fx-accent: hotpink;
+	-fx-accent: green;
+}
+
+.button {
+	-fx-min-height: 40.0px;
+	-fx-min-width: 140.0px;
+	-fx-background-color: crimson;
+	-fx-text-fill: black;
+	-fx-font-weight: bold;
+	-fx-font-style: italic;
+	-fx-border-color: black;
+	-fx-border-insets: -2.0px;
+	-fx-border-height: 2.0px;
+	-fx-border-width: 2.0px;
+	-fx-border-radius: 5px;
+	-fx-font-size: 15;
+}
+
+#root2 {
+	-fx-background-image: url("loading.gif");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-min-width: 250;
 }

@@ -1,7 +1,9 @@
 package controllers;
 
 import javafx.stage.Stage;
+import main_Class.ServiceLocator;
 import server.client.Client;
+import server_Models.Translator;
 import view.Lobby_View;
 import view.Login_View;
 
@@ -13,6 +15,9 @@ public class Login_Controller {
 
 	public Login_Controller(Login_View loginView) {
 		this.loginView = loginView;
+		
+		ServiceLocator sl = ServiceLocator.getServiceLocator();
+		Translator t = sl.getTranslator();
 
 		// LOGIN
 		// Open Lobby
@@ -24,12 +29,15 @@ public class Login_Controller {
 				client = new Client();
 				client.run();
 
-				String msg = "lobby".concat(name);
+				String msg = "lobby".concat(name);						// Send if u connect to a server
 				client.sendToServer(msg);
 
 				lobbyView = new Lobby_View(loginView.getStage());
+				Lobby_Controller lobbyController = new Lobby_Controller(lobbyView, client);
 				// Open Lobby
 				lobbyView.start();
+			} else {
+				loginView.warning.setText(t.getString("dominion.login.warning"));
 			}
 
 		});
@@ -45,5 +53,5 @@ public class Login_Controller {
 	private void exit(Stage stage) {
 		stage.hide();
 	}
-
+	
 }

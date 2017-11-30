@@ -1,6 +1,5 @@
 package server.client;
 
-import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -9,17 +8,18 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import server_Models.GameLogic;
 import server_Models.Player;
 
 public class Server {
 
 	static Socket socket = null;
 	static ServerSocket server = null;
-	BufferedReader br;
 	static DataInputStream input;
 	static DataOutputStream output;
 	
-	ServerHandler sh = new ServerHandler();
+	GameLogic gl = new GameLogic();						// Just for testing
+	ServerHandler sh = new ServerHandler(gl);
 
 	Player player;
 	String msg;
@@ -76,7 +76,7 @@ public class Server {
 	public void setMessage(ArrayList<String> message) {
 		this.fromServer = message;
 	}
-
+	
 	public static void main(String[] args) throws ClassNotFoundException {
 		Server s = new Server();
 		s.connect();
