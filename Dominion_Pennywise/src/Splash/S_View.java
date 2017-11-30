@@ -1,5 +1,6 @@
 package Splash;
 
+import controllers.Login_Controller;
 import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
 import javafx.geometry.Insets;
@@ -7,13 +8,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import view.Login_View;
 
 public class S_View {
-	Runnable initializer = null;
 	
 	protected ProgressBar progress;
     protected Label lblText;
@@ -28,6 +29,7 @@ public class S_View {
     	stage = new Stage();
     	stage.setTitle("Dominion");
     	stage.setResizable(false);
+    	stage.initStyle(StageStyle.TRANSPARENT);
     	
     	StackPane root = new StackPane();
     	root.setPadding(new Insets(10,10,10,10));
@@ -50,65 +52,46 @@ public class S_View {
 		stage.setScene(scene);
     }
     
-	public void run() {
+	public void run(Stage primaryStage) {
 		stage.show();
-
-		// Timer timer = new Timer();
-		// TimerTask task = new TimerTask() {
-		// public void run() {
-		// percent += 0.01;
-		// progress.setProgress(percent);
-		//
-		// if (percent == 1) {
-		// timer.cancel();
-		// timer.purge();
-		// stage.hide();
-		//
-		// }
-		// }
-		// };
-		// timer.schedule(task, 0, 50);
-		// }
 		
+		runnable(primaryStage);
 		initialize();
-
-//		showIt();
-		
 	}
 	
-	protected Task<Void> setInitializer() {
 		Task<Void> initializer = new Task<Void>() {
 			protected Void call() throws Exception {
-
-				int i = 0;
-				for (; i < 100000000; i++) {
-					if ((i % 100000) == 0)
-						this.updateProgress(i, 100000000);
+				Integer i = 0;
+				for (; i < 1000000000; i++) {
+					if ((i % 20) == 0)
+						this.updateProgress(i, 1000000000);
 				}
-
 				return null;
 			}
 		};
-		return initializer;
-	}
 
 	
 	public void initialize() {
-		new Thread(setInitializer()).start();
-		
+		new Thread(initializer).start();
+	}
+	
+	public void runnable(Stage primaryStage) {
 		try {
-		this.progress.progressProperty().bind(((ProgressIndicator) this.initializer).progressProperty());
+			this.progress.progressProperty().bind(initializer.progressProperty());
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		
-		setInitializer().stateProperty().addListener(
-				(observable, oldValue, newValue) -> {
-                if (newValue == Worker.State.SUCCEEDED)
-                    System.out.println("finish");
-				});
+
+		initializer.stateProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue == Worker.State.SUCCEEDED) {
+				Login_View loginView = new Login_View(primaryStage);
+				Login_Controller loginController = new Login_Controller(loginView);
+				loginView.start();
+				this.stage.hide();
+			}
+		});
 	}
-	
+
 	
     // change label text every 1-3 seconds? "gemischelt, geladen, rasen wird gemäht"
     

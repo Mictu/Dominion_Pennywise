@@ -122,6 +122,10 @@ public class Player {
 	protected int getBuyPoints() {
 		return this.buyPoint;
 	}
+	
+	public ArrayList<String> getHand() {
+		return this.hand;
+	}
 
 }
 
