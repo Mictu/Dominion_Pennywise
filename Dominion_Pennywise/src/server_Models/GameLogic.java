@@ -24,8 +24,6 @@ public class GameLogic {
 	ServerHandler serverHandler;
 	protected Server server;
 	protected CleanUpPhase cleanPhase;
-	protected TreasureCard tCard = new TreasureCard();
-	protected VictoryCard vCard = new VictoryCard();
 
 	// Constructor
 	public GameLogic() {
@@ -34,11 +32,11 @@ public class GameLogic {
 
 	protected void gameStart(Player player) {
 		for (int i = 0; i < START_MONEY; i++) {
-			player.discard.add(tCard.getCopper());
+			player.discard.add("copper");							// don't forget to counter++
 		}
 
 		for (int i = 0; i < START_ESTATE; i++) {
-			player.discard.add(vCard.getEstate());
+			player.discard.add("estate");
 		}
 
 		cleanPhase = new CleanUpPhase(player);

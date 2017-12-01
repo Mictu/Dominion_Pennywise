@@ -12,6 +12,8 @@ public class CardDesign_View {
 
 	public CardDesign_View(Client client) {
 		this.client = client;
+		client.run();
+
 	} // close constructor
 	
 	// Getters for every Button (Card)
@@ -93,7 +95,7 @@ public class CardDesign_View {
 		x.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		x.setOnAction((event) -> {
 			try {
-				client.run();
+//				client.run();
 				client.sendToServer(x.getId());
 			} catch (Exception e) {
 				System.out.println(e);
