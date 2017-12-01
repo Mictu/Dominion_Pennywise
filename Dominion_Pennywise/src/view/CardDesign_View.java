@@ -41,7 +41,7 @@ public class CardDesign_View {
 	}
 	protected Button getGoldBtn() {
 		goldBtn = new Button();
-		goldBtn.setId("golden");
+		goldBtn.setId("gold");
 		setForAction(goldBtn);
 		return goldBtn;
 	}
@@ -93,8 +93,8 @@ public class CardDesign_View {
 		x.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		x.setOnAction((event) -> {
 			try {
-			client.run();
-			client.sendToServer(x.getId());
+				client.run();
+				client.sendToServer(x.getId());
 			} catch (Exception e) {
 				System.out.println(e);
 			}

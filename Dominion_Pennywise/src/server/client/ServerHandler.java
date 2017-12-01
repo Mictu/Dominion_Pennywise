@@ -15,17 +15,18 @@ public class ServerHandler {
 	// Get Strings from Server
 	public void getMessageFromServer(String msg) {
 		String message = msg;
-
+		phase = "buy";
+		
 		// Create a new Player and add him to the playerList in the game logic class
-		if (message.substring(0, 5).equals("lobby")) {
-			player = new Player(message.substring(5));
-			// gameLogic.addPlayers(player);
+		if (message.length() > 5 && message.substring(0, 5).equals("lobby")) {
+				player = new Player(message.substring(5));
+				// gameLogic.addPlayers(player);
 		}
 
 		// Actions if treasure cards are pressed
-		else if (message.equals("copper") || message.equals("silver") || message.equals("golden")) {
+		else if (message.equals("copper") || message.equals("silver") || message.equals("gold")) {
 			if (phase.equalsIgnoreCase("buy")) {
-
+				System.out.println(message);
 			} else {
 				System.out.println("Card connot be played now");
 			}
@@ -33,9 +34,8 @@ public class ServerHandler {
 
 		// Actions if victory cards are pressed
 		else if (message.equals("estate") || message.equals("duchy") || message.equals("province")) {
-			System.out.println(message);
 			if (phase.equalsIgnoreCase("buy")) {
-
+				System.out.println(message);
 			} else {
 				System.out.println("Card connot be played now");
 			}
@@ -44,7 +44,7 @@ public class ServerHandler {
 		// Actions if kingdom cards are pressed
 		else if (message.equals("funfair") || message.equals("laboratory") || message.equals("market")) {
 			if (phase.equalsIgnoreCase("buy")) {
-
+				System.out.println(message);
 			} else {
 				System.out.println("Card connot be played now");
 			}
@@ -53,7 +53,7 @@ public class ServerHandler {
 		// Actions if kingdom cards are pressed
 		else if (message.equals("smith") || message.equals("village") || message.equals("woodcutter")) {
 			if (phase.equalsIgnoreCase("buy")) {
-
+				System.out.println(message);
 			} else {
 				System.out.println("Card connot be played now");
 			}

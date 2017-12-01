@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
-
 import controllers.ClientHandler;
 
 public class Client {
@@ -34,7 +32,7 @@ public class Client {
 
 	public void run() {
 		try {
-			socket = new Socket("localhost", 2303);
+			socket = new Socket("localhost", 3055);
 
 			// input = new ObjectInputStream(socket.getInputStream());
 			// output = new ObjectOutputStream(socket.getOutputStream());

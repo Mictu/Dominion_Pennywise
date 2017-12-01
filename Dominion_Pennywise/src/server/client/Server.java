@@ -9,8 +9,6 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-
-import server_Models.GameLogic;
 import server_Models.Player;
 
 public class Server {
@@ -22,7 +20,6 @@ public class Server {
 	ObjectInputStream objectInput;
 	ObjectOutputStream objectOutput;
 
-	GameLogic gl = new GameLogic(); // Just for testing
 	ServerHandler sh = new ServerHandler();
 
 	Player player;
@@ -35,7 +32,7 @@ public class Server {
 	public void connect() throws ClassNotFoundException {
 
 		try {
-			server = new ServerSocket(2303);
+			server = new ServerSocket(3055);
 			System.out.println("Waiting for Connection");
 
 			InetAddress iAddress = InetAddress.getLocalHost();
@@ -77,10 +74,10 @@ public class Server {
 	// }
 	// }
 
-	public static void main(String[] args) throws ClassNotFoundException {
-		Server s = new Server();
-		s.connect();
-	}
+//	public static void main(String[] args) throws ClassNotFoundException {
+//		Server s = new Server();
+//		s.connect();
+//	}
 
 	public void sendToClient(String o) {
 		try {
