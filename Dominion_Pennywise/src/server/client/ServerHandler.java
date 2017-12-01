@@ -1,24 +1,15 @@
 package server.client;
 
 import java.util.ArrayList;
-import server_Models.ActionPhase;
-import server_Models.BuyPhase;
 import server_Models.Player;
 
 public class ServerHandler {
-
-	ActionPhase actionphase;
-	BuyPhase buyphase;
 
 	String phase;
 	Player player;
 	public ArrayList<String> handCards = new ArrayList<String>();
 
-	public ServerHandler(String phase, Player player) {
-		this.phase = phase;
-		this.player = player;
-		this.actionphase = new ActionPhase(player);
-		this.buyphase = new BuyPhase(player);
+	public ServerHandler() {
 	}
 
 	// Get Strings from Server
@@ -75,18 +66,4 @@ public class ServerHandler {
 		}
 	}
 
-	public void startActionPhase(String card) {
-		this.actionphase.chosenCard(card);
-	}
-
-	public void startBuyPhase(String card) {
-
-		this.buyphase.buyCard(card);
-	}
-
-	// Send Strings / ArrayLists to Server
-	public void sendDeckToServer() {
-		this.handCards = player.getHand();
-	}
-	
 }

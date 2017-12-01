@@ -23,7 +23,7 @@ public class Server {
 	ObjectOutputStream objectOutput;
 
 	GameLogic gl = new GameLogic(); // Just for testing
-	ServerHandler sh = new ServerHandler(gl);
+	ServerHandler sh = new ServerHandler();
 
 	Player player;
 	String msg;

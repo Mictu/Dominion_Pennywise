@@ -59,15 +59,12 @@ public class GameLogic {
 				
 				
 				actualPhase = "action";
-				serverHandler = new ServerHandler(actualPhase, player);
 //				server.sendToClient(actualPhase);						// Set Color of Label with the phase -> Or use Buttons
 				
 				actualPhase = "buy";
-				serverHandler = new ServerHandler(actualPhase, player);
 //				server.sendToClient(actualPhase);
 
 				actualPhase = "cleanup";
-				serverHandler = new ServerHandler(actualPhase, player);
 //				server.sendToClient(actualPhase);
 			}
 
