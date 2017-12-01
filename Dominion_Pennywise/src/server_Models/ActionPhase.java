@@ -5,17 +5,17 @@ import java.util.Collections;
 public class ActionPhase {
 
 	// initialize sector
-	protected Player player;
-	protected boolean phase;
+	public Player player;
+	public boolean phase;
 
 	// Constructor
-	protected ActionPhase(Player player) {
+	public ActionPhase(Player player) {
 		this.player = player;
 		phase = true;
-	} // Close Constructor
+	} // Close Constructors
 
 	// choose this method if a card is pressed
-	protected void chosenCard(String cardName) {
+	public void chosenCard(String cardName) {
 		switch (cardName) {
 		case "village":
 			actionVillage();
@@ -41,43 +41,43 @@ public class ActionPhase {
 		}
 	}
 
-	protected void actionSmith() {
+	public void actionSmith() {
 		increaseCard(3, player);
 	}
 
-	protected void actionMarket() {
+	public void actionMarket() {
 		increaseCard(1, player);
 		player.increaseActionPoints(1);
 		player.increaseBuyPoints(1);
 		player.increaseMoney(1);
 	}
 
-	protected void actionLaboratory() {
+	public void actionLaboratory() {
 		increaseCard(2, player);
 		player.increaseActionPoints(1);
 	}
 
-	protected void actionFunfair() {
+	public void actionFunfair() {
 		player.increaseActionPoints(2);
 		player.increaseBuyPoints(1);
 		player.increaseMoney(2);
 	}
 
-	protected void actionWoodcutter() {
+	public void actionWoodcutter() {
 		player.increaseBuyPoints(1);
 		player.increaseMoney(2);
 	}
 
-	protected void actionVillage() {
+	public void actionVillage() {
 		player.increaseActionPoints(2);
 		increaseCard(1, player);
 	}
 
-	protected void playActionCard() {
+	public void playActionCard() {
 		player.hand.lastIndexOf("dd");
 	}
 
-	protected void increaseCard(int amount, Player player) {
+	public void increaseCard(int amount, Player player) {
 		for (int i = 1; i <= amount; i++) {
 			player.hand.add(player.deck.get(player.deck.size() - 1));
 			player.deck.remove(player.deck.size() - 1);

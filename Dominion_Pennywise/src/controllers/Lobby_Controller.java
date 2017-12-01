@@ -10,53 +10,35 @@ import view.Login_View;
 
 public class Lobby_Controller {
 
-	Lobby_View lobbyView; 
-	Login_View loginView; 
+	Lobby_View lobbyView;
+	Login_View loginView;
 	Board_View boardView;
 	Client client;
-	
-	public Lobby_Controller(Lobby_View lobbyView, Client client){
+
+	public Lobby_Controller(Lobby_View lobbyView, Client client) {
 		this.client = client;
-		this.lobbyView = lobbyView; 
-		
-		
-		
-		
-		//LOBBY		
-		
-		lobbyView.btnStartGame.setOnAction(new EventHandler <ActionEvent>(){
+		this.lobbyView = lobbyView;
 
-			public void handle(ActionEvent event) {
-				
-				boardView = new Board_View(lobbyView.getStage(), client); 
-				boardView.start();
-				
-			}
-						
+		// LOBBY
+
+		lobbyView.btnStartGame.setOnAction((event) -> {
+
+			boardView = new Board_View(lobbyView.getStage(), client);
+			boardView.start();
+
 		});
-			
 
-			
-			
-			lobbyView.btnLeaveGame.setOnAction((event) -> {
-			
-				exit(lobbyView.getStage());
-				
-			});
-			
-			
-		
-		
-	}//Close Constructor 
-	
+		lobbyView.btnLeaveGame.setOnAction((event) -> {
+
+			exit(lobbyView.getStage());
+
+		});
+
+	}// Close Constructor
 
 	// ExitMethode for all Views
 	private void exit(Stage stage) {
 		stage.hide();
 	}
-	
-	
-	
-	
-	
+
 }

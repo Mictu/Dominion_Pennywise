@@ -43,7 +43,7 @@ public class Client {
 
 			input = new DataInputStream(socket.getInputStream());
 			output = new DataOutputStream(socket.getOutputStream());
-
+			
 		} catch (IOException ioException) {
 			ioException.printStackTrace();
 			System.out.println("Verbindung fehlgeschlagen");

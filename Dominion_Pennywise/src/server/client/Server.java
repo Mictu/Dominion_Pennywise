@@ -45,7 +45,7 @@ public class Server {
 				output = new DataOutputStream(socket.getOutputStream());
 				
 				msg = input.readUTF();
-
+				
 				sh.getMessageFromServer(msg);
 				
 			}
@@ -53,6 +53,7 @@ public class Server {
 
 		catch (IOException e) {
 			e.printStackTrace();
+			System.out.println("lsajod");
 		} finally {
 			try {
 				input.close();

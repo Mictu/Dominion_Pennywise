@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import server.client.Server;
+import server.client.ServerHandler;
 
 public class GameLogic {
 
@@ -20,6 +21,7 @@ public class GameLogic {
 	
 	protected String actualPhase;
 	
+	ServerHandler serverHandler;
 	protected Server server;
 	protected CleanUpPhase cleanPhase;
 	protected TreasureCard tCard = new TreasureCard();
@@ -53,17 +55,20 @@ public class GameLogic {
 				}
 				player.startRound();
 				
+				// Threads!!!
+				
+				
 				actualPhase = "action";
-//				server.sendToClient(actualPhase);
-				actionPhase = new ActionPhase(player);
+				serverHandler = new ServerHandler(actualPhase, player);
+//				server.sendToClient(actualPhase);						// Set Color of Label with the phase -> Or use Buttons
 				
 				actualPhase = "buy";
+				serverHandler = new ServerHandler(actualPhase, player);
 //				server.sendToClient(actualPhase);
-				buyPhase = new BuyPhase(player);
 
 				actualPhase = "cleanup";
+				serverHandler = new ServerHandler(actualPhase, player);
 //				server.sendToClient(actualPhase);
-				cleanUpPhase = new CleanUpPhase(player);
 			}
 
 			countRounds++;
