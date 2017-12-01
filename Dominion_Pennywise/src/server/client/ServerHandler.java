@@ -1,18 +1,14 @@
 package server.client;
 
 import java.util.ArrayList;
-
 import server_Models.ActionPhase;
 import server_Models.BuyPhase;
-import server_Models.CleanUpPhase;
-import server_Models.GameLogic;
 import server_Models.Player;
 
 public class ServerHandler {
 
 	ActionPhase actionphase;
 	BuyPhase buyphase;
-	CleanUpPhase cleanup;
 
 	String phase;
 	Player player;
@@ -23,7 +19,6 @@ public class ServerHandler {
 		this.player = player;
 		this.actionphase = new ActionPhase(player);
 		this.buyphase = new BuyPhase(player);
-		this.cleanup = new CleanUpPhase(player);
 	}
 
 	// Get Strings from Server
@@ -78,7 +73,6 @@ public class ServerHandler {
 			System.out.println("message konnte nicht verwertet werden:");
 			System.out.println(message);
 		}
-
 	}
 
 	public void startActionPhase(String card) {
@@ -90,13 +84,9 @@ public class ServerHandler {
 		this.buyphase.buyCard(card);
 	}
 
-	public void startCleanUpPhase() {
-		this.cleanup.;
-	}
-
 	// Send Strings / ArrayLists to Server
 	public void sendDeckToServer() {
 		this.handCards = player.getHand();
-
 	}
+	
 }

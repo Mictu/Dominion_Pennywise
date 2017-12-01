@@ -3,6 +3,8 @@ package server.client;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -17,8 +19,10 @@ public class Server {
 	static ServerSocket server = null;
 	static DataInputStream input;
 	static DataOutputStream output;
-	
-	GameLogic gl = new GameLogic();						// Just for testing
+	ObjectInputStream objectInput;
+	ObjectOutputStream objectOutput;
+
+	GameLogic gl = new GameLogic(); // Just for testing
 	ServerHandler sh = new ServerHandler(gl);
 
 	Player player;
@@ -43,11 +47,10 @@ public class Server {
 
 				input = new DataInputStream(socket.getInputStream());
 				output = new DataOutputStream(socket.getOutputStream());
-				
+
 				msg = input.readUTF();
 				
 				sh.getMessageFromServer(msg);
-				
 			}
 		}
 
@@ -73,14 +76,31 @@ public class Server {
 	// e.printStackTrace();
 	// }
 	// }
-	
-	public void setMessage(ArrayList<String> message) {
-		this.fromServer = message;
-	}
-	
+
 	public static void main(String[] args) throws ClassNotFoundException {
 		Server s = new Server();
 		s.connect();
+	}
+
+	public void sendToClient(String o) {
+		try {
+			output.writeUTF(o);
+			output.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void sendArrayToClient(ArrayList<String> deck) {
+		try {
+			objectInput = new ObjectInputStream(socket.getInputStream());
+			objectOutput = new ObjectOutputStream(socket.getOutputStream());
+			
+			objectOutput.writeObject(deck);
+			objectOutput.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
