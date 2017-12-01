@@ -3,13 +3,18 @@ package server.client;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+
+import controllers.ClientHandler;
 
 public class Client {
 	Socket socket = null;
-	// ObjectOutputStream output;
-	// ObjectInputStream input;
+	 ObjectOutputStream objectOutput;
+	 ObjectInputStream objectInput;
 	// OutputStream output;
 	// OutputStreamWriter writer;
 	// BufferedWriter bw;
@@ -20,6 +25,8 @@ public class Client {
 	DataOutputStream output;
 	String info;
 	Server server;
+	ClientHandler clientH;
+	ArrayList<String> deck = new ArrayList<String>();
 
 	public Client() {
 		server = new Server();
@@ -70,6 +77,23 @@ public class Client {
 		try {
 			System.out.println(input.readUTF());
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void getArrayFromServer() {
+		try {
+			objectInput = new ObjectInputStream(socket.getInputStream());
+			objectOutput = new ObjectOutputStream(socket.getOutputStream());
+			
+			clientH = new ClientHandler();
+			
+			this.deck = (ArrayList<String>) objectInput.readObject();
+			
+			clientH.getDeckFromServer(deck);
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

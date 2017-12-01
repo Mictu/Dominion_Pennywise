@@ -1,5 +1,6 @@
 package server.client;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import server_Models.GameLogic;
 import server_Models.Player;
@@ -9,6 +10,7 @@ public class ServerHandler {
 	GameLogic gameLogic;
 	Player player;
 	public ArrayList<String> handCards = new ArrayList<String>();
+	Server server;
 	
 	public ServerHandler(GameLogic gl) {
 		this.gameLogic = gl;
@@ -74,21 +76,15 @@ public class ServerHandler {
 			System.out.println(message);
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 	
 	
 	// Send Strings / ArrayLists to Server
 	public void sendDeckToServer() {
 		this.handCards = player.getHand();
+	}
 	
+	public void sendHand() {
+		
 	}
 }
