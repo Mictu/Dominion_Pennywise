@@ -22,8 +22,9 @@ public class Board_View {
 	public Stage stage;
 	
 	// Initialize the GUI Content here
-		
-		
+
+	
+	public HBox hBoxHand;
 //	 constructor
 	public Board_View(Stage s) {
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
@@ -87,12 +88,13 @@ public class Board_View {
 		Label hand = new Label(t.getString("dominion.board.lbl.hand"));
 		hand.setId("handLabel");
 
-		HBox hBoxHand = new HBox(20);
-		hBoxHand.getChildren().addAll(cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn());
+		hBoxHand = new HBox(20);
+		//hBoxHand.getChildren().addAll(cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn());
 		hBoxHand.setAlignment(Pos.CENTER);
 		
 		HBox hBottom = new HBox(70);
-		hBottom.getChildren().addAll(cdV.getCopperBtn(),hBoxHand,cdV.getDuchyBtn());
+//		hBottom.getChildren().addAll(cdV.getCopperBtn(),hBoxHand,cdV.getDuchyBtn());
+		hBottom.getChildren().add(hBoxHand);
 		hBottom.setAlignment(Pos.CENTER);
 		
 		stackPane.getChildren().addAll(hand,hBottom);
@@ -157,6 +159,10 @@ public class Board_View {
 	public void start() {
 		stage.setFullScreen(true);
 		stage.show();
+	}
+	
+	public Stage getStage(){
+		return this.stage; 
 	}
 	
 	public void stop () {

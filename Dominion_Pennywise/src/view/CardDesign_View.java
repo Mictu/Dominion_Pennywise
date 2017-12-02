@@ -37,84 +37,84 @@ public class CardDesign_View {
 
 	
 	// Getters for every Button (Card)
-	protected Button getCopperBtn() {
+	public Button getCopperBtn() {
 		copperBtn = new Button();
 		copperBtn.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		copperBtn.setId("copper");
 		setForAction(copperBtn);
 		return copperBtn;
 	}
-	protected Button getDuchyBtn() {
+	public Button getDuchyBtn() {
 		duchyBtn = new Button();
 		duchyBtn.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		duchyBtn.setId("duchy");
 		setForAction(duchyBtn);
 		return duchyBtn;
 	}
-	protected Button getEstateBtn() {
+	public Button getEstateBtn() {
 		estateBtn = new Button();
 		estateBtn.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		estateBtn.setId("estate");
 		setForAction(estateBtn);
 		return estateBtn;
 	}
-	protected Button getFunfairBtn() {
+	public Button getFunfairBtn() {
 		funfairBtn = new Button();
 		funfairBtn.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		funfairBtn.setId("funfair");
 		setForAction(funfairBtn);
 		return funfairBtn;
 	}
-	protected Button getGoldBtn() {
+	public Button getGoldBtn() {
 		goldBtn = new Button();
 		goldBtn.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		goldBtn.setId("gold");
 		setForAction(goldBtn);
 		return goldBtn;
 	}
-	protected Button getLaboratoryBtn() {
+	public Button getLaboratoryBtn() {
 		laboratoryBtn = new Button();
 		laboratoryBtn.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		laboratoryBtn.setId("laboratory");
 		setForAction(laboratoryBtn);
 		return laboratoryBtn;
 	}
-	protected Button getMarketBtn() {
+	public Button getMarketBtn() {
 		marketBtn = new Button();
 		marketBtn.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		marketBtn.setId("market");
 		setForAction(marketBtn);
 		return marketBtn;
 	}
-	protected Button getProvinceBtn() {
+	public Button getProvinceBtn() {
 		provinceBtn = new Button();
 		provinceBtn.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		provinceBtn.setId("province");
 		setForAction(provinceBtn);
 		return provinceBtn;
 	}
-	protected Button getSilverBtn() {
+	public Button getSilverBtn() {
 		silverBtn = new Button();
 		silverBtn.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		silverBtn.setId("silver");
 		setForAction(silverBtn);
 		return silverBtn;
 	}
-	protected Button getSmithBtn() {
+	public Button getSmithBtn() {
 		smithBtn = new Button();
 		smithBtn.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		smithBtn.setId("smith");
 		setForAction(smithBtn);
 		return smithBtn;
 	}
-	protected Button getVillageBtn() {
+	public Button getVillageBtn() {
 		villageBtn = new Button();
 		villageBtn.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		villageBtn.setId("village");
 		setForAction(villageBtn);
 		return villageBtn;
 	}
-	protected Button getWoodcutterBtn() {
+	public Button getWoodcutterBtn() {
 		woodcutterBtn = new Button();
 		woodcutterBtn.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		woodcutterBtn.setId("woodcutter");
