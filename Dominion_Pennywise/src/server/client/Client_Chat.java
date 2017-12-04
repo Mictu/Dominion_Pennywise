@@ -15,8 +15,6 @@ public class Client_Chat {
 	private String playerName;
 	Server server;
 	Server_View serverView;
-	private Message msg;
-	String msg2;
 	
 	protected Client_Chat(Server server,Socket socket) {
 		this.server = server;
@@ -28,13 +26,15 @@ public class Client_Chat {
 		@Override
 		protected Void call() throws Exception {
 			while(true) {
-			msg = Message.receive(socket);
+			Message msg = Message.receive(socket);
 			if (msg instanceof ChatMsg) {
 				server.broadcast((ChatMsg) msg);
 			} else if (msg instanceof JoinMsg) {
 				Client_Chat.this.playerName = ((JoinMsg) msg).getPlayerName();
+				System.out.println("joinmsg");
 			} else if (msg instanceof StringMsg) {
-				serverView.updateServerView(server.getNewestMsg(), ((StringMsg) msg).getContent());//System.out.println(((StringMsg) msg).getContent() + " has joined the Server!");
+				//serverView.updateServerView(server.getNewestMsg(), ((StringMsg) msg).getContent());
+				System.out.println(((StringMsg) msg).getContent() + " has joined the Server!");
 			}
 			}
 		}
@@ -56,9 +56,6 @@ public class Client_Chat {
 			e.printStackTrace();
 		}
 	}
-	
-	public String getName() {
-		return msg2;
-	}
+
 
 }

@@ -22,6 +22,7 @@ public abstract class Message {
 			System.out.println("Sending message: " + this.toString());
 			out.write(this.toString() + "\n");
 			out.flush();
+			System.out.println("message sent");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,7 +46,6 @@ public abstract class Message {
 			} else if (parts[0].equals(MessageType.String.toString())) {
 				msg = new StringMsg(parts[1]);
 			}
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

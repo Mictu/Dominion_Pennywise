@@ -28,8 +28,8 @@ public class Login_Controller {
 			if (!playerName.isEmpty()) {
 				lobbyView = new Lobby_View(loginView.getStage());
 				client = new Client(playerName);
-				client.run();
 				Lobby_Controller lobbyController = new Lobby_Controller(lobbyView, client);
+				client.run();
 				lobbyView.start();
 
 				// Open Lobby

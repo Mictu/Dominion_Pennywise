@@ -17,8 +17,6 @@ public class Lobby_Controller {
 		this.lobbyView = lobbyView;
 		this.client = client;
 		
-		
-		
 		//LOBBY		
 		
 		lobbyView.btnStartGame.setOnAction(event -> {

@@ -128,7 +128,7 @@ public class Client {
 			
 			this.deck = (ArrayList<String>) objectInput.readObject();
 			
-			clientH.getDeckFromServer(deck);
+//			clientH.getDeckFromServer(deck);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -13,7 +13,6 @@ import commons.ChatMsg;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.stage.Stage;
@@ -28,8 +27,8 @@ public class Server extends Application {
 	DataInputStream input;
 	DataOutputStream output;
 
-	GameLogic gl = new GameLogic(); // Just for testing
-	ServerHandler sh = new ServerHandler(gl);
+//	GameLogic gl = new GameLogic(); // Just for testing
+	ServerHandler sh = new ServerHandler();
 
 	Player player;
 	ArrayList<String> fromServer;
@@ -67,12 +66,7 @@ public class Server extends Application {
 	}
 
 	public void connect() {
-		try {
-			server = new ServerSocket(2303, 10);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		new Thread(startServer).start();
 	}
 
@@ -80,7 +74,7 @@ public class Server extends Application {
 		@Override
 		protected Void call() throws Exception {
 
-			
+			server = new ServerSocket(2303, 10);
 			// System.out.println("Waiting for Connection");
 			serverView.updateServerView(newestMsg, "Waiting for Connection...");
 
@@ -113,8 +107,7 @@ public class Server extends Application {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		;
+		};
 	}
 
 	public void setMessage(ArrayList<String> message) {
