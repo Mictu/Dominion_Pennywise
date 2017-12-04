@@ -1,5 +1,6 @@
 package view;
 
+import controllers.Board_Controller;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -31,8 +32,10 @@ public class Board_View {
 		 */
 	
 	// Initialize the GUI Content here
-		
-		
+	
+	public HBox hBoxHand = new HBox(20); 
+	Board_Controller bcontroller; 
+
 //	 constructor
 	public Board_View(Stage s, Client client) {
 		this.client = client;
@@ -41,6 +44,8 @@ public class Board_View {
 		Translator t = sl.getTranslator();
 		CardDesign_View cdV = new CardDesign_View(client);
 		this.stage = s;
+		this.bcontroller = bcontroller; 
+	
 
 		// Set up the GUI in here
 		stage.setTitle("Dominion");
@@ -98,12 +103,31 @@ public class Board_View {
 		Label hand = new Label(t.getString("dominion.board.lbl.hand"));
 		hand.setId("handLabel");
 
-		HBox hBoxHand = new HBox(20);
-		hBoxHand.getChildren().addAll(cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn());
+		//hBoxHand = new HBox(20);
+		//hBoxHand.getChildren().addAll(cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn());
 		hBoxHand.setAlignment(Pos.CENTER);
+		
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		HBox hBottom = new HBox(70);
 		hBottom.getChildren().addAll(cdV.getCopperBtn(),hBoxHand,cdV.getDuchyBtn());
+		//hBottom.getChildren().add(hBoxHand);
 		hBottom.setAlignment(Pos.CENTER);
 		
 		stackPane.getChildren().addAll(hand,hBottom);
@@ -168,6 +192,10 @@ public class Board_View {
 	public void start() {
 		stage.setFullScreen(true);
 		stage.show();
+	}
+	
+	public Stage getStage(){
+		return this.stage; 
 	}
 	
 	public void stop () {
