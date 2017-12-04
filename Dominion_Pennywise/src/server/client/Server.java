@@ -104,6 +104,7 @@ public class Server extends Application {
 		try {
 			msg = input.readUTF();
 			System.out.println("Server receives: " + msg);
+			sh.printOutFromServer(msg);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
