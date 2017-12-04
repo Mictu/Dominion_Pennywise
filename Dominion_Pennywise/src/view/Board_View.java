@@ -48,7 +48,6 @@ public class Board_View {
 		CardDesign_View cdV = new CardDesign_View(client);
 		this.stage = s;
 
-				
 
 		// Set up the GUI in here
 		stage.setTitle("Dominion");
