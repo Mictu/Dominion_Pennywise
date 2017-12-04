@@ -41,12 +41,17 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 
 		// decide if a Server needs to get started, then start Splashscreen
-		serverView = new Server_View(primaryStage);
+//		serverView = new Server_View(primaryStage);
 		
 		serviceLocator = ServiceLocator.getServiceLocator();
 		serviceLocator.setConfiguration(new Configuration());
 		String language = serviceLocator.getConfiguration().getOption("Language");
 		serviceLocator.setTranslator(new Translator(language));
+		
+		splashScreen = new S_View();
+		splashScreen.run(primaryStage);
+		
+		
 	}
 
 	public void stop() {

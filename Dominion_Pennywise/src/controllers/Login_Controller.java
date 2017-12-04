@@ -12,6 +12,7 @@ public class Login_Controller {
 	Login_View loginView;
 	Client client;
 	Lobby_View lobbyView;
+	String playerName;
 
 	public Login_Controller(Login_View loginView) {
 		this.loginView = loginView;
@@ -23,19 +24,16 @@ public class Login_Controller {
 		// Open Lobby
 
 		loginView.lobbyBtn.setOnAction((Event) -> {
-			String name = loginView.nameTxtfield.getText();
-			if (!name.isEmpty()) {
-
-				client = new Client();
-				client.run();
-
-				String msg = "lobby".concat(name);						// Send if u connect to a server
-				client.sendToServer(msg);
-
+			playerName = loginView.nameTxtfield.getText();
+			if (!playerName.isEmpty()) {
 				lobbyView = new Lobby_View(loginView.getStage());
+				client = new Client(playerName);
+				client.run();
 				Lobby_Controller lobbyController = new Lobby_Controller(lobbyView, client);
-				// Open Lobby
 				lobbyView.start();
+
+				// Open Lobby
+
 			} else {
 				loginView.warning.setText(t.getString("dominion.login.warning"));
 			}
@@ -52,6 +50,10 @@ public class Login_Controller {
 
 	private void exit(Stage stage) {
 		stage.hide();
+	}
+	
+	public String getPlayerName() {
+		return playerName;
 	}
 	
 }

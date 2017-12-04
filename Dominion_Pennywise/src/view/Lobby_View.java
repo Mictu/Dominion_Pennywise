@@ -14,21 +14,21 @@ import server_Models.Translator;
 
 public class Lobby_View {
 	
-	protected Stage stage;
+	public Stage stage;
 	
 	BorderPane mainPane; 
 	
 	//connected Players and online players area
-	TextArea txtConnectedPlayers = new TextArea();
+	public TextArea txtConnectedPlayers = new TextArea();
 	TextArea txtOnlinePlayers = new TextArea();
 	
 	//history area
 	TextArea txtHistory = new TextArea();
 	
 	// Chat area and its controlls
-	TextArea txtChatArea = new TextArea();
-	TextField txtChatMessage = new TextField();
-	Button btnSend = new Button("Send");
+	public TextArea txtChatArea = new TextArea();
+	public TextField txtChatMessage = new TextField();
+	public Button btnSend = new Button("Send");
 	
 	//controls button
 	Button btnTest;

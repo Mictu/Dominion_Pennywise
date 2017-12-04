@@ -55,9 +55,9 @@ public class S_View {
 		stage.setScene(scene);
     }
     
-	public void run(Stage primaryStage, boolean server) {
+	public void run(Stage primaryStage/*, boolean server*/) {
 		stage.show();
-		this.startTheServer = server;
+//		this.startTheServer = server;
 		
 		runnable(primaryStage);
 		initialize();
