@@ -34,7 +34,7 @@ public class Client_Chat {
 				System.out.println("joinmsg");
 			} else if (msg instanceof StringMsg) {
 				//serverView.updateServerView(server.getNewestMsg(), ((StringMsg) msg).getContent());
-				System.out.println(((StringMsg) msg).getContent() + " has joined the Server!");
+//				System.out.println(((StringMsg) msg).getContent() + " has joined the Server!");
 			}
 			}
 		}

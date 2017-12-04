@@ -20,8 +20,9 @@ public class Board_Controller {
 	Client client;
 
 
-	public Board_Controller(Board_View boardView){
+	public Board_Controller(Board_View boardView, Client client){
 		//
+		this.client = client;
 		this.boardView = boardView;
 		
 		

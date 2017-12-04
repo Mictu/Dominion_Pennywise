@@ -20,8 +20,8 @@ public class Lobby_Controller {
 		//LOBBY		
 		
 		lobbyView.btnStartGame.setOnAction(event -> {
-				boardView = new Board_View(lobbyView.getStage());
-				Board_Controller boardController = new Board_Controller(boardView); 
+				boardView = new Board_View(lobbyView.getStage(),client);
+				Board_Controller boardController = new Board_Controller(boardView, client); 
 				boardView.start();
 		});
 

@@ -31,7 +31,7 @@ public class Lobby_View {
 	public Button btnSend = new Button("Send");
 	
 	//controls button
-	Button btnTest;
+	public Button btnTest;
 	public Button btnLeaveGame;
 	public Button btnStartGame;
 

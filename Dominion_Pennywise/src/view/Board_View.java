@@ -38,15 +38,16 @@ public class Board_View {
 	public HBox hBoxHand; 
 	Board_Controller bcontroller; 
 	public static ArrayList <Button> handcards = new ArrayList<Button>();
-
+	
 	
 	
 //	 constructor
-	public Board_View(Stage s) {
-		
+	public Board_View(Stage s, Client client) {
+		this.client = client;
+		CardDesign_View cdV = new CardDesign_View(client);
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 		Translator t = sl.getTranslator();
-		CardDesign_View cdV = new CardDesign_View(client);
+		
 		this.stage = s;
 
 				

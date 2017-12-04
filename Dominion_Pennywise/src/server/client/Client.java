@@ -75,6 +75,7 @@ public class Client {
 	};
 
 	public void sendToServer(String msg) {
+		System.out.println(msg);
 		Message stringMsg = new StringMsg(msg);
 		stringMsg.send(socket);
 //		try {

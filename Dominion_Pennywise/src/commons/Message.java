@@ -22,7 +22,6 @@ public abstract class Message {
 			System.out.println("Sending message: " + this.toString());
 			out.write(this.toString() + "\n");
 			out.flush();
-			System.out.println("message sent");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
