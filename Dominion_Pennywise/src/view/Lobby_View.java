@@ -10,13 +10,10 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main_Class.ServiceLocator;
-import server.client.Client;
-import server_Models.Player;
 import server_Models.Translator;
 
 public class Lobby_View {
 	
-	Client client = new Client();
 	protected Stage stage;
 	
 	BorderPane mainPane; 

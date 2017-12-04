@@ -16,11 +16,20 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main_Class.ServiceLocator;
+import server.client.Client;
 import server_Models.Translator;
 
 public class Board_View {
 
 	public Stage stage;
+	Client client;
+	
+		/* WRITE DYNAMIC HAND
+		 * CARDS ARE COVERED IF HOVERED
+		 * SET CHAT
+		 * GOLDEN BORDER IF U CAN PLAY CARDS
+		 * DECK AND DISCARD DECK SHOULD BE SEEN FROM BEHIND
+		 */
 	
 	// Initialize the GUI Content here
 	
@@ -28,10 +37,12 @@ public class Board_View {
 	Board_Controller bcontroller; 
 
 //	 constructor
-	public Board_View(Stage s) {
+	public Board_View(Stage s, Client client) {
+		this.client = client;
+		
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 		Translator t = sl.getTranslator();
-		CardDesign_View cdV = new CardDesign_View();
+		CardDesign_View cdV = new CardDesign_View(client);
 		this.stage = s;
 		this.bcontroller = bcontroller; 
 	

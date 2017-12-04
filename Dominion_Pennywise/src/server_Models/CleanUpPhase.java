@@ -10,7 +10,7 @@ public class CleanUpPhase {
 	
 	
 	// Constructor
-	protected CleanUpPhase(Player player) {
+	public CleanUpPhase(Player player) {
 		this.player = player;
 		throwCard();
 		drawCard();
@@ -19,7 +19,7 @@ public class CleanUpPhase {
 	
 	
 	// clears the hand of the player (push cards on to discard deck)
-	protected void throwCard() {
+	public void throwCard() {
 		for (int i = 1; i <= player.hand.size(); i = 1) {
 			player.discard.add(player.hand.get(0));
 			player.hand.remove(0);
@@ -27,7 +27,7 @@ public class CleanUpPhase {
 	}
 	
 	// get cards from your deck into your hand (5 in the end)
-	protected void drawCard() {
+	public void drawCard() {
 		for(int i = 1; i <= 5; i++) {
 			if (player.deck.isEmpty()) {
 				shuffle();
@@ -38,7 +38,7 @@ public class CleanUpPhase {
 	}
 	
 	// shuffles the discard-deck and adds the cards to the deck
-	protected void shuffle() {
+	public void shuffle() {
 		Collections.shuffle(player.discard);
 		for (int i = 1; i <= player.discard.size() ; i = 1){
 			player.deck.add(player.discard.get(0));

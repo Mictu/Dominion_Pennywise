@@ -16,7 +16,7 @@ public class Lobby_Controller {
 	
 	
 	public Lobby_Controller(Lobby_View lobbyView){
-		this.lobbyView = lobbyView; 
+		this.lobbyView = lobbyView;
 		
 		
 		

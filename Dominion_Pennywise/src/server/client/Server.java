@@ -1,42 +1,38 @@
 package server.client;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-
+import java.util.ArrayList;
 import server_Models.Player;
 
 public class Server {
 
-	Socket socket = null;
-	ServerSocket server = null;
-//	ObjectInputStream input;
-//	ObjectOutputStream output;
-	OutputStream output;
-	OutputStreamWriter writer;
-	BufferedWriter bw;
-	InputStream input;
-	InputStreamReader reader;
-	BufferedReader br;
+	static Socket socket = null;
+	static ServerSocket server = null;
+	static DataInputStream input;
+	static DataOutputStream output;
+	ObjectInputStream objectInput;
+	ObjectOutputStream objectOutput;
+
+	ServerHandler sh = new ServerHandler();
 
 	Player player;
 	String msg;
+	ArrayList<String> fromServer;
 
 	public Server() {
-		player = new Player();
 	}
 
 	public void connect() throws ClassNotFoundException {
 
 		try {
-			server = new ServerSocket(2303);
+			server = new ServerSocket(3055);
 			System.out.println("Waiting for Connection");
 
 			InetAddress iAddress = InetAddress.getLocalHost();
@@ -46,22 +42,18 @@ public class Server {
 				socket = server.accept();
 				System.out.println("Connection received from: " + socket.getInetAddress().getHostName());
 
-//				output = new ObjectOutputStream(socket.getOutputStream());
-//				input = new ObjectInputStream(socket.getInputStream());
-				output = socket.getOutputStream();
-				writer = new OutputStreamWriter(output);
-				bw = new BufferedWriter(writer);
-				input = socket.getInputStream();
-				reader = new InputStreamReader(input);
-				br = new BufferedReader(reader);
-				
-				
+				input = new DataInputStream(socket.getInputStream());
+				output = new DataOutputStream(socket.getOutputStream());
 
+				msg = input.readUTF();
+				
+				sh.getMessageFromServer(msg);
 			}
 		}
 
 		catch (IOException e) {
 			e.printStackTrace();
+			System.out.println("lsajod");
 		} finally {
 			try {
 				input.close();
@@ -71,34 +63,41 @@ public class Server {
 				e.printStackTrace();
 			}
 		}
+	}
 
-	}
-	
-	public String getMsgFromClient() {
-		System.out.println("Endlich server");
-		try {
-			msg = br.readLine();
-		} catch (IOException e) {
-			System.out.println("shit");
-			e.printStackTrace();
-		}
-		System.out.println("HIER LÄUFTS");
-		System.out.println(msg);
-		return msg;
-	}
-	
-//	public void sendToClient(String info) {
-//		try {
-//			output.writeUTF(info);
-//			output.flush();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+	// public void getStringFromClient() {
+	// try {
+	// String testString = input.readUTF();
+	// System.out.println(testString);
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// }
+	// }
+
+//	public static void main(String[] args) throws ClassNotFoundException {
+//		Server s = new Server();
+//		s.connect();
 //	}
 
+	public void sendToClient(String o) {
+		try {
+			output.writeUTF(o);
+			output.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-	public static void main(String[] args) throws ClassNotFoundException {
-		new Server().connect();
+	public void sendArrayToClient(ArrayList<String> deck) {
+		try {
+			objectInput = new ObjectInputStream(socket.getInputStream());
+			objectOutput = new ObjectOutputStream(socket.getOutputStream());
+			
+			objectOutput.writeObject(deck);
+			objectOutput.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

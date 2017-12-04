@@ -3,6 +3,9 @@ package server_Models;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import server.client.Server;
+import server.client.ServerHandler;
+
 public class GameLogic {
 
 	// Initialize sector here
@@ -15,23 +18,25 @@ public class GameLogic {
 	protected int countRounds;
 	protected final int START_MONEY = 7;
 	protected final int START_ESTATE = 3;
-	Player player;
-	CleanUpPhase cleanPhase;
-	TreasureCard tCard = new TreasureCard();
-	VictoryCard vCard = new VictoryCard();
+	
+	protected String actualPhase;
+	
+	ServerHandler serverHandler;
+	protected Server server;
+	protected CleanUpPhase cleanPhase;
 
 	// Constructor
-	protected GameLogic() {
+	public GameLogic() {
 		theGame();
 	} // Close Constructor
 
 	protected void gameStart(Player player) {
 		for (int i = 0; i < START_MONEY; i++) {
-			player.discard.add(tCard.getCopper());
+			player.discard.add("copper");							// don't forget to counter++
 		}
 
 		for (int i = 0; i < START_ESTATE; i++) {
-			player.discard.add(vCard.getEstate());
+			player.discard.add("estate");
 		}
 
 		cleanPhase = new CleanUpPhase(player);
@@ -47,9 +52,18 @@ public class GameLogic {
 					gameStart(player);
 				}
 				player.startRound();
-				actionPhase = new ActionPhase(player);
-				buyPhase = new BuyPhase(player);
-				cleanUpPhase = new CleanUpPhase(player);
+				
+				// Threads!!!
+				
+				
+				actualPhase = "action";
+//				server.sendToClient(actualPhase);						// Set Color of Label with the phase -> Or use Buttons
+				
+				actualPhase = "buy";
+//				server.sendToClient(actualPhase);
+
+				actualPhase = "cleanup";
+//				server.sendToClient(actualPhase);
 			}
 
 			countRounds++;
@@ -59,11 +73,23 @@ public class GameLogic {
 	}
 
 	// Add Players to playerList
-	protected void addPlayers(Player newPlayer) {
+	public void addPlayers(Player newPlayer) {
 		playerList.add(newPlayer);
 		Collections.shuffle(playerList); // Random StartList
 	}
 
+	// get the actual phase to let the client know what cards can be pressed
+	public String getPhase() {
+		return this.actualPhase;
+	}
+	
+	// This method should actualize the hand on the view (e.g. call it in buy phase when u gave away a copper card)
+	public void setHandView(Player player) {
+		for (String o : player.hand)
+			server.sendToClient(o);
+	}
+	
+	
 }
 
 // Patrick

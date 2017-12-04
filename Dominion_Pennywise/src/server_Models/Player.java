@@ -18,7 +18,8 @@ public class Player {
 	protected ArrayList<String> discard = new ArrayList<String>();
 
 	// Constructor
-	public Player() {
+	public Player(String name) {
+		this.name = name;
 		winPoint = 0;
 		amountOfTurns = 0;
 
@@ -120,6 +121,10 @@ public class Player {
 	// return buy - points
 	protected int getBuyPoints() {
 		return this.buyPoint;
+	}
+	
+	public ArrayList<String> getHand() {
+		return this.hand;
 	}
 
 }

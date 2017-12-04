@@ -24,14 +24,15 @@ public class Login_View {
 	Label welcomeLbl;
 	public Label nameLbl;
 	Label languageLbl;
+	public Label warning;
 
-	TextField nameTxtfield;
+	public TextField nameTxtfield;
 	ComboBox<String> boxLanguage = new ComboBox<String>();
-
-	VBox topvbox = new VBox();
-	VBox vbox = new VBox(); // for the center
+	
+	VBox topvbox = new VBox(180);
+	VBox vbox = new VBox(30); // for the center
 	HBox hbox1 = new HBox(); // for name and textfield
-	HBox hbox2 = new HBox(); // for laguage and dropdown
+	VBox vbox2 = new VBox(5); // for laguage and dropdown
 
 	public Login_View(Stage stage) {
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
@@ -42,15 +43,14 @@ public class Login_View {
 		stage.setTitle("Dominion Login");
 		stage.setFullScreen(true);
 	
-		//Hauptpane as Grundgerüst  
+		//Hauptpane as Grundgerï¿½st  
 		mainPane = new BorderPane();
 		mainPane.setId("mainPane");
 		
 		mainPane.setCenter(vbox);
 		vbox.setAlignment(Pos.CENTER);
-		vbox.setSpacing(20.00);
 		hbox1.setAlignment(Pos.CENTER);
-		hbox2.setAlignment(Pos.CENTER);
+		vbox2.setAlignment(Pos.CENTER);
 
 //		boxLanguage.getSelectionModel().select(t.getString("dominion.login.choseLanguage"));
 
@@ -68,6 +68,7 @@ public class Login_View {
 		// Wilkommens Label erstellen und Top
 		welcomeLbl = new Label(t.getString("dominion.login.welcome"));
 		welcomeLbl.setId("welcomeLbl");
+		
 		topvbox.getChildren().add(welcomeLbl);
 		topvbox.setAlignment(Pos.CENTER);
 		mainPane.setTop(topvbox);
@@ -76,18 +77,22 @@ public class Login_View {
 
 		//
 		nameLbl = new Label(t.getString("dominion.login.name") + ": ");
-		nameLbl.setId("nameLbl");
+		nameLbl.setId("lblText");
 		languageLbl = new Label(t.getString("dominion.login.language") + ": ");
-		languageLbl.setId("languageLbl");
+		languageLbl.setId("lblText");
 		nameTxtfield = new TextField();
+		nameTxtfield.setId("textField");
 
 		hbox1.getChildren().addAll(nameLbl, nameTxtfield);
-		hbox2.getChildren().addAll(languageLbl, boxLanguage);
+		vbox2.getChildren().addAll(languageLbl, boxLanguage);
 
 		lobbyBtn = new Button(t.getString("dominion.login.button.lobby"));
 		exitBtn = new Button(t.getString("dominion.login.button.quit"));
 
-		vbox.getChildren().addAll(hbox1, hbox2, lobbyBtn, exitBtn);
+		warning = new Label("");
+		warning.setId("warning");
+
+		vbox.getChildren().addAll(warning ,hbox1, vbox2, lobbyBtn, exitBtn);
 		Scene scene = new Scene(mainPane);
 		scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
 		stage.setScene(scene);
@@ -101,6 +106,7 @@ public class Login_View {
 		languageLbl.setText(t.getString("dominion.login.language") + ": ");
 		lobbyBtn.setText(t.getString("dominion.login.button.lobby"));
 		exitBtn.setText(t.getString("dominion.login.button.quit"));
+		warning.setText(t.getString("dominion.login.warning"));
 //		boxLanguage.getSelectionModel().select(t.getString("dominion.login.choseLanguage"));
 	}
 

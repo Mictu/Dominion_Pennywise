@@ -1,16 +1,18 @@
 package main_Class;
 
+import Splash.S_View;
+import Splash.Server_View;
 import controllers.Login_Controller;
 import javafx.application.Application;
-
+import javafx.application.Platform;
 import javafx.stage.Stage;
+import server.client.Server;
 import server_Models.Configuration;
 import server_Models.Translator;
 import view.Login_View;
 import view.Lobby_View;
 import view.Board_View;
 import view.Result_View;
-import view.Client_Controller;
 
 public class Main extends Application {
 
@@ -18,12 +20,14 @@ public class Main extends Application {
 	Lobby_View lobbyView;
 	Board_View boardView;
 	Result_View resultView;
-	Stage stage;
-	Login_Controller loginController; 
+	Login_Controller loginController;
 	private ServiceLocator serviceLocator; 
+	
+	S_View splashScreen;
+	Server_View serverView;
+	Server server;
 
-	// MVC STARTS THE PROGRAMM AND INITIALIZES THE MVC-CLASSES (MODEL, VIEW,
-	// CONTROLLER)
+	// MVC STARTS THE PROGRAMM AND INITIALIZES THE MVC-CLASSES (MODEL, VIEW, CONTROLLER)
 
 	public static void main(String[] args) {
 		launch(args);
@@ -35,14 +39,13 @@ public class Main extends Application {
 
 	public void start(Stage primaryStage) {
 
+		// decide if a Server needs to get started, then start Splashscreen
+		serverView = new Server_View(primaryStage);
+		
 		serviceLocator = ServiceLocator.getServiceLocator();
 		serviceLocator.setConfiguration(new Configuration());
 		String language = serviceLocator.getConfiguration().getOption("Language");
 		serviceLocator.setTranslator(new Translator(language));
-		
-		loginView = new Login_View(primaryStage);
-		Client_Controller cController = new Client_Controller(loginView);
-		loginView.start();
 	}
 
 	public void stop() {
@@ -60,6 +63,7 @@ public class Main extends Application {
 		if (resultView != null) {
 			resultView.stop();
 		}
+		Platform.exit();							// Close Server if it is running
 	}
 
 }

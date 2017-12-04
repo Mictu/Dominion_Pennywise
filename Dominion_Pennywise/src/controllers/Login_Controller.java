@@ -1,37 +1,43 @@
 package controllers;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import main_Class.ServiceLocator;
 import server.client.Client;
+import server_Models.Translator;
 import view.Lobby_View;
 import view.Login_View;
 
 public class Login_Controller {
 
 	Login_View loginView;
-	Client client = new Client();
+	Client client;
 	Lobby_View lobbyView;
 
 	public Login_Controller(Login_View loginView) {
 		this.loginView = loginView;
-		client.run();
+		
+		ServiceLocator sl = ServiceLocator.getServiceLocator();
+		Translator t = sl.getTranslator();
 
 		// LOGIN
 		// Open Lobby
 
 		loginView.lobbyBtn.setOnAction((Event) -> {
-			// public void handle(ActionEvent event) {
-			// Kontrolle ob Name eingegeben wurde!
 			String name = loginView.nameTxtfield.getText();
 			if (!name.isEmpty()) {
-//				client.sendName(name);
-			//	client.sendName(name);
-				client.sendToServer(name);
+
+				client = new Client();
+				client.run();
+
+				String msg = "lobby".concat(name);						// Send if u connect to a server
+				client.sendToServer(msg);
 
 				lobbyView = new Lobby_View(loginView.getStage());
+				Lobby_Controller lobbyController = new Lobby_Controller(lobbyView, client);
 				// Open Lobby
 				lobbyView.start();
+			} else {
+				loginView.warning.setText(t.getString("dominion.login.warning"));
 			}
 
 		});
@@ -47,5 +53,5 @@ public class Login_Controller {
 	private void exit(Stage stage) {
 		stage.hide();
 	}
-
+	
 }

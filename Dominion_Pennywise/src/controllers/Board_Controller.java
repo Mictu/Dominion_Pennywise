@@ -20,7 +20,7 @@ public class Board_Controller {
 
 	ArrayList <Button> testcardlist = new ArrayList<Button>(); 
 	public static ArrayList <Button> controlView = new ArrayList<Button>();
-	
+
 	public Board_Controller(Board_View boardView){
 		//
 		this.boardView = boardView;

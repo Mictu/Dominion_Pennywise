@@ -6,13 +6,13 @@ public class BuyPhase {
 	Player player;
 	
 	// Constructor
-	protected BuyPhase(Player player) {
+	public BuyPhase(Player player) {
 		this.player = player;
 	} // close constructor
 	
 	
 	// Add Card to discard deck of player
-	protected void buyCard(String cardName) {
+	public void buyCard(String cardName) {						// clicked card has to be handled also!
 		int cost = getCost(cardName);
 		// only if player has enough money to buy 'the' clicked card
 		if (player.money >= cost) {
@@ -21,6 +21,10 @@ public class BuyPhase {
 			
 			// maybe set a golden border around the buttons with money to show what to press
 			// player.Button(getText).setId("goldenBorder");
+			
+			
+			// Also show bonus money somewhere to chose for buyoption - button?
+			
 			
 			
 			for (String x : player.hand) {
@@ -41,7 +45,7 @@ public class BuyPhase {
 	}
 	
 	// get the costs of every card
-	protected int getCost(String cardName) {
+	public int getCost(String cardName) {
 		int costs = 0;
 		
 		switch (cardName) {
