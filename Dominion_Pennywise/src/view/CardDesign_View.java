@@ -12,7 +12,7 @@ public class CardDesign_View {
 
 	public CardDesign_View(Client client) {
 		this.client = client;
-		client.run();
+		//client.run();
 
 	} // close constructor
 	

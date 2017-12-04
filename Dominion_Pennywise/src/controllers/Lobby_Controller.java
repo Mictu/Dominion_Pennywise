@@ -1,10 +1,11 @@
 package controllers;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import server.client.Client;
 import view.Board_View;
+import view.CardDesign_View;
 import view.Lobby_View;
 import view.Login_View;
 
@@ -13,11 +14,14 @@ public class Lobby_Controller {
 	Lobby_View lobbyView; 
 	Login_View loginView; 
 	Board_View boardView;
+	CardDesign_View cardView; 
+	Client client; 
+
 	
-	
-	public Lobby_Controller(Lobby_View lobbyView){
+	public Lobby_Controller(Lobby_View lobbyView, Client client){
 		this.lobbyView = lobbyView;
-		
+		this.client = client;
+		client.run();
 		
 		
 		
@@ -30,8 +34,9 @@ public class Lobby_Controller {
 				
 				System.out.println("sadf");
 				
-				Board_Controller boardController = new Board_Controller(boardView); 
+	
 				boardView = new Board_View(lobbyView.getStage()); 
+				Board_Controller boardController = new Board_Controller(boardView); 
 				boardView.start();
 				
 			}
@@ -39,12 +44,8 @@ public class Lobby_Controller {
 		});
 			
 
-			
-			
 			lobbyView.btnLeaveGame.setOnAction((event) -> {
-			
 				exit(lobbyView.getStage());
-				
 			});
 			
 			
