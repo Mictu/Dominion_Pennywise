@@ -50,45 +50,40 @@ public class Board_View {
 		
 		this.stage = s;
 
-				
-
 		// Set up the GUI in here
 		stage.setTitle("Dominion");
-//		stage.setResizable(false);
+		// stage.setResizable(false);
 		BorderPane root = new BorderPane();
 		root.setId("boardRoot");
-		root.setPadding(new Insets(10,10,10,10));
+		root.setPadding(new Insets(10, 10, 10, 10));
 		root.autosize();
 		root.layoutBoundsProperty();
-		
-	//SET TOP
-	//SET CENTER
+
+		// SET TOP
+		// SET CENTER
 		// use V- and H- Boxes to add the Cards (Buttons)
 		VBox vCenter = new VBox(8);
 		vCenter.setAlignment(Pos.CENTER);
-		HBox hCenter1 = new HBox(20); //add Victory cards
-		HBox hCenter2 = new HBox(20); //add Kingdom-/ Action card
-		HBox hCenter3 = new HBox(20); //add Treasure cards
-		
-		vCenter.setPadding(new Insets(0,10,0,0));
+		HBox hCenter1 = new HBox(20); // add Victory cards
+		HBox hCenter2 = new HBox(20); // add Kingdom-/ Action card
+		HBox hCenter3 = new HBox(20); // add Treasure cards
+
+		vCenter.setPadding(new Insets(0, 10, 0, 0));
 		hCenter1.setId("boxes");
 		hCenter2.setId("boxes");
 		hCenter3.setId("boxes");
-		
 
 		try {
-			hCenter1.getChildren().addAll(cdV.getEstateBtn(),cdV.getDuchyBtn(),cdV.getProvinceBtn());
-			
-			hCenter2.getChildren().addAll(cdV.getFunfairBtn(), cdV.getLaboratoryBtn(), cdV.getMarketBtn(), 
-									cdV.getSmithBtn(), cdV.getVillageBtn(), cdV.getWoodcutterBtn());
-		
+			hCenter1.getChildren().addAll(cdV.getEstateBtn(), cdV.getDuchyBtn(), cdV.getProvinceBtn());
+
+			hCenter2.getChildren().addAll(cdV.getFunfairBtn(), cdV.getLaboratoryBtn(), cdV.getMarketBtn(),
+					cdV.getSmithBtn(), cdV.getVillageBtn(), cdV.getWoodcutterBtn());
+
 			hCenter3.getChildren().addAll(cdV.getCopperBtn(), cdV.getSilverBtn(), cdV.getGoldBtn());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
+
 		endPhase = new Button("Phase beenden");
 		endPhase.setId("endBtn");
 		bonusMoney = new Button("Bonusgeld: 0");
@@ -124,9 +119,13 @@ public class Board_View {
 		
 		hBoxHand = new HBox(20);
 		hBoxHand.setAlignment(Pos.CENTER);
-// testing the players hand		
-		hBoxHand.getChildren().addAll(cdV.getWoodcutterBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn());
-	
+		
+		
+		// testing the players hand
+		
+//		hBoxHand.getChildren().addAll(cdV.getWoodcutterBtn(), cdV.getFunfairBtn(), cdV.getFunfairBtn(),
+//				cdV.getFunfairBtn(), cdV.getFunfairBtn());
+
 		Button deck = new Button();
 		deck.setId("back");
 		Button discard = new Button();
@@ -185,20 +184,16 @@ public class Board_View {
 		vRight.getChildren().addAll(logger, reg, chat, chatInput);
 		
 		root.setRight(vRight);
-		
-	//SET BOTTOM
 
-		
-		
-		
+		// SET BOTTOM
+
 		// SET SCENE
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		stage.setScene(scene);
-		
+
 	} // Close the Constructor
 
-	
 	public void start() {
 		stage.setFullScreen(true);
 		stage.show();
@@ -216,38 +211,14 @@ public class Board_View {
 //		Button x = new Button();
 //		x.setId(card);
 
-
-// ArrayList
-		
 		// this.hBoxHand.getChildren().add()
+
 		
-//		switch (card) {
-//		case "copper":
-//			break;
-//		case "dutchy":
-//			break;
-//		case "estate":
-//			break;
-//		case "funfair":
-//			break;
-//		case "gold":
-//			break;
-//		case "laboratory":
-//			break;
-//		case "market":
-//			break;
-//		case "province":
-//			break;
-//		case "silver":
-//			break;
-//		case "smith":
-//			break;
-//		case "village":
-//			break;
-//		case "woodcutter":
-//			break;
-//		}
-	}
+	
+		
+		if(!card.equals("end")){
+		idkarten.add(card); 
+		}
 	
 	
 }// close class

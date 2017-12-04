@@ -13,6 +13,7 @@ public class Login_Controller {
 	Client client;
 	Lobby_View lobbyView;
 	String playerName;
+	Lobby_Controller lobbyController;
 
 	public Login_Controller(Login_View loginView) {
 		this.loginView = loginView;
@@ -28,8 +29,8 @@ public class Login_Controller {
 			if (!playerName.isEmpty()) {
 				lobbyView = new Lobby_View(loginView.getStage());
 				client = new Client(playerName);
-				Lobby_Controller lobbyController = new Lobby_Controller(lobbyView, client);
 				client.run();
+				lobbyController = new Lobby_Controller(lobbyView, client);
 				lobbyView.start();
 
 				// Open Lobby

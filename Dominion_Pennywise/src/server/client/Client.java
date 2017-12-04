@@ -77,6 +77,7 @@ public class Client {
 	public void sendToServer(String msg) {
 		System.out.println(msg);
 		Message stringMsg = new StringMsg(msg);
+		System.out.println(stringMsg);
 		stringMsg.send(socket);
 //		try {
 //			output.writeUTF(msg);

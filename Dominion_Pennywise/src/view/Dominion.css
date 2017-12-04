@@ -27,7 +27,7 @@
 	-fx-text-fill: white;
 	-fx-font-weight: bold;
 	-fx-font-size: 15;
-	-fx-pref-height: 180;
+	-fx-pref-height: 200;
 	-fx-pref-width: 550;
 }
 #phaseLabels {
@@ -58,7 +58,7 @@
 	-fx-wrap-text: true;
 }
 .text-area .viewport {
-    -fx-opacity: 0.3;
+    -fx-opacity: 0.7;
 }
 #playerStats {
 	-fx-pref-width: 1.360px;
@@ -70,7 +70,7 @@
 	-fx-wrap-text: true;
 }
 #playerStats .viewport {
-    -fx-opacity: 0.3;
+    -fx-opacity: 0.7;
 }
 
 /*
@@ -95,7 +95,7 @@
 }
 
 #btn {
-	-fx-background-color: goldenrod;
+	-fx-background-color: orange;
 	-fx-border-width: 2.5;
 	-fx-border-color:black;
 	-fx-border-radius: 4;
@@ -103,7 +103,7 @@
 	-fx-pref-height: 40;
 }
 #btn:hover {
-	-fx-background-color: darkgoldenrod;
+	-fx-background-color: orangered;
 }
  
 /*
@@ -121,180 +121,216 @@
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 130px;
-    -fx-pref-width: 81.3px;
+	-fx-pref-height: 145px;
+    -fx-pref-width: 90px;
     -fx-background-color: transparent;
+    -fx-opacity: 0.7;
 }
 #copper:hover{
-    -fx-scale-x: 1.3;
-    -fx-scale-y: 1.3;
-    -fx-scale-z: 1.3;
+	-fx-opacity: 1;
     -fx-cursor: hand;
+    -fx-border-insets: -5;
+    -fx-border-radius: 5;
+    -fx-border-width: 6;
+    -fx-border-color: goldenrod;
 }
 #duchy {
 	-fx-background-image: url("duchy.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 130px;
-    -fx-pref-width: 81.3px;
+	-fx-pref-height: 145px;
+    -fx-pref-width: 90px;
     -fx-background-color: transparent;
+    -fx-opacity: 0.7;
 }
 #duchy:hover{
-    -fx-scale-x: 1.3;
-    -fx-scale-y: 1.3;
-    -fx-scale-z: 1.3;
+	-fx-opacity: 1;
     -fx-cursor: hand;
+    -fx-border-insets: -5;
+    -fx-border-radius: 5;
+    -fx-border-width: 6;
+    -fx-border-color: dodgerblue;
 }
 #estate {
 	-fx-background-image: url("estate.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 130px;
-    -fx-pref-width: 81.3px;
+	-fx-pref-height: 145px;
+    -fx-pref-width: 90px;
     -fx-background-color: transparent;
+    -fx-opacity: 0.7;
 }
 #estate:hover{
-    -fx-scale-x: 1.3;
-    -fx-scale-y: 1.3;
-    -fx-scale-z: 1.3;
+	-fx-opacity: 1;
     -fx-cursor: hand;
+    -fx-border-insets: -5;
+    -fx-border-radius: 5;
+    -fx-border-width: 6;
+    -fx-border-color: dodgerblue;
 }
 #funfair {
 	-fx-background-image: url("funfair.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 130px;
-    -fx-pref-width: 81.3px;
+	-fx-pref-height: 145px;
+    -fx-pref-width: 90px;
     -fx-background-color: transparent;
+    -fx-opacity: 0.7;
 }
 #funfair:hover{
-    -fx-scale-x: 1.3;
-    -fx-scale-y: 1.3;
-    -fx-scale-z: 1.3;
+	-fx-opacity: 1;
     -fx-cursor: hand;
+    -fx-border-insets: -5;
+    -fx-border-radius: 5;
+    -fx-border-width: 6;
+    -fx-border-color: darkcyan;
 }
 #gold {
 	-fx-background-image: url("gold.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 130px;
-    -fx-pref-width: 81.3px;
+	-fx-pref-height: 145px;
+    -fx-pref-width: 90px;
     -fx-background-color: transparent;
+    -fx-opacity: 0.7;
 }
 #gold:hover{
-    -fx-scale-x: 1.3;
-    -fx-scale-y: 1.3;
-    -fx-scale-z: 1.3;
+	-fx-opacity: 1;
     -fx-cursor: hand;
+    -fx-border-insets: -5;
+    -fx-border-radius: 5;
+    -fx-border-width: 6;
+    -fx-border-color: goldenrod;
 }
 #laboratory {
 	-fx-background-image: url("laboratory.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 130px;
-    -fx-pref-width: 81.3px;
+	-fx-pref-height: 145px;
+    -fx-pref-width: 90px;
     -fx-background-color: transparent;
+    -fx-opacity: 0.7;
 }
 #laboratory:hover{
-    -fx-scale-x: 1.3;
-    -fx-scale-y: 1.3;
-    -fx-scale-z: 1.3;
+	-fx-opacity: 1;
     -fx-cursor: hand;
+    -fx-border-insets: -5;
+    -fx-border-radius: 5;
+    -fx-border-width: 6;
+    -fx-border-color: darkcyan;
 }
 #market {
 	-fx-background-image: url("market.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 130px;
-    -fx-pref-width: 81.3px;
+	-fx-pref-height: 145px;
+    -fx-pref-width: 90px;
     -fx-background-color: transparent;
+    -fx-opacity: 0.7;
 }
 #market:hover{
-    -fx-scale-x: 1.3;
-    -fx-scale-y: 1.3;
-    -fx-scale-z: 1.3;
+	-fx-opacity: 1;
     -fx-cursor: hand;
+    -fx-border-insets: -5;
+    -fx-border-radius: 5;
+    -fx-border-width: 6;
+    -fx-border-color: darkcyan;
 }
 #province {
 	-fx-background-image: url("province.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 130px;
-    -fx-pref-width: 81.3px;
+	-fx-pref-height: 145px;
+    -fx-pref-width: 90px;
     -fx-background-color: transparent;
+    -fx-opacity: 0.7;
 }
 #province:hover{
-    -fx-scale-x: 1.3;
-    -fx-scale-y: 1.3;
-    -fx-scale-z: 1.3;
+	-fx-opacity: 1;
     -fx-cursor: hand;
+    -fx-border-insets: -5;
+    -fx-border-radius: 5;
+    -fx-border-width: 6;
+    -fx-border-color: dodgerblue;
 }
 #silver {
 	-fx-background-image: url("silver.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 130px;
-    -fx-pref-width: 81.3px;
+	-fx-pref-height: 145px;
+    -fx-pref-width: 90px;
     -fx-background-color: transparent;
+    -fx-opacity: 0.7;
 }
 #silver:hover{
-    -fx-scale-x: 1.3;
-    -fx-scale-y: 1.3;
-    -fx-scale-z: 1.3;
+	-fx-opacity: 1;
     -fx-cursor: hand;
+    -fx-border-insets: -5;
+    -fx-border-radius: 5;
+    -fx-border-width: 6;
+    -fx-border-color: goldenrod;
 }
 #smith {
 	-fx-background-image: url("smith.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 130px;
-    -fx-pref-width: 81.3px;
+	-fx-pref-height: 145px;
+    -fx-pref-width: 90px;
     -fx-background-color: transparent;
+    -fx-opacity: 0.7;
 }
 #smith:hover{
-    -fx-scale-x: 1.3;
-    -fx-scale-y: 1.3;
-    -fx-scale-z: 1.3;
+	-fx-opacity: 1;
     -fx-cursor: hand;
+    -fx-border-insets: -5;
+    -fx-border-radius: 5;
+    -fx-border-width: 6;
+    -fx-border-color: darkcyan;
 }
 #village {
 	-fx-background-image: url("village.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 130px;
-    -fx-pref-width: 81.3px;
+	-fx-pref-height: 145px;
+    -fx-pref-width: 90px;
     -fx-background-color: transparent;
+    -fx-opacity: 0.7;
 }
 #village:hover{
-    -fx-scale-x: 1.3;
-    -fx-scale-y: 1.3;
-    -fx-scale-z: 1.3;
+	-fx-opacity: 1;
     -fx-cursor: hand;
+    -fx-border-insets: -5;
+    -fx-border-radius: 5;
+    -fx-border-width: 6;
+    -fx-border-color: darkcyan;
 }
 #woodcutter {
 	-fx-background-image: url("woodcutter.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 130px;
-    -fx-pref-width: 81.3px;
+	-fx-pref-height: 145px;
+    -fx-pref-width: 90px;
     -fx-background-color: transparent;
+	-fx-opacity: 0.7;
 }
 #woodcutter:hover{
-    -fx-scale-x: 1.3;
-    -fx-scale-y: 1.3;
-    -fx-scale-z: 1.3;
+	-fx-opacity: 1;
     -fx-cursor: hand;
+    -fx-border-insets: -5;
+    -fx-border-radius: 5;
+    -fx-border-width: 6;
+    -fx-border-color: darkcyan;
 }
 
 #back {
@@ -302,7 +338,7 @@
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 130px;
-    -fx-pref-width: 81.3px;
+	-fx-pref-height: 145px;
+    -fx-pref-width: 90px;
     -fx-background-color: transparent;
 }

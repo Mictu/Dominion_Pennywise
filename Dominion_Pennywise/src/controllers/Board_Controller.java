@@ -17,7 +17,7 @@ public class Board_Controller {
 	Board_View boardView; 
 	CardDesign_View cardView; 
 	
-	Client client;
+	Client client = new Client("sojo");
 
 
 	public Board_Controller(Board_View boardView, Client client){
@@ -42,6 +42,7 @@ public class Board_Controller {
 		});
 
 		boardView.endPhase.setOnAction((Event) -> {
+			System.out.println("reached endphase");
 			client.sendToServer("endphase");
 		});
 		
