@@ -3,6 +3,8 @@ package server.client;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import commons.ChatMsg;
@@ -13,14 +15,22 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.concurrent.Task;
 
+import java.util.ArrayList;
+import controllers.ClientHandler;
+
+
 public class Client {
+
 	Socket socket;
 
 	DataOutputStream output;
 	DataInputStream input;
 	String info;
 	Server server;
-	
+
+	ClientHandler clientH;
+	ArrayList<String> deck = new ArrayList<String>();
+
 
 	public SimpleStringProperty newestMessage = new SimpleStringProperty();
 	protected String playerName;
@@ -107,13 +117,23 @@ public class Client {
 	public String getPlayerName() {
 		return playerName;
 	}
-	// public String getMsgFromServer() {
-	// try {
-	// info = input.readUTF();
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// }
-	// return info;
-	// }
+
+	@SuppressWarnings("unchecked")
+	public void getArrayFromServer() {
+		try {
+			ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
+			ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
+			
+			clientH = new ClientHandler();
+			
+			this.deck = (ArrayList<String>) objectInput.readObject();
+			
+			clientH.getDeckFromServer(deck);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 
 }

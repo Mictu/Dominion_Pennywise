@@ -5,79 +5,83 @@ import java.util.Collections;
 public class ActionPhase {
 
 	// initialize sector
-	protected Player player;
-	protected boolean phase;
+	public boolean phase;
 
 	// Constructor
-	protected ActionPhase(Player player) {
-		this.player = player;
+	public ActionPhase() {
 		phase = true;
-	} // Close Constructor
+	} // Close Constructors
 
+	
 	// choose this method if a card is pressed
-	protected void chosenCard(String cardName) {
+	public void chosenCard(String cardName, Player player) {
 		switch (cardName) {
 		case "village":
-			actionVillage();
+			actionVillage(player);
 			break;
 		case "woodcutter":
-			actionWoodcutter();
+			actionWoodcutter(player);
 			break;
 		case "funfair":
-			actionFunfair();
+			actionFunfair(player);
 			break;
 		case "laboratory":
-			actionLaboratory();
+			actionLaboratory(player);
 			break;
 		case "market":
-			actionMarket();
+			actionMarket(player);
 			break;
 		case "smith":
-			actionSmith();
+			actionSmith(player);
 			break;
 		default:
 			phase = false;
 			break;
 		}
+		
+		server.sendToClient(""+player.getActionPoints());
+		server.sendToClient(""+player.getBuyPoints());
+		server.sendToClient(""+player.getMoney());
+		server.sendToClient(""+player.getBonusBuyMoney());
 	}
 
-	protected void actionSmith() {
+	public void actionSmith(Player player) {
 		increaseCard(3, player);
 	}
 
-	protected void actionMarket() {
+	public void actionMarket(Player player) {
 		increaseCard(1, player);
 		player.increaseActionPoints(1);
 		player.increaseBuyPoints(1);
 		player.increaseMoney(1);
 	}
 
-	protected void actionLaboratory() {
+	public void actionLaboratory(Player player) {
 		increaseCard(2, player);
 		player.increaseActionPoints(1);
 	}
 
-	protected void actionFunfair() {
+	public void actionFunfair(Player player) {
 		player.increaseActionPoints(2);
 		player.increaseBuyPoints(1);
 		player.increaseMoney(2);
 	}
 
-	protected void actionWoodcutter() {
+	public void actionWoodcutter(Player player) {
 		player.increaseBuyPoints(1);
 		player.increaseMoney(2);
 	}
 
-	protected void actionVillage() {
+	public void actionVillage(Player player) {
 		player.increaseActionPoints(2);
 		increaseCard(1, player);
 	}
 
-	protected void playActionCard() {
+	public void playActionCard(Player player) {
 		player.hand.lastIndexOf("dd");
 	}
 
-	protected void increaseCard(int amount, Player player) {
+	public void increaseCard(int amount, Player player) {
 		for (int i = 1; i <= amount; i++) {
 			player.hand.add(player.deck.get(player.deck.size() - 1));
 			player.deck.remove(player.deck.size() - 1);

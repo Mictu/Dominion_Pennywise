@@ -20,15 +20,14 @@ public class Main extends Application {
 	Lobby_View lobbyView;
 	Board_View boardView;
 	Result_View resultView;
-	Login_Controller loginController; 
+	Login_Controller loginController;
 	private ServiceLocator serviceLocator; 
 	
 	S_View splashScreen;
 	Server_View serverView;
 	Server server;
 
-	// MVC STARTS THE PROGRAMM AND INITIALIZES THE MVC-CLASSES (MODEL, VIEW,
-	// CONTROLLER)
+	// MVC STARTS THE PROGRAMM AND INITIALIZES THE MVC-CLASSES (MODEL, VIEW, CONTROLLER)
 
 	public static void main(String[] args) {
 		launch(args);

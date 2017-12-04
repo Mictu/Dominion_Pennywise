@@ -1,7 +1,5 @@
 package controllers;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import server.client.Client;
 import view.Board_View;
@@ -14,20 +12,21 @@ public class Lobby_Controller {
 	Login_View loginView;
 	Board_View boardView;
 	Client client;
-
-	public Lobby_Controller(Lobby_View lobbyView, Client client) {
-		this.client = client;
+	
+	public Lobby_Controller(Lobby_View lobbyView, Client client){
 		this.lobbyView = lobbyView;
+		this.client = client;
 		
-
-		// LOBBY
-
-		lobbyView.btnStartGame.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				boardView = new Board_View(lobbyView.getStage(), client);
+		
+		
+		//LOBBY		
+		
+		lobbyView.btnStartGame.setOnAction(event -> {
+				boardView = new Board_View(lobbyView.getStage());
+				Board_Controller boardController = new Board_Controller(boardView); 
 				boardView.start();
-			}
 		});
+
 
 		lobbyView.btnLeaveGame.setOnAction((event) -> {
 			exit(lobbyView.getStage());

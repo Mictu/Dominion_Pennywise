@@ -8,7 +8,7 @@ public class Player {
 
 	// initialize sector here
 	protected int winPoint, money, amountOfTurns;
-	protected int actionPoint, buyPoint;
+	protected int actionPoint, buyPoint, bonusBuyPoint;
 
 	protected String name;
 	Server server;
@@ -34,6 +34,7 @@ public class Player {
 		amountOfTurns++;
 		actionPoint = 1;
 		buyPoint = 1;
+		bonusBuyPoint = 0;														// button (increase over kingdom-card)
 		money = getCashHand(); // Get money you have in your hands
 	}
 
@@ -84,8 +85,9 @@ public class Player {
 	// increase money in the same round
 	protected void increaseMoney(int money) {
 		this.money += money;
+		this.bonusBuyPoint += money;
 	}
-
+	
 	// decrease money from hands (Buy-phase)
 	protected void decreaseMoney(int money) {
 		this.money -= money;
@@ -111,6 +113,11 @@ public class Player {
 	// return action-points
 	protected int getActionPoints() {
 		return this.actionPoint;
+	}
+	
+	// get money which u store on the bonus button
+	protected int getBonusBuyMoney() {
+		return this.bonusBuyPoint;
 	}
 
 	// return win - points

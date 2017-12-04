@@ -34,13 +34,13 @@
 	-fx-background-color: yellow;
 	-fx-border-radius: 1.30px;
 	-fx-background-radius: 1.30px;
-	-fx-opacity: 0.5;
+	-fx-opacity: 0.2;
 	-fx-text-alignment: center;
 	-fx-alignment: center;
 	-fx-font-weight: bold;
-	-fx-font-size: 15;
+	-fx-font-size: 12;
 	-fx-pref-height: 40;
-	-fx-pref-width: 81.3;
+	-fx-pref-width: 100;
 }
 
 
@@ -81,7 +81,30 @@
 /*
  * BUTTONS
  */ 
- 
+
+#endBtn {
+	-fx-background-color: red;
+	-fx-border-width: 2.5;
+	-fx-border-color:black;
+	-fx-border-radius: 4;
+	-fx-border-insets: -2;
+	-fx-pref-height: 40;
+}
+#endBtn:hover {
+	-fx-background-color: darkred;
+}
+
+#btn {
+	-fx-background-color: goldenrod;
+	-fx-border-width: 2.5;
+	-fx-border-color:black;
+	-fx-border-radius: 4;
+	-fx-border-insets: -2;
+	-fx-pref-height: 40;
+}
+#btn:hover {
+	-fx-background-color: darkgoldenrod;
+}
  
 /*
  * CARDS (BUTTONS)
@@ -272,4 +295,14 @@
     -fx-scale-y: 1.3;
     -fx-scale-z: 1.3;
     -fx-cursor: hand;
+}
+
+#back {
+	-fx-background-image: url("Rückseite.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover, auto;
+	-fx-pref-height: 130px;
+    -fx-pref-width: 81.3px;
+    -fx-background-color: transparent;
 }

@@ -70,6 +70,7 @@ public class S_View {
 				server.connect();
 			} catch (Exception e) {
 				System.out.println("Failed Server-Connection");
+				e.printStackTrace();
 			}
 			return null;
 		}

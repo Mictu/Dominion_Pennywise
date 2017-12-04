@@ -96,21 +96,10 @@ public class Server extends Application {
 			
 //			newestMsg.concat(clientC);
 //			serverView.updateServerView(newestMsg, "Connection received from: " );
-//			serverView.updateServerView(newestMsg,
-//					"Connection received from: " + socket.getInetAddress().getHostName());
-			
+			serverView.updateServerView(newestMsg,
+					"Connection received from: " + socket.getInetAddress().getHostName());
 			
 			}
-			
-//			output = new DataOutputStream(socket.getOutputStream());
-//			input = new DataInputStream(socket.getInputStream());
-			
-			// String msg = input.readLine();
-			// System.out.println(msg);
-			// serverView.updateServerView(newestMsg, msg.substring(5) + " has joined the
-			// Server");
-			// sh.getMessageFromServer(msg);
-
 		}
 
 	};
