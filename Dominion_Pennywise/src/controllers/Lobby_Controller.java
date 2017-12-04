@@ -29,9 +29,10 @@ public class Lobby_Controller {
 			public void handle(ActionEvent event) {
 				
 				System.out.println("sadf");
+				
+				Board_Controller boardController = new Board_Controller(boardView); 
 				boardView = new Board_View(lobbyView.getStage()); 
 				boardView.start();
-				Board_Controller boardController = new Board_Controller(boardView); 
 				
 			}
 						

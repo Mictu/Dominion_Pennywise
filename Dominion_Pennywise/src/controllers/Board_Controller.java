@@ -16,13 +16,15 @@ public class Board_Controller {
 	Lobby_View lobbyView; 
 	Board_View boardView; 
 	CardDesign_View cardView = new CardDesign_View(); 
-	
+	public HBox hBoxHand;
 
 	ArrayList <Button> testcardlist = new ArrayList<Button>(); 
+	public static ArrayList <Button> controlView = new ArrayList<Button>();
 	
 	public Board_Controller(Board_View boardView){
 		//
-		
+		this.boardView = boardView;
+
 		
 		// Close Window with EscapeBtn
 		boardView.stage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
@@ -35,13 +37,16 @@ public class Board_Controller {
 			}
 		});
 		
-//		Button woodcutter = cardView.getWoodcutterBtn();
-//		Button village = cardView.getWoodcutterBtn();
-//		Button smith = cardView.getWoodcutterBtn();
-//		
-//		testcardlist.add(woodcutter);
-//		testcardlist.add(village);
-//		testcardlist.add(smith);
+		Button woodcutter = cardView.getWoodcutterBtn();
+		Button village = cardView.getWoodcutterBtn();
+		Button smith = cardView.getWoodcutterBtn();
+		
+		
+		controlView.add(woodcutter);
+		controlView.add(village);
+		controlView.add(smith);
+		
+		
 //		
 //		for(int i = 0; i < testcardlist.size(); i++){
 //			Button cardbutton = testcardlist.get(i); 
@@ -49,17 +54,15 @@ public class Board_Controller {
 //		}
 	
 		
-		boardView.hBoxHand.getChildren().add(cardView.getFunfairBtn());
+		//boardView.hBoxHand.getChildren().add(cardView.getFunfairBtn());
+		
+
 		
 		
+	}
 	
-		
-		
-		
-		
-		
-		
-		
+	public ArrayList getList(){
+		return controlView; 
 	}
 	
 		
