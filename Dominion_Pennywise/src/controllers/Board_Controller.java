@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import server.client.Client;
 import view.Board_View;
 import view.CardDesign_View;
 import view.Lobby_View;
@@ -16,6 +17,7 @@ public class Board_Controller {
 	Board_View boardView; 
 	CardDesign_View cardView; 
 	
+	Client client;
 
 
 	public Board_Controller(Board_View boardView){
@@ -34,7 +36,17 @@ public class Board_Controller {
 			}
 		});
 		
+		boardView.pay.setOnAction((Event) -> {
+			client.sendToServer("pay");
+		});
 
+		boardView.endPhase.setOnAction((Event) -> {
+			client.sendToServer("endphase");
+		});
+		
+		boardView.bonusMoney.setOnAction((Event) -> {
+			client.sendToServer("bonusmoney");
+		});
 		
 
 		

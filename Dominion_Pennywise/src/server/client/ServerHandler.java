@@ -60,6 +60,12 @@ public class ServerHandler {
 			case "endphase":
 				gamelogic.endPhase();
 				break;
+			case "pay":
+				
+				break;
+			case "bonusmoney":
+				System.out.println("kasjdfijanfdiovcjeaokfldMshnojkMFEAsnockj,aszhduk jhycbsdjsrghiudjkfhclbi n");
+				break;
 				
 				
 			}

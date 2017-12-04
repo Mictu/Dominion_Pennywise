@@ -34,7 +34,7 @@ public class Board_View {
 		 */
 	
 	// Initialize the GUI Content here
-	
+	public Button endPhase, bonusMoney, pay;
 	public HBox hBoxHand; 
 	Board_Controller bcontroller; 
 	public static ArrayList <Button> handcards = new ArrayList<Button>();
@@ -88,6 +88,13 @@ public class Board_View {
 		
 		
 		
+		endPhase = new Button("Phase beenden");
+		endPhase.setId("endBtn");
+		bonusMoney = new Button("Bonusgeld: 0");
+		bonusMoney.setId("btn");
+		pay = new Button("Bezahlen bestätigen");
+		pay.setId("btn");
+		
 		HBox labels = new HBox(20) ;
 			Label firstPhase = new Label(t.getString("dominion.board.lbl.actionPhase"));
 			firstPhase.setId("phaseLabels");
@@ -96,7 +103,14 @@ public class Board_View {
 			Label thirdPhase = new Label(t.getString("dominion.board.lbl.cleanupPhase"));
 			thirdPhase.setId("phaseLabels");
 			
-		labels.getChildren().addAll(firstPhase,secondPhase,thirdPhase);
+			Region reg = new Region();
+			Region reg2 = new Region();
+			reg.setPrefWidth(140);
+			reg2.setPrefWidth(140);
+			
+			labels.setAlignment(Pos.CENTER);
+			
+		labels.getChildren().addAll(firstPhase, secondPhase, thirdPhase, reg, bonusMoney, pay, reg2, endPhase);
 		
 		
 	//CENTER BOTTOM	
@@ -108,29 +122,29 @@ public class Board_View {
 		hand.setId("handLabel");
 		
 		hBoxHand = new HBox(20);
-		hBoxHand.getChildren().addAll(cdV.getWoodcutterBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn());
-		
-	
-		
-		
 		hBoxHand.setAlignment(Pos.CENTER);
+// testing the players hand		
+		hBoxHand.getChildren().addAll(cdV.getWoodcutterBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn(),cdV.getFunfairBtn());
+	
+		Button deck = new Button();
+		deck.setId("back");
+		Button discard = new Button();
+		discard.setId("back");
 		
-		
-		
-		
-		
-		
-		HBox hBottom = new HBox(70);
-		hBottom.getChildren().addAll(cdV.getCopperBtn(),hBoxHand,cdV.getDuchyBtn());
-		//hBottom.getChildren().add(hBoxHand);
+		HBox hBottom = new HBox(800);								// Spacing between deck and discard
+		hBottom.getChildren().addAll(deck, discard);
 		hBottom.setAlignment(Pos.CENTER);
 		
-		stackPane.getChildren().addAll(hand,hBottom);
+		stackPane.getChildren().addAll(hand,hBottom,hBoxHand);
 		root.setBottom(stackPane);
 		
 		
+		reg = new Region();
+		reg.setPrefHeight(15);
+		reg2 = new Region();
+		reg2.setPrefHeight(15);
 		
-		vCenter.getChildren().addAll(hCenter1, hCenter2, hCenter3, labels, stackPane);
+		vCenter.getChildren().addAll(hCenter1, hCenter2, hCenter3, reg2, labels, reg, stackPane);
 		
 		TextArea playerStats = new TextArea();
 		playerStats.setEditable(false);
@@ -164,7 +178,7 @@ public class Board_View {
 		TextArea chat = new TextArea();
 		chat.setEditable(false);
 		
-		Region reg = new Region();
+		reg = new Region();
 		reg.setPrefHeight(20);
 		
 		vRight.getChildren().addAll(logger, reg, chat, chatInput);
@@ -197,8 +211,41 @@ public class Board_View {
 		this.stage.hide();
 	}
 	
-	public void setHand(String card){
-		//this.hBoxHand.getChildren().add()
+	public void setHand(String card) {
+//		Button x = new Button();
+//		x.setId(card);
+
+
+// ArrayList
+		
+		// this.hBoxHand.getChildren().add()
+		
+//		switch (card) {
+//		case "copper":
+//			break;
+//		case "dutchy":
+//			break;
+//		case "estate":
+//			break;
+//		case "funfair":
+//			break;
+//		case "gold":
+//			break;
+//		case "laboratory":
+//			break;
+//		case "market":
+//			break;
+//		case "province":
+//			break;
+//		case "silver":
+//			break;
+//		case "smith":
+//			break;
+//		case "village":
+//			break;
+//		case "woodcutter":
+//			break;
+//		}
 	}
 	
 	
