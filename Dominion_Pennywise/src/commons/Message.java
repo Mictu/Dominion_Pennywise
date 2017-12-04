@@ -18,8 +18,10 @@ public abstract class Message {
 		OutputStreamWriter out;
 		
 		try {
+			System.out.println("here comes the hero");
 			out = new OutputStreamWriter(socket.getOutputStream());
 			System.out.println("Sending message: " + this.toString());
+			//sendToServer
 			out.write(this.toString() + "\n");
 			out.flush();
 			System.out.println("message sent");

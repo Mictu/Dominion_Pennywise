@@ -19,6 +19,10 @@ public class ServerHandler {
 
 	public ServerHandler() {
 	}
+	
+	public void printOutFromServer(String msg) {
+		System.out.println(msg);
+	}
 
 	// Get Strings from Server
 	public void getMessageFromServer(String msg) {
