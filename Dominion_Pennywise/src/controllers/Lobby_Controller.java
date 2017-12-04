@@ -16,7 +16,7 @@ public class Lobby_Controller {
 	Board_View boardView;
 	CardDesign_View cardView; 
 	Client client; 
-
+// testpull
 	
 	public Lobby_Controller(Lobby_View lobbyView, Client client){
 		this.lobbyView = lobbyView;
