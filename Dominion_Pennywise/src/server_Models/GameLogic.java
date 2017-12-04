@@ -11,10 +11,10 @@ public class GameLogic {
 	// Initialize sector here
 	protected ArrayList<Player> playerList = new ArrayList<Player>();
 
-	protected ActionPhase actionPhase;
-	protected BuyPhase buyPhase;
 	protected CleanUpPhase cleanUpPhase;
-
+	ActionPhase actionPhase;
+	BuyPhase buyPhase;
+	
 	protected int countRounds;
 	protected final int START_MONEY = 7;
 	protected final int START_ESTATE = 3;
@@ -24,9 +24,13 @@ public class GameLogic {
 	ServerHandler serverHandler;
 	protected Server server;
 	protected CleanUpPhase cleanPhase;
+	
+	Player player;
 
 	// Constructor
 	public GameLogic() {
+		actionPhase = new ActionPhase();
+		buyPhase = new BuyPhase();
 		theGame();
 	} // Close Constructor
 
@@ -43,26 +47,34 @@ public class GameLogic {
 	}
 
 	protected void theGame() {
-		countRounds = 0;
+		countRounds = 1;
 
 		do {
 			// Every Player does his Phases
 			for (Player player : playerList) {
-				if (countRounds == 0) {
+				this.player = player;
+				if (countRounds == 1) {
 					gameStart(player);
 				}
 				player.startRound();
 				
-				// Threads!!!
-				
-				
+																// Threads!!!
 				actualPhase = "action";
+
+//				do {
+//
+//				} while (actualPhase.equals("action"));
+//				
+//				do {
+//					
+//				} while (actualPhase.equals("buy"));
+				
+				cleanUpPhase = new CleanUpPhase(this.player);
+				
 //				server.sendToClient(actualPhase);						// Set Color of Label with the phase -> Or use Buttons
 				
-				actualPhase = "buy";
 //				server.sendToClient(actualPhase);
 
-				actualPhase = "cleanup";
 //				server.sendToClient(actualPhase);
 			}
 
@@ -83,12 +95,42 @@ public class GameLogic {
 		return this.actualPhase;
 	}
 	
+	// get the player which is playing in this moment
+	public Player getPlayer() {
+		return this.player;
+	}
+	
 	// This method should actualize the hand on the view (e.g. call it in buy phase when u gave away a copper card)
 	public void setHandView(Player player) {
 		for (String o : player.hand)
 			server.sendToClient(o);
 	}
 	
+	// Run an Action
+	public void runAction(String card) {
+		actionPhase.chosenCard(card, this.player);
+	}
+	
+	// Run a buying
+	public void runBuy(String card) {
+		buyPhase.buyCard(card, this.player);
+	}
+	
+	public void runBuyPickCard(String card) {
+		buyPhase.choseCardToBuy(card);
+	}
+	
+	// start following phase if button on board view is clicked
+	public void endPhase() {
+		switch (actualPhase) {
+		case "action":
+			actualPhase = "buy";
+			break;
+		case "buy":
+			actualPhase = "cleanup";
+			break;																// block this monitor
+		}
+	}
 	
 }
 

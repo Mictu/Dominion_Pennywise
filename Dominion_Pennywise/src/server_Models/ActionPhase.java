@@ -5,35 +5,34 @@ import java.util.Collections;
 public class ActionPhase {
 
 	// initialize sector
-	public Player player;
 	public boolean phase;
 
 	// Constructor
-	public ActionPhase(Player player) {
-		this.player = player;
+	public ActionPhase() {
 		phase = true;
 	} // Close Constructors
 
+	
 	// choose this method if a card is pressed
-	public void chosenCard(String cardName) {
+	public void chosenCard(String cardName, Player player) {
 		switch (cardName) {
 		case "village":
-			actionVillage();
+			actionVillage(player);
 			break;
 		case "woodcutter":
-			actionWoodcutter();
+			actionWoodcutter(player);
 			break;
 		case "funfair":
-			actionFunfair();
+			actionFunfair(player);
 			break;
 		case "laboratory":
-			actionLaboratory();
+			actionLaboratory(player);
 			break;
 		case "market":
-			actionMarket();
+			actionMarket(player);
 			break;
 		case "smith":
-			actionSmith();
+			actionSmith(player);
 			break;
 		default:
 			phase = false;
@@ -41,39 +40,39 @@ public class ActionPhase {
 		}
 	}
 
-	public void actionSmith() {
+	public void actionSmith(Player player) {
 		increaseCard(3, player);
 	}
 
-	public void actionMarket() {
+	public void actionMarket(Player player) {
 		increaseCard(1, player);
 		player.increaseActionPoints(1);
 		player.increaseBuyPoints(1);
 		player.increaseMoney(1);
 	}
 
-	public void actionLaboratory() {
+	public void actionLaboratory(Player player) {
 		increaseCard(2, player);
 		player.increaseActionPoints(1);
 	}
 
-	public void actionFunfair() {
+	public void actionFunfair(Player player) {
 		player.increaseActionPoints(2);
 		player.increaseBuyPoints(1);
 		player.increaseMoney(2);
 	}
 
-	public void actionWoodcutter() {
+	public void actionWoodcutter(Player player) {
 		player.increaseBuyPoints(1);
 		player.increaseMoney(2);
 	}
 
-	public void actionVillage() {
+	public void actionVillage(Player player) {
 		player.increaseActionPoints(2);
 		increaseCard(1, player);
 	}
 
-	public void playActionCard() {
+	public void playActionCard(Player player) {
 		player.hand.lastIndexOf("dd");
 	}
 
