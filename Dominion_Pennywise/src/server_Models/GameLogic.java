@@ -58,24 +58,8 @@ public class GameLogic {
 				}
 				player.startRound();
 				
-																// Threads!!!
 				actualPhase = "action";
-
-//				do {
-//
-//				} while (actualPhase.equals("action"));
-//				
-//				do {
-//					
-//				} while (actualPhase.equals("buy"));
-				
-				cleanUpPhase = new CleanUpPhase(this.player);
-				
-//				server.sendToClient(actualPhase);						// Set Color of Label with the phase -> Or use Buttons
-				
-//				server.sendToClient(actualPhase);
-
-//				server.sendToClient(actualPhase);
+				server.sendToClient(actualPhase);
 			}
 
 			countRounds++;
@@ -125,9 +109,11 @@ public class GameLogic {
 		switch (actualPhase) {
 		case "action":
 			actualPhase = "buy";
+			server.sendToClient(actualPhase);
 			break;
 		case "buy":
 			actualPhase = "cleanup";
+			cleanUpPhase = new CleanUpPhase(this.player);
 			break;																// block this monitor
 		}
 	}

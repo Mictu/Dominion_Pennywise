@@ -38,6 +38,11 @@ public class ActionPhase {
 			phase = false;
 			break;
 		}
+		
+		server.sendToClient(""+player.getActionPoints());
+		server.sendToClient(""+player.getBuyPoints());
+		server.sendToClient(""+player.getMoney());
+		server.sendToClient(""+player.getBonusBuyMoney());
 	}
 
 	public void actionSmith(Player player) {

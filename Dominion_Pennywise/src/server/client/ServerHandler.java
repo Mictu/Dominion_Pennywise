@@ -32,46 +32,26 @@ public class ServerHandler {
 			// gameLogic.addPlayers(player);
 		}
 
+		
+		
 		// Actions if treasure cards are pressed
-		else if (message.equals("copper") || message.equals("silver") || message.equals("gold")) {
-			if (phase.equalsIgnoreCase("buy") && message.substring(0, 4).equals("hand")) {				// set String on view side to hand.concat(card)
-				gamelogic.runBuyPickCard(message.substring(4));
-			}
-			if (phase.equalsIgnoreCase("buy")) {
-				gamelogic.runBuy(message);
-			}
-			if (phase.equalsIgnoreCase("action")) {
-				gamelogic.runAction(message);
-			} else {
-				System.out.println("Card connot be played now");						// maybe set layout of some cards
-			}
+		else if (message.contains("copper") || message.contains("silver") || message.contains("gold")) {
+			getOptionsTreasure(message);
 		}
 
 		// Actions if victory cards are pressed
 		else if (message.equals("estate") || message.equals("duchy") || message.equals("province")) {
-			if (phase.equalsIgnoreCase("buy")) {
-				gamelogic.runBuy(message);
-			} else {
-				System.out.println("Card connot be played now");
-			}
+			getOptionsVictory(message);
 		}
 
 		// Actions if kingdom cards are pressed
 		else if (message.equals("funfair") || message.equals("laboratory") || message.equals("market")) {
-			if (phase.equalsIgnoreCase("buy")) {
-				gamelogic.runBuy(message);
-			} else {
-				System.out.println("Card connot be played now");
-			}
+			getOptionsKingdom(message);
 		}
 
 		// Actions if kingdom cards are pressed
 		else if (message.equals("smith") || message.equals("village") || message.equals("woodcutter")) {
-			if (phase.equalsIgnoreCase("buy")) {
-				gamelogic.runBuy(message);
-			} else {
-				System.out.println("Card connot be played now");
-			}
+			getOptionsKingdom(message);
 		}
 		
 		// handle every other string from client
@@ -81,9 +61,45 @@ public class ServerHandler {
 				gamelogic.endPhase();
 				break;
 				
+				
 			}
 		}
-		
-		
 	}
+	
+	
+	
+	
+	// only do something when it makes sense for the clicked card - treasure
+	public void getOptionsTreasure(String message) {
+		if (phase.equalsIgnoreCase("buy") && message.substring(0, 4).equalsIgnoreCase("hand")) {		// set String on view side to hand.concat(card)
+			gamelogic.runBuy(message);
+		} else if (phase.equalsIgnoreCase("buy")) {
+			gamelogic.runBuyPickCard(message.substring(4));
+		} else {
+			System.out.println("Card can not be played now");											// maybe set layout of some cards
+		}
+	}
+	
+	// only do something when it makes sense for the clicked card - kingdom
+	public void getOptionsKingdom(String message) {
+		if (phase.equalsIgnoreCase("action")) {
+			gamelogic.runAction(message);
+		} else if (phase.equalsIgnoreCase("buy")) {
+			gamelogic.runBuyPickCard(message);
+		} else {
+			System.out.println("Card can not be played now");
+		}
+	}
+	
+	// only do something when it makes sense for the clicked card - victory
+	public void getOptionsVictory(String message) {
+		if (phase.equalsIgnoreCase("buy")) {
+			gamelogic.runBuyPickCard(message);
+		} else {
+			System.out.println("Card can not be played now");
+			}
+	}
+		
+		
+	
 }
