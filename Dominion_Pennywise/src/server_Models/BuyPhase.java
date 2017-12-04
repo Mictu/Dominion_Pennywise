@@ -3,16 +3,14 @@ package server_Models;
 public class BuyPhase {
 	
 	// initialize section
-	Player player;
 	
 	// Constructor
-	public BuyPhase(Player player) {
-		this.player = player;
+	public BuyPhase() {
 	} // close constructor
 	
 	
 	// Add Card to discard deck of player
-	public void buyCard(String cardName) {						// clicked card has to be handled also!
+	public void buyCard(String cardName, Player player) {						// clicked card has to be handled also!
 		int cost = getCost(cardName);
 		// only if player has enough money to buy 'the' clicked card
 		if (player.money >= cost) {
@@ -43,6 +41,11 @@ public class BuyPhase {
 			System.out.println("Not enough money");					// Mitteilung wenn zu wenig geld vorhanden
 		}
 	}
+	
+	public void choseCardToBuy (String chosenCard) {
+		// Override
+	}
+	
 	
 	// get the costs of every card
 	public int getCost(String cardName) {
