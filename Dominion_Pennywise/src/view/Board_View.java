@@ -38,7 +38,6 @@ public class Board_View {
 	public HBox hBoxHand; 
 	Board_Controller bcontroller; 
 	public static ArrayList <Button> handcards = new ArrayList<Button>();
-
 	
 	
 //	 constructor
