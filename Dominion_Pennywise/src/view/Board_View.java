@@ -37,7 +37,9 @@ public class Board_View {
 	public Button endPhase, bonusMoney, pay;
 	public HBox hBoxHand; 
 	Board_Controller bcontroller; 
-	public static ArrayList <Button> handcards = new ArrayList<Button>();
+	
+	public static ArrayList <Button> handCards = new ArrayList<Button>();
+	public static ArrayList <String> handFromServer = new ArrayList<String>();
 	
 	
 	
@@ -208,18 +210,23 @@ public class Board_View {
 	}
 	
 	public void setHand(String card) {
-//		Button x = new Button();
-//		x.setId(card);
-
-		// this.hBoxHand.getChildren().add()
-
-		
-	
-		
-		if(!card.equals("end")){
-		idkarten.add(card); 
+		if (!card.equals("end")) {
+			handFromServer.add(card);
 		}
-	
+
+		if (card.equals("end")) {
+			this.hBoxHand.getChildren().clear();
+			while (handCards.size() < handFromServer.size()) {
+				Button b = new Button();
+				handCards.add(b);
+			}
+			for (int i = 0; i < handFromServer.size(); i++) {
+				handCards.get(i).setId(handFromServer.get(i));
+				this.hBoxHand.getChildren().add(handCards.get(i));
+			}
+		}
+		handCards.clear();
+	}
 	
 }// close class
 

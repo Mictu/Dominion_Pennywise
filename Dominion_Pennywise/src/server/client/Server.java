@@ -16,7 +16,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.stage.Stage;
-import server_Models.GameLogic;
 import server_Models.Player;
 
 public class Server extends Application {
@@ -27,7 +26,6 @@ public class Server extends Application {
 	DataInputStream input;
 	DataOutputStream output;
 
-//	GameLogic gl = new GameLogic(); // Just for testing
 	ServerHandler sh = new ServerHandler();
 
 	Player player;
