@@ -25,8 +25,7 @@ public class ServerHandler {
 		String message = msg;
 		phase = gamelogic.getPhase();
 
-		// Create a new Player and add him to the playerList in the game logic
-		// class
+		// Create a new Player and add him to the playerList in the game logic class
 		if (message.length() > 5 && message.substring(0, 5).equals("lobby")) {
 			player = new Player(message.substring(5));
 			// gameLogic.addPlayers(player);
