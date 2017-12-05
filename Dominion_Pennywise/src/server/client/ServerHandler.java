@@ -15,46 +15,46 @@ public class ServerHandler {
 	GameLogic gamelogic;
 	String phase;
 	Player player;
+	Client_Chat ClientC;
+	
 	public ArrayList<String> handCards = new ArrayList<String>();
 
 	public ServerHandler() {
 	}
 	
-	public void printOutFromServer(String msg) {
-		System.out.println(msg);
-	}
 
 	// Get Strings from Server
 	public void getMessageFromServer(String msg) {
 		String message = msg;
-		phase = gamelogic.getPhase();
+
+//		phase = gamelogic.getPhase();
 
 		// Create a new Player and add him to the playerList in the game logic class
 		if (message.length() > 5 && message.substring(0, 5).equals("lobby")) {
 			player = new Player(message.substring(5));
 			// gameLogic.addPlayers(player);
 		}
-
-		
 		
 		// Actions if treasure cards are pressed
 		else if (message.contains("copper") || message.contains("silver") || message.contains("gold")) {
-			getOptionsTreasure(message);
+			System.out.println("Server: Cash clicked");
+//			getOptionsTreasure(message);
+
 		}
 
 		// Actions if victory cards are pressed
 		else if (message.equals("estate") || message.equals("duchy") || message.equals("province")) {
-			getOptionsVictory(message);
+//			getOptionsVictory(message);
 		}
 
 		// Actions if kingdom cards are pressed
 		else if (message.equals("funfair") || message.equals("laboratory") || message.equals("market")) {
-			getOptionsKingdom(message);
+//			getOptionsKingdom(message);
 		}
 
 		// Actions if kingdom cards are pressed
 		else if (message.equals("smith") || message.equals("village") || message.equals("woodcutter")) {
-			getOptionsKingdom(message);
+//			getOptionsKingdom(message);
 		}
 		
 		// handle every other string from client
@@ -67,7 +67,7 @@ public class ServerHandler {
 				
 				break;
 			case "bonusmoney":
-				System.out.println("kasjdfijanfdiovcjeaokfldMshnojkMFEAsnockj,aszhduk jhycbsdjsrghiudjkfhclbi n");
+				System.out.println("blablablablablablabla");
 				break;
 				
 				

@@ -27,15 +27,15 @@ public class Board_Controller {
 		
 		
 		// Close Window with EscapeBtn
-		boardView.stage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-			public void handle(KeyEvent t) {
-					if (t.getCode() == KeyCode.ESCAPE) {
-					System.out.println("Here should come a question if u really want to close the window");     // DONT FORGET!
-					if (boardView.getStage().isShowing())
-						boardView.stop();
-				}
-			}
-		});
+//		boardView.stage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+//			public void handle(KeyEvent t) {
+//					if (t.getCode() == KeyCode.ESCAPE) {
+//					System.out.println("Here should come a question if u really want to close the window");     // DONT FORGET!
+//					if (boardView.getStage().isShowing())
+//						boardView.stop();
+//				}
+//			}
+//		});
 		
 		boardView.pay.setOnAction((Event) -> {
 			client.sendToServer("pay");

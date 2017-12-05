@@ -15,10 +15,12 @@ public class Client_Chat {
 	private String playerName;
 	Server server;
 	Server_View serverView;
+	ServerHandler sh;
 	
 	protected Client_Chat(Server server,Socket socket) {
 		this.server = server;
 		this.socket = socket;
+		sh = new ServerHandler(); 
 		new Thread(chatThread).start();
 	}
 
@@ -35,6 +37,7 @@ public class Client_Chat {
 			} else if (msg instanceof StringMsg) {
 				//serverView.updateServerView(server.getNewestMsg(), ((StringMsg) msg).getContent());
 //				System.out.println(((StringMsg) msg).getContent() + " has joined the Server!");
+				sh.getMessageFromServer(((StringMsg) msg).getContent());
 			}
 			}
 		}

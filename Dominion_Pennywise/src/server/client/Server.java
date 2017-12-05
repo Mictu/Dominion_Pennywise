@@ -16,7 +16,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.stage.Stage;
-import server_Models.GameLogic;
 import server_Models.Player;
 
 public class Server extends Application {
@@ -28,7 +27,6 @@ public class Server extends Application {
 	DataOutputStream output;
 
 //	GameLogic gl = new GameLogic(); // Just for testing
-	ServerHandler sh = new ServerHandler();
 
 	Player player;
 	ArrayList<String> fromServer;
@@ -99,17 +97,17 @@ public class Server extends Application {
 	};
 
 	
-	public void serverReceivesMessages() {
-		String msg;
-		try {
-			msg = input.readUTF();
-			System.out.println("Server receives: " + msg);
-			sh.printOutFromServer(msg);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		};
-	}
+//	public void serverReceivesMessages() {
+//		String msg;
+//		try {
+//			msg = input.readUTF();
+//			System.out.println("Server receives: " + msg);
+//			sh.printOutFromServer(msg);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		};
+//	}
 
 	public void setMessage(ArrayList<String> message) {
 		this.fromServer = message;

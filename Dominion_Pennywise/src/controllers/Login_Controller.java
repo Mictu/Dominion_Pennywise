@@ -28,6 +28,7 @@ public class Login_Controller {
 			playerName = loginView.nameTxtfield.getText();
 			if (!playerName.isEmpty()) {
 				lobbyView = new Lobby_View(loginView.getStage());
+				
 				client = new Client(playerName);
 				client.run();
 				lobbyController = new Lobby_Controller(lobbyView, client);

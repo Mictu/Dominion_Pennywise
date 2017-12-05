@@ -49,7 +49,7 @@ public class Client {
 			try {
 				socket = new Socket("localhost", 2303);
 				System.out.println("Player " + playerName + " is connected");
-				sendToServer(playerName);
+				sendToServer("lobby"+ playerName);
 				// Chat
 				while(true) {
 				ChatMsg chatMsg = (ChatMsg) Message.receive(socket);
@@ -75,9 +75,7 @@ public class Client {
 	};
 
 	public void sendToServer(String msg) {
-		System.out.println(msg);
 		Message stringMsg = new StringMsg(msg);
-		System.out.println(stringMsg);
 		stringMsg.send(socket);
 //		try {
 //			output.writeUTF(msg);
