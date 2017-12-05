@@ -38,6 +38,7 @@ public class Client_Chat {
 				//serverView.updateServerView(server.getNewestMsg(), ((StringMsg) msg).getContent());
 //				System.out.println(((StringMsg) msg).getContent() + " has joined the Server!");
 				sh.getMessageFromServer(((StringMsg) msg).getContent());
+				
 			}
 			}
 		}
