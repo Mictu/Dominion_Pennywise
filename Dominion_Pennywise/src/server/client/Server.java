@@ -28,6 +28,7 @@ public class Server extends Application {
 
 //	GameLogic gl = new GameLogic(); // Just for testing
 
+
 	Player player;
 	ArrayList<String> fromServer;
 
