@@ -21,7 +21,7 @@ public class Login_View {
 
 	public Button lobbyBtn;
 	public Button exitBtn;
-	Label welcomeLbl;
+	Label welcomeLbl;//
 	public Label nameLbl;
 	Label languageLbl;
 	public Label warning;
