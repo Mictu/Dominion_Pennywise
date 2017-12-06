@@ -19,7 +19,7 @@ public class GameLogic {
 	protected final int START_MONEY = 7;
 	protected final int START_ESTATE = 3;
 	
-	protected String actualPhase;
+	protected String actualPhase = "action";
 	
 	ServerHandler serverHandler;
 	protected Server server;
@@ -59,6 +59,7 @@ public class GameLogic {
 				player.startRound();
 				
 				actualPhase = "action";
+				System.out.println(actualPhase);
 				server.sendToClient(actualPhase);
 			}
 
@@ -105,11 +106,11 @@ public class GameLogic {
 	}
 	
 	// start following phase if button on board view is clicked
-	public void endPhase() {
+	public void endPhase(String message) {
 		switch (actualPhase) {
 		case "action":
 			actualPhase = "buy";
-			server.sendToClient(actualPhase);
+			buyPhase.buyCard(message, player);
 			break;
 		case "buy":
 			actualPhase = "cleanup";
@@ -117,6 +118,17 @@ public class GameLogic {
 			break;																// block this monitor
 		}
 	}
+	
+	public void sendPlayersHand() {
+		for (String card : player.hand) 
+			server.sendToClient("hand"+card);
+		server.sendToClient("hand"+"end");
+	}
+	
+	public String getActualPhase() {
+		return this.actualPhase;
+	}
+	
 	
 }
 

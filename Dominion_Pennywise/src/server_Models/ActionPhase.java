@@ -15,33 +15,36 @@ public class ActionPhase {
 	
 	// choose this method if a card is pressed
 	public void chosenCard(String cardName, Player player) {
-		switch (cardName) {
-		case "village":
-			actionVillage(player);
-			break;
-		case "woodcutter":
-			actionWoodcutter(player);
-			break;
-		case "funfair":
-			actionFunfair(player);
-			break;
-		case "laboratory":
-			actionLaboratory(player);
-			break;
-		case "market":
-			actionMarket(player);
-			break;
-		case "smith":
-			actionSmith(player);
-			break;
-		default:
-			phase = false;
-			break;
+		System.out.println("chosenCard started");
+		if(player.getActionPoints() >0 ) {
+			switch (cardName) {
+			case "village":
+				actionVillage(player);
+				System.out.println("village");
+				break;
+			case "woodcutter":
+				actionWoodcutter(player);
+				break;
+			case "funfair":
+				actionFunfair(player);
+				break;
+			case "laboratory":
+				actionLaboratory(player);
+				break;
+			case "market":
+				actionMarket(player);
+				break;
+			case "smith":
+				actionSmith(player);
+				break;
+			default:
+				phase = false;
+				break;
+			}
 		}
-		server.sendToClient(""+player.getActionPoints());
-		server.sendToClient(""+player.getBuyPoints());
-		server.sendToClient(""+player.getMoney());
-		server.sendToClient(""+player.getBonusBuyMoney());
+//		server.sendToClient(""+player.getActionPoints());
+//		server.sendToClient(""+player.getBuyPoints());
+//		server.sendToClient(""+player.getBonusBuyMoney());
 	}
 
 	public void actionSmith(Player player) {

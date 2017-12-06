@@ -40,7 +40,7 @@ public class BuyPhase {
 	// set chosen card, so this class knows what to buy
 	public void choseCardToBuy (String chosenCard) {
 		this.card = chosenCard;
-		server.sendToClient(""+getCost(chosenCard));
+//		server.sendToClient(""+getCost(chosenCard));
 	}
 	
 	

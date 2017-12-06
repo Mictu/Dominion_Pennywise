@@ -21,10 +21,11 @@ public class Client_Chat {
 		this.server = server;
 		this.socket = socket;
 		sh = new ServerHandler(); 
-		new Thread(chatThread).start();
+		new Thread(messageThread).start();
+		
 	}
 
-	final Task<Void> chatThread = new Task<Void>() {
+	final Task<Void> messageThread = new Task<Void>() {
 		@Override
 		protected Void call() throws Exception {
 			while(true) {
@@ -37,8 +38,14 @@ public class Client_Chat {
 			} else if (msg instanceof StringMsg) {
 				//serverView.updateServerView(server.getNewestMsg(), ((StringMsg) msg).getContent());
 //				System.out.println(((StringMsg) msg).getContent() + " has joined the Server!");
-				sh.getMessageFromServer(((StringMsg) msg).getContent());
-				
+				String message = ((StringMsg) msg).getContent();
+				if(message.substring(0, 5).equals("lobby")) {
+					playerName = message.substring(5);
+					
+				}else {
+					server.sendToClient(message);
+				}
+				sh.getMessageFromServer(((StringMsg) msg).getContent());	
 			}
 			}
 		}
@@ -47,9 +54,14 @@ public class Client_Chat {
 	public void sendChatMsg(ChatMsg msg) {
 		msg.send(socket);
 	}
+	
+	public void sendStringMsgToClient(String msg) {
+		Message message = new StringMsg(playerName, msg);
+		message.send(socket);
+	}
 
-	public String toStringName() {
-		return playerName + " has joined!";
+	public String getPlayername() {
+		return playerName;
 	}
 	
 	public void stop() {
