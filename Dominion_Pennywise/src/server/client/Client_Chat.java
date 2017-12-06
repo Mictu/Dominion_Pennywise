@@ -47,6 +47,10 @@ public class Client_Chat {
 	public void sendChatMsg(ChatMsg msg) {
 		msg.send(socket);
 	}
+	
+	public void sendStringMsgToClient(StringMsg msg) {
+		msg.send(socket);
+	}
 
 	public String toStringName() {
 		return playerName + " has joined!";

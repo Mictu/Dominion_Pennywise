@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 import Splash.Server_View;
 import commons.ChatMsg;
+import commons.Message;
+import commons.StringMsg;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -112,6 +114,10 @@ public class Server extends Application {
 
 	public void setMessage(ArrayList<String> message) {
 		this.fromServer = message;
+	}
+	
+	public void sendToClient(String msg) {
+		Message strMsg = new StringMsg(msg);
 	}
 
 	// chat

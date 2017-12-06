@@ -118,6 +118,13 @@ public class GameLogic {
 		}
 	}
 	
+	public void sendPlayersHand() {
+		for (String card : player.hand) 
+			server.sendToClient("hand"+card);
+		server.sendToClient("end");
+	}
+	
+	
 }
 
 // Patrick

@@ -77,13 +77,6 @@ public class Client {
 	public void sendToServer(String msg) {
 		Message stringMsg = new StringMsg(msg);
 		stringMsg.send(socket);
-//		try {
-//			output.writeUTF(msg);
-//			System.out.println("Client sendet zum Server: " + msg);
-//			output.flush();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 	}
 
 	public void getStringFromServer() {
