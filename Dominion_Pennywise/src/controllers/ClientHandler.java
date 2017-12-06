@@ -60,7 +60,7 @@ public class ClientHandler {
 		
 	}
 	
-	public void getHand(ArrayList <Button> liste) { //
+	public void getHand(ArrayList <Button> liste) { //get hand 
 		handCardList = liste; 
 			
 	}
