@@ -332,6 +332,10 @@
     -fx-border-width: 6;
     -fx-border-color: darkcyan;
 }
+#woodcutter:pressed {
+	-fx-effect: dropshadow(three-pass-box, yellow, 10, 0, 0, 0);
+	
+}
 
 #back {
 	-fx-background-image: url("Rückseite.jpg");

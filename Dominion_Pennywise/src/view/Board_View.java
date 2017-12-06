@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -37,11 +38,14 @@ public class Board_View {
 	public Button endPhase, bonusMoney, pay;
 	public HBox hBoxHand; 
 	Board_Controller bcontroller; 
+	protected HBox hCenter1, hCenter2, hCenter3;
 	
-	public static ArrayList <Button> handCards = new ArrayList<Button>();
-	public static ArrayList <String> handFromServer = new ArrayList<String>();
+	protected ArrayList <Button> handCards = new ArrayList<Button>();
+	protected ArrayList <String> handFromServer = new ArrayList<String>();
 	
-	
+	protected ArrayList <Button> treasure = new ArrayList<Button>();
+	protected ArrayList <Button> kingdom = new ArrayList<Button>();
+	protected ArrayList <Button> victory = new ArrayList<Button>();
 	
 //	 constructor
 	public Board_View(Stage s, Client client) {
@@ -66,9 +70,9 @@ public class Board_View {
 		// use V- and H- Boxes to add the Cards (Buttons)
 		VBox vCenter = new VBox(8);
 		vCenter.setAlignment(Pos.CENTER);
-		HBox hCenter1 = new HBox(20); // add Victory cards
-		HBox hCenter2 = new HBox(20); // add Kingdom-/ Action card
-		HBox hCenter3 = new HBox(20); // add Treasure cards
+		hCenter1 = new HBox(20); // add Victory cards
+		hCenter2 = new HBox(20); // add Kingdom-/ Action card
+		hCenter3 = new HBox(20); // add Treasure cards
 
 		vCenter.setPadding(new Insets(0, 10, 0, 0));
 		hCenter1.setId("boxes");
@@ -76,12 +80,22 @@ public class Board_View {
 		hCenter3.setId("boxes");
 
 		try {
-			hCenter1.getChildren().addAll(cdV.getEstateBtn(), cdV.getDuchyBtn(), cdV.getProvinceBtn());
-
-			hCenter2.getChildren().addAll(cdV.getFunfairBtn(), cdV.getLaboratoryBtn(), cdV.getMarketBtn(),
-					cdV.getSmithBtn(), cdV.getVillageBtn(), cdV.getWoodcutterBtn());
-
-			hCenter3.getChildren().addAll(cdV.getCopperBtn(), cdV.getSilverBtn(), cdV.getGoldBtn());
+			
+			treasure.add(cdV.getCopperBtn());
+			treasure.add(cdV.getSilverBtn());
+			treasure.add(cdV.getGoldBtn());
+			kingdom.add(cdV.getFunfairBtn());
+			kingdom.add(cdV.getLaboratoryBtn());
+			kingdom.add(cdV.getMarketBtn());
+			kingdom.add(cdV.getSmithBtn());
+			kingdom.add(cdV.getVillageBtn());
+			kingdom.add(cdV.getWoodcutterBtn());
+			victory.add(cdV.getEstateBtn());
+			victory.add(cdV.getDuchyBtn());
+			victory.add(cdV.getProvinceBtn());
+			
+			setCardsOnView();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -226,6 +240,24 @@ public class Board_View {
 			}
 		}
 		handCards.clear();
+	}
+	
+	DropShadow shadow = new DropShadow();
+	public void setCardsOnView() {
+		hCenter1.getChildren().clear();
+		hCenter2.getChildren().clear();
+		hCenter3.getChildren().clear();
+		for (Button l : victory) {
+			l.setEffect(shadow);
+			l.setDisable(true);
+			hCenter1.getChildren().add(l);
+		}
+		for (Button m : kingdom) {
+			hCenter2.getChildren().add(m);
+		}
+		for (Button n : treasure) {
+			hCenter3.getChildren().add(n);
+		}
 	}
 	
 }// close class

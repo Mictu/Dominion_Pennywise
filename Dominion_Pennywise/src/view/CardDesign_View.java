@@ -1,6 +1,5 @@
 package view;
 
-import javafx.application.Platform;
 import javafx.scene.control.Button;
 import server.client.Client;
 
