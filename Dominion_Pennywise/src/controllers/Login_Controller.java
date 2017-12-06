@@ -15,8 +15,12 @@ public class Login_Controller {
 	String playerName;
 	Lobby_Controller lobbyController;
 
+	ClientHandler clienthandler = new ClientHandler(); 
+	
 	public Login_Controller(Login_View loginView) {
 		this.loginView = loginView;
+		
+		
 		
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 		Translator t = sl.getTranslator();

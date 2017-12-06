@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 
 import controllers.Board_Controller;
+import controllers.ClientHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -46,6 +47,8 @@ public class Board_View {
 	protected ArrayList <Button> treasure = new ArrayList<Button>();
 	protected ArrayList <Button> kingdom = new ArrayList<Button>();
 	protected ArrayList <Button> victory = new ArrayList<Button>();
+
+	ClientHandler clientHandler; 
 	
 //	 constructor
 	public Board_View(Stage s, Client client) {
@@ -223,21 +226,32 @@ public class Board_View {
 		this.stage.hide();
 	}
 	
+	
+	
+	
+	ArrayList<Button> enableDisable = new ArrayList<Button>();
+	
 	public void setHand(String card) {
+
 		if (!card.equals("end")) {
 			handFromServer.add(card);
+		
 		}
-
+		
 		if (card.equals("end")) {
 			this.hBoxHand.getChildren().clear();
 			while (handCards.size() < handFromServer.size()) {
 				Button b = new Button();
 				handCards.add(b);
 			}
+			setCards();
 			for (int i = 0; i < handFromServer.size(); i++) {
 				handCards.get(i).setId(handFromServer.get(i));
 				this.hBoxHand.getChildren().add(handCards.get(i));
 			}
+		}
+		for(Button b : handCards){
+			b.setDisable(false);
 		}
 		handCards.clear();
 	}
@@ -259,6 +273,33 @@ public class Board_View {
 			hCenter3.getChildren().add(n);
 		}
 	}
+	
+	public void setCards() {
+		
+		String phase = clientHandler.getPhase(); 
+		
+			if(phase.equals("buy")){
+				for(Button b : handCards){
+					if(!b.getId().equals("copper") ||!b.getId().equals("silver")|| !b.getId().equals("gold")){
+						b.setDisable(true);
+					}
+
+				}
+			}
+	
+			if(phase.equals("action")){
+				for(Button b : handCards){
+					if(!b.getId().equals("smith") || !b.getId().equals("market") || !b.getId().equals("laboratory") || 
+					!b.getId().equals("funfair") || !b.getId().equals("woodcutter") || !b.getId().equals("village") ){
+						b.setDisable(true);
+					}
+				
+				}
+				
+			}
+
+	
+	}	
 	
 }// close class
 
