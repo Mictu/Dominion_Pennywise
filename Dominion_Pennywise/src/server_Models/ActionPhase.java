@@ -44,7 +44,6 @@ public class ActionPhase {
 		}
 //		server.sendToClient(""+player.getActionPoints());
 //		server.sendToClient(""+player.getBuyPoints());
-//		server.sendToClient(""+player.getMoney());
 //		server.sendToClient(""+player.getBonusBuyMoney());
 	}
 
