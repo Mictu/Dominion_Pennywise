@@ -44,7 +44,7 @@ public abstract class Message {
 			} else if (parts[0].equals(MessageType.Chat.toString())) {
 				msg = new ChatMsg(parts[1], parts[2]);
 			} else if (parts[0].equals(MessageType.String.toString())) {
-				msg = new StringMsg(parts[1]);
+				msg = new StringMsg(parts[1],parts[2]);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

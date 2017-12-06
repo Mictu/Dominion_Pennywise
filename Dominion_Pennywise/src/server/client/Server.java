@@ -10,8 +10,6 @@ import java.util.ArrayList;
 
 import Splash.Server_View;
 import commons.ChatMsg;
-import commons.Message;
-import commons.StringMsg;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -86,7 +84,6 @@ public class Server extends Application {
 			Socket socket = server.accept();
 
 			Client_Chat clientC = new Client_Chat(Server.this, socket);
-//			System.out.println(client.toString());
 			clients.add(clientC);
 			
 //			newestMsg.concat(clientC);
@@ -117,7 +114,7 @@ public class Server extends Application {
 	}
 	
 	public void sendToClient(String msg) {
-		Message strMsg = new StringMsg(msg);
+		clients.get(0).sendStringMsgToClient(msg);
 	}
 
 	// chat

@@ -18,7 +18,6 @@ import javafx.concurrent.Task;
 import java.util.ArrayList;
 import controllers.ClientHandler;
 
-
 public class Client {
 
 	Socket socket;
@@ -31,7 +30,6 @@ public class Client {
 	ClientHandler clientH;
 	ArrayList<String> deck = new ArrayList<String>();
 
-
 	public SimpleStringProperty newestMessage = new SimpleStringProperty();
 	protected String playerName;
 
@@ -43,21 +41,25 @@ public class Client {
 		new Thread(startClient).start();
 	}
 
-	final Task<Void> startClient= new Task<Void>() {
+	final Task<Void> startClient = new Task<Void>() {
 		@Override
 		protected Void call() throws Exception {
 			try {
 				socket = new Socket("localhost", 2303);
 				System.out.println("Player " + playerName + " is connected");
-				sendToServer("lobby"+ playerName);
+				sendToServer("lobby" + playerName);
 				// Chat
-				while(true) {
-				ChatMsg chatMsg = (ChatMsg) Message.receive(socket);
-				Platform.runLater(()-> {
-					newestMessage.set(chatMsg.getPlayerName() + ": " + chatMsg.getContent());
-				});
+				while (true) {
+					Message msg = Message.receive(socket);
+					if(msg instanceof ChatMsg) {
+						ChatMsg chatMsg = (ChatMsg)msg;
+						Platform.runLater(() -> {
+							newestMessage.set(chatMsg.getPlayerName() + ": " + chatMsg.getContent());
+						});
+					}else if(msg instanceof StringMsg){
+						
+					}
 				}
-				
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -75,7 +77,7 @@ public class Client {
 	};
 
 	public void sendToServer(String msg) {
-		Message stringMsg = new StringMsg(msg);
+		Message stringMsg = new StringMsg(playerName, msg);
 		stringMsg.send(socket);
 	}
 
@@ -99,12 +101,12 @@ public class Client {
 	}
 
 	public void disconnectClient() {
-			try {
-				socket.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			socket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public String getPlayerName() {
@@ -116,17 +118,16 @@ public class Client {
 		try {
 			ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
 			ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-			
+
 			clientH = new ClientHandler();
-			
+
 			this.deck = (ArrayList<String>) objectInput.readObject();
-			
-//			clientH.getDeckFromServer(deck);
-			
+
+			// clientH.getDeckFromServer(deck);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
 
 }
