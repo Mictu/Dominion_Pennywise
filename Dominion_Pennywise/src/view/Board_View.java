@@ -212,15 +212,14 @@ public class Board_View {
 	
 	
 	
-	int amountInHand;
+	
 	ArrayList<Button> enableDisable = new ArrayList<Button>();
 	
 	public void setHand(String card) {
-		if (card.equals("start"))
-			amountInHand = 0;
+
 		if (!card.equals("end")) {
 			handFromServer.add(card);
-			amountInHand++;
+		
 		}
 		
 		if (card.equals("end")) {
@@ -229,15 +228,45 @@ public class Board_View {
 				Button b = new Button();
 				handCards.add(b);
 			}
+			setCards();
 			for (int i = 0; i < handFromServer.size(); i++) {
 				handCards.get(i).setId(handFromServer.get(i));
 				this.hBoxHand.getChildren().add(handCards.get(i));
 			}
 		}
-		for (int i = 0; i < amountInHand; i++)
-			enableDisable.add(handCards.get(i));
+		for(Button b : handCards){
+			b.setDisable(false);
+		}
 		handCards.clear();
 	}
+	
+	
+	public void setCards() {
+		
+		String phase = clientHandler.getPhase(); 
+		
+			if(phase.equals("buy")){
+				for(Button b : handCards){
+					if(!b.getId().equals("copper") ||!b.getId().equals("silver")|| !b.getId().equals("gold")){
+						b.setDisable(true);
+					}
+
+				}
+			}
+	
+			if(phase.equals("action")){
+				for(Button b : handCards){
+					if(!b.getId().equals("smith") || !b.getId().equals("market") || !b.getId().equals("laboratory") || 
+					!b.getId().equals("funfair") || !b.getId().equals("woodcutter") || !b.getId().equals("village") ){
+						b.setDisable(true);
+					}
+				
+				}
+				
+			}
+
+	
+	}	
 	
 }// close class
 

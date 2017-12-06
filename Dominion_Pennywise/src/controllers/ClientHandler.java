@@ -23,46 +23,19 @@ public class ClientHandler {
 			boardview.setHand(message);
 		}
 		
-		
-	}
-	
-	public void setCardDisable(String message){
-		
-	if(message.substring(0, 10).equals("cardoption")){
-		String text = message.substring(10); 
-		// get ActionPhase
-		
-		switch(text){
-		case "buy":
-			if(handCardList != null){
-				for(Button b : handCardList){
-					if(!b.getId().equals("copper") ||!b.getId().equals("silver")|| !b.getId().equals("gold")){
-						b.setDisable(true);
-					}
-				}
-			}
-			break; 
-		case "action": 
-			if(handCardList != null){
-				for(Button b : handCardList){
-					if(!b.getId().equals("smith") || !b.getId().equals("market") || !b.getId().equals("laboratory") || 
-					!b.getId().equals("funfair") || !b.getId().equals("woodcutter") || !b.getId().equals("village") ){
-						b.setDisable(true);
-					}
-				}
-			}
-			break; 
+
+		if (message.equals("buy")) {
+			phase = "buy";
 		}
-	}
 		
-		
-		
+		if(message.equals("action")) {
+			phase = "action";
+		}
 		
 	}
 	
-	public void getHand(ArrayList <Button> liste) { //get hand 
-		handCardList = liste; 
-			
+	public String getPhase() { // get the actual phases
+		return this.phase;
 	}
 	
 	
