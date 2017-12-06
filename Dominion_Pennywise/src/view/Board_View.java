@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 
 import controllers.Board_Controller;
+import controllers.ClientHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -41,7 +42,7 @@ public class Board_View {
 	public static ArrayList <Button> handCards = new ArrayList<Button>();
 	public static ArrayList <String> handFromServer = new ArrayList<String>();
 	
-	
+	ClientHandler clientHandler; 
 	
 //	 constructor
 	public Board_View(Stage s, Client client) {
@@ -209,11 +210,19 @@ public class Board_View {
 		this.stage.hide();
 	}
 	
+	
+	
+	int amountInHand;
+	ArrayList<Button> enableDisable = new ArrayList<Button>();
+	
 	public void setHand(String card) {
+		if (card.equals("start"))
+			amountInHand = 0;
 		if (!card.equals("end")) {
 			handFromServer.add(card);
+			amountInHand++;
 		}
-
+		
 		if (card.equals("end")) {
 			this.hBoxHand.getChildren().clear();
 			while (handCards.size() < handFromServer.size()) {
@@ -225,6 +234,8 @@ public class Board_View {
 				this.hBoxHand.getChildren().add(handCards.get(i));
 			}
 		}
+		for (int i = 0; i < amountInHand; i++)
+			enableDisable.add(handCards.get(i));
 		handCards.clear();
 	}
 	
