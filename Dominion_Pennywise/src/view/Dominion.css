@@ -110,19 +110,13 @@
  * CARDS (BUTTONS)
  */
 
-#goldenBorder {
-	-fx-border-color: darkred;
-	-fx-border-width: 5px;
-	-fx-border-insets: -2px;
-}
-
 #copper {
 	-fx-background-image: url("copper.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 145px;
-    -fx-pref-width: 90px;
+	-fx-pref-height: 148px;
+    -fx-pref-width: 88px;
     -fx-background-color: transparent;
     -fx-opacity: 0.7;
 }
@@ -134,13 +128,16 @@
     -fx-border-width: 6;
     -fx-border-color: goldenrod;
 }
+#copper:pressed {
+	-fx-effect: dropshadow(three-pass-box, yellow, 10, 0, 0, 0);
+}
 #duchy {
 	-fx-background-image: url("duchy.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 145px;
-    -fx-pref-width: 90px;
+	-fx-pref-height: 148px;
+    -fx-pref-width: 88px;
     -fx-background-color: transparent;
     -fx-opacity: 0.7;
 }
@@ -152,13 +149,16 @@
     -fx-border-width: 6;
     -fx-border-color: dodgerblue;
 }
+#duchy:pressed {
+	-fx-effect: dropshadow(three-pass-box, yellow, 10, 0, 0, 0);
+}
 #estate {
 	-fx-background-image: url("estate.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 145px;
-    -fx-pref-width: 90px;
+	-fx-pref-height: 148px;
+    -fx-pref-width: 88px;
     -fx-background-color: transparent;
     -fx-opacity: 0.7;
 }
@@ -170,13 +170,16 @@
     -fx-border-width: 6;
     -fx-border-color: dodgerblue;
 }
+#estate:pressed {
+	-fx-effect: dropshadow(three-pass-box, yellow, 10, 0, 0, 0);
+}
 #funfair {
 	-fx-background-image: url("funfair.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 145px;
-    -fx-pref-width: 90px;
+	-fx-pref-height: 148px;
+    -fx-pref-width: 88px;
     -fx-background-color: transparent;
     -fx-opacity: 0.7;
 }
@@ -188,13 +191,16 @@
     -fx-border-width: 6;
     -fx-border-color: darkcyan;
 }
+#funfair:pressed {
+	-fx-effect: dropshadow(three-pass-box, yellow, 10, 0, 0, 0);
+}
 #gold {
 	-fx-background-image: url("gold.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 145px;
-    -fx-pref-width: 90px;
+	-fx-pref-height: 148px;
+    -fx-pref-width: 88px;
     -fx-background-color: transparent;
     -fx-opacity: 0.7;
 }
@@ -206,13 +212,16 @@
     -fx-border-width: 6;
     -fx-border-color: goldenrod;
 }
+#gold:pressed {
+	-fx-effect: dropshadow(three-pass-box, yellow, 10, 0, 0, 0);
+}
 #laboratory {
 	-fx-background-image: url("laboratory.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 145px;
-    -fx-pref-width: 90px;
+	-fx-pref-height: 148px;
+    -fx-pref-width: 88px;
     -fx-background-color: transparent;
     -fx-opacity: 0.7;
 }
@@ -224,13 +233,16 @@
     -fx-border-width: 6;
     -fx-border-color: darkcyan;
 }
+#laboratory:pressed {
+	-fx-effect: dropshadow(three-pass-box, yellow, 10, 0, 0, 0);
+}
 #market {
 	-fx-background-image: url("market.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 145px;
-    -fx-pref-width: 90px;
+	-fx-pref-height: 148px;
+    -fx-pref-width: 88px;
     -fx-background-color: transparent;
     -fx-opacity: 0.7;
 }
@@ -242,13 +254,16 @@
     -fx-border-width: 6;
     -fx-border-color: darkcyan;
 }
+#market:pressed {
+	-fx-effect: dropshadow(three-pass-box, yellow, 10, 0, 0, 0);
+}
 #province {
 	-fx-background-image: url("province.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 145px;
-    -fx-pref-width: 90px;
+	-fx-pref-height: 148px;
+    -fx-pref-width: 88px;
     -fx-background-color: transparent;
     -fx-opacity: 0.7;
 }
@@ -260,13 +275,16 @@
     -fx-border-width: 6;
     -fx-border-color: dodgerblue;
 }
+#province:pressed {
+	-fx-effect: dropshadow(three-pass-box, yellow, 10, 0, 0, 0);
+}
 #silver {
 	-fx-background-image: url("silver.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 145px;
-    -fx-pref-width: 90px;
+	-fx-pref-height: 148px;
+    -fx-pref-width: 88px;
     -fx-background-color: transparent;
     -fx-opacity: 0.7;
 }
@@ -278,13 +296,16 @@
     -fx-border-width: 6;
     -fx-border-color: goldenrod;
 }
+#silver:pressed {
+	-fx-effect: dropshadow(three-pass-box, yellow, 10, 0, 0, 0);
+}
 #smith {
 	-fx-background-image: url("smith.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 145px;
-    -fx-pref-width: 90px;
+	-fx-pref-height: 148px;
+    -fx-pref-width: 88px;
     -fx-background-color: transparent;
     -fx-opacity: 0.7;
 }
@@ -296,13 +317,16 @@
     -fx-border-width: 6;
     -fx-border-color: darkcyan;
 }
+#smith:pressed {
+	-fx-effect: dropshadow(three-pass-box, yellow, 10, 0, 0, 0);
+}
 #village {
 	-fx-background-image: url("village.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 145px;
-    -fx-pref-width: 90px;
+	-fx-pref-height: 148px;
+    -fx-pref-width: 88px;
     -fx-background-color: transparent;
     -fx-opacity: 0.7;
 }
@@ -314,13 +338,16 @@
     -fx-border-width: 6;
     -fx-border-color: darkcyan;
 }
+#village:pressed {
+	-fx-effect: dropshadow(three-pass-box, yellow, 10, 0, 0, 0);
+}
 #woodcutter {
 	-fx-background-image: url("woodcutter.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 145px;
-    -fx-pref-width: 90px;
+	-fx-pref-height: 148px;
+    -fx-pref-width: 88px;
     -fx-background-color: transparent;
 	-fx-opacity: 0.7;
 }
@@ -334,7 +361,6 @@
 }
 #woodcutter:pressed {
 	-fx-effect: dropshadow(three-pass-box, yellow, 10, 0, 0, 0);
-	
 }
 
 #back {
@@ -342,7 +368,7 @@
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: cover, auto;
-	-fx-pref-height: 145px;
-    -fx-pref-width: 90px;
+	-fx-pref-height: 148px;
+    -fx-pref-width: 88px;
     -fx-background-color: transparent;
 }

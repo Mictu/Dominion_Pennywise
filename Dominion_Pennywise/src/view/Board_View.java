@@ -41,6 +41,8 @@ public class Board_View {
 	Board_Controller bcontroller; 
 	protected HBox hCenter1, hCenter2, hCenter3;
 	
+	protected DropShadow shadow = new DropShadow();
+	
 	protected ArrayList <Button> handCards = new ArrayList<Button>();
 	protected ArrayList <String> handFromServer = new ArrayList<String>();
 	
@@ -97,7 +99,7 @@ public class Board_View {
 			victory.add(cdV.getDuchyBtn());
 			victory.add(cdV.getProvinceBtn());
 			
-			setCardsOnView();
+			setCardsOnViewEnable();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -256,8 +258,53 @@ public class Board_View {
 		handCards.clear();
 	}
 	
-	DropShadow shadow = new DropShadow();
-	public void setCardsOnView() {
+	
+	public void setCards() {
+		String phase = clientHandler.getPhase();
+		if (phase.equals("buy")) {
+			setCardsOnViewEnable();
+			for (Button b : handCards) {
+				if (!b.getId().equals("copper") || !b.getId().equals("silver") || !b.getId().equals("gold")) {
+					b.setDisable(true);
+				}
+			}
+		}
+		if (phase.equals("action")) {
+			setCardsOnViewDisable();
+			for (Button b : handCards) {
+				if (!b.getId().equals("smith") || !b.getId().equals("market") || !b.getId().equals("laboratory")
+						|| !b.getId().equals("funfair") || !b.getId().equals("woodcutter")
+						|| !b.getId().equals("village")) {
+					b.setDisable(true);
+				}
+			}
+		}
+	}
+	
+	// enables buttons while player is able to chose which card he wants to buy
+	public void setCardsOnViewEnable() {
+		hCenter1.getChildren().clear();
+		hCenter2.getChildren().clear();
+		hCenter3.getChildren().clear();
+		for (Button l : victory) {
+			l.setEffect(null);
+			l.setDisable(false);
+			hCenter1.getChildren().add(l);
+		}
+		for (Button m : kingdom) {
+			m.setEffect(null);
+			m.setDisable(false);
+			hCenter2.getChildren().add(m);
+		}
+		for (Button n : treasure) {
+			n.setEffect(null);
+			n.setDisable(false);
+			hCenter3.getChildren().add(n);
+		}
+	}
+	
+	// disables buttons while player is in actionphase
+	public void setCardsOnViewDisable() {
 		hCenter1.getChildren().clear();
 		hCenter2.getChildren().clear();
 		hCenter3.getChildren().clear();
@@ -267,39 +314,16 @@ public class Board_View {
 			hCenter1.getChildren().add(l);
 		}
 		for (Button m : kingdom) {
+			m.setEffect(shadow);
+			m.setDisable(true);
 			hCenter2.getChildren().add(m);
 		}
 		for (Button n : treasure) {
+			n.setEffect(shadow);
+			n.setDisable(true);
 			hCenter3.getChildren().add(n);
 		}
 	}
-	
-	public void setCards() {
-		
-		String phase = clientHandler.getPhase(); 
-		
-			if(phase.equals("buy")){
-				for(Button b : handCards){
-					if(!b.getId().equals("copper") ||!b.getId().equals("silver")|| !b.getId().equals("gold")){
-						b.setDisable(true);
-					}
-
-				}
-			}
-	
-			if(phase.equals("action")){
-				for(Button b : handCards){
-					if(!b.getId().equals("smith") || !b.getId().equals("market") || !b.getId().equals("laboratory") || 
-					!b.getId().equals("funfair") || !b.getId().equals("woodcutter") || !b.getId().equals("village") ){
-						b.setDisable(true);
-					}
-				
-				}
-				
-			}
-
-	
-	}	
 	
 }// close class
 
