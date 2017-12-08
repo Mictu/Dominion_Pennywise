@@ -1,5 +1,6 @@
 package view;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import controllers.Board_Controller;
@@ -18,6 +19,8 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import main_Class.ServiceLocator;
 import server.client.Client;
@@ -42,6 +45,7 @@ public class Board_View {
 	protected HBox hCenter1, hCenter2, hCenter3;
 	HBox hBottom;
 	
+	protected int soundCounter = 0;
 	protected DropShadow shadow = new DropShadow();
 	
 	protected ArrayList <Button> handCards = new ArrayList<Button>();
@@ -55,6 +59,7 @@ public class Board_View {
 	
 //	 constructor
 	public Board_View(Stage s, Client client) {
+		playSound();
 		this.client = client;
 		CardDesign_View cdV = new CardDesign_View(client);
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
@@ -258,31 +263,36 @@ public class Board_View {
 	
 	
 	public void setHand(String card) {
-
 		if (!card.equals("end")) {
 			handFromServer.add(card);
-		
 		}
-		
 		if (card.equals("end")) {
 			this.hBoxHand.getChildren().clear();
 			while (handCards.size() < handFromServer.size()) {
 				Button b = new Button();
+				b.setOnAction((event) -> {
+					try{
+						String cardID = b.getId();
+						client.sendToServer(cardID);
+						playSound();
+					} catch (Exception e) {
+						System.out.println("Button der hand haben noch keine ID erhalten");
+					}
+				});
 				bindingsForContent(b, hBottom, 1, 0.12);
 				handCards.add(b);
 			}
-			setCards();
 			for (int i = 0; i < handFromServer.size(); i++) {
 				handCards.get(i).setId(handFromServer.get(i));
 				this.hBoxHand.getChildren().add(handCards.get(i));
 			}
+			setCards();
 		}
 		for(Button b : handCards){
 			b.setDisable(false);
 		}
 		handCards.clear();
 	}
-	
 	
 	public void setCards() {
 		String phase = clientHandler.getPhase();
@@ -291,6 +301,8 @@ public class Board_View {
 			for (Button b : handCards) {
 				if (!b.getId().equals("copper") || !b.getId().equals("silver") || !b.getId().equals("gold")) {
 					b.setDisable(true);
+				} else {
+					b.setDisable(false);
 				}
 			}
 		}
@@ -301,6 +313,8 @@ public class Board_View {
 						|| !b.getId().equals("funfair") || !b.getId().equals("woodcutter")
 						|| !b.getId().equals("village")) {
 					b.setDisable(true);
+				} else {
+					b.setDisable(false);
 				}
 			}
 		}
@@ -355,6 +369,16 @@ public class Board_View {
 			bindingsForContent(n, hCenter3, 1, 0.12);
 		}
 	}
+	
+	// play a sound if card is pressed
+		public void playSound() {
+			String musicFile = "clicksound.mp3";     // For example
+			Media sound = new Media(new File(musicFile).toURI().toString());
+			MediaPlayer mediaPlayer = new MediaPlayer(sound);
+			if (soundCounter == 1)
+				mediaPlayer.play();
+			soundCounter=1;
+		}
 	
 	protected void bindingsForContent(Region child, Region parent, double heightMultiply, double widthMultiply){
 		child.maxHeightProperty().bind(parent.heightProperty().multiply(heightMultiply));

@@ -14,9 +14,11 @@ public class CardDesign_View {
 	// private Button cardBtn;
 	protected Button copperBtn, duchyBtn, estateBtn, funfairBtn, goldBtn, laboratoryBtn;
 	protected Button marketBtn, provinceBtn, silverBtn, smithBtn, villageBtn, woodcutterBtn;
+	protected int soundCounter = 0;
 
 	public CardDesign_View(Client client) {
 		this.client = client;
+		playSound();
 		// client.run();
 
 	} // close constructor
@@ -98,10 +100,11 @@ public class CardDesign_View {
 	// play a sound if card is pressed
 	public void playSound() {
 		String musicFile = "clicksound.mp3";     // For example
-
 		Media sound = new Media(new File(musicFile).toURI().toString());
 		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		mediaPlayer.play();
+		if (soundCounter == 1)
+			mediaPlayer.play();
+		soundCounter=1;
 	}
 	
 	
