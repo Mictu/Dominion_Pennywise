@@ -2,7 +2,6 @@ package controllers;
 
 import javafx.stage.Stage;
 import server.client.Client;
-import server_Models.Player;
 import view.Board_View;
 import view.Lobby_View;
 import view.Login_View;
@@ -19,11 +18,12 @@ public class Lobby_Controller {
 		this.lobbyView = lobbyView;
 		this.client = client;
 
+		System.out.println("kam lobby");
 		// LOBBY
 
 		lobbyView.btnStartGame.setOnAction(event -> {
+			System.out.println("button clicked?");
 			client.sendToServer("start");
-			new Thread(waitForOpenBV).start();
 		});
 
 		lobbyView.btnLeaveGame.setOnAction((event) -> {
@@ -44,23 +44,9 @@ public class Lobby_Controller {
 	}
 
 	public void openBoardView() {
+		System.out.println("kam an lol");
 		boardView = new Board_View(lobbyView.getStage(), client);
 		Board_Controller boardController = new Board_Controller(boardView, client);
 		boardView.start();
 	}
-
-	final Task<Void> waitForOpenBV = new Task<Void>() {
-		@Override
-		protected Void call() throws Exception {
-			System.out.println("thread1");
-			while (true) {
-				if (clientH.getopenBV()) {
-					System.out.println("thread2");
-					openBoardView();
-					System.out.println("thread3");
-				}
-			}
-		}
-	};
-
 }

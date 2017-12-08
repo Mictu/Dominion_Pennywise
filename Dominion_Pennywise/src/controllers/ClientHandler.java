@@ -6,18 +6,30 @@ import javafx.scene.control.Button;
 import server.client.Client;
 import view.Board_View;
 import view.Lobby_View;
+import view.Login_View;
 
 public class ClientHandler {
 	Lobby_Controller lobbyC;
+	Login_Controller loginC;
+	Board_Controller boardC;
+	Result_Controller resultC;
 	
+	Login_View loginV;
+	
+	public boolean openBV = false;
 	Board_View boardview;
-	public int opened;
 	Lobby_View lobbyV;
 	Client client;
 
 	String phase;
 	ArrayList<Button> handCardList = new ArrayList<Button>();
 	
+
+	public void initializeLobbyController(Lobby_View lobbyView, Client client2) {
+		this.lobbyV = lobbyView;
+		this.client = client2;
+		lobbyC = new Lobby_Controller(this.lobbyV, this.client);
+	}
 
 	public void getMessageFromClient(String msg) {
 		String message = msg;
@@ -30,7 +42,7 @@ public class ClientHandler {
 
 		switch (message) {
 		case "openboardview":
-			openBV = true;
+			openField();
 			break;
 		case "buy":
 			phase = "buy";
@@ -40,6 +52,10 @@ public class ClientHandler {
 			break;
 		}
 
+	}
+
+	public void openField() {
+		lobbyC.openBoardView();
 	}
 
 	public String getPhase() { // get the actual phases

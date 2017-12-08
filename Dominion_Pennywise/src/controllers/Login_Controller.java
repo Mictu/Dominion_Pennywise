@@ -4,7 +4,6 @@ import javafx.stage.Stage;
 import main_Class.ServiceLocator;
 import server.client.Client;
 import server_Models.Translator;
-import view.Board_View;
 import view.Lobby_View;
 import view.Login_View;
 
@@ -15,8 +14,8 @@ public class Login_Controller {
 	Lobby_View lobbyView;
 	String playerName;
 	Lobby_Controller lobbyController;
+	ClientHandler ch = new ClientHandler();
 
-	ClientHandler clienthandler = new ClientHandler(); 
 	
 	public Login_Controller(Login_View loginView) {
 		this.loginView = loginView;
@@ -36,7 +35,8 @@ public class Login_Controller {
 				
 				client = new Client(playerName);
 				client.run();
-				lobbyController = new Lobby_Controller(lobbyView, client);
+//				lobbyController = new Lobby_Controller(lobbyView, client);
+				ch.initializeLobbyController(lobbyView, client);
 				lobbyView.start();
 
 				// Open Lobby
