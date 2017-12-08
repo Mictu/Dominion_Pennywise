@@ -59,7 +59,8 @@ public class Client {
 							newestMessage.set(chatMsg.getPlayerName() + ": " + chatMsg.getContent());
 						});
 					}else if(msg instanceof StringMsg){
-						
+						String message = ((StringMsg) msg).getContent();
+						clientH.getMessageFromClient(message);
 					}
 				}
 

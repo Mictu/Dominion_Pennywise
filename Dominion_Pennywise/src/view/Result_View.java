@@ -19,8 +19,8 @@ public class Result_View {
 
 	public Result_View(Stage stage) {
 		this.stage = stage;
-		stage.setHeight(600.0);
-		stage.setWidth(400.0);
+		stage.setHeight(600.0);//
+		stage.setWidth(400.0);//
 //		stage.setResizable(false);
 		stage.setTitle("WINNER");
 		mainPane = new BorderPane();
