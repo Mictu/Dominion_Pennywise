@@ -48,4 +48,18 @@ public class Lobby_Controller {
 		boardView.start();
 	}
 
+	final Task<Void> waitForOpenBV = new Task<Void>() {
+		@Override
+		protected Void call() throws Exception {
+			System.out.println("thread1");
+			while (true) {
+				if (clientH.getopenBV()) {
+					System.out.println("thread2");
+					openBoardView();
+					System.out.println("thread3");
+				}
+			}
+		}
+	};
+
 }
