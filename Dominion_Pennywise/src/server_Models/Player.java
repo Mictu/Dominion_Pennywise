@@ -8,8 +8,8 @@ import server.client.Server;
 public class Player {
 
 	// initialize sector here
-	protected int winPoint, money, amountOfTurns;
-	protected int actionPoint, buyPoint, bonusBuyPoint;
+	public int winPoint, money, amountOfTurns;
+	public int actionPoint, buyPoint, bonusBuyPoint;
 	public boolean turn = false;
 
 	
