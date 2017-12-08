@@ -30,8 +30,7 @@ public class ClientHandler {
 
 		switch (message) {
 		case "openboardview":
-			System.out.println("switchhhhhhhhhh");
-			lobbyC.openBoardView();
+			openBV = true;
 			break;
 		case "buy":
 			phase = "buy";
@@ -47,11 +46,7 @@ public class ClientHandler {
 		return this.phase;
 	}
 	
-	public int getOpened() {
-		return this.opened;
-	}
-	
-	public void setOpened(int opened) {
-		this.opened = opened;
+	public boolean getopenBV() {
+		return openBV;
 	}
 }

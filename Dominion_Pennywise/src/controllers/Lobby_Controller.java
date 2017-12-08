@@ -12,8 +12,8 @@ public class Lobby_Controller {
 	Lobby_View lobbyView;
 	Login_View loginView;
 	Board_View boardView;
-	ClientHandler ch = new ClientHandler();
 	Client client;
+	ClientHandler clientH;
 
 	public Lobby_Controller(Lobby_View lobbyView, Client client) {
 		this.lobbyView = lobbyView;
@@ -23,6 +23,7 @@ public class Lobby_Controller {
 
 		lobbyView.btnStartGame.setOnAction(event -> {
 			client.sendToServer("start");
+			new Thread(waitForOpenBV).start();
 		});
 
 		lobbyView.btnLeaveGame.setOnAction((event) -> {
@@ -47,5 +48,19 @@ public class Lobby_Controller {
 		Board_Controller boardController = new Board_Controller(boardView, client);
 		boardView.start();
 	}
+
+	final Task<Void> waitForOpenBV = new Task<Void>() {
+		@Override
+		protected Void call() throws Exception {
+			System.out.println("thread1");
+			while (true) {
+				if (clientH.getopenBV()) {
+					System.out.println("thread2");
+					openBoardView();
+					System.out.println("thread3");
+				}
+			}
+		}
+	};
 
 }
