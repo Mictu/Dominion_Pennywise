@@ -24,13 +24,38 @@ public class ServerHandler {
 	public ServerHandler() {
 	}
 
+	public void addPlayerToList(String name) {
+		Player.players.add(name);
+		player = new Player(name);
+	}
+
+	public String getFirstPlayerName() {
+		return Player.players.get(0);
+	}
+
+	// public Player getPlayer(String name) {
+	// for(String s : Player.players) {
+	// if(s.equals(name)) {
+	//
+	// }
+	// }
+	// return player;
+	// }
+	//
+	// public Player setPlayer(Player player) {
+	// if(player.turn == true) {
+	// return player;
+	// }else {
+	// return null;
+	// }
+	// }
+
 	// Get Strings from Server
 	public void getMessageFromServer(String msg) {
 		String message = msg;
 		gamelogic = new GameLogic();
 		actionphase = new ActionPhase();
 		String phase = gamelogic.getActualPhase();
-		System.out.println(phase);
 
 		if (message.contains("endphase")) {
 			gamelogic.endPhase(message);
@@ -42,69 +67,6 @@ public class ServerHandler {
 		case "buy":
 			buyphase.buyCard(message, player);
 		}
-
-
-		// switch (message) {
-		// case "funfair":
-		// System.out.println(message);
-		// case "laboratory":
-		// System.out.println(message);
-		// case "market":
-		// System.out.println(message);
-		// case "smith":
-		// System.out.println(message);
-		// case "village":
-		// System.out.println(message);
-		// case "woodcutter":
-		// System.out.println(message);
-		// }
-		// // phase = gamelogic.getPhase();
-		//
-		// // Create a new Player and add him to the playerList in the game logic class
-		// if (message.length() > 5 && message.substring(0, 5).equals("lobby")) {
-		// player = new Player(message.substring(5));
-		// // gameLogic.addPlayers(player);
-		// }
-		//
-		// // Actions if treasure cards are pressed
-		// else if (message.contains("copper") || message.contains("silver") ||
-		// message.contains("gold")) {
-		// // getOptionsTreasure(message);
-		// }
-		//
-		// // Actions if victory cards are pressed
-		// else if (message.equals("estate") || message.equals("duchy") ||
-		// message.equals("province")) {
-		// // getOptionsVictory(message);
-		// }
-		//
-		// // Actions if kingdom cards are pressed
-		// else if (message.equals("funfair") || message.equals("laboratory") ||
-		// message.equals("market")) {
-		// // getOptionsKingdom(message);
-		// }
-		//
-		// // Actions if kingdom cards are pressed
-		// else if (message.equals("smith") || message.equals("village") ||
-		// message.equals("woodcutter")) {
-		// // getOptionsKingdom(message);
-		// }
-		//
-		// // handle every other string from client
-		// else {
-		// switch (message) {
-		// case "endphase":
-		// gamelogic.endPhase();
-		// break;
-		// case "pay":
-		//
-		// break;
-		// case "bonusmoney":
-		// System.out.println("blablablablablablabla");
-		// break;
-		//
-		// }
-		// }
 	}
 
 	// only do something when it makes sense for the clicked card - treasure

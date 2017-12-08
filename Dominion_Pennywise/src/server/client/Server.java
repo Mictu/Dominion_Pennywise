@@ -23,11 +23,6 @@ public class Server extends Application {
 	public final ObservableList<Client_Chat> clients = FXCollections.observableArrayList();
 
 	ServerSocket server;
-	DataInputStream input;
-	DataOutputStream output;
-
-//	GameLogic gl = new GameLogic(); // Just for testing
-
 
 	Player player;
 	ArrayList<String> fromServer;
@@ -65,7 +60,6 @@ public class Server extends Application {
 	}
 
 	public void connect() {
-		
 		new Thread(startServer).start();
 	}
 
@@ -83,10 +77,11 @@ public class Server extends Application {
 			while(true) {
 			Socket socket = server.accept();
 
+			
 			Client_Chat clientC = new Client_Chat(Server.this, socket);
 			clients.add(clientC);
 			
-//			newestMsg.concat(clientC);
+
 //			serverView.updateServerView(newestMsg, "Connection received from: " );
 			serverView.updateServerView(newestMsg,
 					"Connection received from: " + socket.getInetAddress().getHostName());
@@ -115,6 +110,7 @@ public class Server extends Application {
 	
 	public void sendToClient(String msg) {
 		clients.get(0).sendStringMsgToClient(msg);
+		
 	}
 
 	// chat

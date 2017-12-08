@@ -6,7 +6,7 @@
 	-fx-background-image: url("landscape.jpg");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: stretch;
 	-fx-max-height: 650;
 }
 
@@ -112,9 +112,9 @@
 
 #copper {
 	-fx-background-image: url("copper.jpg");
-	-fx-background-position: center;
+	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: stretch;
 	-fx-pref-height: 148px;
     -fx-pref-width: 88px;
     -fx-background-color: transparent;
@@ -133,9 +133,9 @@
 }
 #duchy {
 	-fx-background-image: url("duchy.jpg");
-	-fx-background-position: center;
+	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: stretch;
 	-fx-pref-height: 148px;
     -fx-pref-width: 88px;
     -fx-background-color: transparent;
@@ -154,9 +154,9 @@
 }
 #estate {
 	-fx-background-image: url("estate.jpg");
-	-fx-background-position: center;
+	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: stretch;
 	-fx-pref-height: 148px;
     -fx-pref-width: 88px;
     -fx-background-color: transparent;
@@ -175,9 +175,9 @@
 }
 #funfair {
 	-fx-background-image: url("funfair.jpg");
-	-fx-background-position: center;
+	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: stretch;
 	-fx-pref-height: 148px;
     -fx-pref-width: 88px;
     -fx-background-color: transparent;
@@ -196,9 +196,9 @@
 }
 #gold {
 	-fx-background-image: url("gold.jpg");
-	-fx-background-position: center;
+	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: stretch;
 	-fx-pref-height: 148px;
     -fx-pref-width: 88px;
     -fx-background-color: transparent;
@@ -217,9 +217,9 @@
 }
 #laboratory {
 	-fx-background-image: url("laboratory.jpg");
-	-fx-background-position: center;
+	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: stretch;
 	-fx-pref-height: 148px;
     -fx-pref-width: 88px;
     -fx-background-color: transparent;
@@ -238,9 +238,9 @@
 }
 #market {
 	-fx-background-image: url("market.jpg");
-	-fx-background-position: center;
+	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: stretch;
 	-fx-pref-height: 148px;
     -fx-pref-width: 88px;
     -fx-background-color: transparent;
@@ -259,9 +259,9 @@
 }
 #province {
 	-fx-background-image: url("province.jpg");
-	-fx-background-position: center;
+	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: stretch;
 	-fx-pref-height: 148px;
     -fx-pref-width: 88px;
     -fx-background-color: transparent;
@@ -280,9 +280,9 @@
 }
 #silver {
 	-fx-background-image: url("silver.jpg");
-	-fx-background-position: center;
+	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: stretch;
 	-fx-pref-height: 148px;
     -fx-pref-width: 88px;
     -fx-background-color: transparent;
@@ -301,9 +301,9 @@
 }
 #smith {
 	-fx-background-image: url("smith.jpg");
-	-fx-background-position: center;
+	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: stretch;
 	-fx-pref-height: 148px;
     -fx-pref-width: 88px;
     -fx-background-color: transparent;
@@ -322,9 +322,9 @@
 }
 #village {
 	-fx-background-image: url("village.jpg");
-	-fx-background-position: center;
+	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: stretch;
 	-fx-pref-height: 148px;
     -fx-pref-width: 88px;
     -fx-background-color: transparent;
@@ -343,9 +343,9 @@
 }
 #woodcutter {
 	-fx-background-image: url("woodcutter.jpg");
-	-fx-background-position: center;
+	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: stretch;
 	-fx-pref-height: 148px;
     -fx-pref-width: 88px;
     -fx-background-color: transparent;
@@ -365,9 +365,9 @@
 
 #back {
 	-fx-background-image: url("Rückseite.jpg");
-	-fx-background-position: center;
+	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: cover, auto;
+	-fx-background-size: stretch;
 	-fx-pref-height: 148px;
     -fx-pref-width: 88px;
     -fx-background-color: transparent;

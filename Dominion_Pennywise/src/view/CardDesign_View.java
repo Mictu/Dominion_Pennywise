@@ -1,11 +1,16 @@
 package view;
 
+import java.io.File;
+
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import server.client.Client;
 
 public class CardDesign_View {
 
 	Client client;
+	Board_View bV;
 	// private Button cardBtn;
 	protected Button copperBtn, duchyBtn, estateBtn, funfairBtn, goldBtn, laboratoryBtn;
 	protected Button marketBtn, provinceBtn, silverBtn, smithBtn, villageBtn, woodcutterBtn;
@@ -90,11 +95,22 @@ public class CardDesign_View {
 		return woodcutterBtn;
 	}
 	
+	// play a sound if card is pressed
+	public void playSound() {
+		String musicFile = "clicksound.mp3";     // For example
+
+		Media sound = new Media(new File(musicFile).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
+	}
+	
+	
 	// Activate every created Button (Card) and send string to server handler
 	protected void setForAction(Button x) {
 		x.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		x.setOnAction((event) -> {
 			// client.run();
+			playSound();
 			String cardID = x.getId();
 			client.sendToServer(cardID);
 		});

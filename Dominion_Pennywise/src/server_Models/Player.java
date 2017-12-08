@@ -1,5 +1,6 @@
 package server_Models;
 
+import java.net.Socket;
 import java.util.ArrayList;
 
 import server.client.Server;
@@ -9,13 +10,18 @@ public class Player {
 	// initialize sector here
 	protected int winPoint, money, amountOfTurns;
 	protected int actionPoint, buyPoint, bonusBuyPoint;
+	public boolean turn = false;
 
-	protected String name;
+	
+	public String name;
 	Server server;
-
+	Socket socket;
+	
 	public ArrayList<String> hand = new ArrayList<String>();
 	protected ArrayList<String> deck = new ArrayList<String>();
 	protected ArrayList<String> discard = new ArrayList<String>();
+	public static ArrayList<String> players = new ArrayList<String>();
+	
 
 	// Constructor
 	public Player(String name) {

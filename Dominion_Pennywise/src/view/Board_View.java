@@ -40,6 +40,7 @@ public class Board_View {
 	public HBox hBoxHand; 
 	Board_Controller bcontroller; 
 	protected HBox hCenter1, hCenter2, hCenter3;
+	HBox hBottom;
 	
 	protected DropShadow shadow = new DropShadow();
 	
@@ -129,6 +130,15 @@ public class Board_View {
 			
 		labels.getChildren().addAll(firstPhase, secondPhase, thirdPhase, reg, bonusMoney, pay, reg2, endPhase);
 		
+		//bindings for the part in between of players hand and cards to buy
+		bindingsForContent(firstPhase, labels, 0.98, 0.16);
+		bindingsForContent(secondPhase, labels, 0.98, 0.16);
+		bindingsForContent(thirdPhase, labels, 0.98, 0.16);
+		bindingsForContent(reg, labels, 0.98, 0.02);
+		bindingsForContent(bonusMoney, labels, 0.98, 0.16);
+		bindingsForContent(pay, labels, 0.98, 0.16);
+		bindingsForContent(reg2, labels, 0.98, 0.02);
+		bindingsForContent(endPhase, labels, 0.98, 0.16);
 		
 	//CENTER BOTTOM	
 		
@@ -152,14 +162,20 @@ public class Board_View {
 		Button discard = new Button();
 		discard.setId("back");
 		
-		HBox hBottom = new HBox(800);								// Spacing between deck and discard
+		hBottom = new HBox(800);								// Spacing between deck and discard
 		hBottom.getChildren().addAll(deck, discard);
 		hBottom.setAlignment(Pos.CENTER);
 		
 		stackPane.getChildren().addAll(hand,hBottom,hBoxHand);
 		root.setBottom(stackPane);
 		
+		bindingsForContent(deck, hBottom, 0.98, 0.14);
+		bindingsForContent(discard, hBottom, 0.98, 0.14);
 		
+		bindingsForContent(hand, stackPane, 0.98, 0.85);
+		bindingsForContent(hBottom, stackPane, 0.7, 0.92);
+		bindingsForContent(hBoxHand, stackPane, 0.7, 0.8);
+
 		reg = new Region();
 		reg.setPrefHeight(15);
 		reg2 = new Region();
@@ -167,12 +183,18 @@ public class Board_View {
 		
 		vCenter.getChildren().addAll(hCenter1, hCenter2, hCenter3, reg2, labels, reg, stackPane);
 		
+		//bindings for Center content
+		bindingsForContent(hCenter1, vCenter, 0.2, 0.8);
+		bindingsForContent(hCenter2, vCenter, 0.2, 0.8);
+		bindingsForContent(hCenter3, vCenter, 0.2, 0.8);
+		bindingsForContent(reg, vCenter, 0.005, 0.65);
+		bindingsForContent(labels, vCenter, 0.05, 0.8);
+		bindingsForContent(reg2, vCenter, 0.005, 0.65);
+		bindingsForContent(stackPane, vCenter, 0.25, 0.65);
+		
 		TextArea playerStats = new TextArea();
 		playerStats.setEditable(false);
-		playerStats.setMaxHeight(100);
-		playerStats.setMaxWidth(200);
 		playerStats.setId("playerStats");
-		
 		
 		StackPane centerSP = new StackPane();
 		centerSP.getChildren().addAll(playerStats, vCenter);
@@ -180,6 +202,8 @@ public class Board_View {
 		
 		root.setCenter(centerSP);
 		
+		bindingsForContent(playerStats, centerSP, 0.15, 0.15);
+		bindingsForContent(vCenter, centerSP, 1, 1);
 		
 	//SET RIGHT
 		VBox vRight = new VBox (10);
@@ -212,7 +236,11 @@ public class Board_View {
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		stage.setScene(scene);
-
+		
+		bindingsForContent(centerSP, root, 0.98 , 0.79);
+		bindingsForContent(vRight, root, 0.98, 0.19);
+		
+		setStageBindings(root, stage, 0.98, 0.98);
 	} // Close the Constructor
 
 	public void start() {
@@ -229,10 +257,6 @@ public class Board_View {
 	}
 	
 	
-	
-	
-	ArrayList<Button> enableDisable = new ArrayList<Button>();
-	
 	public void setHand(String card) {
 
 		if (!card.equals("end")) {
@@ -244,6 +268,7 @@ public class Board_View {
 			this.hBoxHand.getChildren().clear();
 			while (handCards.size() < handFromServer.size()) {
 				Button b = new Button();
+				bindingsForContent(b, hBottom, 1, 0.12);
 				handCards.add(b);
 			}
 			setCards();
@@ -290,20 +315,23 @@ public class Board_View {
 			l.setEffect(null);
 			l.setDisable(false);
 			hCenter1.getChildren().add(l);
+			bindingsForContent(l, hCenter1, 1, 0.12);
 		}
 		for (Button m : kingdom) {
 			m.setEffect(null);
 			m.setDisable(false);
 			hCenter2.getChildren().add(m);
+			bindingsForContent(m, hCenter2, 1, 0.12);
 		}
 		for (Button n : treasure) {
 			n.setEffect(null);
 			n.setDisable(false);
 			hCenter3.getChildren().add(n);
+			bindingsForContent(n, hCenter3, 1, 0.12);
 		}
 	}
 	
-	// disables buttons while player is in actionphase
+	// disables buttons while player is in action phase
 	public void setCardsOnViewDisable() {
 		hCenter1.getChildren().clear();
 		hCenter2.getChildren().clear();
@@ -312,17 +340,33 @@ public class Board_View {
 			l.setEffect(shadow);
 			l.setDisable(true);
 			hCenter1.getChildren().add(l);
+			bindingsForContent(l, hCenter1, 1, 0.12);
 		}
 		for (Button m : kingdom) {
 			m.setEffect(shadow);
 			m.setDisable(true);
 			hCenter2.getChildren().add(m);
+			bindingsForContent(m, hCenter2, 1, 0.12);
 		}
 		for (Button n : treasure) {
 			n.setEffect(shadow);
 			n.setDisable(true);
 			hCenter3.getChildren().add(n);
+			bindingsForContent(n, hCenter3, 1, 0.12);
 		}
+	}
+	
+	protected void bindingsForContent(Region child, Region parent, double heightMultiply, double widthMultiply){
+		child.maxHeightProperty().bind(parent.heightProperty().multiply(heightMultiply));
+		child.maxWidthProperty().bind(parent.widthProperty().multiply(widthMultiply));
+		child.minHeightProperty().bind(parent.heightProperty().multiply(heightMultiply));
+		child.minWidthProperty().bind(parent.widthProperty().multiply(widthMultiply));
+	}
+	protected void setStageBindings(Region child, Stage stage2, double heightMultiply, double widthMultiply){
+		child.maxHeightProperty().bind(stage2.heightProperty().multiply(heightMultiply));
+		child.maxWidthProperty().bind(stage2.widthProperty().multiply(widthMultiply));
+		child.minHeightProperty().bind(stage2.heightProperty().multiply(heightMultiply));
+		child.minWidthProperty().bind(stage2.widthProperty().multiply(widthMultiply));
 	}
 	
 }// close class
