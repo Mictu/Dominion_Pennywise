@@ -109,7 +109,7 @@ public class Board_View {
 		endPhase.setId("endBtn");
 		bonusMoney = new Button("Bonusgeld: 0");
 		bonusMoney.setId("btn");
-		pay = new Button("Bezahlen bestätigen");
+		pay = new Button("Bezahlen bestï¿½tigen");
 		pay.setId("btn");
 		
 		HBox labels = new HBox(20) ;
