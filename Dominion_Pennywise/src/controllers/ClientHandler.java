@@ -20,6 +20,7 @@ public class ClientHandler {
 	Board_View boardview;
 	Lobby_View lobbyV;
 	Client client;
+	
 
 	String phase;
 	ArrayList<Button> handCardList = new ArrayList<Button>();
@@ -39,7 +40,7 @@ public class ClientHandler {
 			message = message.substring(4);
 			boardview.setHand(message);
 		}
-
+		
 		switch (message) {
 		case "openboardview":
 			openField();
