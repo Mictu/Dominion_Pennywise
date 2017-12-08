@@ -9,7 +9,7 @@ import server.client.ServerHandler;
 public class GameLogic {
 
 	// Initialize sector here
-	protected ArrayList<Player> playerList = new ArrayList<Player>();
+	public ArrayList<Player> playerList = new ArrayList<Player>();
 
 	protected CleanUpPhase cleanUpPhase;
 	ActionPhase actionPhase;
