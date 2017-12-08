@@ -23,7 +23,48 @@ public class ServerHandler {
 
 	public ServerHandler() {
 	}
-
+	
+	public Player addPlayerToList(String name) {
+		Player.players.add(name);
+		for(String s : Player.players) {
+			player = new Player(s);
+			if(player.turn == true) {
+				return player;
+			}
+			System.out.println(s);
+		}
+		
+		return player;
+	}
+	
+	public String getFirstPlayerName() {
+		
+		return Player.players.get(0);
+			
+//			player = new Player(s);
+////			if(s.equals(Player.players.get(0))) {
+////				player.turn = true;
+////			}
+//		return player;
+	}
+	
+//	public Player getPlayer(String name) {
+//		for(String s : Player.players) {
+//			if(s.equals(name)) {
+//				
+//			}
+//		}
+//		return player;
+//	}
+//	
+//	public Player setPlayer(Player player) {
+//		if(player.turn == true) {
+//			return player;
+//		}else {
+//			return null;
+//		}
+//	}
+	
 	// Get Strings from Server
 	public void getMessageFromServer(String msg) {
 		String message = msg;
@@ -35,7 +76,7 @@ public class ServerHandler {
 		if (message.contains("endphase")) {
 			gamelogic.endPhase(message);
 		}
-
+		
 		switch (phase) {
 		case "action":
 			actionphase.chosenCard(message, player);

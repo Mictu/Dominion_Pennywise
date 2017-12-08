@@ -2,6 +2,7 @@ package server.client;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import Splash.Server_View;
 import commons.ChatMsg;
@@ -9,6 +10,7 @@ import commons.JoinMsg;
 import commons.Message;
 import commons.StringMsg;
 import javafx.concurrent.Task;
+import server_Models.Player;
 
 public class Client_Chat {
 	private Socket socket;
@@ -41,7 +43,7 @@ public class Client_Chat {
 				String message = ((StringMsg) msg).getContent();
 				if(message.substring(0, 5).equals("lobby")) {
 					playerName = message.substring(5);
-					
+					sh.addPlayerToList(playerName);
 				}else {
 					server.sendToClient(message);
 				}

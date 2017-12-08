@@ -14,6 +14,7 @@ import commons.StringMsg;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.concurrent.Task;
+import server_Models.Player;
 
 import java.util.ArrayList;
 import controllers.ClientHandler;
@@ -48,6 +49,7 @@ public class Client {
 				socket = new Socket("localhost", 2303);
 				System.out.println("Player " + playerName + " is connected");
 				sendToServer("lobby" + playerName);
+				
 				// Chat
 				while (true) {
 					Message msg = Message.receive(socket);
