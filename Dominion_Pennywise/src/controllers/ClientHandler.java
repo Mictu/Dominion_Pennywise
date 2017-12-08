@@ -24,7 +24,7 @@ public class ClientHandler {
 			message = message.substring(4);
 			boardview.setHand(message);
 		}
-
+		
 		switch (message) {
 		case "openboardview":
 			lobbyC.openBoardView();

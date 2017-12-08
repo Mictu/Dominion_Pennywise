@@ -43,8 +43,8 @@ public class Lobby_Controller {
 	}
 	
 	public void openBoardView() {
-		boardView = new Board_View(lobbyView.getStage(),client);
-		Board_Controller boardController = new Board_Controller(boardView, client); 
+		boardView = new Board_View(lobbyView.getStage(),this.client);
+		Board_Controller boardController = new Board_Controller(boardView, this.client); 
 		boardView.start();
 	}
 
