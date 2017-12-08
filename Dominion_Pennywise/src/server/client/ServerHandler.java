@@ -33,14 +33,7 @@ public class ServerHandler {
 	}
 
 	public String getFirstPlayerName() {
-
 		return Player.players.get(0);
-
-		// player = new Player(s);
-		//// if(s.equals(Player.players.get(0))) {
-		//// player.turn = true;
-		//// }
-		// return player;
 	}
 
 	// public Player getPlayer(String name) {
