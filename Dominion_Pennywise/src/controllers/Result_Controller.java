@@ -11,7 +11,7 @@ public class Result_Controller {
 	public Result_Controller(GameLogic gLogic){
 		
 		
-		for(Player p : gLogic.playerList){
+		for(Player p : Player.player){
 			int minPoint = Integer.MIN_VALUE; 
 			
 		}
