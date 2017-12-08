@@ -16,23 +16,13 @@ public class Lobby_Controller {
 	public Lobby_Controller(Lobby_View lobbyView, Client client){
 		this.lobbyView = lobbyView;
 		this.client = client;
-<<<<<<< HEAD
 
 		System.out.println("kam lobby");
 		// LOBBY
 
-=======
-		
-		//LOBBY		
-		
->>>>>>> branch 'master' of https://github.com/Mictu/Dominion_Pennywise.git
 		lobbyView.btnStartGame.setOnAction(event -> {
-<<<<<<< HEAD
 			System.out.println("button clicked?");
 			client.sendToServer("start");
-=======
-				client.sendToServer("start");
->>>>>>> branch 'master' of https://github.com/Mictu/Dominion_Pennywise.git
 		});
 
 
@@ -54,14 +44,9 @@ public class Lobby_Controller {
 	}
 	
 	public void openBoardView() {
-<<<<<<< HEAD
 		System.out.println("kam an lol");
 		boardView = new Board_View(lobbyView.getStage(), client);
 		Board_Controller boardController = new Board_Controller(boardView, client);
-=======
-		boardView = new Board_View(lobbyView.getStage(),this.client);
-		Board_Controller boardController = new Board_Controller(boardView, this.client); 
->>>>>>> branch 'master' of https://github.com/Mictu/Dominion_Pennywise.git
 		boardView.start();
 	}
 }
