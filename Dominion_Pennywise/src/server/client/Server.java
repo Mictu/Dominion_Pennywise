@@ -1,7 +1,5 @@
 package server.client;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -85,24 +83,11 @@ public class Server extends Application {
 //			serverView.updateServerView(newestMsg, "Connection received from: " );
 			serverView.updateServerView(newestMsg,
 					"Connection received from: " + socket.getInetAddress().getHostName());
-			
 			}
 		}
 
 	};
 
-	
-//	public void serverReceivesMessages() {
-//		String msg;
-//		try {
-//			msg = input.readUTF();
-//			System.out.println("Server receives: " + msg);
-//			sh.printOutFromServer(msg);
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		};
-//	}
 
 	public void setMessage(ArrayList<String> message) {
 		this.fromServer = message;

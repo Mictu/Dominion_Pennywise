@@ -28,7 +28,7 @@ public class Client {
 	String info;
 	Server server;
 
-	ClientHandler clientH;
+	ClientHandler clientH = new ClientHandler();
 	ArrayList<String> deck = new ArrayList<String>();
 
 	public SimpleStringProperty newestMessage = new SimpleStringProperty();
