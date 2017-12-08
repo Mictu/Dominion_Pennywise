@@ -131,14 +131,14 @@ public class Board_View {
 		labels.getChildren().addAll(firstPhase, secondPhase, thirdPhase, reg, bonusMoney, pay, reg2, endPhase);
 		
 		//bindings for the part in between of players hand and cards to buy
-		bindingsForContent(firstPhase, labels, 0.98, 0.09);
-		bindingsForContent(secondPhase, labels, 0.98, 0.09);
-		bindingsForContent(thirdPhase, labels, 0.98, 0.09);
-		bindingsForContent(reg, labels, 0.98, 0.2);
-		bindingsForContent(bonusMoney, labels, 0.98, 0.09);
-		bindingsForContent(pay, labels, 0.98, 0.09);
-		bindingsForContent(reg2, labels, 0.98, 0.2);
-		bindingsForContent(endPhase, labels, 0.98, 0.09);
+		bindingsForContent(firstPhase, labels, 0.98, 0.15);
+		bindingsForContent(secondPhase, labels, 0.98, 0.15);
+		bindingsForContent(thirdPhase, labels, 0.98, 0.15);
+		bindingsForContent(reg, labels, 0.98, 0.05);
+		bindingsForContent(bonusMoney, labels, 0.98, 0.15);
+		bindingsForContent(pay, labels, 0.98, 0.15);
+		bindingsForContent(reg2, labels, 0.98, 0.05);
+		bindingsForContent(endPhase, labels, 0.98, 0.15);
 		
 	//CENTER BOTTOM	
 		
@@ -179,11 +179,11 @@ public class Board_View {
 		vCenter.getChildren().addAll(hCenter1, hCenter2, hCenter3, reg2, labels, reg, stackPane);
 		
 		//bindings for Center content
-		bindingsForContent(hCenter1, vCenter, 0.2, 0.65);
-		bindingsForContent(hCenter2, vCenter, 0.2, 0.65);
-		bindingsForContent(hCenter3, vCenter, 0.2, 0.65);
+		bindingsForContent(hCenter1, vCenter, 0.2, 0.8);
+		bindingsForContent(hCenter2, vCenter, 0.2, 0.8);
+		bindingsForContent(hCenter3, vCenter, 0.2, 0.8);
 		bindingsForContent(reg, vCenter, 0.01, 0.65);
-		bindingsForContent(labels, vCenter, 0.05, 0.65);
+		bindingsForContent(labels, vCenter, 0.05, 0.8);
 		bindingsForContent(reg2, vCenter, 0.01, 0.65);
 		bindingsForContent(stackPane, vCenter, 0.2, 0.65);
 		
@@ -320,19 +320,19 @@ public class Board_View {
 			l.setEffect(null);
 			l.setDisable(false);
 			hCenter1.getChildren().add(l);
-			bindingsForContent(l, hCenter1, 1, 0.13725);
+			bindingsForContent(l, hCenter1, 1, 0.12);
 		}
 		for (Button m : kingdom) {
 			m.setEffect(null);
 			m.setDisable(false);
 			hCenter2.getChildren().add(m);
-			bindingsForContent(m, hCenter2, 1, 0.13725);
+			bindingsForContent(m, hCenter2, 1, 0.12);
 		}
 		for (Button n : treasure) {
 			n.setEffect(null);
 			n.setDisable(false);
 			hCenter3.getChildren().add(n);
-			bindingsForContent(n, hCenter3, 1, 0.13725);
+			bindingsForContent(n, hCenter3, 1, 0.12);
 		}
 	}
 
@@ -345,19 +345,19 @@ public class Board_View {
 			l.setEffect(shadow);
 			l.setDisable(true);
 			hCenter1.getChildren().add(l);
-			bindingsForContent(l, hCenter1, 1, 0.13725);
+			bindingsForContent(l, hCenter1, 1, 0.12);
 		}
 		for (Button m : kingdom) {
 			m.setEffect(shadow);
 			m.setDisable(true);
 			hCenter2.getChildren().add(m);
-			bindingsForContent(m, hCenter2, 1, 0.13725);
+			bindingsForContent(m, hCenter2, 1, 0.12);
 		}
 		for (Button n : treasure) {
 			n.setEffect(shadow);
 			n.setDisable(true);
 			hCenter3.getChildren().add(n);
-			bindingsForContent(n, hCenter3, 1, 0.13725);
+			bindingsForContent(n, hCenter3, 1, 0.12);
 		}
 	}
 	
