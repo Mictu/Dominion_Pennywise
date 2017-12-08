@@ -26,12 +26,14 @@ public class ServerHandler {
 	
 	public Player addPlayerToList(String name) {
 		Player.players.add(name);
+		int count = 0;
 		for(String s : Player.players) {
 			player = new Player(s);
-			if(player.turn == true) {
-				return player;
+			if(count == 0) {
+				player.turn = true;
 			}
 			System.out.println(s);
+			count++;
 		}
 		
 		return player;
