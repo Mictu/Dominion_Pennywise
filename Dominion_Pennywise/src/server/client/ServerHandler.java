@@ -24,35 +24,47 @@ public class ServerHandler {
 	public ServerHandler() {
 	}
 	
-	public void addPlayerToList(String name) {
+	public Player addPlayerToList(String name) {
 		Player.players.add(name);
-//		for(String s : Player.players) {
-//			System.out.println(s);
-//		}
-//		
-		
 		for(String s : Player.players) {
 			player = new Player(s);
-			if(s.equals(Player.players.get(0))) {
-				player.turn = true;
+			if(player.turn == true) {
+				return player;
 			}
-			setPlayer(player);
+			System.out.println(s);
 		}
+		
+		return player;
 	}
 	
-	public Player setPlayer(Player player) {
-		if(player.turn == true) {
-			getActualPlayer(player.getName());
-			return player;
-		}else {
-			return null;
-		}
+	public String getFirstPlayerName() {
+		
+		return Player.players.get(0);
+			
+//			player = new Player(s);
+////			if(s.equals(Player.players.get(0))) {
+////				player.turn = true;
+////			}
+//		return player;
 	}
 	
-	public String getActualPlayer(String name) {
-		return name;
-	}
-
+//	public Player getPlayer(String name) {
+//		for(String s : Player.players) {
+//			if(s.equals(name)) {
+//				
+//			}
+//		}
+//		return player;
+//	}
+//	
+//	public Player setPlayer(Player player) {
+//		if(player.turn == true) {
+//			return player;
+//		}else {
+//			return null;
+//		}
+//	}
+	
 	// Get Strings from Server
 	public void getMessageFromServer(String msg) {
 		String message = msg;
