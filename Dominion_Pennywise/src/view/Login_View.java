@@ -1,6 +1,8 @@
 package view;
 
 import java.util.Locale;
+
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main_Class.ServiceLocator;
@@ -29,10 +32,10 @@ public class Login_View {
 	public TextField nameTxtfield;
 	ComboBox<String> boxLanguage = new ComboBox<String>();
 	
-	VBox topvbox = new VBox(180);
-	VBox vbox = new VBox(30); // for the center
+	VBox topvbox = new VBox(170);
+	VBox vbox = new VBox(40); // for the center
 	HBox hbox1 = new HBox(); // for name and textfield
-	VBox vbox2 = new VBox(5); // for laguage and dropdown
+	VBox vbox2 = new VBox(10); // for language and dropdown
 
 	public Login_View(Stage stage) {
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
@@ -46,6 +49,7 @@ public class Login_View {
 		//Hauptpane as Grundger�st  
 		mainPane = new BorderPane();
 		mainPane.setId("mainPane");
+		BorderPane.setAlignment(topvbox, Pos.CENTER);
 		
 		mainPane.setCenter(vbox);
 		vbox.setAlignment(Pos.CENTER);
@@ -68,6 +72,7 @@ public class Login_View {
 		// Wilkommens Label erstellen und Top
 		welcomeLbl = new Label(t.getString("dominion.login.welcome"));
 		welcomeLbl.setId("welcomeLbl");
+		welcomeLbl.setAlignment(Pos.CENTER);
 		
 		topvbox.getChildren().add(welcomeLbl);
 		topvbox.setAlignment(Pos.CENTER);
@@ -80,24 +85,60 @@ public class Login_View {
 		nameLbl.setId("lblText");
 		languageLbl = new Label(t.getString("dominion.login.language") + ": ");
 		languageLbl.setId("lblText");
+		languageLbl.setAlignment(Pos.CENTER);
 		nameTxtfield = new TextField();
 		nameTxtfield.setId("textField");
 
+		Region reg = new Region();
+		Region reg2 = new Region();
+
 		hbox1.getChildren().addAll(nameLbl, nameTxtfield);
-		vbox2.getChildren().addAll(languageLbl, boxLanguage);
+		vbox2.getChildren().addAll(reg2, languageLbl, boxLanguage, reg);
 
 		lobbyBtn = new Button(t.getString("dominion.login.button.lobby"));
 		exitBtn = new Button(t.getString("dominion.login.button.quit"));
 
 		warning = new Label("");
 		warning.setId("warning");
-
+		warning.setAlignment(Pos.CENTER);
+		
+		
 		vbox.getChildren().addAll(warning ,hbox1, vbox2, lobbyBtn, exitBtn);
 		Scene scene = new Scene(mainPane);
 		scene.getStylesheets().add(getClass().getResource("Login.css").toExternalForm());
 		stage.setScene(scene);
 		stage.setFullScreen(true);
+		
+		// Bindings for resizing the content on the window
+		// mainPane -> topvbox 	-> welcomeLbl
+		//			-> vbox		-> warning
+		//			-> vbox		-> hbox1	-> nameLbl
+		//			-> vbox		-> hbox1	-> nameTxtfield
+		//			-> vbox		-> vbox2	-> languageLbl
+		//			-> vbox		-> vbox2	-> boxLanguage
+		//			-> vbox		-> lobbyBtn
+		//			-> vbox		-> exitBtn
+		
+		setBindings(vbox, mainPane, 0.82, 0.18);
+		setBindings(topvbox, mainPane, 0.15, 0.18);
+		
+		setBindings(hbox1, vbox, 0.05, 0.5);
+		setBindings(vbox2, vbox, 0.09, 1);
+		setBindings(warning, vbox, 0.1, 3);
+		setBindings(lobbyBtn, vbox, 0.06, 0.6);
+		setBindings(exitBtn, vbox, 0.06, 0.8);
 
+		setBindings(nameLbl, hbox1, 1, 0.8);
+		setBindings(nameTxtfield, hbox1, 1, 1.1);
+		
+		setBindings(reg2, vbox2, 0.03, 1);
+		setBindings(languageLbl, vbox2, 0.6, 1);
+		setBindings(boxLanguage, vbox2, 0.6, 0.5);
+		setBindings(reg, vbox2, 0.25, 1);
+		
+		setBindings(welcomeLbl, topvbox, 1, 3);
+		
+		// Bindings for language - setting?
 	}
 
 	protected void updateTexts() {
@@ -120,6 +161,14 @@ public class Login_View {
 
 	public Stage getStage() {
 		return this.stage;
+	}
+	
+	
+	protected void setBindings(Region child, Region parent, double heightMultiply, double widthMultiply){
+		child.maxHeightProperty().bind(parent.heightProperty().multiply(heightMultiply));
+		child.maxWidthProperty().bind(parent.widthProperty().multiply(widthMultiply));
+		child.minHeightProperty().bind(parent.heightProperty().multiply(heightMultiply));
+		child.minWidthProperty().bind(parent.widthProperty().multiply(widthMultiply));
 	}
 
 }

@@ -6,6 +6,7 @@ import server.client.Client;
 public class CardDesign_View {
 
 	Client client;
+	Board_View bV;
 	// private Button cardBtn;
 	protected Button copperBtn, duchyBtn, estateBtn, funfairBtn, goldBtn, laboratoryBtn;
 	protected Button marketBtn, provinceBtn, silverBtn, smithBtn, villageBtn, woodcutterBtn;
