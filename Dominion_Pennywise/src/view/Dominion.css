@@ -93,6 +93,11 @@
 #endBtn:hover {
 	-fx-background-color: darkred;
 }
+#endBtn:pressed {
+	-fx-background-color: darkgray;
+	-fx-text-fill: white;
+	-fx-font-weight: bold;
+}
 
 #btn {
 	-fx-background-color: orange;
@@ -104,6 +109,12 @@
 }
 #btn:hover {
 	-fx-background-color: orangered;
+}
+
+#btn:pressed {
+	-fx-background-color: darkgray;
+	-fx-text-fill: white;
+	-fx-font-weight: bold;
 }
  
 /*

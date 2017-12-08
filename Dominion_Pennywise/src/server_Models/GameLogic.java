@@ -9,8 +9,6 @@ import server.client.ServerHandler;
 public class GameLogic {
 
 	// Initialize sector here
-	protected ArrayList<Player> playerList = new ArrayList<Player>();
-
 	protected CleanUpPhase cleanUpPhase;
 	ActionPhase actionPhase;
 	BuyPhase buyPhase;
@@ -51,7 +49,7 @@ public class GameLogic {
 
 		do {
 			// Every Player does his Phases
-			for (Player player : playerList) {
+			for (Player player : Player.player) {
 				this.player = player;
 				if (countRounds == 1) {
 					gameStart(player);
@@ -71,8 +69,8 @@ public class GameLogic {
 
 	// Add Players to playerList
 	public void addPlayers(Player newPlayer) {
-		playerList.add(newPlayer);
-		Collections.shuffle(playerList); // Random StartList
+		Player.player.add(newPlayer);
+		Collections.shuffle(Player.player); // Random StartList
 	}
 
 	// get the actual phase to let the client know what cards can be pressed
