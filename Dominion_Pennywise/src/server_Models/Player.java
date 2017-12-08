@@ -1,5 +1,6 @@
 package server_Models;
 
+import java.net.Socket;
 import java.util.ArrayList;
 
 import server.client.Server;
@@ -11,9 +12,11 @@ public class Player {
 	protected int actionPoint, buyPoint, bonusBuyPoint;
 	public boolean turn = false;
 
+	
 	public String name;
 	Server server;
-
+	Socket socket;
+	
 	public ArrayList<String> hand = new ArrayList<String>();
 	protected ArrayList<String> deck = new ArrayList<String>();
 	protected ArrayList<String> discard = new ArrayList<String>();

@@ -18,13 +18,13 @@ public class Client_Chat {
 	Server server;
 	Server_View serverView;
 	ServerHandler sh;
+	Player player;
 	
-	protected Client_Chat(Server server,Socket socket) {
+	public Client_Chat(Server server,Socket socket) {
 		this.server = server;
 		this.socket = socket;
 		sh = new ServerHandler(); 
 		new Thread(messageThread).start();
-		
 	}
 
 	final Task<Void> messageThread = new Task<Void>() {
@@ -45,9 +45,9 @@ public class Client_Chat {
 					playerName = message.substring(5);
 					sh.addPlayerToList(playerName);
 				}else {
+//					sh.getMessageFromServer(((StringMsg) msg).getContent());
 					server.sendToClient(message);
-				}
-				sh.getMessageFromServer(((StringMsg) msg).getContent());	
+				}	
 			}
 			}
 		}
