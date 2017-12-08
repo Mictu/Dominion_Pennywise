@@ -27,9 +27,6 @@ public class ServerHandler {
 	public void addPlayerToList(String name) {
 		Player.players.add(name);
 		player = new Player(name);
-		for (String s: Player.players) {
-			System.out.println(s);
-		}
 	}
 
 	public String getFirstPlayerName() {
