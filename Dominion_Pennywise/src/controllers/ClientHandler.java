@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import javafx.scene.control.Button;
 import server.client.Client;
 import view.Board_View;
+import view.Lobby_View;
 
 public class ClientHandler {
 	Client client;
+	Lobby_View lobbyv;
 	Lobby_Controller lobbyC;
-	
+	boolean openBV = false;
 	Board_View boardview;
 
 	String phase;
@@ -27,7 +29,7 @@ public class ClientHandler {
 
 		switch (message) {
 		case "openboardview":
-			lobbyC.openBoardView();
+			openBV = true;
 			break;
 		case "buy":
 			phase = "buy";
@@ -41,5 +43,9 @@ public class ClientHandler {
 
 	public String getPhase() { // get the actual phases
 		return this.phase;
+	}
+	
+	public boolean getopenBV() {
+		return openBV;
 	}
 }
