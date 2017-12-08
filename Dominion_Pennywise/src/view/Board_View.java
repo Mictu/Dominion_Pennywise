@@ -245,6 +245,8 @@ public class Board_View {
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("Dominion.css").toExternalForm());
 		stage.setScene(scene);
+
+		setStageBindings(root, stage, 1, 1);
 	} // Close the Constructor
 
 	public void start() {
@@ -366,7 +368,12 @@ public class Board_View {
 		child.minHeightProperty().bind(parent.heightProperty().multiply(heightMultiply));
 		child.minWidthProperty().bind(parent.widthProperty().multiply(widthMultiply));
 	}
-
+	protected void setStageBindings(Region child, Stage stage2, double heightMultiply, double widthMultiply){
+		child.maxHeightProperty().bind(stage2.heightProperty().multiply(heightMultiply));
+		child.maxWidthProperty().bind(stage2.widthProperty().multiply(widthMultiply));
+		child.minHeightProperty().bind(stage2.heightProperty().multiply(heightMultiply));
+		child.minWidthProperty().bind(stage2.widthProperty().multiply(widthMultiply));
+	}
 	
 }// close class
 

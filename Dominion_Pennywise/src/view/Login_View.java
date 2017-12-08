@@ -119,6 +119,8 @@ public class Login_View {
 		//			-> vbox		-> lobbyBtn
 		//			-> vbox		-> exitBtn
 		
+		setStageBindings(mainPane, stage, 1, 1);
+		
 		setBindings(vbox, mainPane, 0.82, 0.18);
 		setBindings(topvbox, mainPane, 0.15, 0.18);
 		
@@ -169,6 +171,12 @@ public class Login_View {
 		child.maxWidthProperty().bind(parent.widthProperty().multiply(widthMultiply));
 		child.minHeightProperty().bind(parent.heightProperty().multiply(heightMultiply));
 		child.minWidthProperty().bind(parent.widthProperty().multiply(widthMultiply));
+	}
+	protected void setStageBindings(Region child, Stage stage2, double heightMultiply, double widthMultiply){
+		child.maxHeightProperty().bind(stage2.heightProperty().multiply(heightMultiply));
+		child.maxWidthProperty().bind(stage2.widthProperty().multiply(widthMultiply));
+		child.minHeightProperty().bind(stage2.heightProperty().multiply(heightMultiply));
+		child.minWidthProperty().bind(stage2.widthProperty().multiply(widthMultiply));
 	}
 
 }
