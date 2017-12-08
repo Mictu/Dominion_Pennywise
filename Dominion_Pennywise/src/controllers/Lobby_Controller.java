@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.stage.Stage;
 import server.client.Client;
+import server_Models.Player;
 import view.Board_View;
 import view.Lobby_View;
 import view.Login_View;
@@ -20,9 +21,7 @@ public class Lobby_Controller {
 		//LOBBY		
 		
 		lobbyView.btnStartGame.setOnAction(event -> {
-				boardView = new Board_View(lobbyView.getStage(),client);
-				Board_Controller boardController = new Board_Controller(boardView, client); 
-				boardView.start();
+				client.sendToServer("start");
 		});
 
 
@@ -41,6 +40,12 @@ public class Lobby_Controller {
 	// ExitMethode for all Views
 	private void exit(Stage stage) {
 		stage.hide();
+	}
+	
+	public void openBoardView() {
+		boardView = new Board_View(lobbyView.getStage(),client);
+		Board_Controller boardController = new Board_Controller(boardView, client); 
+		boardView.start();
 	}
 
 }

@@ -20,7 +20,6 @@ public class Player {
 	public ArrayList<String> hand = new ArrayList<String>();
 	protected ArrayList<String> deck = new ArrayList<String>();
 	protected ArrayList<String> discard = new ArrayList<String>();
-	public static ArrayList<String> players = new ArrayList<String>();
 	public static ArrayList<Player> player = new ArrayList<Player>();
 	
 

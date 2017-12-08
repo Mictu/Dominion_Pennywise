@@ -1,6 +1,8 @@
 package server.client;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import server_Models.ActionPhase;
 import server_Models.BuyPhase;
@@ -18,21 +20,23 @@ public class ServerHandler {
 	String phase;
 	Player player;
 	Client_Chat ClientC;
+	Server server;
 
 	public ArrayList<String> handCards = new ArrayList<String>();
 
-	public ServerHandler() {
+	public ServerHandler(Server server) {
+		this.server = server;
 	}
 
 	public void addPlayerToList(String name) {
-		Player.players.add(name);
 		player = new Player(name);
 		Player.player.add(player);
+		Collections.shuffle(Player.player);
 	}
 
-	public String getFirstPlayerName() {
-		return Player.players.get(0);
-	}
+	// public String getFirstPlayerName() {
+	// return Player.players.get(0);
+	// }
 
 	// public Player getPlayer(String name) {
 	// for(String s : Player.players) {
@@ -54,9 +58,15 @@ public class ServerHandler {
 	// Get Strings from Server
 	public void getMessageFromServer(String msg) {
 		String message = msg;
-		gamelogic = new GameLogic();
-		actionphase = new ActionPhase();
-		String phase = gamelogic.getActualPhase();
+		if (message.equals("start")) {
+			if (Player.player.size() > 1 && Player.player.size() < 5) {
+				System.out.println("hallo");
+				server.sendToClient("openboardview");
+//				gamelogic = new GameLogic();
+//				phase = gamelogic.getActualPhase();
+//				actionphase = new ActionPhase();
+			}
+		}
 
 		if (message.contains("endphase")) {
 			gamelogic.endPhase(message);

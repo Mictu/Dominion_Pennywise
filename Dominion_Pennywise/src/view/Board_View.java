@@ -272,7 +272,7 @@ public class Board_View {
 				Button b = new Button();
 				b.setOnAction((event) -> {
 					try{
-						String cardID = b.getId();
+						String cardID = "hand" + b.getId();
 						client.sendToServer(cardID);
 						playSound();
 					} catch (Exception e) {

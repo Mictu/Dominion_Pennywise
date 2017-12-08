@@ -94,8 +94,9 @@ public class Server extends Application {
 	}
 	
 	public void sendToClient(String msg) {
-		clients.get(0).sendStringMsgToClient(msg);
-		
+		for(Client_Chat c : clients) {
+			c.sendStringMsgToClient(msg);
+		}
 	}
 
 	// chat

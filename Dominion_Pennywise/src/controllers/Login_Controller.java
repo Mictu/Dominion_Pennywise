@@ -4,6 +4,7 @@ import javafx.stage.Stage;
 import main_Class.ServiceLocator;
 import server.client.Client;
 import server_Models.Translator;
+import view.Board_View;
 import view.Lobby_View;
 import view.Login_View;
 
@@ -61,5 +62,6 @@ public class Login_Controller {
 	public String getPlayerName() {
 		return playerName;
 	}
+	
 	
 }

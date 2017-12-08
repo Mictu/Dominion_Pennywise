@@ -49,18 +49,19 @@ public class Client {
 				socket = new Socket("localhost", 2303);
 				System.out.println("Player " + playerName + " is connected");
 				sendToServer("lobby" + playerName);
-				
+
 				// Chat
 				while (true) {
 					Message msg = Message.receive(socket);
-					if(msg instanceof ChatMsg) {
-						ChatMsg chatMsg = (ChatMsg)msg;
+					if (msg instanceof ChatMsg) {
+						ChatMsg chatMsg = (ChatMsg) msg;
 						Platform.runLater(() -> {
 							newestMessage.set(chatMsg.getPlayerName() + ": " + chatMsg.getContent());
 						});
-					}else if(msg instanceof StringMsg){
+					} else if (msg instanceof StringMsg) {
 						String message = ((StringMsg) msg).getContent();
 						clientH.getMessageFromClient(message);
+
 					}
 				}
 

@@ -3,39 +3,42 @@ package controllers;
 import java.util.ArrayList;
 
 import javafx.scene.control.Button;
+import server.client.Client;
 import view.Board_View;
 
 public class ClientHandler {
+	Client client;
+	Lobby_Controller lobbyC;
 	
 	Board_View boardview;
-	
-	String phase; 
+
+	String phase;
 	ArrayList<Button> handCardList = new ArrayList<Button>();
 	
-	
-	public void getMessageFromClient(String msg){
+
+	public void getMessageFromClient(String msg) {
 		String message = msg;
-		
-		System.out.println("clientHandler1:" + message);
-		//Get message to set the player hand view
-		if(message.length() > 4 && message.substring(0, 4).equals("hand")){
+
+		// Get message to set the player hand view
+		if (message.length() > 4 && message.substring(0, 4).equals("hand")) {
 			message = message.substring(4);
 			boardview.setHand(message);
 		}
-		System.out.println("clientHandler2:" + message);
 
-		if (message.equals("buy")) {
+		switch (message) {
+		case "openboardview":
+			lobbyC.openBoardView();
+			break;
+		case "buy":
 			phase = "buy";
-		}
-		
-		System.out.println("clientHandler3:" + message);
-		
-		if(message.equals("action")) {
+			break;
+		case "action":
 			phase = "action";
+			break;
 		}
-		System.out.println("clientHandler4:" + message);
+
 	}
-	
+
 	public String getPhase() { // get the actual phases
 		return this.phase;
 	}

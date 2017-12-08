@@ -23,7 +23,7 @@ public class Client_Chat {
 	public Client_Chat(Server server,Socket socket) {
 		this.server = server;
 		this.socket = socket;
-		sh = new ServerHandler(); 
+		sh = new ServerHandler(server); 
 		new Thread(messageThread).start();
 	}
 
@@ -44,7 +44,8 @@ public class Client_Chat {
 				if(message.substring(0, 5).equals("lobby")) {
 					playerName = message.substring(5);
 					sh.addPlayerToList(playerName);
-					
+				}else if(message.equals("start")){
+					sh.getMessageFromServer(message);
 				}else {
 					server.sendToClient(message);
 //					sh.getMessageFromServer(((StringMsg) msg).getContent());

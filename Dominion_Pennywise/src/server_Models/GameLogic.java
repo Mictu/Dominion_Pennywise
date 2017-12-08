@@ -1,6 +1,5 @@
 package server_Models;
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 import server.client.Server;
@@ -27,8 +26,6 @@ public class GameLogic {
 
 	// Constructor
 	public GameLogic() {
-		actionPhase = new ActionPhase();
-		buyPhase = new BuyPhase();
 		theGame();
 	} // Close Constructor
 
