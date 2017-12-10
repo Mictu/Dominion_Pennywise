@@ -60,7 +60,6 @@ public class ServerHandler {
 		String message = msg;
 		if (message.equals("start")) {
 			if (Player.player.size() > 1 && Player.player.size() < 5) {
-				System.out.println("hallo");
 				server.sendToClient("openboardview");
 //				gamelogic = new GameLogic();
 //				phase = gamelogic.getActualPhase();

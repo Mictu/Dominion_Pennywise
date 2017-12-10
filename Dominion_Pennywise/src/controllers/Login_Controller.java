@@ -15,8 +15,6 @@ public class Login_Controller {
 	Lobby_View lobbyView;
 	String playerName;
 	Lobby_Controller lobbyController;
-
-	ClientHandler clienthandler = new ClientHandler(); 
 	
 	public Login_Controller(Login_View loginView) {
 		this.loginView = loginView;

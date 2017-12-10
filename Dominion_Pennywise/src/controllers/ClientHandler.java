@@ -2,15 +2,16 @@ package controllers;
 
 import java.util.ArrayList;
 
+import javafx.application.Platform;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import server.client.Client;
 import view.Board_View;
-import view.Lobby_View;
 
 public class ClientHandler {
 	Client client;
-	Lobby_View lobbyv;
 	Lobby_Controller lobbyC;
+	Login_Controller loginC;
 	boolean openBV = false;
 	Board_View boardview;
 
@@ -29,7 +30,9 @@ public class ClientHandler {
 
 		switch (message) {
 		case "openboardview":
-			openBV = true;
+			Platform.runLater(()-> {
+				openBoardView();
+			});
 			break;
 		case "buy":
 			phase = "buy";
@@ -45,7 +48,18 @@ public class ClientHandler {
 		return this.phase;
 	}
 	
+	public void setopenBV(boolean openBV) {
+		this.openBV = openBV;
+	}
+	
 	public boolean getopenBV() {
 		return openBV;
 	}
+	
+	public void openBoardView() {
+		boardview = new Board_View(new Stage(), client);
+		Board_Controller boardController = new Board_Controller(boardview, client);
+		boardview.start();
+	}
+	
 }

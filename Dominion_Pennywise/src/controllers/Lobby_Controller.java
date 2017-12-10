@@ -1,9 +1,7 @@
 package controllers;
 
-import javafx.concurrent.Task;
 import javafx.stage.Stage;
 import server.client.Client;
-import server_Models.Player;
 import view.Board_View;
 import view.Lobby_View;
 import view.Login_View;
@@ -11,7 +9,6 @@ import view.Login_View;
 public class Lobby_Controller {
 
 	Lobby_View lobbyView;
-	Login_View loginView;
 	Board_View boardView;
 	Client client;
 	ClientHandler clientH;
@@ -24,7 +21,7 @@ public class Lobby_Controller {
 
 		lobbyView.btnStartGame.setOnAction(event -> {
 			client.sendToServer("start");
-			new Thread(waitForOpenBV).start();
+			
 		});
 
 		lobbyView.btnLeaveGame.setOnAction((event) -> {
@@ -44,24 +41,5 @@ public class Lobby_Controller {
 		stage.hide();
 	}
 
-	public void openBoardView() {
-		boardView = new Board_View(lobbyView.getStage(), client);
-		Board_Controller boardController = new Board_Controller(boardView, client);
-		boardView.start();
-	}
-
-	final Task<Void> waitForOpenBV = new Task<Void>() {
-		@Override
-		protected Void call() throws Exception {
-			System.out.println("thread1");
-			while (true) {
-				if (clientH.getopenBV()) {
-					System.out.println("thread2");
-					openBoardView();
-					System.out.println("thread3");
-				}
-			}
-		}
-	};
 
 }

@@ -61,7 +61,6 @@ public class Client {
 					} else if (msg instanceof StringMsg) {
 						String message = ((StringMsg) msg).getContent();
 						clientH.getMessageFromClient(message);
-
 					}
 				}
 
@@ -117,21 +116,19 @@ public class Client {
 		return playerName;
 	}
 
-	@SuppressWarnings("unchecked")
-	public void getArrayFromServer() {
-		try {
-			ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-			ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-
-			clientH = new ClientHandler();
-
-			this.deck = (ArrayList<String>) objectInput.readObject();
-
-			// clientH.getDeckFromServer(deck);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	@SuppressWarnings("unchecked")
+//	public void getArrayFromServer() {
+//		try {
+//			ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
+//			ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
+//
+//			this.deck = (ArrayList<String>) objectInput.readObject();
+//
+//			// clientH.getDeckFromServer(deck);
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 }
