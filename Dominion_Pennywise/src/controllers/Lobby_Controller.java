@@ -10,19 +10,24 @@ public class Lobby_Controller {
 
 	Lobby_View lobbyView;
 	Board_View boardView;
+	Login_View loginView;
 	Client client;
-	ClientHandler clientH;
-
-	public Lobby_Controller(Lobby_View lobbyView, Client client) {
+	
+	public Lobby_Controller(Lobby_View lobbyView, Client client){
 		this.lobbyView = lobbyView;
 		this.client = client;
 
-		// LOBBY
 
 		lobbyView.btnStartGame.setOnAction(event -> {
 			client.sendToServer("start");
-			
 		});
+			
+
+		lobbyView.btnStartGame.setOnAction(event -> {
+			System.out.println("button clicked?");
+			client.sendToServer("start");
+		});
+
 
 		lobbyView.btnLeaveGame.setOnAction((event) -> {
 			exit(lobbyView.getStage());
@@ -33,13 +38,12 @@ public class Lobby_Controller {
 
 		client.newestMessage.addListener((o, oldValue, newValue) -> lobbyView.txtChatArea.appendText(newValue + "\n"));
 
-		// lobbyView.stage.setOnCloseRequest( event -> client.disconnectClient());
+//		lobbyView.stage.setOnCloseRequest( event -> client.disconnectClient());
 	}// Close Constructor
 
 	// ExitMethode for all Views
 	private void exit(Stage stage) {
 		stage.hide();
 	}
-
 
 }

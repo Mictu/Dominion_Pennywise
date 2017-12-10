@@ -1,5 +1,6 @@
 package Splash;
 
+import controllers.ClientHandler;
 import controllers.Login_Controller;
 import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
@@ -118,6 +119,6 @@ public class S_View {
 	}
 
 	
-    // change label text every 1-3 seconds? "gemischelt, geladen, rasen wird gemäht"
+    // change label text every 1-3 seconds? "gemischelt, geladen, rasen wird gemï¿½ht"
     
 }
