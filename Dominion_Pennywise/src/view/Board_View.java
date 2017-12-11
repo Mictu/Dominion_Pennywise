@@ -263,6 +263,7 @@ public class Board_View {
 	
 	
 	public void setHand(String card) {
+		System.out.println("started method setHand in boardView");
 		if (!card.equals("end")) {
 			handFromServer.add(card);
 		}

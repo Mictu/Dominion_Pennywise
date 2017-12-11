@@ -2,8 +2,6 @@ package server.client;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
-
 import server_Models.ActionPhase;
 import server_Models.BuyPhase;
 import server_Models.CleanUpPhase;
@@ -26,12 +24,14 @@ public class ServerHandler {
 
 	public ServerHandler(Server server) {
 		this.server = server;
+		
+		gamelogic = new GameLogic();
 	}
 
 	public void addPlayerToList(String name) {
 		player = new Player(name);
 		Player.player.add(player);
-		Collections.shuffle(Player.player);
+//		Collections.shuffle(Player.player);
 	}
 
 	// public String getFirstPlayerName() {
@@ -61,12 +61,13 @@ public class ServerHandler {
 		if (message.equals("start")) {
 			if (Player.player.size() > 1 && Player.player.size() < 5) {
 				server.sendToClient("openboardview");
-//				gamelogic = new GameLogic();
-//				phase = gamelogic.getActualPhase();
-//				actionphase = new ActionPhase();
+				
+				gamelogic.theGame();
+				phase = gamelogic.getActualPhase();
+				actionphase = new ActionPhase();
 			}
 		}
-
+		
 		if (message.contains("endphase")) {
 			gamelogic.endPhase(message);
 		}

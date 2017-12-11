@@ -98,6 +98,10 @@ public class Server extends Application {
 			c.sendStringMsgToClient(msg);
 		}
 	}
+	
+	public void sendStringToClient(String msg, int index) {
+		clients.get(index).sendStringMsgToClient(msg);
+	}
 
 	// chat
 

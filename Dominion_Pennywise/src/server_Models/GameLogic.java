@@ -1,7 +1,5 @@
 package server_Models;
 
-import java.util.Collections;
-
 import server.client.Server;
 import server.client.ServerHandler;
 
@@ -17,16 +15,16 @@ public class GameLogic {
 	protected final int START_ESTATE = 3;
 	
 	protected String actualPhase = "action";
+	protected int playerIndex;	
 	
 	ServerHandler serverHandler;
-	protected Server server;
-	protected CleanUpPhase cleanPhase;
+	Server server;
+	CleanUpPhase cleanPhase;
 	
 	Player player;
 
 	// Constructor
 	public GameLogic() {
-		theGame();
 	} // Close Constructor
 
 	protected void gameStart(Player player) {
@@ -37,37 +35,32 @@ public class GameLogic {
 		for (int i = 0; i < START_ESTATE; i++) {
 			player.discard.add("estate");
 		}
-
 		cleanPhase = new CleanUpPhase(player);
 	}
 
-	protected void theGame() {
+	public void theGame() {
 		countRounds = 1;
-
 		do {
 			// Every Player does his Phases
+			playerIndex = 0;
 			for (Player player : Player.player) {
 				this.player = player;
 				if (countRounds == 1) {
-					gameStart(player);
+					gameStart(this.player);
 				}
-				player.startRound();
+				this.player.startRound();
+				
+				sendPlayersHand();
 				
 				actualPhase = "action";
-				System.out.println(actualPhase);
-				server.sendToClient(actualPhase);
+				server.sendStringToClient(actualPhase, playerIndex);
+				playerIndex++;
 			}
 
 			countRounds++;
 			// Play as long until these options aren't true anymore
 			// } while (countRounds <= 15 || Cards.CardType.Kingdom.Province > 0);
 		} while (countRounds <= 15);
-	}
-
-	// Add Players to playerList
-	public void addPlayers(Player newPlayer) {
-		Player.player.add(newPlayer);
-		Collections.shuffle(Player.player); // Random StartList
 	}
 
 	// get the actual phase to let the client know what cards can be pressed
@@ -116,8 +109,8 @@ public class GameLogic {
 	
 	public void sendPlayersHand() {
 		for (String card : player.hand) 
-			server.sendToClient("hand"+card);
-		server.sendToClient("hand"+"end");
+			server.sendStringToClient("hand"+card, playerIndex);
+		server.sendStringToClient("hand"+"end", playerIndex);
 	}
 	
 	public String getActualPhase() {

@@ -35,6 +35,7 @@ public class ClientHandler {
 
 	public static void getMessageFromClient(String msg) {
 		String message = msg;
+		System.out.println(message);
 
 		// Get message to set the player hand view
 		if (message.length() > 4 && message.substring(0, 4).equals("hand")) {

@@ -1,6 +1,5 @@
 package Splash;
 
-import controllers.ClientHandler;
 import controllers.Login_Controller;
 import javafx.concurrent.Task;
 import javafx.concurrent.Worker;
@@ -64,19 +63,6 @@ public class S_View {
 		initialize();
 	}
 	
-	Task<Void> loadServer = new Task<Void>() {
-		protected Void call() throws Exception {
-			try {
-				server = new Server();
-				server.connect();
-			} catch (Exception e) {
-				System.out.println("Failed Server-Connection");
-				e.printStackTrace();
-			}
-			return null;
-		}
-	};
-	
 		Task<Void> initializer = new Task<Void>() {
 			protected Void call() throws Exception {
 				Integer i = 0;
@@ -95,10 +81,6 @@ public class S_View {
 	
 	public void initialize() {
 		new Thread(initializer).start();
-		
-		if (startTheServer) {
-			new Thread(loadServer).start();
-		}
 	}
 	
 	public void runnable(Stage primaryStage) {
