@@ -50,6 +50,9 @@ public class GameLogic {
 					gameStart(this.player);
 				}
 				this.player.startRound();
+				for(String s : player.hand) {
+					System.out.println(s);
+				}
 				
 				actualPhase = "action";
 				server.sendStringToClient(actualPhase, playerIndex);
