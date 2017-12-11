@@ -18,11 +18,9 @@ public abstract class Message {
 	
 	public void send(Socket socket) {
 		OutputStreamWriter out;
-		
 		try {
 			out = new OutputStreamWriter(socket.getOutputStream());
 			System.out.println("Sending message: " + this.toString());
-			//sendToServer
 			out.write(this.toString() + "\n");
 			out.flush();
 		} catch (IOException e) {

@@ -375,7 +375,7 @@
 }
 
 #back {
-	-fx-background-image: url("Rückseite.jpg");
+	-fx-background-image: url("Rueckseite.jpg");
 	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;

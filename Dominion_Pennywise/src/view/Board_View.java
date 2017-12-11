@@ -55,7 +55,6 @@ public class Board_View {
 	protected ArrayList <Button> kingdom = new ArrayList<Button>();
 	protected ArrayList <Button> victory = new ArrayList<Button>();
 
-	ClientHandler clientHandler; 
 	
 //	 constructor
 	public Board_View(Stage s, Client client) {
@@ -115,7 +114,7 @@ public class Board_View {
 		endPhase.setId("endBtn");
 		bonusMoney = new Button("Bonusgeld: 0");
 		bonusMoney.setId("btn");
-		pay = new Button("Bezahlen bestätigen");
+		pay = new Button("Bezahlen bestï¿½tigen");
 		pay.setId("btn");
 		
 		HBox labels = new HBox(20) ;
@@ -267,6 +266,7 @@ public class Board_View {
 		if (!card.equals("end")) {
 			handFromServer.add(card);
 		}
+		
 		if (card.equals("end")) {
 			this.hBoxHand.getChildren().clear();
 			while (handCards.size() < handFromServer.size()) {
@@ -280,24 +280,21 @@ public class Board_View {
 						System.out.println("Button der hand haben noch keine ID erhalten");
 					}
 				});
-				bindingsForContent(b, hBottom, 1, 0.12);
+				bindingsForContent(b, hBoxHand, 1, 0.12);
 				handCards.add(b);
 			}
 			for (int i = 0; i < handFromServer.size(); i++) {
 				handCards.get(i).setId(handFromServer.get(i));
 				this.hBoxHand.getChildren().add(handCards.get(i));
 			}
+			handFromServer.clear();
 			setCards();
-		}
-		for(Button b : handCards){
-			b.setDisable(false);
 		}
 		handCards.clear();
 	}
 	
 	public void setCards() {
-		String phase = clientHandler.getPhase();
-		if (phase.equals("buy")) {
+		if (ClientHandler.phase.equals("buy")) {
 			setCardsOnViewEnable();
 			for (Button b : handCards) {
 				if (!b.getId().equals("copper") || !b.getId().equals("silver") || !b.getId().equals("gold")) {
@@ -307,7 +304,7 @@ public class Board_View {
 				}
 			}
 		}
-		if (phase.equals("action")) {
+		if (ClientHandler.phase.equals("action")) {
 			setCardsOnViewDisable();
 			for (Button b : handCards) {
 				if (!b.getId().equals("smith") || !b.getId().equals("market") || !b.getId().equals("laboratory")

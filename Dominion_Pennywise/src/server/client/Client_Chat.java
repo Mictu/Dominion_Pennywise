@@ -44,12 +44,9 @@ public class Client_Chat {
 				if(message.substring(0, 5).equals("lobby")) {
 					playerName = message.substring(5);
 					sh.addPlayerToList(playerName);
-				}else if(message.equals("start")){
-					sh.getMessageFromServer(message);
 				}else {
-					server.sendToClient(message);
-//					sh.getMessageFromServer(((StringMsg) msg).getContent());
-				}	
+					sh.getMessageFromServer(message);
+				}
 			}
 			}
 		}

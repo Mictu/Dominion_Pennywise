@@ -25,7 +25,7 @@ public class ServerHandler {
 	public ServerHandler(Server server) {
 		this.server = server;
 		
-		gamelogic = new GameLogic();
+		gamelogic = new GameLogic(server);
 	}
 
 	public void addPlayerToList(String name) {
@@ -34,29 +34,9 @@ public class ServerHandler {
 //		Collections.shuffle(Player.player);
 	}
 
-	// public String getFirstPlayerName() {
-	// return Player.players.get(0);
-	// }
-
-	// public Player getPlayer(String name) {
-	// for(String s : Player.players) {
-	// if(s.equals(name)) {
-	//
-	// }
-	// }
-	// return player;
-	// }
-	//
-	// public Player setPlayer(Player player) {
-	// if(player.turn == true) {
-	// return player;
-	// }else {
-	// return null;
-	// }
-	// }
-
 	// Get Strings from Server
 	public void getMessageFromServer(String msg) {
+		System.out.println("kam sh an");
 		String message = msg;
 		if (message.equals("start")) {
 			if (Player.player.size() > 1 && Player.player.size() < 5) {
@@ -64,7 +44,6 @@ public class ServerHandler {
 				
 				gamelogic.theGame();
 				phase = gamelogic.getActualPhase();
-				actionphase = new ActionPhase();
 			}
 		}
 		
@@ -74,6 +53,7 @@ public class ServerHandler {
 
 		switch (phase) {
 		case "action":
+			actionphase = new ActionPhase();
 			actionphase.chosenCard(message, player);
 		case "buy":
 			buyphase.buyCard(message, player);

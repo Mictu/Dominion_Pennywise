@@ -16,16 +16,15 @@ public class ClientHandler {
 	Login_Controller loginC;
 	Board_Controller boardC;
 	Result_Controller resultC;
-	
+
 	Login_View loginV;
-	
+
+	static String message;
 	static Board_View boardview;
 	Lobby_View lobbyV;
-	
 
-	static String phase;
+	public static String phase;
 	ArrayList<Button> handCardList = new ArrayList<Button>();
-	
 
 	public void initializeLobbyController(Lobby_View lobbyView, Client client2) {
 		this.lobbyV = lobbyView;
@@ -34,18 +33,20 @@ public class ClientHandler {
 	}
 
 	public static void getMessageFromClient(String msg) {
-		String message = msg;
+		message = msg;
 		System.out.println(message);
 
 		// Get message to set the player hand view
 		if (message.length() > 4 && message.substring(0, 4).equals("hand")) {
 			message = message.substring(4);
-			boardview.setHand(message);
+			Platform.runLater(() -> {
+				boardview.setHand(message);
+			});
 		}
-		
+
 		switch (message) {
 		case "openboardview":
-			Platform.runLater(()-> {
+			Platform.runLater(() -> {
 				openBoardView();
 			});
 
@@ -60,17 +61,12 @@ public class ClientHandler {
 
 	}
 
-
-	public String getPhase() { // get the actual phases
-		return ClientHandler.phase;
-	}
-	
 	public static void openBoardView() {
-		//lobbyV.stop();
+		// lobbyV.stop();
 		Lobby_View.stop();
 		boardview = new Board_View(new Stage(), client);
 		Board_Controller boardController = new Board_Controller(boardview, client);
 		boardview.start();
 	}
-	
+
 }

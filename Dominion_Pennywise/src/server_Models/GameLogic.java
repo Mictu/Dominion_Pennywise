@@ -14,7 +14,7 @@ public class GameLogic {
 	protected final int START_MONEY = 7;
 	protected final int START_ESTATE = 3;
 	
-	protected String actualPhase = "action";
+	protected String actualPhase;
 	protected int playerIndex;	
 	
 	ServerHandler serverHandler;
@@ -24,7 +24,8 @@ public class GameLogic {
 	Player player;
 
 	// Constructor
-	public GameLogic() {
+	public GameLogic(Server server) {
+		this.server = server;
 	} // Close Constructor
 
 	protected void gameStart(Player player) {
@@ -50,17 +51,17 @@ public class GameLogic {
 				}
 				this.player.startRound();
 				
-				sendPlayersHand();
-				
 				actualPhase = "action";
 				server.sendStringToClient(actualPhase, playerIndex);
+				sendPlayersHand();
+				
 				playerIndex++;
 			}
 
 			countRounds++;
 			// Play as long until these options aren't true anymore
 			// } while (countRounds <= 15 || Cards.CardType.Kingdom.Province > 0);
-		} while (countRounds <= 15);
+		} while (countRounds <= 1);
 	}
 
 	// get the actual phase to let the client know what cards can be pressed
@@ -108,8 +109,10 @@ public class GameLogic {
 	}
 	
 	public void sendPlayersHand() {
-		for (String card : player.hand) 
+		for (String card : player.hand) {
 			server.sendStringToClient("hand"+card, playerIndex);
+		}
+			
 		server.sendStringToClient("hand"+"end", playerIndex);
 	}
 	
