@@ -3,8 +3,6 @@ package server.client;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 import commons.ChatMsg;
@@ -14,8 +12,6 @@ import commons.StringMsg;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.concurrent.Task;
-import server_Models.Player;
-
 import java.util.ArrayList;
 import controllers.ClientHandler;
 
@@ -28,7 +24,6 @@ public class Client {
 	String info;
 	Server server;
 
-	ClientHandler clientH = new ClientHandler();
 	ArrayList<String> deck = new ArrayList<String>();
 
 	public SimpleStringProperty newestMessage = new SimpleStringProperty();
@@ -60,7 +55,7 @@ public class Client {
 						});
 					} else if (msg instanceof StringMsg) {
 						String message = ((StringMsg) msg).getContent();
-						clientH.getMessageFromClient(message);
+						ClientHandler.getMessageFromClient(message);
 					}
 				}
 

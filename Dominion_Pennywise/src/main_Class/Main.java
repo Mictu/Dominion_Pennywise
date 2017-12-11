@@ -60,7 +60,7 @@ public class Main extends Application {
 			loginView.stop();
 		}
 		if (lobbyView != null) {
-			lobbyView.stop();
+			Lobby_View.stop();
 		}
 		if (boardView != null) {
 			boardView.stop();

@@ -14,7 +14,7 @@ import server_Models.Translator;
 
 public class Lobby_View {
 	
-	public Stage stage;
+	public static Stage stage;
 	
 	BorderPane mainPane; 
 	
@@ -38,7 +38,7 @@ public class Lobby_View {
 	public Lobby_View(Stage stage){
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 		Translator t = sl.getTranslator();
-		this.stage = stage; 
+		Lobby_View.stage = stage; 
 //		stage.setResizable(false);
 		stage.setTitle("Dominion Lobby");
 		
@@ -84,12 +84,12 @@ public class Lobby_View {
 		stage.show();
 	}
 	
-	public void stop() {
-		this.stage.hide();
+	public static void stop() {
+		stage.hide();
 	}
 	
 	public Stage getStage() {
-		return this.stage;
+		return Lobby_View.stage;
 	}
 	
 }

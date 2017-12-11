@@ -11,30 +11,29 @@ import view.Lobby_View;
 import view.Login_View;
 
 public class ClientHandler {
-	Client client;
+	static Client client;
 	Lobby_Controller lobbyC;
 	Login_Controller loginC;
-	boolean openBV = false;
 	Board_Controller boardC;
 	Result_Controller resultC;
 	
 	Login_View loginV;
 	
-	Board_View boardview;
+	static Board_View boardview;
 	Lobby_View lobbyV;
 	
 
-	String phase;
+	static String phase;
 	ArrayList<Button> handCardList = new ArrayList<Button>();
 	
 
 	public void initializeLobbyController(Lobby_View lobbyView, Client client2) {
 		this.lobbyV = lobbyView;
-		this.client = client2;
-		lobbyC = new Lobby_Controller(this.lobbyV, this.client);
+		ClientHandler.client = client2;
+		lobbyC = new Lobby_Controller(this.lobbyV, ClientHandler.client);
 	}
 
-	public void getMessageFromClient(String msg) {
+	public static void getMessageFromClient(String msg) {
 		String message = msg;
 
 		// Get message to set the player hand view
@@ -62,19 +61,12 @@ public class ClientHandler {
 
 
 	public String getPhase() { // get the actual phases
-		return this.phase;
+		return ClientHandler.phase;
 	}
 	
-	public void setopenBV(boolean openBV) {
-		this.openBV = openBV;
-	}
-	
-	public boolean getopenBV() {
-		return openBV;
-	}
-	
-	public void openBoardView() {
+	public static void openBoardView() {
 		//lobbyV.stop();
+		Lobby_View.stop();
 		boardview = new Board_View(new Stage(), client);
 		Board_Controller boardController = new Board_Controller(boardview, client);
 		boardview.start();
