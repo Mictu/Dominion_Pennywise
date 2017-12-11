@@ -36,15 +36,14 @@ public class ServerHandler {
 
 	// Get Strings from Server
 	public void getMessageFromServer(String msg) {
-		System.out.println("kam sh an");
 		String message = msg;
 		if (message.equals("start")) {
-			if (Player.player.size() > 1 && Player.player.size() < 5) {
+//			if (Player.player.size() > 1 && Player.player.size() < 5) {
 				server.sendToClient("openboardview");
 				
 				gamelogic.theGame();
 				phase = gamelogic.getActualPhase();
-			}
+//			}
 		}
 		
 		if (message.contains("endphase")) {

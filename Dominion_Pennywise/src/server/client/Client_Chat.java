@@ -36,10 +36,7 @@ public class Client_Chat {
 				server.broadcast((ChatMsg) msg);
 			} else if (msg instanceof JoinMsg) {
 				Client_Chat.this.playerName = ((JoinMsg) msg).getPlayerName();
-				System.out.println("joinmsg");
 			} else if (msg instanceof StringMsg) {
-				//serverView.updateServerView(server.getNewestMsg(), ((StringMsg) msg).getContent());
-//				System.out.println(((StringMsg) msg).getContent() + " has joined the Server!");
 				String message = ((StringMsg) msg).getContent();
 				if(message.substring(0, 5).equals("lobby")) {
 					playerName = message.substring(5);

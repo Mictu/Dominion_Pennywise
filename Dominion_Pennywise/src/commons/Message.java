@@ -6,8 +6,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-import server_Models.Player;
-
 public abstract class Message {
 	
 	protected MessageType type;
@@ -20,11 +18,9 @@ public abstract class Message {
 		OutputStreamWriter out;
 		try {
 			out = new OutputStreamWriter(socket.getOutputStream());
-			System.out.println("Sending message: " + this.toString());
 			out.write(this.toString() + "\n");
 			out.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -36,7 +32,6 @@ public abstract class Message {
 		try {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String msgText = in.readLine();
-			System.out.println("receiving message: " + msgText);
 			//Parse message
 			String[] parts = msgText.split("\\|");
 			if (parts[0].equals(MessageType.Join.toString())) {
@@ -47,7 +42,6 @@ public abstract class Message {
 				msg = new StringMsg(parts[1],parts[2]);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return msg;

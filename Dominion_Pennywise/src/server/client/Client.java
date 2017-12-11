@@ -79,16 +79,6 @@ public class Client {
 		stringMsg.send(socket);
 	}
 
-	public void getStringFromServer() {
-		try {
-			System.out.println(input.read());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	// Chat methods
-
 	public void sendChatMessage(String message) {
 		Message msg = new ChatMsg(playerName, message);
 		msg.send(socket);
@@ -102,7 +92,6 @@ public class Client {
 		try {
 			socket.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -110,20 +99,4 @@ public class Client {
 	public String getPlayerName() {
 		return playerName;
 	}
-
-//	@SuppressWarnings("unchecked")
-//	public void getArrayFromServer() {
-//		try {
-//			ObjectInputStream objectInput = new ObjectInputStream(socket.getInputStream());
-//			ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
-//
-//			this.deck = (ArrayList<String>) objectInput.readObject();
-//
-//			// clientH.getDeckFromServer(deck);
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 }

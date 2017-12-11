@@ -100,8 +100,6 @@ public class Server extends Application {
 	}
 	
 	public void sendStringToClient(String msg, int index) {
-		System.out.println(msg);
-		System.out.println(index);
 		clients.get(index).sendStringMsgToClient(msg);
 	}
 
