@@ -74,6 +74,7 @@ public class ClientHandler {
 	}
 	
 	public void openBoardView() {
+		//lobbyV.stop();
 		boardview = new Board_View(new Stage(), client);
 		Board_Controller boardController = new Board_Controller(boardview, client);
 		boardview.start();

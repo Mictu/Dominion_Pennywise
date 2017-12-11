@@ -22,13 +22,6 @@ public class Lobby_Controller {
 			client.sendToServer("start");
 		});
 			
-
-		lobbyView.btnStartGame.setOnAction(event -> {
-			System.out.println("button clicked?");
-			client.sendToServer("start");
-		});
-
-
 		lobbyView.btnLeaveGame.setOnAction((event) -> {
 			exit(lobbyView.getStage());
 		});
