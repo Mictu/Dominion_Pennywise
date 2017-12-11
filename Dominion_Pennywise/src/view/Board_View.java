@@ -272,7 +272,7 @@ public class Board_View {
 					System.out.println("Button der hand haben noch keine ID erhalten");
 				}
 			});
-			bindingsForContent(b, hBoxHand, 1, 0.14);
+			bindingsForContent(b, hBoxHand, 1, 0.16);
 			handCards.add(b);
 		}
 		for (int i = 0; i < handFromServer.size(); i++) {
@@ -320,19 +320,19 @@ public class Board_View {
 			l.setEffect(null);
 			l.setDisable(false);
 			hCenter1.getChildren().add(l);
-			bindingsForContent(l, hCenter1, 1, 0.14);
+			bindingsForContent(l, hCenter1, 1, 0.12);
 		}
 		for (Button m : kingdom) {
 			m.setEffect(null);
 			m.setDisable(false);
 			hCenter2.getChildren().add(m);
-			bindingsForContent(m, hCenter2, 1, 0.14);
+			bindingsForContent(m, hCenter2, 1, 0.12);
 		}
 		for (Button n : treasure) {
 			n.setEffect(null);
 			n.setDisable(false);
 			hCenter3.getChildren().add(n);
-			bindingsForContent(n, hCenter3, 1, 0.14);
+			bindingsForContent(n, hCenter3, 1, 0.12);
 		}
 	}
 
@@ -345,19 +345,19 @@ public class Board_View {
 			l.setEffect(shadow);
 			l.setDisable(true);
 			hCenter1.getChildren().add(l);
-			bindingsForContent(l, hCenter1, 1, 0.14);
+			bindingsForContent(l, hCenter1, 1, 0.12);
 		}
 		for (Button m : kingdom) {
 			m.setEffect(shadow);
 			m.setDisable(true);
 			hCenter2.getChildren().add(m);
-			bindingsForContent(m, hCenter2, 1, 0.14);
+			bindingsForContent(m, hCenter2, 1, 0.12);
 		}
 		for (Button n : treasure) {
 			n.setEffect(shadow);
 			n.setDisable(true);
 			hCenter3.getChildren().add(n);
-			bindingsForContent(n, hCenter3, 1, 0.14);
+			bindingsForContent(n, hCenter3, 1, 0.12);
 		}
 	}
 
