@@ -34,7 +34,7 @@ public class Client {
 	}
 
 	public void run() {
-		new Thread(startClient).start();
+			new Thread(startClient).start();
 	}
 
 	final Task<Void> startClient = new Task<Void>() {
@@ -65,10 +65,9 @@ public class Client {
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Verbindung fehlgeschlagen");
-			} finally {
-				socket.close();
-				System.out.println("Client closed");
-
+//			} finally {
+//				socket.close();
+//				System.out.println("Client closed");
 			}
 			Message jmsgForServer = new JoinMsg(playerName);
 			jmsgForServer.send(socket);

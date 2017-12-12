@@ -2,9 +2,10 @@ package view;
 
 import java.io.File;
 import java.util.ArrayList;
-
 import controllers.Board_Controller;
 import controllers.ClientHandler;
+import controllers.Login_Controller;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -29,7 +30,6 @@ import server_Models.Translator;
 public class Board_View {
 
 	public Stage stage;
-	Client client;
 
 	/*
 	 * WRITE DYNAMIC HAND CARDS ARE COVERED IF HOVERED SET CHAT GOLDEN BORDER IF U
@@ -55,10 +55,9 @@ public class Board_View {
 	protected ArrayList<Button> victory = new ArrayList<Button>();
 
 	// constructor
-	public Board_View(Stage s, Client client) {
+	public Board_View(Stage s) {
 		playSound();
-		this.client = client;
-		CardDesign_View cdV = new CardDesign_View(client);
+		CardDesign_View cdV = new CardDesign_View();
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 		Translator t = sl.getTranslator();
 
@@ -268,7 +267,7 @@ public class Board_View {
 				try {
 					playSound();
 					cardID = "hand" + b.getId();
-					client.sendToServer(cardID);
+						Login_Controller.client.sendToServer(cardID);
 				} catch (Exception e) {
 					System.out.println("Button der hand haben noch keine ID erhalten");
 				}

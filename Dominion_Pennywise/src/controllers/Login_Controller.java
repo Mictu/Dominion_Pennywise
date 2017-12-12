@@ -10,7 +10,7 @@ import view.Login_View;
 public class Login_Controller {
 
 	Login_View loginView;
-	Client client;
+	public static Client client;
 	Lobby_View lobbyView;
 	String playerName;
 	Lobby_Controller lobbyController;
@@ -19,8 +19,6 @@ public class Login_Controller {
 	
 	public Login_Controller(Login_View loginView) {
 		this.loginView = loginView;
-		
-		
 		
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 		Translator t = sl.getTranslator();
@@ -33,10 +31,10 @@ public class Login_Controller {
 			if (!playerName.isEmpty()) {
 				lobbyView = new Lobby_View(loginView.getStage());
 				
-				client = new Client(playerName);
-				client.run();
+				Login_Controller.client = new Client(playerName);
+				Login_Controller.client.run();
 //				lobbyController = new Lobby_Controller(lobbyView, client);
-				ch.initializeLobbyController(lobbyView, client);
+				ch.initializeLobbyController(lobbyView);
 				lobbyView.start();
 
 				// Open Lobby

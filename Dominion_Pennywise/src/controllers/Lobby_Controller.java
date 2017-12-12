@@ -11,15 +11,13 @@ public class Lobby_Controller {
 	Lobby_View lobbyView;
 	Board_View boardView;
 	Login_View loginView;
-	Client client;
 	
-	public Lobby_Controller(Lobby_View lobbyView, Client client){
+	public Lobby_Controller(Lobby_View lobbyView){
 		this.lobbyView = lobbyView;
-		this.client = client;
 
 
 		lobbyView.btnStartGame.setOnAction(event -> {
-			client.sendToServer("start");
+			Login_Controller.client.sendToServer("start");
 		});
 			
 		lobbyView.btnLeaveGame.setOnAction((event) -> {
@@ -27,9 +25,9 @@ public class Lobby_Controller {
 		});
 
 		// Chat send and appenText action
-		lobbyView.btnSend.setOnAction(event -> client.sendChatMessage(lobbyView.txtChatMessage.getText()));
+		lobbyView.btnSend.setOnAction(event -> Login_Controller.client.sendChatMessage(lobbyView.txtChatMessage.getText()));
 
-		client.newestMessage.addListener((o, oldValue, newValue) -> lobbyView.txtChatArea.appendText(newValue + "\n"));
+		Login_Controller.client.newestMessage.addListener((o, oldValue, newValue) -> lobbyView.txtChatArea.appendText(newValue + "\n"));
 
 //		lobbyView.stage.setOnCloseRequest( event -> client.disconnectClient());
 	}// Close Constructor

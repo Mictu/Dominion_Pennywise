@@ -1,6 +1,5 @@
 package controllers;
 
-import server.client.Client;
 import server_Models.Player;
 import view.Board_View;
 import view.CardDesign_View;
@@ -12,11 +11,9 @@ public class Board_Controller {
 	Board_View boardView; 
 	CardDesign_View cardView; 
 	Player player; 
-	Client client;
 	
-	public Board_Controller(Board_View boardView, Client client){
+	public Board_Controller(Board_View boardView){
 		//
-		this.client = client;
 		this.boardView = boardView;
 
 		
@@ -32,16 +29,16 @@ public class Board_Controller {
 //		});
 		
 		boardView.pay.setOnAction((Event) -> {
-			client.sendToServer("pay");
+			Login_Controller.client.sendToServer("pay");
 		});
 
 		boardView.endPhase.setOnAction((Event) -> {
 			System.out.println("reached endphase");
-			client.sendToServer("endphase");
+			Login_Controller.client.sendToServer("endphase");
 		});
 		
 		boardView.bonusMoney.setOnAction((Event) -> {
-			client.sendToServer("bonusmoney");
+			Login_Controller.client.sendToServer("bonusmoney");
 		});
 
 		

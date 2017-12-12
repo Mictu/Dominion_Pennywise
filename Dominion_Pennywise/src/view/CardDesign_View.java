@@ -2,22 +2,20 @@ package view;
 
 import java.io.File;
 
+import controllers.Login_Controller;
 import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import server.client.Client;
 
 public class CardDesign_View {
 
-	Client client;
 	Board_View bV;
 	// private Button cardBtn;
 	protected Button copperBtn, duchyBtn, estateBtn, funfairBtn, goldBtn, laboratoryBtn;
 	protected Button marketBtn, provinceBtn, silverBtn, smithBtn, villageBtn, woodcutterBtn;
 	protected int soundCounter = 0;
 
-	public CardDesign_View(Client client) {
-		this.client = client;
+	public CardDesign_View() {
 		playSound();
 		// client.run();
 
@@ -115,7 +113,7 @@ public class CardDesign_View {
 			// client.run();
 			playSound();
 			String cardID = x.getId();
-			client.sendToServer(cardID);
+			Login_Controller.client.sendToServer(cardID);
 		});
 	}
 

@@ -1,20 +1,13 @@
 package controllers;
 
 import java.util.ArrayList;
-
-import javax.xml.transform.Templates;
-import javax.xml.transform.sax.TemplatesHandler;
-
 import javafx.application.Platform;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import server.client.Client;
 import view.Board_View;
 import view.Lobby_View;
 import view.Login_View;
 
 public class ClientHandler {
-	static Client client;
 	Lobby_Controller lobbyC;
 	Login_Controller loginC;
 	Board_Controller boardC;
@@ -30,10 +23,9 @@ public class ClientHandler {
 
 	public static String phase;
 	
-	public void initializeLobbyController(Lobby_View lobbyView, Client client2) {
+	public void initializeLobbyController(Lobby_View lobbyView) {
 		this.lobbyV = lobbyView;
-		ClientHandler.client = client2;
-		lobbyC = new Lobby_Controller(this.lobbyV, ClientHandler.client);
+		lobbyC = new Lobby_Controller(this.lobbyV);
 	}
 
 	public static void getMessageFromClient(String msg) {
@@ -60,7 +52,6 @@ public class ClientHandler {
 			Platform.runLater(() -> {
 				openBoardView();
 			});
-
 			break;
 		case "buy":
 			phase = "buy";
@@ -70,13 +61,16 @@ public class ClientHandler {
 			break;
 		}
 
+							// DELETE THIS AGAIN
+		phase = "buy";
+
 	}
 
 	public static void openBoardView() {
 		// lobbyV.stop();
 		Lobby_View.stop();
-		boardview = new Board_View(new Stage(), client);
-		Board_Controller boardController = new Board_Controller(boardview, client);
+		boardview = new Board_View(new Stage());
+		Board_Controller boardController = new Board_Controller(boardview);
 		boardview.start();
 	}
 

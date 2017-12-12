@@ -37,6 +37,9 @@ public class ServerHandler {
 	// Get Strings from Server
 	public void getMessageFromServer(String msg) {
 		String message = msg;
+		
+		System.out.println(message+ " ----------");
+		
 		if (message.equals("start")) {
 //			if (Player.player.size() > 1 && Player.player.size() < 5) {
 				server.sendToClient("openboardview");
