@@ -308,7 +308,7 @@ public class Board_View {
 					b.setDisable(true);
 				}
 			}
-		} //kommentar
+		}
 	}
 
 	// enables buttons while player is able to chose which card he wants to buy
