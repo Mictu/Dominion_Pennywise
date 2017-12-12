@@ -15,7 +15,7 @@ public class ActionPhase {
 	
 	// choose this method if a card is pressed
 	public void chosenCard(String cardName, Player player) {
-		System.out.println("chosenCard started");
+//		System.out.println("chosenCard started");
 		if(player.getActionPoints() >0 ) {
 			switch (cardName) {
 			case "village":
