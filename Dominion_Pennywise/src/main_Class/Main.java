@@ -21,13 +21,14 @@ public class Main extends Application {
 	Board_View boardView;
 	Result_View resultView;
 	Login_Controller loginController;
-	private ServiceLocator serviceLocator; 
-	
+	private ServiceLocator serviceLocator;
+
 	S_View splashScreen;
 	Server_View serverView;
 	Server server;
 
-	// MVC STARTS THE PROGRAMM AND INITIALIZES THE MVC-CLASSES (MODEL, VIEW, CONTROLLER)
+	// MVC STARTS THE PROGRAMM AND INITIALIZES THE MVC-CLASSES (MODEL, VIEW,
+	// CONTROLLER)
 
 	public static void main(String[] args) {
 		launch(args);
@@ -40,22 +41,21 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 
 		// decide if a Server needs to get started, then start Splashscreen
-//		serverView = new Server_View(primaryStage);
-		
+		// serverView = new Server_View(primaryStage);
+
 		serviceLocator = ServiceLocator.getServiceLocator();
 		serviceLocator.setConfiguration(new Configuration());
 		String language = serviceLocator.getConfiguration().getOption("Language");
 		serviceLocator.setTranslator(new Translator(language));
-		
+
 		splashScreen = new S_View();
 		splashScreen.run(primaryStage);
-		
-		
+
 	}
 
 	public void stop() {
 		serviceLocator.getConfiguration().save();
-		
+
 		if (loginView != null) {
 			loginView.stop();
 		}
@@ -68,7 +68,7 @@ public class Main extends Application {
 		if (resultView != null) {
 			resultView.stop();
 		}
-		Platform.exit();							// Close Server if it is running
+		Platform.exit(); // Close Server if it is running
 	}
 
 }
