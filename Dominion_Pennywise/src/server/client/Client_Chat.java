@@ -38,6 +38,7 @@ public class Client_Chat {
 				Client_Chat.this.playerName = ((JoinMsg) msg).getPlayerName();
 			} else if (msg instanceof StringMsg) {
 				String message = ((StringMsg) msg).getContent();
+				System.out.println(message);
 				if(message.substring(0, 5).equals("lobby")) {
 					playerName = message.substring(5);
 					sh.addPlayerToList(playerName);

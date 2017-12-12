@@ -41,7 +41,7 @@ public class GameLogic {
 
 	public void theGame() {
 		countRounds = 1;
-		do {
+//		do {
 			// Every Player does his Phases
 			playerIndex = 0;
 			for (Player player : Player.player) {
@@ -64,7 +64,7 @@ public class GameLogic {
 			countRounds++;
 			// Play as long until these options aren't true anymore
 			// } while (countRounds <= 15 || Cards.CardType.Kingdom.Province > 0);
-		} while (countRounds <= 1);
+//		} while (countRounds <= 15);
 	}
 
 	// get the actual phase to let the client know what cards can be pressed

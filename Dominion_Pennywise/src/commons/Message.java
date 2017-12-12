@@ -32,6 +32,7 @@ public abstract class Message {
 		try {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String msgText = in.readLine();
+			System.out.println(msgText);
 			//Parse message
 			String[] parts = msgText.split("\\|");
 			if (parts[0].equals(MessageType.Join.toString())) {
