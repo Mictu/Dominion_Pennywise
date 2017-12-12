@@ -15,7 +15,7 @@ public class ActionPhase {
 	
 	// choose this method if a card is pressed
 	public void chosenCard(String cardName, Player player) {
-//		System.out.println("chosenCard started");
+		System.out.println(cardName);
 		if(player.getActionPoints() >0 ) {
 			switch (cardName) {
 			case "village":
@@ -37,9 +37,10 @@ public class ActionPhase {
 			case "smith":
 				actionSmith(player);
 				break;
-			default:
-				phase = false;
-				break;
+//			default:
+//				System.out.println("default");
+//				phase = false;
+//				break;
 			}
 		}
 //		server.sendToClient(""+player.getActionPoints());

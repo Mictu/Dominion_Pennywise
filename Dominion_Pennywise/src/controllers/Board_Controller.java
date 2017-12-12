@@ -1,11 +1,5 @@
 package controllers;
 
-import java.util.ArrayList;
-
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import server.client.Client;
 import server_Models.Player;
 import view.Board_View;
@@ -18,10 +12,8 @@ public class Board_Controller {
 	Board_View boardView; 
 	CardDesign_View cardView; 
 	Player player; 
+	Client client;
 	
-	Client client = new Client("sojo");
-
-
 	public Board_Controller(Board_View boardView, Client client){
 		//
 		this.client = client;
