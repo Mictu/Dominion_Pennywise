@@ -42,6 +42,7 @@ public class Board_View {
 	Board_Controller bcontroller;
 	protected HBox hCenter1, hCenter2, hCenter3;
 	HBox hBottom;
+	String cardID;
 
 	protected int soundCounter = 0;
 	protected DropShadow shadow = new DropShadow();
@@ -265,9 +266,9 @@ public class Board_View {
 			Button b = new Button();
 			b.setOnAction((event) -> {
 				try {
-					String cardID = "hand" + b.getId();
-					client.sendToServer(cardID);
 					playSound();
+					cardID = "hand" + b.getId();
+					client.sendToServer(cardID);
 				} catch (Exception e) {
 					System.out.println("Button der hand haben noch keine ID erhalten");
 				}
@@ -277,35 +278,34 @@ public class Board_View {
 		}
 		for (int i = 0; i < handFromServer.size(); i++) {
 			handCards.get(i).setId(handFromServer.get(i));
+		}
+		setCards();
+		for (int i = 0; i < handFromServer.size(); i++) {
 			this.hBoxHand.getChildren().add(handCards.get(i));
 		}
 		handFromServer.clear();
 		ClientHandler.tempHandCard.clear();
-		// setCards();
 	}
 
 	public void setCards() {
 		if (ClientHandler.phase.equals("buy")) {
 			setCardsOnViewEnable();
 			for (Button b : handCards) {
-				if (!b.getId().equals("copper") || !b.getId().equals("silver") || !b.getId().equals("gold")) {
-					b.setDisable(true);
-				} else {
+				if (b.getId().equals("copper") || b.getId().equals("silver") || b.getId().equals("gold")) {
 					b.setDisable(false);
+				} else {
+					b.setDisable(true);
 				}
 			}
 		}
 		if (ClientHandler.phase.equals("action")) {
 			setCardsOnViewDisable();
 			for (Button b : handCards) {
-				System.out.println("for");
-				if (!b.getId().equals("smith") || !b.getId().equals("market") || !b.getId().equals("laboratory")
-						|| !b.getId().equals("funfair") || !b.getId().equals("woodcutter")
-						|| !b.getId().equals("village")) {
-					System.out.println("if");
-					b.setDisable(true);
-				} else {
+				if (b.getId().equals("smith") || b.getId().equals("market") || b.getId().equals("laboratory")
+				|| b.getId().equals("funfair") || b.getId().equals("woodcutter") || b.getId().equals("village")) {
 					b.setDisable(false);
+				} else {
+					b.setDisable(true);
 				}
 			}
 		} //kommentar

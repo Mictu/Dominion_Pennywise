@@ -56,7 +56,9 @@ public class Client {
 						});
 					} else if (msg instanceof StringMsg) {
 						String message = ((StringMsg) msg).getContent();
+						Platform.runLater(() -> {
 						ClientHandler.getMessageFromClient(message);
+						});
 					}
 				}
 

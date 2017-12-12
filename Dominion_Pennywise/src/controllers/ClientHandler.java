@@ -29,6 +29,10 @@ public class ClientHandler {
 	Lobby_View lobbyV;
 
 	public static String phase;
+	
+	public ClientHandler() {
+		phase = "action";
+	}
 
 	public void initializeLobbyController(Lobby_View lobbyView, Client client2) {
 		this.lobbyV = lobbyView;

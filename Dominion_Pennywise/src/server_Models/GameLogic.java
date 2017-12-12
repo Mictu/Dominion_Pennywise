@@ -114,10 +114,16 @@ public class GameLogic {
 	public void sendPlayersHand() {
 		for (String card : player.hand) {
 			server.sendStringToClient("hand"+card, playerIndex);
+			for (int i = 0; i <= 1000000000; i++){
+				for (int j = 0; j <= 1000099999; j++){
+						// get some time for the client server connection
+					}
+			}
 		}
 			
 		server.sendStringToClient("hand"+"end", playerIndex);
 	}
+	
 	
 	public String getActualPhase() {
 		return this.actualPhase;
