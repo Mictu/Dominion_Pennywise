@@ -267,7 +267,7 @@ public class Board_View {
 				try {
 					playSound();
 					cardID = "hand" + b.getId();
-						Login_Controller.client.sendToServer(cardID);
+					Login_Controller.client.sendToServer(cardID);
 				} catch (Exception e) {
 					System.out.println("Button der hand haben noch keine ID erhalten");
 				}
@@ -297,11 +297,12 @@ public class Board_View {
 				}
 			}
 		}
-		if (ClientHandler.phase.equals("action")) {
+		if (ClientHandler.phase.equals("action") || ClientHandler.phase.equals("cleanup")) {
 			setCardsOnViewDisable();
 			for (Button b : handCards) {
 				if (b.getId().equals("smith") || b.getId().equals("market") || b.getId().equals("laboratory")
-				|| b.getId().equals("funfair") || b.getId().equals("woodcutter") || b.getId().equals("village")) {
+						|| b.getId().equals("funfair") || b.getId().equals("woodcutter")
+						|| b.getId().equals("village")) {
 					b.setDisable(false);
 				} else {
 					b.setDisable(true);

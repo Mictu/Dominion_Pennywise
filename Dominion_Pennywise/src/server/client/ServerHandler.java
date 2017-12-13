@@ -49,15 +49,15 @@ public class ServerHandler {
 		if (message.contains("endphase")) {
 			gamelogic.endPhase(message);
 		}
-
-		switch (phase) {
-		case "action":
-			actionphase = new ActionPhase();
-			actionphase.chosenCard(message, player);
-		case "buy":
-			buyphase = new BuyPhase();
-			buyphase.buyCard(message, player);
-		}
+//
+//		switch (phase) {
+//		case "action":
+//			actionphase = new ActionPhase();
+//			actionphase.chosenCard(message, player);
+//		case "buy":
+//			buyphase = new BuyPhase();
+//			buyphase.buyCard(message, player);
+//		}
 	}
 
 	// only do something when it makes sense for the clicked card - treasure
