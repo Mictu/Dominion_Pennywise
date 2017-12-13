@@ -109,16 +109,13 @@ public class GameLogic {
 	}
 	
 	public void sendPlayersHand() {
+		String theHand = "hand.";
 		for (String card : player.hand) {
-			server.sendStringToClient("hand"+card, playerIndex);
-			for (int i = 0; i <= 1000000000; i++){
-				for (int j = 0; j <= 1000099999; j++){
-						// get some time for the client server connection
-					}
-			}
+			theHand = theHand.concat(card+".");
 		}
-			
-		server.sendStringToClient("hand"+"end", playerIndex);
+		theHand = theHand.substring(0, theHand.length()-1);
+		System.out.println(theHand);
+		server.sendStringToClient(theHand, playerIndex);
 	}
 	
 	

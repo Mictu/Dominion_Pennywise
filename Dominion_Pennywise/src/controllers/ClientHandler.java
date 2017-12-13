@@ -1,6 +1,9 @@
 package controllers;
 
+import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import view.Board_View;
@@ -22,7 +25,7 @@ public class ClientHandler {
 	Lobby_View lobbyV;
 
 	public static String phase;
-	
+
 	public void initializeLobbyController(Lobby_View lobbyView) {
 		this.lobbyV = lobbyView;
 		lobbyC = new Lobby_Controller(this.lobbyV);
@@ -33,21 +36,20 @@ public class ClientHandler {
 
 		// Get message to set the player hand view
 		if (message.length() > 4 && message.substring(0, 4).equals("hand")) {
-			message = message.substring(4);
+			message = message.substring(5);
 
-			if (!message.equals("end")) {
-				tempHandCard.add(message);
-			}
-
-			if (message.equals("end")) {
+				String[] laHand = message.split("\\.");
+			
+				for (String s : laHand) {
+					tempHandCard.add(s);
+				}					
 				Platform.runLater(() -> {
 					boardview.setHand();
 				});
-			}
-
 		}
+	switch(message)
 
-		switch (message) {
+	{
 		case "openboardview":
 			Platform.runLater(() -> {
 				openBoardView();
@@ -61,8 +63,8 @@ public class ClientHandler {
 			break;
 		}
 
-							// DELETE THIS AGAIN
-		phase = "buy";
+	// DELETE THIS AGAIN
+	phase="buy";
 
 	}
 
