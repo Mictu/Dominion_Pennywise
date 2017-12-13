@@ -2,8 +2,6 @@ package server.client;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
-
 import Splash.Server_View;
 import commons.ChatMsg;
 import commons.JoinMsg;
@@ -38,8 +36,7 @@ public class Client_Chat {
 				Client_Chat.this.playerName = ((JoinMsg) msg).getPlayerName();
 			} else if (msg instanceof StringMsg) {
 				String message = ((StringMsg) msg).getContent();
-				System.out.println(message);
-				if(message.substring(0, 5).equals("lobby")) {
+				if(message.length() > 4 && message.substring(0, 5).equals("lobby")) {
 					playerName = message.substring(5);
 					sh.addPlayerToList(playerName);
 				}else {

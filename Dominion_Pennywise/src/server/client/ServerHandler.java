@@ -1,7 +1,6 @@
 package server.client;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import server_Models.ActionPhase;
 import server_Models.BuyPhase;
 import server_Models.CleanUpPhase;
@@ -56,6 +55,7 @@ public class ServerHandler {
 			actionphase = new ActionPhase();
 			actionphase.chosenCard(message, player);
 		case "buy":
+			buyphase = new BuyPhase();
 			buyphase.buyCard(message, player);
 		}
 	}
