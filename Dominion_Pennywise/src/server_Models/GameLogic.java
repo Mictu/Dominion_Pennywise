@@ -1,5 +1,6 @@
 package server_Models;
 
+import javafx.concurrent.Task;
 import server.client.Server;
 import server.client.ServerHandler;
 
@@ -53,6 +54,7 @@ public class GameLogic {
 				
 				actualPhase = "action";
 				server.sendStringToClient(actualPhase, playerIndex);
+				
 				sendPlayersHand();
 				
 				playerIndex++;
@@ -114,8 +116,10 @@ public class GameLogic {
 			theHand = theHand.concat(card+".");
 		}
 		theHand = theHand.substring(0, theHand.length()-1);
-		System.out.println(theHand);
 		server.sendStringToClient(theHand, playerIndex);
+		for (int i = 0; i < 1000000000; i++){
+			// get some time for the connection (time to send it)
+		}
 	}
 	
 	
