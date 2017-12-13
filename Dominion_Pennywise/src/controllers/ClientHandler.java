@@ -1,9 +1,6 @@
 package controllers;
 
-import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import view.Board_View;
@@ -62,10 +59,6 @@ public class ClientHandler {
 			phase = "action";
 			break;
 		}
-
-	// DELETE THIS AGAIN
-	phase="buy";
-
 	}
 
 	public static void openBoardView() {

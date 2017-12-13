@@ -1,6 +1,5 @@
 package server_Models;
 
-import javafx.concurrent.Task;
 import server.client.Server;
 import server.client.ServerHandler;
 
@@ -57,7 +56,7 @@ public class GameLogic {
 				
 				sendPlayersHand();
 				
-				playerIndex++;
+//				playerIndex++;
 			}
 
 			countRounds++;
@@ -101,11 +100,15 @@ public class GameLogic {
 		switch (actualPhase) {
 		case "action":
 			actualPhase = "buy";
-			buyPhase.buyCard(message, player);
+//			buyPhase = new BuyPhase();
+			server.sendStringToClient(actualPhase, playerIndex);
+			sendPlayersHand();
 			break;
 		case "buy":
 			actualPhase = "cleanup";
 			cleanUpPhase = new CleanUpPhase(this.player);
+			server.sendStringToClient(actualPhase, playerIndex);
+			sendPlayersHand();
 			break;																// block this monitor
 		}
 	}
