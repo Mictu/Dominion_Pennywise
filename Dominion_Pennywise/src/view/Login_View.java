@@ -45,7 +45,9 @@ public class Login_View {
 		// stage.setResizable(false);
 		stage.setTitle("Dominion Login");
 		stage.setFullScreen(true);
-	
+		stage.setFullScreenExitHint("");
+		
+		
 		//Hauptpane as Grundger�st  
 		mainPane = new BorderPane();
 		mainPane.setId("mainPane");

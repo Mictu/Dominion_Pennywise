@@ -39,6 +39,7 @@ public class Lobby_View {
 		Lobby_View.stage = stage;
 		// stage.setResizable(false);
 		stage.setTitle("Dominion Lobby");
+		stage.setFullScreenExitHint("");
 
 		btnLeaveGame = new Button(t.getString("dominion.lobby.btn.quit"));
 		btnStartGame = new Button(t.getString("dominion.lobby.btn.start"));
