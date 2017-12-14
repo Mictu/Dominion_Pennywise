@@ -17,6 +17,7 @@ public class Client_Chat {
 	Server_View serverView;
 	ServerHandler sh;
 	Player player;
+	String playerNameList = "lobby.";
 	
 	public Client_Chat(Server server,Socket socket) {
 		this.server = server;
@@ -39,7 +40,11 @@ public class Client_Chat {
 				if(message.length() > 4 && message.substring(0, 5).equals("lobby")) {
 					playerName = message.substring(5);
 					sh.addPlayerToList(playerName);
-					server.sendToClient(sh.player.getName());
+					for(Player p : Player.player) {
+						String pname = p.getName();
+						playerNameList = playerNameList.concat(pname + ".");
+					}
+					server.sendToClient(playerNameList);
 				}else {
 					sh.getMessageFromServer(message);
 				}

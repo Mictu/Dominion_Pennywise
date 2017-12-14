@@ -23,7 +23,9 @@ public class Client {
 	DataInputStream input;
 	String info;
 	Server server;
-
+	String namemsg;
+	String[] names;
+	
 	ArrayList<String> deck = new ArrayList<String>();
 
 	public SimpleStringProperty newestMessage = new SimpleStringProperty();
@@ -34,7 +36,7 @@ public class Client {
 	}
 
 	public void run() {
-			new Thread(startClient).start();
+		new Thread(startClient).start();
 	}
 
 	final Task<Void> startClient = new Task<Void>() {
@@ -45,7 +47,7 @@ public class Client {
 				System.out.println("Player " + playerName + " is connected");
 				sendToServer("lobby" + playerName);
 
-				//Kommentar und so
+				// Kommentar und so
 				// Chat
 				while (true) {
 					Message msg = Message.receive(socket);
@@ -56,18 +58,31 @@ public class Client {
 						});
 					} else if (msg instanceof StringMsg) {
 						String message = ((StringMsg) msg).getContent();
-						Platform.runLater(() -> {
-							ClientHandler.getMessageFromClient(message);
-						});
+						if (message.substring(0, 5).equals("lobby")) {
+							namemsg = message.substring(6);
+							names = namemsg.split("\\.");
+							Platform.runLater(() -> {
+								for (String s : names) {
+									s = s.concat(" Online");
+								}
+//								setNames(names);
+								ClientHandler.getNamesFormClient(names);
+							});
+
+						} else {
+							Platform.runLater(() -> {
+								ClientHandler.getMessageFromClient(message);
+							});
+						}
 					}
 				}
 
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Verbindung fehlgeschlagen");
-//			} finally {
-//				socket.close();
-//				System.out.println("Client closed");
+				// } finally {
+				// socket.close();
+				// System.out.println("Client closed");
 			}
 			Message jmsgForServer = new JoinMsg(playerName);
 			jmsgForServer.send(socket);
@@ -75,6 +90,14 @@ public class Client {
 		}
 
 	};
+	
+	public void setNames(String[] names) {
+		this.names = names;
+	}
+	
+	public String[] getNames() {
+		return names;
+	}
 
 	public void sendToServer(String msg) {
 		Message stringMsg = new StringMsg(playerName, msg);

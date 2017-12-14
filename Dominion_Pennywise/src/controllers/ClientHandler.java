@@ -8,7 +8,7 @@ import view.Lobby_View;
 import view.Login_View;
 
 public class ClientHandler {
-	Lobby_Controller lobbyC;
+	static Lobby_Controller lobbyC;
 	Login_Controller loginC;
 	Board_Controller boardC;
 	Result_Controller resultC;
@@ -26,6 +26,13 @@ public class ClientHandler {
 	public void initializeLobbyController(Lobby_View lobbyView) {
 		this.lobbyV = lobbyView;
 		lobbyC = new Lobby_Controller(this.lobbyV);
+	}
+	
+	public static void getNamesFormClient(String[] names) {
+		lobbyC.clearConnectedP();
+		for(String s : names) {
+			lobbyC.updateConnectedPlayers(s);
+		}
 	}
 
 	public static void getMessageFromClient(String msg) {

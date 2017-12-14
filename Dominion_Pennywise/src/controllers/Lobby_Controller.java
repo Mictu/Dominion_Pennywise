@@ -1,7 +1,6 @@
 package controllers;
 
 import javafx.stage.Stage;
-import server.client.Client;
 import view.Board_View;
 import view.Lobby_View;
 import view.Login_View;
@@ -25,7 +24,10 @@ public class Lobby_Controller {
 		});
 
 		// Chat send and appenText action
-		lobbyView.btnSend.setOnAction(event -> Login_Controller.client.sendChatMessage(lobbyView.txtChatMessage.getText()));
+		lobbyView.btnSend.setOnAction(event -> {
+		Login_Controller.client.sendChatMessage(lobbyView.txtChatMessage.getText());
+		lobbyView.txtChatMessage.clear();
+		});
 
 		Login_Controller.client.newestMessage.addListener((o, oldValue, newValue) -> lobbyView.txtChatArea.appendText(newValue + "\n"));
 
@@ -33,6 +35,14 @@ public class Lobby_Controller {
 //		lobbyView.stage.setOnCloseRequest( event -> client.disconnectClient());
 	}// Close Constructor
 
+	public void updateConnectedPlayers(String s) {
+		lobbyView.txtConnectedPlayers.appendText(s + "\n");
+	}
+	
+	public void clearConnectedP() {
+		lobbyView.txtConnectedPlayers.clear();
+	}
+	
 	// ExitMethode for all Views
 	private void exit(Stage stage) {
 		stage.hide();
