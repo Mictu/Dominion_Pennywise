@@ -28,7 +28,7 @@ import server_Models.Translator;
 public class Board_View {
 
 	public Stage stage;
-
+	public BorderPane root;
 	/*
 	 * WRITE DYNAMIC HAND CARDS ARE COVERED IF HOVERED SET CHAT GOLDEN BORDER IF U
 	 * CAN PLAY CARDS DECK AND DISCARD DECK SHOULD BE SEEN FROM BEHIND
@@ -66,11 +66,12 @@ public class Board_View {
 		// Set up the GUI in here
 		stage.setTitle("Dominion");
 		// stage.setResizable(false);
-		BorderPane root = new BorderPane();
+		root = new BorderPane();
 		root.setId("boardRoot");
 		root.setPadding(new Insets(10, 10, 10, 10));
 		root.autosize();
 		root.layoutBoundsProperty();
+		stage.setFullScreenExitHint("");
 
 		// SET TOP
 		// SET CENTER
@@ -387,6 +388,7 @@ public class Board_View {
 	}
 
 	public void blockWindow() {
+		root.getCenter().setDisable(true);
 	}
 
 }// close class
