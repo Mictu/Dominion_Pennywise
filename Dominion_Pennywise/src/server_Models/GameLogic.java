@@ -7,7 +7,7 @@ public class GameLogic {
 
 	// Initialize sector here
 	protected CleanUpPhase cleanUpPhase;
-	ActionPhase actionPhase;
+	ActionPhase actionPhase = new ActionPhase();
 	BuyPhase buyPhase;
 
 	protected int countRounds;
@@ -44,7 +44,7 @@ public class GameLogic {
 //			player.discard.add("estate");
 //		}
 		
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 5; i++) {
 		player.discard.add("funfair");
 	}
 		
@@ -52,9 +52,9 @@ public class GameLogic {
 //			player.discard.add("village");
 //		}
 //		
-//		for (int i = 0; i < 6; i++) {
-//			player.discard.add("smith");
-//		}
+		for (int i = 0; i < 5; i++) {
+			player.discard.add("smith");
+		}
 		
 		cleanPhase = new CleanUpPhase(player);
 	}
@@ -70,14 +70,13 @@ public class GameLogic {
 		
 		server.sendStringToClient(actualPhase, index);
 		sendPlayersHand();
-		actionPhase = new ActionPhase();
 	}
 
 	public void playCard(String message) {
 		switch (actualPhase) {
 		case "action":
 			actionPhase.chosenCard(message, this.player);
-			sendPlayersHand();
+//			sendPlayersHand();
 		case "buy":
 			buyPhase = new BuyPhase();
 			buyPhase.buyCard(message, this.player);
