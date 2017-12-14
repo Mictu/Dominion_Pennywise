@@ -36,24 +36,12 @@ public class GameLogic {
 	} // Close Constructor
 
 	protected void gameStart(Player player) {
-//		for (int i = 0; i < START_MONEY; i++) {
-//			player.discard.add("copper"); // don't forget to counter++
-//		}
-//
-//		for (int i = 0; i < START_ESTATE; i++) {
-//			player.discard.add("estate");
-//		}
-		
-		for (int i = 0; i < 5; i++) {
-		player.discard.add("funfair");
-	}
-		
-//		for (int i = 0; i < 6; i++) {
-//			player.discard.add("village");
-//		}
-//		
-		for (int i = 0; i < 5; i++) {
-			player.discard.add("smith");
+		for (int i = 0; i < START_MONEY; i++) {
+			player.discard.add("copper"); // don't forget to counter++
+		}
+
+		for (int i = 0; i < START_ESTATE; i++) {
+			player.discard.add("estate");
 		}
 		
 		cleanPhase = new CleanUpPhase(player);

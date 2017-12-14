@@ -15,16 +15,16 @@ public class BuyPhase {
 //		}
 		
 		// only if player has enough money to buy the "chosen" card
-		if (player.money >= cost) {
-			player.discard.add(cardName); // Karte vom Stapel abziehen !!!
+//		if (player.money >= cost) {
+//			player.discard.add(cardName); // Karte vom Stapel abziehen !!!
 
 			// Also show bonus money somewhere to chose for buyoption - button?
 
-			player.getCashHand(); // show players money again
-
-		} else {
-			System.out.println("Not enough money"); // Mitteilung wenn zu wenig geld vorhanden
-		}
+//			player.getCashHand(); // show players money again
+//
+//		} else {
+//			System.out.println("Not enough money"); // Mitteilung wenn zu wenig geld vorhanden
+//		}
 	}
 
 	// set chosen card, so this class knows what to buy

@@ -81,23 +81,30 @@ public class ActionPhase {
 	}
 
 	public void increaseCard(int amount, Player player) {
+		int have = (player.deck.size() + player.discard.size());
+		
+		if (amount > have) {
+			System.out.println("zu wenige karten vorhanden");
+			amount = have;
+		}
+		
 		for (int i = 1; i <= amount; i++) {
-			player.hand.add(player.deck.get(0));
-			player.deck.remove(0);
-			// shuffles Cards if deck is empty
-			if (player.deck.isEmpty()) {
-				Collections.shuffle(player.discard);
+			if (player.deck.size() == 0) {
 				for (int j = 1; j <= player.discard.size() ; j = 1){
 					player.deck.add(player.discard.get(0));
 					player.discard.remove(0);
 				}
+				Collections.shuffle(player.deck);
 			}
+			player.hand.add(player.deck.get(0));
+			player.deck.remove(0);
+			// shuffles Cards if deck is empty
 		}
 	}
 
 	public void reloadHand(String card, Player player) {
+		player.discard.add(player.hand.get(player.hand.lastIndexOf(card)));
 		player.hand.remove(player.hand.lastIndexOf(card));
-		System.out.println("finished reload");
 	}
 } 
 

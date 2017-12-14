@@ -126,10 +126,7 @@
 	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
-	-fx-pref-height: 148px;
-    -fx-pref-width: 88px;
     -fx-background-color: transparent;
-    -fx-opacity: 0.7;
 }
 #copper:hover{
 	-fx-opacity: 1;
@@ -147,10 +144,7 @@
 	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
-	-fx-pref-height: 148px;
-    -fx-pref-width: 88px;
     -fx-background-color: transparent;
-    -fx-opacity: 0.7;
 }
 #duchy:hover{
 	-fx-opacity: 1;
@@ -168,10 +162,7 @@
 	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
-	-fx-pref-height: 148px;
-    -fx-pref-width: 88px;
     -fx-background-color: transparent;
-    -fx-opacity: 0.7;
 }
 #estate:hover{
 	-fx-opacity: 1;
@@ -189,10 +180,7 @@
 	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
-	-fx-pref-height: 148px;
-    -fx-pref-width: 88px;
     -fx-background-color: transparent;
-    -fx-opacity: 0.7;
 }
 #funfair:hover{
 	-fx-opacity: 1;
@@ -210,10 +198,7 @@
 	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
-	-fx-pref-height: 148px;
-    -fx-pref-width: 88px;
     -fx-background-color: transparent;
-    -fx-opacity: 0.7;
 }
 #gold:hover{
 	-fx-opacity: 1;
@@ -231,10 +216,7 @@
 	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
-	-fx-pref-height: 148px;
-    -fx-pref-width: 88px;
     -fx-background-color: transparent;
-    -fx-opacity: 0.7;
 }
 #laboratory:hover{
 	-fx-opacity: 1;
@@ -252,10 +234,7 @@
 	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
-	-fx-pref-height: 148px;
-    -fx-pref-width: 88px;
     -fx-background-color: transparent;
-    -fx-opacity: 0.7;
 }
 #market:hover{
 	-fx-opacity: 1;
@@ -273,10 +252,7 @@
 	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
-	-fx-pref-height: 148px;
-    -fx-pref-width: 88px;
     -fx-background-color: transparent;
-    -fx-opacity: 0.7;
 }
 #province:hover{
 	-fx-opacity: 1;
@@ -294,10 +270,7 @@
 	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
-	-fx-pref-height: 148px;
-    -fx-pref-width: 88px;
     -fx-background-color: transparent;
-    -fx-opacity: 0.7;
 }
 #silver:hover{
 	-fx-opacity: 1;
@@ -315,10 +288,7 @@
 	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
-	-fx-pref-height: 148px;
-    -fx-pref-width: 88px;
     -fx-background-color: transparent;
-    -fx-opacity: 0.7;
 }
 #smith:hover{
 	-fx-opacity: 1;
@@ -336,10 +306,7 @@
 	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
-	-fx-pref-height: 148px;
-    -fx-pref-width: 88px;
     -fx-background-color: transparent;
-    -fx-opacity: 0.7;
 }
 #village:hover{
 	-fx-opacity: 1;
@@ -357,10 +324,7 @@
 	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
-	-fx-pref-height: 148px;
-    -fx-pref-width: 88px;
     -fx-background-color: transparent;
-	-fx-opacity: 0.7;
 }
 #woodcutter:hover{
 	-fx-opacity: 1;
@@ -379,7 +343,5 @@
 	-fx-background-position: top left;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
-	-fx-pref-height: 148px;
-    -fx-pref-width: 88px;
     -fx-background-color: transparent;
 }

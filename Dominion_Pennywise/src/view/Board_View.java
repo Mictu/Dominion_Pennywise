@@ -101,6 +101,20 @@ public class Board_View {
 			victory.add(cdV.getEstateBtn());
 			victory.add(cdV.getDuchyBtn());
 			victory.add(cdV.getProvinceBtn());
+			
+			for (Button l : treasure) {
+				hCenter3.getChildren().add(l);
+				bindingsForContent(l, hCenter3, 1, 0.12);
+			}
+			for (Button l : kingdom) {
+				hCenter2.getChildren().add(l);
+				bindingsForContent(l, hCenter2, 1, 0.12);
+			}
+			for (Button l : victory) {
+				hCenter1.getChildren().add(l);
+				bindingsForContent(l, hCenter1, 1, 0.12);
+			}
+			
 
 			setCardsOnViewEnable();
 
@@ -150,7 +164,7 @@ public class Board_View {
 		Label hand = new Label(t.getString("dominion.board.lbl.hand"));
 		hand.setId("handLabel");
 
-		hBoxHand = new HBox(20);
+		hBoxHand = new HBox();
 		hBoxHand.setAlignment(Pos.CENTER);
 
 		// testing the players hand
@@ -164,26 +178,25 @@ public class Board_View {
 		Button discard = new Button();
 		discard.setId("back");
 
-		hBottom = new HBox(800); // Spacing between deck and discard
-		hBottom.getChildren().addAll(deck, discard);
+		stackPane.getChildren().addAll(hand, hBoxHand);
+
+		hBottom = new HBox(40); // Spacing between deck and discard
+		hBottom.getChildren().addAll(deck, stackPane, discard);
 		hBottom.setAlignment(Pos.CENTER);
 
-		stackPane.getChildren().addAll(hand, hBottom, hBoxHand);
-		root.setBottom(stackPane);
+		bindingsForContent(deck, hBottom, 0.7, 0.1);
+		bindingsForContent(discard, hBottom, 0.7, 0.1);
+		bindingsForContent(stackPane, hBottom, 1, 0.75);
 
-		bindingsForContent(deck, hBottom, 0.98, 0.14);
-		bindingsForContent(discard, hBottom, 0.98, 0.14);
-
-		bindingsForContent(hand, stackPane, 0.98, 0.85);
-		bindingsForContent(hBottom, stackPane, 0.7, 0.92);
-		bindingsForContent(hBoxHand, stackPane, 0.7, 0.8);
+		bindingsForContent(hand, stackPane, 1, 1);
+		bindingsForContent(hBoxHand, stackPane, 0.7, 0.98);
 
 		reg = new Region();
 		reg.setPrefHeight(15);
 		reg2 = new Region();
 		reg2.setPrefHeight(15);
 
-		vCenter.getChildren().addAll(hCenter1, hCenter2, hCenter3, reg2, labels, reg, stackPane);
+		vCenter.getChildren().addAll(hCenter1, hCenter2, hCenter3, reg2, labels, reg, hBottom);
 
 		// bindings for Center content
 		bindingsForContent(hCenter1, vCenter, 0.2, 0.8);
@@ -192,7 +205,7 @@ public class Board_View {
 		bindingsForContent(reg, vCenter, 0.005, 0.65);
 		bindingsForContent(labels, vCenter, 0.05, 0.8);
 		bindingsForContent(reg2, vCenter, 0.005, 0.65);
-		bindingsForContent(stackPane, vCenter, 0.25, 0.65);
+		bindingsForContent(hBottom, vCenter, 0.25, 0.8);
 
 		TextArea playerStats = new TextArea();
 		playerStats.setEditable(false);
@@ -260,7 +273,9 @@ public class Board_View {
 
 	public void setHand() {
 		handFromServer = ClientHandler.tempHandCard;
-
+		
+		hBoxHand.setSpacing(20);
+		
 		this.hBoxHand.getChildren().clear();
 		while (handCards.size() < handFromServer.size()) {
 			Button b = new Button();
@@ -268,7 +283,7 @@ public class Board_View {
 				try {
 					playSound();
 					cardID = "hand" + b.getId();
-					//b.setDisable(true); // die Angeklickte karte sollte disablled oder in Discard geschickt werden
+					//b.setDisable(true); // die Angeklickte karte sollte disabled oder in Discard geschickt werden
 					Login_Controller.client.sendToServer(cardID);
 				} catch (Exception e) {
 					System.out.println("Button der hand haben noch keine ID erhalten");
@@ -315,51 +330,33 @@ public class Board_View {
 
 	// enables buttons while player is able to chose which card he wants to buy
 	public void setCardsOnViewEnable() {
-		hCenter1.getChildren().clear();
-		hCenter2.getChildren().clear();
-		hCenter3.getChildren().clear();
 		for (Button l : victory) {
 			l.setEffect(null);
 			l.setDisable(false);
-			hCenter1.getChildren().add(l);
-			bindingsForContent(l, hCenter1, 1, 0.12);
 		}
 		for (Button m : kingdom) {
 			m.setEffect(null);
 			m.setDisable(false);
-			hCenter2.getChildren().add(m);
-			bindingsForContent(m, hCenter2, 1, 0.12);
 		}
 		for (Button n : treasure) {
 			n.setEffect(null);
 			n.setDisable(false);
-			hCenter3.getChildren().add(n);
-			bindingsForContent(n, hCenter3, 1, 0.12);
 		}
 	}
 
 	// disables buttons while player is in action phase
 	public void setCardsOnViewDisable() {
-		hCenter1.getChildren().clear();
-		hCenter2.getChildren().clear();
-		hCenter3.getChildren().clear();
 		for (Button l : victory) {
 			l.setEffect(shadow);
 			l.setDisable(true);
-			hCenter1.getChildren().add(l);
-			bindingsForContent(l, hCenter1, 1, 0.12);
 		}
 		for (Button m : kingdom) {
 			m.setEffect(shadow);
 			m.setDisable(true);
-			hCenter2.getChildren().add(m);
-			bindingsForContent(m, hCenter2, 1, 0.12);
 		}
 		for (Button n : treasure) {
 			n.setEffect(shadow);
 			n.setDisable(true);
-			hCenter3.getChildren().add(n);
-			bindingsForContent(n, hCenter3, 1, 0.12);
 		}
 	}
 
