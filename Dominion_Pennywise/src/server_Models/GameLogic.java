@@ -1,12 +1,5 @@
 package server_Models;
 
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-
-import javafx.application.Platform;
-import javafx.concurrent.Task;
-import server.client.Client_Chat;
 import server.client.Server;
 import server.client.ServerHandler;
 
@@ -22,61 +15,84 @@ public class GameLogic {
 	protected final int START_ESTATE = 3;
 
 	protected String actualPhase;
-	protected static int playerIndex = 0;
 
 	ServerHandler serverHandler;
 	Server server;
 	CleanUpPhase cleanPhase;
+	int index;
+	boolean firstRound;
 
 	Player player;
 
 	// Constructor
 	public GameLogic(Server server) {
 		this.server = server;
+		index = 0;
+		firstRound = true;
+		actualPhase = "action";
+		for (Player player : Player.player) {
+			gameStart(player);
+		}
 	} // Close Constructor
 
 	protected void gameStart(Player player) {
-		for (int i = 0; i < START_MONEY; i++) {
-			player.discard.add("copper"); // don't forget to counter++
-		}
-
-		for (int i = 0; i < START_ESTATE; i++) {
-			player.discard.add("estate");
-		}
+//		for (int i = 0; i < START_MONEY; i++) {
+//			player.discard.add("copper"); // don't forget to counter++
+//		}
+//
+//		for (int i = 0; i < START_ESTATE; i++) {
+//			player.discard.add("estate");
+//		}
+		
+		for (int i = 0; i < 10; i++) {
+		player.discard.add("funfair");
+	}
+		
+//		for (int i = 0; i < 6; i++) {
+//			player.discard.add("village");
+//		}
+//		
+//		for (int i = 0; i < 6; i++) {
+//			player.discard.add("smith");
+//		}
+		
 		cleanPhase = new CleanUpPhase(player);
 	}
 
 	public void theGame() {
-		countRounds = 1;
-		// do {
-		// Every Player does his Phases
-		for (Player player : Player.player) {
-			this.player = player;
-			if (countRounds == 1) {
-				gameStart(this.player);
-			}
-			this.player.startRound();
-
-			actualPhase = "action";
-			server.sendStringToClient(actualPhase, playerIndex);
-
-			sendPlayersHand();
-			
+		getIndex();
+		if (firstRound == true) {
+			index = 0;
+			firstRound = false;
 		}
-
-		countRounds++;
-		// Play as long until these options aren't true anymore
-		// } while (countRounds <= 15 || Cards.CardType.Kingdom.Province > 0);
-		// } while (countRounds <= 15);
+		this.player = Player.player.get(index);
+		this.player.startRound();
+		
+		server.sendStringToClient(actualPhase, index);
+		sendPlayersHand();
+		actionPhase = new ActionPhase();
 	}
 
-	
-	public static void updatePlayer() {
-			playerIndex++;
-			System.out.println("player finished");
+	public void playCard(String message) {
+		switch (actualPhase) {
+		case "action":
+			actionPhase.chosenCard(message, this.player);
+			sendPlayersHand();
+		case "buy":
+			buyPhase = new BuyPhase();
+			buyPhase.buyCard(message, this.player);
+			sendPlayersHand();
+		}
 	}
 	
-	
+	public int getIndex() {
+		index++;
+		if (index == Player.player.size()) {
+			index = 0;
+		}
+		return this.index;
+	}
+
 	// get the actual phase to let the client know what cards can be pressed
 	public String getPhase() {
 		return this.actualPhase;
@@ -113,13 +129,13 @@ public class GameLogic {
 		switch (actualPhase) {
 		case "action":
 			actualPhase = "buy";
-			server.sendStringToClient(actualPhase, playerIndex);
+			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
 			break;
 		case "buy":
 			actualPhase = "cleanup";
 			cleanUpPhase = new CleanUpPhase(this.player);
-			server.sendStringToClient(actualPhase, playerIndex);
+			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
 			break; // block this monitor
 		}
@@ -131,7 +147,7 @@ public class GameLogic {
 			theHand = theHand.concat(card + ".");
 		}
 		theHand = theHand.substring(0, theHand.length() - 1);
-		server.sendStringToClient(theHand, playerIndex);
+		server.sendStringToClient(theHand, index);
 		for (int i = 0; i < 1000000000; i++) {
 			// get some time for the connection (time to send it)
 		}
@@ -139,6 +155,10 @@ public class GameLogic {
 
 	public String getActualPhase() {
 		return this.actualPhase;
+	}
+
+	public Player getActualPlayer() {
+		return this.player;
 	}
 
 }

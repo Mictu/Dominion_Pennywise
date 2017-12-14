@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import controllers.Board_Controller;
 import controllers.ClientHandler;
 import controllers.Login_Controller;
-import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -24,7 +23,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import main_Class.ServiceLocator;
-import server.client.Client;
 import server_Models.Translator;
 
 public class Board_View {

@@ -2,17 +2,18 @@ package server_Models;
 
 public class BuyPhase {
 
-	// initialize section
 	String card;
 
-	// Constructor
 	public BuyPhase() {
-	} // close constructor
+	} 
 
 	// Add Card to discard deck of player
 	public void buyCard(String cardName, Player player) {
-		// clicked card has to be handled also!
-		int cost = getCost(cardName);
+//		if(player.getBuyPoints() > 0) {
+			int cost = getCost(cardName);
+//			
+//		}
+		
 		// only if player has enough money to buy the "chosen" card
 		if (player.money >= cost) {
 			player.discard.add(cardName); // Karte vom Stapel abziehen !!!
@@ -66,6 +67,6 @@ public class BuyPhase {
 		return costs;
 	}
 
-} // Close Class
+} 
 
 // Written by Patrick

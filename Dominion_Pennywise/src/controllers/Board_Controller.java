@@ -36,7 +36,6 @@ public class Board_Controller {
 		});
 
 		boardView.endPhase.setOnAction((Event) -> {
-			System.out.println("reached endphase");
 			Login_Controller.client.sendToServer("endphase");
 		});
 		

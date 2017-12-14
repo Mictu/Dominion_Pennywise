@@ -12,60 +12,43 @@ public class ServerHandler {
 	BuyPhase buyphase;
 	ActionPhase actionphase;
 	CleanUpPhase cleanupphase;
-	public static volatile boolean nextround = false;
 
 	GameLogic gamelogic;
 	String phase;
 	Player player;
 	Client_Chat ClientC;
 	Server server;
+	public String message;
 
 	public ArrayList<String> handCards = new ArrayList<String>();
 
 	public ServerHandler(Server server) {
 		this.server = server;
-		
-		gamelogic = new GameLogic(server);
 	}
 
 	public void addPlayerToList(String name) {
 		player = new Player(name);
 		Player.player.add(player);
-//		Collections.shuffle(Player.player);
+		// Collections.shuffle(Player.player);
 	}
 
 	// Get Strings from Server
 	public void getMessageFromServer(String msg) {
-		String message = msg;
-		
-		if (message.equals("start")) {
-//			if (Player.player.size() > 1 && Player.player.size() < 5) {
-				server.sendToClient("openboardview");
-				
-				gamelogic.theGame();
-				phase = gamelogic.getActualPhase();
-//			}
-		}
-		
+		message = msg;
 
-		switch (phase) {
-		case "action":
-			actionphase = new ActionPhase();
-			actionphase.chosenCard(message, player);
-		case "buy":
-			buyphase = new BuyPhase();
-			buyphase.buyCard(message, player);
+		if (message.equals("start")) {
+			// if (Player.player.size() > 1 && Player.player.size() < 5) {
+			server.sendToClient("openboardview");
+
+			gamelogic = new GameLogic(this.server);
+			phase = gamelogic.getActualPhase();
+			gamelogic.theGame();
 		}
-		
-		if(message.contains("nextround")) {
-			nextround = true;
-		}
-		
-		if (message.contains("endphase")) {
+
+		else if (message.contains("endphase")) {
 			gamelogic.endPhase(message);
-			if(nextround) {
-				GameLogic.updatePlayer();
-			}
+		} else {
+			gamelogic.playCard(message);
 		}
 	}
 

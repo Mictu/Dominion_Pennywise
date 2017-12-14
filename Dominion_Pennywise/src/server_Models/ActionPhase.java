@@ -6,7 +6,6 @@ public class ActionPhase {
 
 	// initialize sector
 	public boolean phase;
-
 	// Constructor
 	public ActionPhase() {
 		phase = true;
@@ -14,32 +13,34 @@ public class ActionPhase {
 
 	
 	// choose this method if a card is pressed
-	public void chosenCard(String cardName, Player player) {
+	public void chosenCard(String message, Player player) {
+		String cardName = message.substring(4);
 		if(player.getActionPoints() >0 ) {
 			switch (cardName) {
 			case "village":
 				actionVillage(player);
-				System.out.println("village");
+				reloadHand(cardName, player);
 				break;
 			case "woodcutter":
 				actionWoodcutter(player);
+				reloadHand(cardName, player);
 				break;
 			case "funfair":
 				actionFunfair(player);
+				reloadHand(cardName, player);
 				break;
 			case "laboratory":
 				actionLaboratory(player);
+				reloadHand(cardName, player);
 				break;
 			case "market":
 				actionMarket(player);
+				reloadHand(cardName, player);
 				break;
 			case "smith":
 				actionSmith(player);
+				reloadHand(cardName, player);
 				break;
-//			default:
-//				System.out.println("default");
-//				phase = false;
-//				break;
 			}
 		}
 //		server.sendToClient(""+player.getActionPoints());
@@ -79,14 +80,10 @@ public class ActionPhase {
 		increaseCard(1, player);
 	}
 
-	public void playActionCard(Player player) {
-		player.hand.lastIndexOf("dd");
-	}
-
 	public void increaseCard(int amount, Player player) {
 		for (int i = 1; i <= amount; i++) {
-			player.hand.add(player.deck.get(player.deck.size() - 1));
-			player.deck.remove(player.deck.size() - 1);
+			player.hand.add(player.deck.get(0));
+			player.deck.remove(0);
 			// shuffles Cards if deck is empty
 			if (player.deck.isEmpty()) {
 				Collections.shuffle(player.discard);
@@ -98,6 +95,11 @@ public class ActionPhase {
 		}
 	}
 
-} // Close Class
+	public void reloadHand(String card, Player player) {
+		player.hand.remove(player.hand.lastIndexOf(card));
+		System.out.println("finished reload");
+	}
+} 
+
 
 // Written by Patrick

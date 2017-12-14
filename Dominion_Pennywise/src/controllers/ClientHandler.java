@@ -27,10 +27,10 @@ public class ClientHandler {
 		this.lobbyV = lobbyView;
 		lobbyC = new Lobby_Controller(this.lobbyV);
 	}
-	
+
 	public static void getNamesFormClient(String[] names) {
 		lobbyC.clearConnectedP();
-		for(String s : names) {
+		for (String s : names) {
 			lobbyC.updateConnectedPlayers(s);
 		}
 	}
@@ -65,7 +65,6 @@ public class ClientHandler {
 			break;
 		case "cleanup":
 			boardview.blockWindow();
-			Login_Controller.client.sendToServer("nextround");
 		}
 	}
 
