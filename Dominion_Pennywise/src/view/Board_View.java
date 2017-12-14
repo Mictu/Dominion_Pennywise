@@ -297,7 +297,7 @@ public class Board_View {
 				}
 			}
 		}
-		if (ClientHandler.phase.equals("action") || ClientHandler.phase.equals("cleanup")) {
+		if (ClientHandler.phase.equals("action")) {
 			setCardsOnViewDisable();
 			for (Button b : handCards) {
 				if (b.getId().equals("smith") || b.getId().equals("market") || b.getId().equals("laboratory")
@@ -383,6 +383,9 @@ public class Board_View {
 		child.maxWidthProperty().bind(stage2.widthProperty().multiply(widthMultiply));
 		child.minHeightProperty().bind(stage2.heightProperty().multiply(heightMultiply));
 		child.minWidthProperty().bind(stage2.widthProperty().multiply(widthMultiply));
+	}
+
+	public void blockWindow() {
 	}
 
 }// close class

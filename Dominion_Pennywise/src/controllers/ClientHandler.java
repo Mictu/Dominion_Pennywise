@@ -42,18 +42,16 @@ public class ClientHandler {
 		if (message.length() > 4 && message.substring(0, 4).equals("hand")) {
 			message = message.substring(5);
 
-				String[] laHand = message.split("\\.");
-			
-				for (String s : laHand) {
-					tempHandCard.add(s);
-				}					
-				Platform.runLater(() -> {
-					boardview.setHand();
-				});
-		}
-	switch(message)
+			String[] laHand = message.split("\\.");
 
-	{
+			for (String s : laHand) {
+				tempHandCard.add(s);
+			}
+			Platform.runLater(() -> {
+				boardview.setHand();
+			});
+		}
+		switch (message) {
 		case "openboardview":
 			Platform.runLater(() -> {
 				openBoardView();
@@ -65,6 +63,9 @@ public class ClientHandler {
 		case "action":
 			phase = "action";
 			break;
+		case "cleanup":
+			boardview.blockWindow();
+			Login_Controller.client.sendToServer("nextround");
 		}
 	}
 

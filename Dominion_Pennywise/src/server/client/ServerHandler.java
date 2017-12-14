@@ -12,6 +12,7 @@ public class ServerHandler {
 	BuyPhase buyphase;
 	ActionPhase actionphase;
 	CleanUpPhase cleanupphase;
+	public static volatile boolean nextround = false;
 
 	GameLogic gamelogic;
 	String phase;
@@ -46,18 +47,26 @@ public class ServerHandler {
 //			}
 		}
 		
+
+		switch (phase) {
+		case "action":
+			actionphase = new ActionPhase();
+			actionphase.chosenCard(message, player);
+		case "buy":
+			buyphase = new BuyPhase();
+			buyphase.buyCard(message, player);
+		}
+		
+		if(message.contains("nextround")) {
+			nextround = true;
+		}
+		
 		if (message.contains("endphase")) {
 			gamelogic.endPhase(message);
+			if(nextround) {
+				GameLogic.updatePlayer();
+			}
 		}
-//
-//		switch (phase) {
-//		case "action":
-//			actionphase = new ActionPhase();
-//			actionphase.chosenCard(message, player);
-//		case "buy":
-//			buyphase = new BuyPhase();
-//			buyphase.buyCard(message, player);
-//		}
 	}
 
 	// only do something when it makes sense for the clicked card - treasure
