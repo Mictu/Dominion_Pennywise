@@ -37,8 +37,10 @@ public class Board_View {
 	 */
 
 	// Initialize the GUI Content here
-	public Button endPhase, bonusMoney, pay;
+	public Button endPhase, bonusMoney, pay, send;
 	public HBox hBoxHand;
+	public TextField chatText;
+	public TextArea chat;
 	Board_Controller bcontroller;
 	protected HBox hCenter1, hCenter2, hCenter3;
 	HBox hBottom;
@@ -210,8 +212,8 @@ public class Board_View {
 		VBox vRight = new VBox(10);
 
 		HBox chatInput = new HBox(5);
-		TextField chatText = new TextField();
-		Button send = new Button();
+		chatText= new TextField();
+		send = new Button();
 		send.setId("sendButton");
 		send.setText(t.getString("dominion.lobby.btn.send"));
 
@@ -221,7 +223,7 @@ public class Board_View {
 
 		TextArea logger = new TextArea();
 		logger.setEditable(false);
-		TextArea chat = new TextArea();
+		chat = new TextArea();
 		chat.setEditable(false);
 
 		reg = new Region();

@@ -1,5 +1,7 @@
 package controllers;
 
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import server_Models.Player;
 import view.Board_View;
 import view.CardDesign_View;
@@ -28,6 +30,7 @@ public class Board_Controller {
 //			}
 //		});
 		
+		
 		boardView.pay.setOnAction((Event) -> {
 			Login_Controller.client.sendToServer("pay");
 		});
@@ -40,9 +43,21 @@ public class Board_Controller {
 		boardView.bonusMoney.setOnAction((Event) -> {
 			Login_Controller.client.sendToServer("bonusmoney");
 		});
+		
+		//Chat 
+		boardView.chatText.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+			if (event.getCode() == KeyCode.ENTER) {
+				boardView.send.fire();
+			}
+		});
+		boardView.send.setOnAction(event -> {
+			Login_Controller.client.sendChatMessage(boardView.chatText.getText());
+			boardView.chatText.clear();
+		});
+		
+		Login_Controller.client.newestMessage
+		.addListener((o, oldValue, newValue) -> boardView.chat.appendText(newValue + "\n"));
 
-		
-		
 	}
 
 		public void setbonusMoneybtn(String text){
