@@ -267,6 +267,7 @@ public class Board_View {
 				try {
 					playSound();
 					cardID = "hand" + b.getId();
+					//b.setDisable(true); // die Angeklickte karte sollte disablled oder in Discard geschickt werden
 					Login_Controller.client.sendToServer(cardID);
 				} catch (Exception e) {
 					System.out.println("Button der hand haben noch keine ID erhalten");

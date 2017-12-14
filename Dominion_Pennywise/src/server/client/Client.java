@@ -58,7 +58,7 @@ public class Client {
 						});
 					} else if (msg instanceof StringMsg) {
 						String message = ((StringMsg) msg).getContent();
-						if (message.substring(0, 5).equals("lobby")) {
+						if (message.length() > 4 && message.substring(0, 5).equals("lobby")) {
 							namemsg = message.substring(6);
 							names = namemsg.split("\\.");
 							Platform.runLater(() -> {
