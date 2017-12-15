@@ -385,7 +385,22 @@ public class Board_View {
 	}
 
 	public void blockWindow() {
-		root.getCenter().setDisable(true);
+		hCenter1.setDisable(true);
+		hCenter2.setDisable(true);
+		hCenter3.setDisable(true);
+		hBottom.setDisable(true);
+		pay.setDisable(true);
+		bonusMoney.setDisable(true);
+		
+	}
+	public void enableWindow() {
+		hCenter1.setDisable(false);
+		hCenter2.setDisable(false);
+		hCenter3.setDisable(false);
+		hBottom.setDisable(false);
+		pay.setDisable(false);
+		bonusMoney.setDisable(false);
+		
 	}
 
 }// close class
