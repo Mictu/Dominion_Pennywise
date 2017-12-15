@@ -64,7 +64,8 @@ public class ClientHandler {
 			phase = "action";
 			break;
 		case "cleanup":
-			boardview.blockWindow();
+			phase = "cleanup";
+//			boardview.blockWindow();
 		}
 	}
 
