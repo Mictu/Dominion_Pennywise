@@ -30,10 +30,13 @@ public class Lobby_Controller {
 				lobbyView.btnSend.fire();
 			}
 		});
-		lobbyView.btnSend.setOnAction(event -> {
-			Login_Controller.client.sendChatMessage(lobbyView.txtChatMessage.getText());
-			lobbyView.txtChatMessage.clear();
-		});
+		
+			lobbyView.btnSend.setOnAction(event -> {
+				if (!lobbyView.txtChatMessage.getText().trim().isEmpty()) {
+				Login_Controller.client.sendChatMessage(lobbyView.txtChatMessage.getText());
+				lobbyView.txtChatMessage.clear();
+				}
+			});
 
 		Login_Controller.client.newestMessage
 				.addListener((o, oldValue, newValue) -> lobbyView.txtChatArea.appendText(newValue + "\n"));

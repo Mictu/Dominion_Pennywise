@@ -50,8 +50,10 @@ public class Board_Controller {
 			}
 		});
 		boardView.send.setOnAction(event -> {
+			if (!boardView.chatText.getText().trim().isEmpty()) {
 			Login_Controller.client.sendChatMessage(boardView.chatText.getText());
 			boardView.chatText.clear();
+			}
 		});
 		
 		Login_Controller.client.newestMessage
