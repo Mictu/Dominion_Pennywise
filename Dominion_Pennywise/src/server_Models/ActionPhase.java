@@ -12,6 +12,9 @@ public class ActionPhase {
 	} // Close Constructors
 
 	
+					// Show player stats on boardView
+	
+	
 	// choose this method if a card is pressed
 	public void chosenCard(String message, Player player) {
 		String cardName = message.substring(4);

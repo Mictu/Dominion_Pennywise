@@ -8,7 +8,7 @@ public class GameLogic {
 	// Initialize sector here
 	protected CleanUpPhase cleanUpPhase;
 	ActionPhase actionPhase = new ActionPhase();
-	BuyPhase buyPhase;
+	BuyPhase buyPhase = new BuyPhase();
 
 	protected int countRounds;
 	protected final int START_MONEY = 7;
@@ -64,9 +64,8 @@ public class GameLogic {
 		switch (actualPhase) {
 		case "action":
 			actionPhase.chosenCard(message, this.player);
-//			sendPlayersHand();
+			sendPlayersHand();
 		case "buy":
-			buyPhase = new BuyPhase();
 			buyPhase.buyCard(message, this.player);
 			sendPlayersHand();
 		}
@@ -90,27 +89,6 @@ public class GameLogic {
 		return this.player;
 	}
 
-	// This method should actualize the hand on the view (e.g. call it in buy phase
-	// when u gave away a copper card)
-	public void setHandView(Player player) {
-		for (String o : player.hand)
-			server.sendToClient(o);
-	}
-
-	// Run an Action
-	public void runAction(String card) {
-		actionPhase.chosenCard(card, this.player);
-	}
-
-	// Run a buying
-	public void runBuy(String card) {
-		buyPhase.buyCard(card, this.player);
-	}
-
-	public void runBuyPickCard(String card) {
-		buyPhase.choseCardToBuy(card);
-	}
-
 	// start following phase if button on board view is clicked
 	public void endPhase(String message) {
 		switch (actualPhase) {
@@ -124,10 +102,17 @@ public class GameLogic {
 			cleanUpPhase = new CleanUpPhase(this.player);
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
+		case "cleanup":
+			theGame();
+			actualPhase = "action";
+			server.sendStringToClient(actualPhase, index);
+			sendPlayersHand();
 			break; // block this monitor
 		}
 	}
 
+	// This method should actualize the hand on the view (e.g. call it in buy phase
+	// when u gave away a copper card)
 	public void sendPlayersHand() {
 		String theHand = "hand.";
 		for (String card : player.hand) {

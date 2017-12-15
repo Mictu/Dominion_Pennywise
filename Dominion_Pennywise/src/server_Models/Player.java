@@ -28,11 +28,9 @@ public class Player {
 		this.name = name;
 		winPoint = 0;
 		amountOfTurns = 0;
-
 		money = 0;
 		actionPoint = 0;
 		buyPoint = 0;
-
 	} // Close Constructor
 
 	// set up for a new round
@@ -41,12 +39,12 @@ public class Player {
 		actionPoint = 1;
 		buyPoint = 1;
 		bonusBuyPoint = 0;														// button (increase over kingdom-card)
-		money = getCashHand(); // Get money you have in your hands
+//		money = getCashHand(); // Get money you have in your hands
 	}
 
 	// Get how many money you have in your hands to buy something
 	protected int getCashHand() {
-		int cash = 0;
+		money = 0;
 		for (String x : this.hand) {
 			if (x.equalsIgnoreCase("gold")) {
 				money += 3;
@@ -58,7 +56,7 @@ public class Player {
 				money += 1;
 			}
 		}
-		return cash;
+		return money;
 	}
 
 	// Increase the stats of the player in the following lines
@@ -91,7 +89,7 @@ public class Player {
 	// increase money in the same round
 	protected void increaseMoney(int money) {
 		this.money += money;
-		this.bonusBuyPoint += money;
+//		this.bonusBuyPoint += money;
 	}
 	
 	// decrease money from hands (Buy-phase)

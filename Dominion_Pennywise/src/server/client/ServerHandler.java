@@ -52,37 +52,5 @@ public class ServerHandler {
 		}
 	}
 
-	// only do something when it makes sense for the clicked card - treasure
-	public void getOptionsTreasure(String message) {
-		if (phase.equalsIgnoreCase("buy") && message.substring(0, 4).equalsIgnoreCase("hand")) { // set String on view
-																									// side to
-																									// hand.concat(card)
-			gamelogic.runBuy(message);
-		} else if (phase.equalsIgnoreCase("buy")) {
-			gamelogic.runBuyPickCard(message.substring(4));
-		} else {
-			System.out.println("Card can not be played now"); // maybe set layout of some cards
-		}
-	}
-
-	// only do something when it makes sense for the clicked card - kingdom
-	public void getOptionsKingdom(String message) {
-		if (phase.equalsIgnoreCase("action")) {
-			gamelogic.runAction(message);
-		} else if (phase.equalsIgnoreCase("buy")) {
-			gamelogic.runBuyPickCard(message);
-		} else {
-			System.out.println("Card can not be played now");
-		}
-	}
-
-	// only do something when it makes sense for the clicked card - victory
-	public void getOptionsVictory(String message) {
-		if (phase.equalsIgnoreCase("buy")) {
-			gamelogic.runBuyPickCard(message);
-		} else {
-			System.out.println("Card can not be played now");
-		}
-	}
 
 }
