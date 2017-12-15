@@ -26,6 +26,8 @@ public class Client {
 	String namemsg;
 	String[] names;
 	
+	ClientHandler ch = new ClientHandler();
+	
 	ArrayList<String> deck = new ArrayList<String>();
 
 	public SimpleStringProperty newestMessage = new SimpleStringProperty();
@@ -71,7 +73,7 @@ public class Client {
 
 						} else {
 							Platform.runLater(() -> {
-								ClientHandler.getMessageFromClient(message);
+								ch.getMessageFromClient(message);
 							});
 						}
 					}

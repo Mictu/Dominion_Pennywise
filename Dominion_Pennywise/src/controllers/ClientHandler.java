@@ -35,7 +35,7 @@ public class ClientHandler {
 		}
 	}
 
-	public static void getMessageFromClient(String msg) {
+	public void getMessageFromClient(String msg) {
 		message = msg;
 
 		// Get message to set the player hand view
@@ -63,13 +63,13 @@ public class ClientHandler {
 		case "action":
 			phase = "action";
 			Platform.runLater(() -> {
-			boardview.enableWindow();
+				boardview.enableWindow();
 			});
 			break;
 		case "cleanup":
 			phase = "cleanup";
 			Platform.runLater(() -> {
-			boardview.blockWindow();
+				boardview.blockWindow();
 			});
 			break;
 		}

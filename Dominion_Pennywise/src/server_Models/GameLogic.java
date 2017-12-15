@@ -129,9 +129,7 @@ public class GameLogic {
 		}
 		theHand = theHand.substring(0, theHand.length() - 1);
 		server.sendStringToClient(theHand, index);
-		for (int i = 0; i < 1000000000; i++) {
-			// get some time for the connection (time to send it)
-		}
+		System.out.println("send hand");
 	}
 
 	public String getActualPhase() {

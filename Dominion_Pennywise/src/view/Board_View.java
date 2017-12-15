@@ -273,7 +273,6 @@ public class Board_View {
 
 	public void setHand() {
 		handFromServer = ClientHandler.tempHandCard;
-		
 		hBoxHand.setSpacing(20);
 		
 		this.hBoxHand.getChildren().clear();

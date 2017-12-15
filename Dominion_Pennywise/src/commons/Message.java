@@ -19,6 +19,7 @@ public abstract class Message {
 		try {
 			out = new OutputStreamWriter(socket.getOutputStream());
 			out.write(this.toString() + "\n");
+			System.out.println("Sending: " + this);
 			out.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -32,7 +33,7 @@ public abstract class Message {
 		try {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String msgText = in.readLine();
-//			System.out.println(msgText);
+			System.out.println("Receiving: " + msgText);
 			//Parse message
 			String[] parts = msgText.split("\\|");
 			if (parts[0].equals(MessageType.Join.toString())) {
