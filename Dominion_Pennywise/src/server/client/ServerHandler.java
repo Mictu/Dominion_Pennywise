@@ -13,7 +13,7 @@ public class ServerHandler {
 	ActionPhase actionphase;
 	CleanUpPhase cleanupphase;
 
-	GameLogic gamelogic;
+	static GameLogic gamelogic;
 	String phase;
 	Player player;
 	Client_Chat ClientC;
@@ -39,9 +39,7 @@ public class ServerHandler {
 		if (message.equals("start")) {
 			// if (Player.player.size() > 1 && Player.player.size() < 5) {
 			server.sendToClient("openboardview");
-
 			gamelogic = new GameLogic(this.server);
-			phase = gamelogic.getActualPhase();
 			gamelogic.theGame();
 		}
 

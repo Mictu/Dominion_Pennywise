@@ -389,6 +389,7 @@ public class Board_View {
 		hCenter2.setDisable(true);
 		hCenter3.setDisable(true);
 		hBottom.setDisable(true);
+		endPhase.setDisable(true);
 		pay.setDisable(true);
 		bonusMoney.setDisable(true);
 		
@@ -398,6 +399,7 @@ public class Board_View {
 		hCenter2.setDisable(false);
 		hCenter3.setDisable(false);
 		hBottom.setDisable(false);
+		endPhase.setDisable(false);
 		pay.setDisable(false);
 		bonusMoney.setDisable(false);
 		

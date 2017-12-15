@@ -62,10 +62,16 @@ public class ClientHandler {
 			break;
 		case "action":
 			phase = "action";
+			Platform.runLater(() -> {
+			boardview.enableWindow();
+			});
 			break;
 		case "cleanup":
 			phase = "cleanup";
-//			boardview.blockWindow();
+			Platform.runLater(() -> {
+			boardview.blockWindow();
+			});
+			break;
 		}
 	}
 

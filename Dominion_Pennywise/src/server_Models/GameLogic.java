@@ -54,9 +54,18 @@ public class GameLogic {
 			firstRound = false;
 		}
 		this.player = Player.player.get(index);
-		this.player.startRound();
+
+		int ind = 0;
+		for (Player p : Player.player) {
+			if (p.equals(this.player)){
+				server.sendStringToClient("action", ind);
+			} else {
+				server.sendStringToClient("cleanup", ind);
+			}
+			ind++;
+		}
 		
-		server.sendStringToClient(actualPhase, index);
+		this.player.startRound();
 		sendPlayersHand();
 	}
 
