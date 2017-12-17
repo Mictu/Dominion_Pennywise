@@ -43,44 +43,53 @@ public class GameLogic {
 		for (int i = 0; i < START_ESTATE; i++) {
 			player.discard.add("estate");
 		}
-		
+
 		cleanPhase = new CleanUpPhase(player);
 	}
 
 	public void theGame() {
+		server.sendStringToClient("cleanup", index);
 		getIndex();
+
 		if (firstRound == true) {
 			index = 0;
 			firstRound = false;
-		}
-		this.player = Player.player.get(index);
 
-		int ind = 0;
-		for (Player p : Player.player) {
-			if (p.equals(this.player)){
-				server.sendStringToClient("action", ind);
-			} else {
-				server.sendStringToClient("cleanup", ind);
+			int ind = 0;
+
+			for (Player p : Player.player) {
+				if (p.equals(this.player)) {
+					server.sendStringToClient("action", index);
+				} else {
+					server.sendStringToClient("cleanup", ind);
+				}
+				ind++;
 			}
-			ind++;
+
 		}
-		
+
+		this.player = Player.player.get(index);
+		server.sendStringToClient("action", index);
+
 		this.player.startRound();
-		sendPlayersHand();
+		// sendPlayersHand();
 	}
 
 	public void playCard(String message) {
 		switch (actualPhase) {
 		case "action":
 			actionPhase.chosenCard(message, this.player);
-			sendPlayersHand();
+			if(actionPhase.getActionMadeBoolean())
+				sendPlayersHand();
+			break; 
 		case "buy":
 			buyPhase.buyCard(message, this.player);
 			if (buyPhase.sendHandAgain())
 				sendPlayersHand();
+			break; 
 		}
 	}
-	
+
 	public int getIndex() {
 		index++;
 		if (index == Player.player.size()) {
@@ -100,7 +109,7 @@ public class GameLogic {
 	}
 
 	// start following phase if button on board view is clicked
-	public void endPhase(String message) {
+	public void endPhase() {
 		switch (actualPhase) {
 		case "action":
 			actualPhase = "buy";
@@ -121,7 +130,8 @@ public class GameLogic {
 		}
 	}
 
-	// This method should actualize the hand on the view (e.g. call it in buy phase
+	// This method should actualize the hand on the view (e.g. call it in buy
+	// phase
 	// when u gave away a copper card)
 	public void sendPlayersHand() {
 		String theHand = "hand.";

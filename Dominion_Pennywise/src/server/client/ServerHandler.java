@@ -44,7 +44,7 @@ public class ServerHandler {
 		}
 
 		else if (message.contains("endphase")) {
-			gamelogic.endPhase(message);
+			gamelogic.endPhase();
 		} else {
 			gamelogic.playCard(message);
 		}

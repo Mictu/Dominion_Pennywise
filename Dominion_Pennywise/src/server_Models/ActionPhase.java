@@ -5,10 +5,11 @@ import java.util.Collections;
 public class ActionPhase {
 
 	// initialize sector
-	public boolean phase;
+	boolean madeAnAction = false; 
+	
+	
 	// Constructor
 	public ActionPhase() {
-		phase = true;
 	} // Close Constructors
 
 	
@@ -17,6 +18,7 @@ public class ActionPhase {
 	
 	// choose this method if a card is pressed
 	public void chosenCard(String message, Player player) {
+		madeAnAction = false; 
 		String cardName = message.substring(4);
 		if(player.getActionPoints() >0 ) {
 			switch (cardName) {
@@ -51,6 +53,10 @@ public class ActionPhase {
 //		server.sendToClient(""+player.getBonusBuyMoney());
 	}
 
+	public boolean getActionMadeBoolean(){
+		return madeAnAction; 
+	}
+	
 	public void actionSmith(Player player) {
 		increaseCard(3, player);
 	}
@@ -108,6 +114,8 @@ public class ActionPhase {
 	public void reloadHand(String card, Player player) {
 		player.discard.add(player.hand.get(player.hand.lastIndexOf(card)));
 		player.hand.remove(player.hand.lastIndexOf(card));
+		madeAnAction = true; 
+		player.decreaseActionPoints();
 	}
 } 
 
