@@ -37,7 +37,8 @@ public class ClientHandler {
 
 	public void getMessageFromClient(String msg) {
 		message = msg;
-
+		System.out.println(message);
+		
 		// Get message to set the player hand view
 		if (message.length() > 4 && message.substring(0, 4).equals("hand")) {
 			message = message.substring(5);
@@ -50,6 +51,11 @@ public class ClientHandler {
 			Platform.runLater(() -> {
 				boardview.setHand();
 			});
+			System.out.println(message);
+		} else if (message.equals("empty")) {
+				Platform.runLater(() -> {
+					boardview.setEmptyHand();
+				});
 		} else {
 			switch (message) {
 			case "openboardview":

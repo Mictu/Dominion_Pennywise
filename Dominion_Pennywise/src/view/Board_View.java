@@ -362,6 +362,10 @@ public class Board_View {
 			n.setDisable(true);
 		}
 	}
+	
+	public void setEmptyHand() {
+		hBoxHand.getChildren().clear();
+	}
 
 	// play a sound if card is pressed
 	public void playSound() {

@@ -19,7 +19,9 @@ public class BuyPhase {
 		this.player = player;
 		cardName = message;
 		if (player.getBuyPoints() > 0) {
-			if (cardName.contains("hand") && cardChosen) {
+			if (cardName.contains("handcopper")) {
+				doTheBuy();
+			}else if (cardName.contains("hand") && cardChosen) {
 				pay();
 			} else if (!cardName.contains("hand") && !payStarted) {
 				buy();
@@ -74,17 +76,21 @@ public class BuyPhase {
 				break;
 			}
 			// Set everything to null for the next round
-			if (moneyForBuy >= cost) {
-				this.player.discard.add(buyThisCard);
-				buyThisCard = null;
-				cardName = null;
-				cardChosen = false;
-				payStarted = false;
-				moneyForBuy = 0;
-				cost = 0;
-				player.decreaseBuyPoints();
-				sendingHand = true;
-			}
+			doTheBuy();
+		}
+	}
+	
+	public void doTheBuy() {
+		if (moneyForBuy >= cost) {
+			this.player.discard.add(buyThisCard);
+			buyThisCard = null;
+			cardName = null;
+			cardChosen = false;
+			payStarted = false;
+			moneyForBuy = 0;
+			cost = 0;
+			player.decreaseBuyPoints();
+			sendingHand = true;
 		}
 	}
 	

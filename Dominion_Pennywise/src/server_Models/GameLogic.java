@@ -36,12 +36,16 @@ public class GameLogic {
 	} // Close Constructor
 
 	protected void gameStart(Player player) {
-		for (int i = 0; i < START_MONEY; i++) {
-			player.discard.add("copper"); // don't forget to counter++
-		}
-
-		for (int i = 0; i < START_ESTATE; i++) {
-			player.discard.add("estate");
+//		for (int i = 0; i < START_MONEY; i++) {
+//			player.discard.add("copper"); // don't forget to counter++
+//		}
+//
+//		for (int i = 0; i < START_ESTATE; i++) {
+//			player.discard.add("estate");
+//		}
+		
+		for (int i = 0; i < 10; i++) {
+			player.discard.add("copper");
 		}
 
 		cleanPhase = new CleanUpPhase(player);
@@ -63,6 +67,7 @@ public class GameLogic {
 				}
 				ind++;
 			}
+			this.player.startRound();
 		} else {
 			this.player = Player.player.get(index);
 			server.sendStringToClient("cleanup", index);
@@ -133,12 +138,16 @@ public class GameLogic {
 		for (int i = 0; i <= 1999999999; i++) {
 			// get some time for the client to recieve and handle the message
 		}
-		String theHand = "hand.";
-		for (String card : player.hand) {
-			theHand = theHand.concat(card + ".");
+		if (player.hand.isEmpty()){
+			server.sendStringToClient("empty", index);
+		} else {
+			String theHand = "hand.";
+			for (String card : player.hand) {
+				theHand = theHand.concat(card + ".");
+			}
+			theHand = theHand.substring(0, theHand.length() - 1);
+			server.sendStringToClient(theHand, index);
 		}
-		theHand = theHand.substring(0, theHand.length() - 1);
-		server.sendStringToClient(theHand, index);
 
 		for (int i = 0; i <= 1999999999; i++) {
 			for (int j = 0; j <= 1999999999; j++) {
