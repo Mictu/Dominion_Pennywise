@@ -2,7 +2,7 @@ package server_Models;
 
 public class BuyPhase {
 
-	int cost, moneyForBuy;
+	int cost;
 	String cardName, card;
 	String buyThisCard;
 	Player player;
@@ -19,9 +19,7 @@ public class BuyPhase {
 		this.player = player;
 		cardName = message;
 		if (player.getBuyPoints() > 0) {
-			if (cardName.equals("copper")) {
-				doTheBuy();
-			}else if (cardName.contains("hand") && cardChosen) {
+			if (cardName.contains("hand") && cardChosen) {
 				pay();
 			} else if (!cardName.contains("hand") && !payStarted) {
 				buy();
@@ -44,8 +42,8 @@ public class BuyPhase {
 		cardChosen = true;
 		buyThisCard = cardName;
 		cost = getCost(cardName);
-		if (cost > player.getCashHand()) {
-			System.out.println("Not enough cash in your hand (buyphase)");
+		if (cost > player.getCashHand()+player.money) {
+			System.out.println("Not enough cash in your hand and money(buyphase)");
 		}
 	}
 	
@@ -62,17 +60,20 @@ public class BuyPhase {
 			case "gold":
 				this.player.hand.remove(this.player.hand.lastIndexOf("gold"));
 				this.player.discard.add("gold");
-				moneyForBuy += 3;
+				player.money += 3;
+				System.out.println("PAY() PlayerMoney: " + player.money);
 				break;
 			case "silver":
 				this.player.hand.remove(this.player.hand.lastIndexOf("silver"));
 				this.player.discard.add("silver");
-				moneyForBuy += 2;
+				player.money += 2;
+				System.out.println("PAY() PlayerMoney: " + player.money);
 				break;
 			case "copper":
 				this.player.hand.remove(this.player.hand.lastIndexOf("copper"));
 				this.player.discard.add("copper");
-				moneyForBuy += 1;
+				player.money += 1;
+				System.out.println("PAY() PlayerMoney: " + player.money);
 				break;
 			}
 			// Set everything to null for the next round
@@ -81,13 +82,13 @@ public class BuyPhase {
 	}
 	
 	public void doTheBuy() {
-		if (moneyForBuy >= cost) {
+		if (player.money >= cost) {
 			this.player.discard.add(buyThisCard);
 			buyThisCard = null;
 			cardName = null;
 			cardChosen = false;
 			payStarted = false;
-			moneyForBuy = 0;
+			player.money = 0;
 			cost = 0;
 			player.decreaseBuyPoints();
 			sendingHand = true;
