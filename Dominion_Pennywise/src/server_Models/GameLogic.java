@@ -76,7 +76,8 @@ public class GameLogic {
 			sendPlayersHand();
 		case "buy":
 			buyPhase.buyCard(message, this.player);
-			sendPlayersHand();
+			if (buyPhase.sendHandAgain())
+				sendPlayersHand();
 		}
 	}
 	
@@ -129,7 +130,10 @@ public class GameLogic {
 		}
 		theHand = theHand.substring(0, theHand.length() - 1);
 		server.sendStringToClient(theHand, index);
-		System.out.println("send hand");
+		for (int i = 0; i <= 1999999999; i++) {
+			for (int j = 0; j <= 1999999999; j++) {
+			}
+		}
 	}
 
 	public String getActualPhase() {

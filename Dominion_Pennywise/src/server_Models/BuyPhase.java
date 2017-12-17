@@ -8,6 +8,7 @@ public class BuyPhase {
 	Player player;
 	boolean cardChosen = false;
 	boolean payStarted = false;
+	boolean sendingHand = false;
 
 	public BuyPhase() {
 		buyThisCard = null;
@@ -37,6 +38,7 @@ public class BuyPhase {
 	
 	public void buy() {
 		System.out.println("buy");
+		sendingHand = false;
 		cardChosen = true;
 		buyThisCard = cardName;
 		cost = getCost(cardName);
@@ -47,12 +49,12 @@ public class BuyPhase {
 	
 	
 	public void pay() {
+		sendingHand = false;
 		payStarted = true;
 		System.out.println("pay");
 		if (buyThisCard == null) {
 			System.out.println("Zuerst eine Karte zum kaufen auswählen");
 		} else {
-			cardChosen = true;
 			String card = cardName.substring(4);
 			switch (card) {
 			case "gold":
@@ -71,14 +73,26 @@ public class BuyPhase {
 				moneyForBuy += 1;
 				break;
 			}
+			// Set everything to null for the next round
 			if (moneyForBuy >= cost) {
 				this.player.discard.add(buyThisCard);
 				buyThisCard = null;
+				cardName = null;
 				cardChosen = false;
 				payStarted = false;
+				moneyForBuy = 0;
+				cost = 0;
 				player.decreaseBuyPoints();
+				sendingHand = true;
 			}
 		}
+	}
+	
+	public boolean sendHandAgain() {
+		if (payStarted)
+			return payStarted;
+		else
+			return sendingHand;
 	}
 
 
@@ -122,6 +136,10 @@ public class BuyPhase {
 			break;
 		case "province":
 			costs = 8;
+			break;
+		default:
+			System.out.println("string couldn't be handled by buyphase");
+			costs = 100;
 			break;
 		}
 		return costs;
