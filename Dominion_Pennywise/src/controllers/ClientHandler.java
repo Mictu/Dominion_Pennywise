@@ -21,7 +21,7 @@ public class ClientHandler {
 	static Board_View boardview;
 	Lobby_View lobbyV;
 
-	public static String phase;
+	public static String phase = "action";
 
 	public void initializeLobbyController(Lobby_View lobbyView) {
 		this.lobbyV = lobbyView;
@@ -50,28 +50,29 @@ public class ClientHandler {
 			Platform.runLater(() -> {
 				boardview.setHand();
 			});
-		}
-		switch (message) {
-		case "openboardview":
-			Platform.runLater(() -> {
-				openBoardView();
-			});
-			break;
-		case "buy":
-			phase = "buy";
-			break;
-		case "action":
-			phase = "action";
-			Platform.runLater(() -> {
-				boardview.enableWindow();
-			});
-			break;
-		case "cleanup":
-			phase = "cleanup";
-			Platform.runLater(() -> {
-				boardview.blockWindow();
-			});
-			break;
+		} else {
+			switch (message) {
+			case "openboardview":
+				Platform.runLater(() -> {
+					openBoardView();
+				});
+				break;
+			case "buy":
+				phase = "buy";
+				break;
+			case "action":
+				phase = "action";
+				Platform.runLater(() -> {
+					boardview.enableWindow();
+				});
+				break;
+			case "cleanup":
+				phase = "cleanup";
+				Platform.runLater(() -> {
+					boardview.blockWindow();
+				});
+				break;
+			}
 		}
 	}
 

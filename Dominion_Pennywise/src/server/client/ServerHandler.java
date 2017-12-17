@@ -40,6 +40,9 @@ public class ServerHandler {
 			// if (Player.player.size() > 1 && Player.player.size() < 5) {
 			server.sendToClient("openboardview");
 			gamelogic = new GameLogic(this.server);
+			for (int i = 0; i <= 1999999999; i++) {
+				// get some time for the client to recieve and handle the message
+			}
 			gamelogic.theGame();
 		}
 

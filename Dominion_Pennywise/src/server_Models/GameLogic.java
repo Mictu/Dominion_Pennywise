@@ -48,45 +48,41 @@ public class GameLogic {
 	}
 
 	public void theGame() {
-		server.sendStringToClient("cleanup", index);
-		getIndex();
-
 		if (firstRound == true) {
-			index = 0;
 			firstRound = false;
 
-			int ind = 0;
+			this.player = Player.player.get(index);
+			sendPlayersHand();
 
+			int ind = 0;
 			for (Player p : Player.player) {
 				if (p.equals(this.player)) {
-					server.sendStringToClient("action", index);
+					server.sendStringToClient("action", ind);
 				} else {
 					server.sendStringToClient("cleanup", ind);
 				}
 				ind++;
 			}
-
+		} else {
+			this.player = Player.player.get(index);
+			server.sendStringToClient("cleanup", index);
+			getIndex();
+			this.player.startRound();
 		}
-
-		this.player = Player.player.get(index);
-		server.sendStringToClient("action", index);
-
-		this.player.startRound();
-		// sendPlayersHand();
 	}
 
 	public void playCard(String message) {
 		switch (actualPhase) {
 		case "action":
 			actionPhase.chosenCard(message, this.player);
-			if(actionPhase.getActionMadeBoolean())
+			if (actionPhase.getActionMadeBoolean())
 				sendPlayersHand();
-			break; 
+			break;
 		case "buy":
 			buyPhase.buyCard(message, this.player);
 			if (buyPhase.sendHandAgain())
 				sendPlayersHand();
-			break; 
+			break;
 		}
 	}
 
@@ -134,14 +130,20 @@ public class GameLogic {
 	// phase
 	// when u gave away a copper card)
 	public void sendPlayersHand() {
+		for (int i = 0; i <= 1999999999; i++) {
+			// get some time for the client to recieve and handle the message
+		}
 		String theHand = "hand.";
 		for (String card : player.hand) {
 			theHand = theHand.concat(card + ".");
 		}
 		theHand = theHand.substring(0, theHand.length() - 1);
 		server.sendStringToClient(theHand, index);
+
 		for (int i = 0; i <= 1999999999; i++) {
 			for (int j = 0; j <= 1999999999; j++) {
+				// get some time for the client to recieve and handle the
+				// message
 			}
 		}
 	}
