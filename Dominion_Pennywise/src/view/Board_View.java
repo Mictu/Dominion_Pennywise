@@ -273,7 +273,11 @@ public class Board_View {
 
 	public void setHand() {
 		handFromServer = ClientHandler.tempHandCard;
-		hBoxHand.setSpacing(20);
+		
+		if (handFromServer.size() > 5)
+			hBoxHand.setSpacing(20 - handFromServer.size() * 4);
+		else 
+			hBoxHand.setSpacing(20);
 		
 		this.hBoxHand.getChildren().clear();
 		while (handCards.size() < handFromServer.size()) {
