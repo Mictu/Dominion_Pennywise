@@ -36,16 +36,12 @@ public class GameLogic {
 	} // Close Constructor
 
 	protected void gameStart(Player player) {
-//		for (int i = 0; i < START_MONEY; i++) {
-//			player.discard.add("copper"); // don't forget to counter++
-//		}
-//
-//		for (int i = 0; i < START_ESTATE; i++) {
-//			player.discard.add("estate");
-//		}
-		
-		for (int i = 0; i < 10; i++) {
-			player.discard.add("copper");
+		for (int i = 0; i < START_MONEY; i++) {
+			player.discard.add("copper"); // don't forget to counter++
+		}
+
+		for (int i = 0; i < START_ESTATE; i++) {
+			player.discard.add("estate");
 		}
 
 		cleanPhase = new CleanUpPhase(player);
@@ -69,9 +65,9 @@ public class GameLogic {
 			}
 			this.player.startRound();
 		} else {
-			this.player = Player.player.get(index);
 			server.sendStringToClient("cleanup", index);
 			getIndex();
+			this.player = Player.player.get(index);
 			this.player.startRound();
 		}
 	}
@@ -124,6 +120,12 @@ public class GameLogic {
 			sendPlayersHand();
 		case "cleanup":
 			theGame();
+			for (int i = 0; i <= 1999999999; i++) {
+				for (int j = 0; j <= 1999999999; j++) {
+					// get some time for the client to recieve and handle the
+					// message
+				}
+			}
 			actualPhase = "action";
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();

@@ -19,7 +19,7 @@ public class BuyPhase {
 		this.player = player;
 		cardName = message;
 		if (player.getBuyPoints() > 0) {
-			if (cardName.contains("handcopper")) {
+			if (cardName.equals("copper")) {
 				doTheBuy();
 			}else if (cardName.contains("hand") && cardChosen) {
 				pay();

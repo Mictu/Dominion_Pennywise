@@ -307,19 +307,24 @@ public class Board_View {
 	}
 
 	public void setCards() {
+
 		if (ClientHandler.phase.equals("buy")) {
 			setCardsOnViewEnable();
 			for (Button b : handCards) {
+
 				if (b.getId().equals("copper") || b.getId().equals("silver") || b.getId().equals("gold")) {
 					b.setDisable(false);
 				} else {
 					b.setDisable(true);
+				
 				}
-			}
+	
+			} 
 		}
 		if (ClientHandler.phase.equals("action")) {
 			setCardsOnViewDisable();
 			for (Button b : handCards) {
+				
 				if (b.getId().equals("smith") || b.getId().equals("market") || b.getId().equals("laboratory")
 						|| b.getId().equals("funfair") || b.getId().equals("woodcutter")
 						|| b.getId().equals("village")) {
@@ -327,8 +332,10 @@ public class Board_View {
 				} else {
 					b.setDisable(true);
 				}
+
 			}
 		}
+		
 	}
 
 	// enables buttons while player is able to chose which card he wants to buy
