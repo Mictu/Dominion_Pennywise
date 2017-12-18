@@ -287,7 +287,6 @@ public class Board_View {
 	}
 
 	public void changePhaseLabel() {
-		System.out.println("changeeeeeeeeeeeeeee");
 		if(ClientHandler.phase.equals("action")) {
 			firstPhase.setId("phaseLabelsEnable");
 			secondPhase.setId("phaseLabels");

@@ -19,17 +19,17 @@
  */
 
 #handLabel {
-	-fx-background-color: darkslategrey;
+	-fx-background-color: darkgrey;
 	-fx-border-radius: 1.30px;
 	-fx-background-radius: 1.30px;
-	-fx-opacity: 1;
+	-fx-opacity: 0.7;
 	-fx-alignment: top_center;
-	-fx-text-fill: white;
+	-fx-text-fill: black;
 	-fx-font-weight: bold;
 	-fx-font-size: 15;
 }
 #phaseLabels {
-	-fx-background-color: yellow;
+	-fx-background-color: grey;
 	-fx-border-radius: 1.30px;
 	-fx-background-radius: 1.30px;
 	-fx-opacity: 0.2;
@@ -37,16 +37,18 @@
 	-fx-alignment: center;
 	-fx-font-weight: bold;
 	-fx-font-size: 12;
+	-fx-text-fill: white;
 }
 
 #phaseLabelsEnable{
-	-fx-background-color: yellow;
+	-fx-background-color: goldenrod;
 	-fx-border-radius: 1.30px;
 	-fx-background-radius: 1.30px;
 	-fx-text-alignment: center;
 	-fx-alignment: center;
 	-fx-font-weight: bold;
 	-fx-font-size: 12;
+	-fx-text-fill: black;
 }
 
 /*
