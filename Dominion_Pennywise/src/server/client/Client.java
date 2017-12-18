@@ -24,10 +24,12 @@ public class Client {
 	String info;
 	Server server;
 	String namemsg;
+	String abmPoints;
+	String[] abm;
 	String[] names;
-	
+
 	ClientHandler ch = new ClientHandler();
-	
+
 	ArrayList<String> deck = new ArrayList<String>();
 
 	public SimpleStringProperty newestMessage = new SimpleStringProperty();
@@ -64,13 +66,17 @@ public class Client {
 							namemsg = message.substring(6);
 							names = namemsg.split("\\.");
 							Platform.runLater(() -> {
-								for (String s : names) {
-									s = s.concat(" Online");
-								}
+//								for (String s : names) {
+//									s = s.concat(" Online");
+//								}
 //								setNames(names);
 								ClientHandler.getNamesFormClient(names);
 							});
-
+						}
+						else if(message.length() >4 && message.substring(0,8).equals("abmpoints")) {
+							abmPoints = message.substring(9);
+							abm = abmPoints.split("\\.");
+							ClientHandler.getABMpoints(abm);
 						} else {
 							Platform.runLater(() -> {
 								ch.getMessageFromClient(message);
@@ -92,11 +98,11 @@ public class Client {
 		}
 
 	};
-	
+
 	public void setNames(String[] names) {
 		this.names = names;
 	}
-	
+
 	public String[] getNames() {
 		return names;
 	}
