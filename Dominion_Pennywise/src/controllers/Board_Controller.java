@@ -35,9 +35,6 @@ public class Board_Controller {
 			Login_Controller.client.sendToServer("endphase");
 		});
 		
-		boardView.bonusMoney.setOnAction((Event) -> {
-			Login_Controller.client.sendToServer("bonusmoney");
-		});
 		
 		//Chat 
 		boardView.chatText.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
@@ -56,11 +53,6 @@ public class Board_Controller {
 		.addListener((o, oldValue, newValue) -> boardView.chat.appendText(newValue + "\n"));
 
 	}
-
-		public void setbonusMoneybtn(String text){
-			String bonusgeld = text; 
-			boardView.bonusMoney.setText("Bonusgeld: " + bonusgeld);
-		}
 
 		
 		//Action-, Buy-,Moneypoints update textarea

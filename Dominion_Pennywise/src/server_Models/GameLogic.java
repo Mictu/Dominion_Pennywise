@@ -50,8 +50,9 @@ public class GameLogic {
 	public void theGame() {
 		// if (firstRound == true) {
 		// firstRound = false;
-
+		
 		actualPhase = "action";
+		server.sendToClient(actualPhase);
 		this.player = Player.player.get(index);
 		sendPlayersHand();
 		this.player.startRound();
