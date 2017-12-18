@@ -18,7 +18,10 @@ public class BuyPhase {
 	public void buyCard(String message, Player player) {
 		this.player = player;
 		cardName = message;
-		if (player.getBuyPoints() > 0) {
+		if (cardName.equals("copper")) {
+			buyThisCard = "copper";
+			doTheBuy();
+		} else if (player.getBuyPoints() > 0) {
 			if (cardName.contains("hand") && cardChosen) {
 				pay();
 			} else if (!cardName.contains("hand") && !payStarted) {
@@ -35,23 +38,19 @@ public class BuyPhase {
 
 	// BONUS BUY BUTTON - DONT FORGET
 
-	
 	public void buy() {
-		System.out.println("buy");
 		sendingHand = false;
 		cardChosen = true;
 		buyThisCard = cardName;
 		cost = getCost(cardName);
-		if (cost > player.getCashHand()+player.money) {
+		if (cost > player.getCashHand() + player.money) {
 			System.out.println("Not enough cash in your hand and money(buyphase)");
 		}
 	}
-	
-	
+
 	public void pay() {
 		sendingHand = false;
 		payStarted = true;
-		System.out.println("pay");
 		if (buyThisCard == null) {
 			System.out.println("Zuerst eine Karte zum kaufen auswählen");
 		} else {
@@ -77,31 +76,35 @@ public class BuyPhase {
 				break;
 			}
 			// Set everything to null for the next round
-			doTheBuy();
+			if (player.money >= cost) {
+				doTheBuy();
+			}
 		}
 	}
-	
+
 	public void doTheBuy() {
-		if (player.money >= cost) {
-			this.player.discard.add(buyThisCard);
-			buyThisCard = null;
-			cardName = null;
-			cardChosen = false;
-			payStarted = false;
-			player.money = 0;
-			cost = 0;
-			player.decreaseBuyPoints();
-			sendingHand = true;
+		String cardHandled = buyThisCard;
+		this.player.discard.add(buyThisCard);
+		buyThisCard = null;
+		cardName = null;
+		cardChosen = false;
+		payStarted = false;
+		player.money = 0;
+		cost = 0;
+		player.decreaseBuyPoints();
+		sendingHand = true;
+
+		if (cardHandled.equals("copper")) {
+			sendingHand = false;
 		}
 	}
-	
+
 	public boolean sendHandAgain() {
 		if (payStarted)
 			return payStarted;
 		else
 			return sendingHand;
 	}
-
 
 	// get the costs of every card
 	public int getCost(String cardName) {
