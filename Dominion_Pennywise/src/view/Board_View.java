@@ -35,7 +35,7 @@ public class Board_View {
 	 */
 
 	// Initialize the GUI Content here
-	public Button endPhase, bonusMoney, pay, send;
+	public Button endPhase, bonusMoney, send;
 	public HBox hBoxHand;
 	public TextField chatText;
 	public TextArea chat;
@@ -43,6 +43,8 @@ public class Board_View {
 	protected HBox hCenter1, hCenter2, hCenter3;
 	HBox hBottom;
 	String cardID;
+//	public Label actionPoints, buyPoints, money;
+	public TextArea aBMpoints; //action, buy, money 
 
 	protected int soundCounter = 0;
 	protected DropShadow shadow = new DropShadow();
@@ -126,8 +128,7 @@ public class Board_View {
 		endPhase.setId("endBtn");
 		bonusMoney = new Button("Bonusgeld: 0");
 		bonusMoney.setId("btn");
-		pay = new Button("Bezahlen bestätigen");
-		pay.setId("btn");
+
 
 		HBox labels = new HBox(20);
 		Label firstPhase = new Label(t.getString("dominion.board.lbl.actionPhase"));
@@ -136,6 +137,12 @@ public class Board_View {
 		secondPhase.setId("phaseLabels");
 		Label thirdPhase = new Label(t.getString("dominion.board.lbl.cleanupPhase"));
 		thirdPhase.setId("phaseLabels");
+		
+//		actionPoints = new Label(t.getString("dominion.board.lbl.actionPoints"));
+//		buyPoints = new Label(t.getString("dominion.board.lbl.buyPoints"));
+//		money = new Label(t.getString("dominion.board.lbl.money"));
+		
+		aBMpoints = new TextArea();
 
 		Region reg = new Region();
 		Region reg2 = new Region();
@@ -144,7 +151,7 @@ public class Board_View {
 
 		labels.setAlignment(Pos.CENTER);
 
-		labels.getChildren().addAll(firstPhase, secondPhase, thirdPhase, reg, bonusMoney, pay, reg2, endPhase);
+		labels.getChildren().addAll(aBMpoints,firstPhase, secondPhase, thirdPhase, reg, bonusMoney, reg2, endPhase);
 
 		// bindings for the part in between of players hand and cards to buy
 		bindingsForContent(firstPhase, labels, 0.98, 0.16);
@@ -152,9 +159,9 @@ public class Board_View {
 		bindingsForContent(thirdPhase, labels, 0.98, 0.16);
 		bindingsForContent(reg, labels, 0.98, 0.02);
 		bindingsForContent(bonusMoney, labels, 0.98, 0.16);
-		bindingsForContent(pay, labels, 0.98, 0.16);
 		bindingsForContent(reg2, labels, 0.98, 0.02);
 		bindingsForContent(endPhase, labels, 0.98, 0.16);
+		bindingsForContent(aBMpoints,labels, 2, 0.12);
 
 		// CENTER BOTTOM
 

@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -45,11 +46,15 @@ public class Lobby_Controller {
 	}// Close Constructor
 
 	public void updateConnectedPlayers(String s) {
-		lobbyView.txtConnectedPlayers.appendText(s + "\n");
+		Platform.runLater(()-> {
+			lobbyView.txtConnectedPlayers.appendText(s + "\n");
+		});
 	}
 
 	public void clearConnectedP() {
-		lobbyView.txtConnectedPlayers.clear();
+		Platform.runLater(()-> {
+			lobbyView.txtConnectedPlayers.clear();
+		});
 	}
 
 	// ExitMethode for all Views

@@ -10,7 +10,7 @@ import view.Login_View;
 public class ClientHandler {
 	static Lobby_Controller lobbyC;
 	Login_Controller loginC;
-	Board_Controller boardC;
+	static Board_Controller boardC;
 	Result_Controller resultC;
 
 	public static ArrayList<String> tempHandCard = new ArrayList<String>();
@@ -32,6 +32,13 @@ public class ClientHandler {
 		lobbyC.clearConnectedP();
 		for (String s : names) {
 			lobbyC.updateConnectedPlayers(s);
+		}
+	}
+	
+	public static void getABMpoints(String[] points) {
+		boardC.clearABMpoints();
+		for(String s : points) {
+			boardC.updateABMpoints(s);
 		}
 	}
 

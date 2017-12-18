@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import server_Models.Player;
@@ -29,11 +30,6 @@ public class Board_Controller {
 //				}
 //			}
 //		});
-		
-		
-		boardView.pay.setOnAction((Event) -> {
-			Login_Controller.client.sendToServer("pay");
-		});
 
 		boardView.endPhase.setOnAction((Event) -> {
 			Login_Controller.client.sendToServer("endphase");
@@ -66,7 +62,19 @@ public class Board_Controller {
 			boardView.bonusMoney.setText("Bonusgeld: " + bonusgeld);
 		}
 
-	
+		
+		//Action-, Buy-,Moneypoints update textarea
+		public void updateABMpoints(String s) {
+			Platform.runLater(()->{
+				boardView.aBMpoints.appendText(s + "\n");
+			});
+		}
+
+		public void clearABMpoints() {
+			Platform.runLater(()-> {
+				boardView.aBMpoints.clear();
+			});	
+		}
 		
 
 }

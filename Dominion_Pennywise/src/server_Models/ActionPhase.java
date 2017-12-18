@@ -7,11 +7,9 @@ public class ActionPhase {
 	// initialize sector
 	boolean madeAnAction = false; 
 	
-	
 	// Constructor
 	public ActionPhase() {
 	} // Close Constructors
-
 	
 					// Show player stats on boardView
 	
@@ -47,6 +45,7 @@ public class ActionPhase {
 				reloadHand(cardName, player);
 				break;
 			}
+			
 			System.out.println("ActionPhase: player " + player.getName() + " has buypoints: " + player.getBuyPoints() + "and moeny: " + player.getMoney());
 		}
 //		server.sendToClient(""+player.getActionPoints());
