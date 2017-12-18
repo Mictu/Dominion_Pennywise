@@ -73,7 +73,7 @@ public class Client {
 								ClientHandler.getNamesFormClient(names);
 							});
 						}
-						else if(message.length() >4 && message.substring(0,8).equals("abmpoints")) {
+						else if (message.length() > 8 && message.substring(0,8).equals("abmpoints")) {
 							abmPoints = message.substring(9);
 							abm = abmPoints.split("\\.");
 							ClientHandler.getABMpoints(abm);
