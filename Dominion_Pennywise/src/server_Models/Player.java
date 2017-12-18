@@ -8,7 +8,7 @@ import server.client.Server;
 public class Player {
 
 	// initialize sector here
-	public int winPoint, money, amountOfTurns;
+	public int winPoint, money,countMoneyForHand, amountOfTurns;
 	public int actionPoint, buyPoint, bonusBuyPoint;
 	public boolean turn = false;
 
@@ -44,19 +44,19 @@ public class Player {
 
 	// Get how many money you have in your hands to buy something
 	protected int getCashHand() {
-		money = 0;
+		countMoneyForHand = 0;
 		for (String x : this.hand) {
 			if (x.equalsIgnoreCase("gold")) {
-				money += 3;
+				countMoneyForHand += 3;
 			}
 			if (x.equalsIgnoreCase("silver")) {
-				money += 2;
+				countMoneyForHand += 2;
 			}
 			if (x.equalsIgnoreCase("copper")) {
-				money += 1;
+				countMoneyForHand += 1;
 			}
 		}
-		return money;
+		return countMoneyForHand;
 	}
 
 	// Increase the stats of the player in the following lines

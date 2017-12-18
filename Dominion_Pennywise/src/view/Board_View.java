@@ -116,7 +116,7 @@ public class Board_View {
 			}
 			
 
-			setCardsOnViewEnable();
+//			setCardsOnViewEnable();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -298,7 +298,7 @@ public class Board_View {
 		for (int i = 0; i < handFromServer.size(); i++) {
 			handCards.get(i).setId(handFromServer.get(i));
 		}
-		setCards();
+//		setCards();
 		for (int i = 0; i < handFromServer.size(); i++) {
 			this.hBoxHand.getChildren().add(handCards.get(i));
 		}
@@ -306,69 +306,69 @@ public class Board_View {
 		ClientHandler.tempHandCard.clear();
 	}
 
-	public void setCards() {
-
-		if (ClientHandler.phase.equals("buy")) {
-			setCardsOnViewEnable();
-			for (Button b : handCards) {
-
-				if (b.getId().equals("copper") || b.getId().equals("silver") || b.getId().equals("gold")) {
-					b.setDisable(false);
-				} else {
-					b.setDisable(true);
-				
-				}
-	
-			} 
-		}
-		if (ClientHandler.phase.equals("action")) {
-			setCardsOnViewDisable();
-			for (Button b : handCards) {
-				
-				if (b.getId().equals("smith") || b.getId().equals("market") || b.getId().equals("laboratory")
-						|| b.getId().equals("funfair") || b.getId().equals("woodcutter")
-						|| b.getId().equals("village")) {
-					b.setDisable(false);
-				} else {
-					b.setDisable(true);
-				}
-
-			}
-		}
-		
-	}
+//	public void setCards() {
+//
+//		if (ClientHandler.phase.equals("buy")) {
+//			setCardsOnViewEnable();
+//			for (Button b : handCards) {
+//
+//				if (b.getId().equals("copper") || b.getId().equals("silver") || b.getId().equals("gold")) {
+//					b.setDisable(false);
+//				} else {
+//					b.setDisable(true);
+//				
+//				}
+//	
+//			} 
+//		}
+//		if (ClientHandler.phase.equals("action")) {
+////			setCardsOnViewDisable();
+//			for (Button b : handCards) {
+//				
+//				if (b.getId().equals("smith") || b.getId().equals("market") || b.getId().equals("laboratory")
+//						|| b.getId().equals("funfair") || b.getId().equals("woodcutter")
+//						|| b.getId().equals("village")) {
+//					b.setDisable(false);
+//				} else {
+//					b.setDisable(true);
+//				}
+//
+//			}
+//		}
+//		
+//	}
 
 	// enables buttons while player is able to chose which card he wants to buy
-	public void setCardsOnViewEnable() {
-		for (Button l : victory) {
-			l.setEffect(null);
-			l.setDisable(false);
-		}
-		for (Button m : kingdom) {
-			m.setEffect(null);
-			m.setDisable(false);
-		}
-		for (Button n : treasure) {
-			n.setEffect(null);
-			n.setDisable(false);
-		}
-	}
-
-	// disables buttons while player is in action phase
-	public void setCardsOnViewDisable() {
-		for (Button l : victory) {
-			l.setEffect(shadow);
-			l.setDisable(true);
-		}
-		for (Button m : kingdom) {
-			m.setEffect(shadow);
-			m.setDisable(true);
-		}
-		for (Button n : treasure) {
-			n.setEffect(shadow);
-			n.setDisable(true);
-		}
-	}
+//	public void setCardsOnViewEnable() {
+//		for (Button l : victory) {
+//			l.setEffect(null);
+//			l.setDisable(false);
+//		}
+//		for (Button m : kingdom) {
+//			m.setEffect(null);
+//			m.setDisable(false);
+//		}
+//		for (Button n : treasure) {
+//			n.setEffect(null);
+//			n.setDisable(false);
+//		}
+//	}
+//
+//	// disables buttons while player is in action phase
+//	public void setCardsOnViewDisable() {
+//		for (Button l : victory) {
+//			l.setEffect(shadow);
+//			l.setDisable(true);
+//		}
+//		for (Button m : kingdom) {
+//			m.setEffect(shadow);
+//			m.setDisable(true);
+//		}
+//		for (Button n : treasure) {
+//			n.setEffect(shadow);
+//			n.setDisable(true);
+//		}
+//	}
 	
 	public void setEmptyHand() {
 		hBoxHand.getChildren().clear();
@@ -398,26 +398,26 @@ public class Board_View {
 		child.minWidthProperty().bind(stage2.widthProperty().multiply(widthMultiply));
 	}
 
-	public void blockWindow() {
-		hCenter1.setDisable(true);
-		hCenter2.setDisable(true);
-		hCenter3.setDisable(true);
-		hBottom.setDisable(true);
-		endPhase.setDisable(true);
-		pay.setDisable(true);
-		bonusMoney.setDisable(true);
-		
-	}
-	public void enableWindow() {
-		hCenter1.setDisable(false);
-		hCenter2.setDisable(false);
-		hCenter3.setDisable(false);
-		hBottom.setDisable(false);
-		endPhase.setDisable(false);
-		pay.setDisable(false);
-		bonusMoney.setDisable(false);
-		
-	}
+//	public void blockWindow() {
+//		hCenter1.setDisable(true);
+//		hCenter2.setDisable(true);
+//		hCenter3.setDisable(true);
+//		hBottom.setDisable(true);
+//		endPhase.setDisable(true);
+//		pay.setDisable(true);
+//		bonusMoney.setDisable(true);
+//		
+//	}
+//	public void enableWindow() {
+//		hCenter1.setDisable(false);
+//		hCenter2.setDisable(false);
+//		hCenter3.setDisable(false);
+//		hBottom.setDisable(false);
+//		endPhase.setDisable(false);
+//		pay.setDisable(false);
+//		bonusMoney.setDisable(false);
+//		
+//	}
 
 }// close class
 

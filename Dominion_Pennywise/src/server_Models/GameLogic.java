@@ -48,9 +48,10 @@ public class GameLogic {
 	}
 
 	public void theGame() {
-		if (firstRound == true) {
-			firstRound = false;
+//		if (firstRound == true) {
+//			firstRound = false;
 
+		actualPhase = "action";
 			this.player = Player.player.get(index);
 			sendPlayersHand();
 
@@ -63,13 +64,9 @@ public class GameLogic {
 				}
 				ind++;
 			}
+//		} else {
 			this.player.startRound();
-		} else {
-			server.sendStringToClient("cleanup", index);
-			getIndex();
-			this.player = Player.player.get(index);
-			this.player.startRound();
-		}
+//		}
 	}
 
 	public void playCard(String message) {
@@ -118,17 +115,14 @@ public class GameLogic {
 			cleanUpPhase = new CleanUpPhase(this.player);
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
-		case "cleanup":
+			
+			getIndex();
 			theGame();
-			for (int i = 0; i <= 1999999999; i++) {
-				for (int j = 0; j <= 1999999999; j++) {
-					// get some time for the client to recieve and handle the
-					// message
-				}
-			}
-			actualPhase = "action";
-			server.sendStringToClient(actualPhase, index);
-			sendPlayersHand();
+//			for (int i = 0; i <= 1999999999; i++) {
+//				for (int j = 0; j <= 1999999999; j++) {
+//					// get some time for the client to recieve and handle the
+//					// message
+//				}
 			break; // block this monitor
 		}
 	}

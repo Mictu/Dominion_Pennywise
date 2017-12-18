@@ -37,7 +37,6 @@ public class ClientHandler {
 
 	public void getMessageFromClient(String msg) {
 		message = msg;
-		System.out.println(message);
 		
 		// Get message to set the player hand view
 		if (message.length() > 4 && message.substring(0, 4).equals("hand")) {
@@ -51,7 +50,6 @@ public class ClientHandler {
 			Platform.runLater(() -> {
 				boardview.setHand();
 			});
-			System.out.println(message);
 		} else if (message.equals("empty")) {
 				Platform.runLater(() -> {
 					boardview.setEmptyHand();
@@ -69,13 +67,13 @@ public class ClientHandler {
 			case "action":
 				phase = "action";
 				Platform.runLater(() -> {
-					boardview.enableWindow();
+//					boardview.enableWindow();
 				});
 				break;
 			case "cleanup":
 				phase = "cleanup";
 				Platform.runLater(() -> {
-					boardview.blockWindow();
+//					boardview.blockWindow();
 				});
 				break;
 			}
