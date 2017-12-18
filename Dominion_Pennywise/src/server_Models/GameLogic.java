@@ -48,25 +48,25 @@ public class GameLogic {
 	}
 
 	public void theGame() {
-//		if (firstRound == true) {
-//			firstRound = false;
+		// if (firstRound == true) {
+		// firstRound = false;
 
 		actualPhase = "action";
-			this.player = Player.player.get(index);
-			sendPlayersHand();
+		this.player = Player.player.get(index);
+		sendPlayersHand();
 
-			int ind = 0;
-			for (Player p : Player.player) {
-				if (p.equals(this.player)) {
-					server.sendStringToClient("action", ind);
-				} else {
-					server.sendStringToClient("cleanup", ind);
-				}
-				ind++;
+		int ind = 0;
+		for (Player p : Player.player) {
+			if (p.equals(this.player)) {
+				server.sendStringToClient("action", ind);
+			} else {
+				server.sendStringToClient("cleanup", ind);
 			}
-//		} else {
-			this.player.startRound();
-//		}
+			ind++;
+		}
+		// } else {
+		this.player.startRound();
+		// }
 	}
 
 	public void playCard(String message) {
@@ -115,14 +115,9 @@ public class GameLogic {
 			cleanUpPhase = new CleanUpPhase(this.player);
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
-			
+
 			getIndex();
 			theGame();
-//			for (int i = 0; i <= 1999999999; i++) {
-//				for (int j = 0; j <= 1999999999; j++) {
-//					// get some time for the client to recieve and handle the
-//					// message
-//				}
 			break; // block this monitor
 		}
 	}
@@ -131,10 +126,8 @@ public class GameLogic {
 	// phase
 	// when u gave away a copper card)
 	public void sendPlayersHand() {
-		for (int i = 0; i <= 1999999999; i++) {
-			// get some time for the client to recieve and handle the message
-		}
-		if (player.hand.isEmpty()){
+		getSomeTime();
+		if (player.hand.isEmpty()) {
 			server.sendStringToClient("empty", index);
 		} else {
 			String theHand = "hand.";
@@ -144,12 +137,13 @@ public class GameLogic {
 			theHand = theHand.substring(0, theHand.length() - 1);
 			server.sendStringToClient(theHand, index);
 		}
-
-		for (int i = 0; i <= 1999999999; i++) {
-			for (int j = 0; j <= 1999999999; j++) {
-				// get some time for the client to recieve and handle the
-				// message
-			}
+	}
+	
+	public void getSomeTime() {
+		try {
+			Thread.sleep(800);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
