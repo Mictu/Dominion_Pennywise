@@ -320,8 +320,6 @@ public class Board_View {
 	}
 
 	public void setCards() {
-
-		System.out.println(ClientHandler.phase);
 		if (ClientHandler.phase.equals("buy")) {
 			setCardsOnViewEnable();
 			for (Button b : handCards) {

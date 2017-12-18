@@ -2,10 +2,13 @@ package server_Models;
 
 import java.util.Collections;
 
+import server.client.Server;
+
 public class ActionPhase {
 
 	// initialize sector
 	boolean madeAnAction = false; 
+	Server server;
 	
 	// Constructor
 	public ActionPhase() {
@@ -45,7 +48,6 @@ public class ActionPhase {
 				reloadHand(cardName, player);
 				break;
 			}
-			
 			System.out.println("ActionPhase: player " + player.getName() + " has buypoints: " + player.getBuyPoints() + "and moeny: " + player.getMoney());
 		}
 //		server.sendToClient(""+player.getActionPoints());

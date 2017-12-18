@@ -34,17 +34,16 @@ public class ClientHandler {
 			lobbyC.updateConnectedPlayers(s);
 		}
 	}
-	
 	public static void getABMpoints(String[] points) {
 		boardC.clearABMpoints();
 		for(String s : points) {
 			boardC.updateABMpoints(s);
 		}
 	}
+	
 
 	public void getMessageFromClient(String msg) {
 		message = msg;
-		
 		// Get message to set the player hand view
 		if (message.length() > 4 && message.substring(0, 4).equals("hand")) {
 			message = message.substring(5);
@@ -88,12 +87,14 @@ public class ClientHandler {
 			}
 		}
 	}
+	
+	
 
 	public static void openBoardView() {
 		// lobbyV.stop();
 		Lobby_View.stop();
 		boardview = new Board_View(new Stage());
-		Board_Controller boardController = new Board_Controller(boardview);
+		boardC = new Board_Controller(boardview);
 		boardview.start();
 	}
 

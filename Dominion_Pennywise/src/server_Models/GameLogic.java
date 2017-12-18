@@ -54,7 +54,8 @@ public class GameLogic {
 		actualPhase = "action";
 		this.player = Player.player.get(index);
 		sendPlayersHand();
-
+		this.player.startRound();
+		sendABMPoints();
 		int ind = 0;
 		for (Player p : Player.player) {
 			if (p.equals(this.player)) {
@@ -65,7 +66,7 @@ public class GameLogic {
 			ind++;
 		}
 		// } else {
-		this.player.startRound();
+		
 		// }
 	}
 
@@ -75,11 +76,13 @@ public class GameLogic {
 			actionPhase.chosenCard(message, this.player);
 			if (actionPhase.getActionMadeBoolean())
 				sendPlayersHand();
+				sendABMPoints();
 			break;
 		case "buy":
 			buyPhase.buyCard(message, this.player);
 			if (buyPhase.sendHandAgain())
 				sendPlayersHand();
+				sendABMPoints();
 			break;
 		}
 	}
@@ -109,13 +112,15 @@ public class GameLogic {
 			actualPhase = "buy";
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
+			sendABMPoints();
 			break;
 		case "buy":
 			actualPhase = "cleanup";
 			cleanUpPhase = new CleanUpPhase(this.player);
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
-
+			sendABMPoints();
+			
 			getIndex();
 			theGame();
 			break; // block this monitor
@@ -154,6 +159,11 @@ public class GameLogic {
 
 	public Player getActualPlayer() {
 		return this.player;
+	}
+	
+	public void sendABMPoints() {
+		server.sendStringToClient("abmpoints.ActionPoints:" + player.getActionPoints() + ".BuyPoints:" + player.getBuyPoints() + ".Money:"  + player.getMoney(), index);
+		
 	}
 
 }
