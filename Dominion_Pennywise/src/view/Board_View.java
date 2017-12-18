@@ -143,7 +143,9 @@ public class Board_View {
 //		money = new Label(t.getString("dominion.board.lbl.money"));
 		
 		aBMpoints = new TextArea();
-
+		aBMpoints.setId("playerStats");
+		aBMpoints.setEditable(false);
+		
 		Region reg = new Region();
 		Region reg2 = new Region();
 		reg.setPrefWidth(140);
@@ -228,7 +230,7 @@ public class Board_View {
 		bindingsForContent(vCenter, centerSP, 1, 1);
 
 		// SET RIGHT
-		VBox vRight = new VBox(10);
+		VBox vRight = new VBox();
 
 		HBox chatInput = new HBox(5);
 		chatText= new TextField();
@@ -246,7 +248,6 @@ public class Board_View {
 		chat.setEditable(false);
 
 		reg = new Region();
-		reg.setPrefHeight(20);
 
 		vRight.getChildren().addAll(logger, reg, chat, chatInput);
 
@@ -261,6 +262,11 @@ public class Board_View {
 
 		bindingsForContent(centerSP, root, 0.98, 0.79);
 		bindingsForContent(vRight, root, 0.98, 0.19);
+		
+		bindingsForContent(logger, vRight, 0.42, 1);
+		bindingsForContent(reg, vRight, 0.06, 1);
+		bindingsForContent(chat, vRight, 0.42, 1);
+		bindingsForContent(chatInput, vRight, 0.1, 1);
 
 		setStageBindings(root, stage, 0.98, 0.98);
 	} // Close the Constructor
