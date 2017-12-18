@@ -55,6 +55,9 @@ public class Board_View {
 	protected ArrayList<Button> treasure = new ArrayList<Button>();
 	protected ArrayList<Button> kingdom = new ArrayList<Button>();
 	protected ArrayList<Button> victory = new ArrayList<Button>();
+	
+	HBox labels;
+	Label firstPhase, secondPhase, thirdPhase;
 
 	// constructor
 	public Board_View(Stage s) {
@@ -284,6 +287,22 @@ public class Board_View {
 		this.stage.hide();
 	}
 
+	public void changePhaseLabel() {
+		if(ClientHandler.phase.equals("action")) {
+			firstPhase.setId("phaseLabelsEnable");
+			secondPhase.setId("phaseLabels");
+			thirdPhase.setId("phaseLabels");
+		}else if(ClientHandler.phase.equals("buy")) {
+			secondPhase.setId("phaseLabelsEnable");
+			firstPhase.setId("phaseLabels");
+			thirdPhase.setId("phaseLabels");
+		}else {
+			secondPhase.setId("phaseLabels");
+			firstPhase.setId("phaseLabels");
+			thirdPhase.setId("phaseLabelsEnable");
+		}
+	}
+	
 	public void setHand() {
 		handFromServer = ClientHandler.tempHandCard;
 		
@@ -311,6 +330,7 @@ public class Board_View {
 		for (int i = 0; i < handFromServer.size(); i++) {
 			handCards.get(i).setId(handFromServer.get(i));
 		}
+		changePhaseLabel();
 		setCards();
 		for (int i = 0; i < handFromServer.size(); i++) {
 			this.hBoxHand.getChildren().add(handCards.get(i));
@@ -417,8 +437,8 @@ public class Board_View {
 		hBottom.setDisable(true);
 		endPhase.setDisable(true);
 		bonusMoney.setDisable(true);
-		
 	}
+
 	public void enableWindow() {
 		hCenter1.setDisable(false);
 		hCenter2.setDisable(false);
@@ -426,7 +446,6 @@ public class Board_View {
 		hBottom.setDisable(false);
 		endPhase.setDisable(false);
 		bonusMoney.setDisable(false);
-		
 	}
 
 }// close class
