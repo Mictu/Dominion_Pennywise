@@ -126,6 +126,7 @@ public class GameLogic {
 	// phase
 	// when u gave away a copper card)
 	public void sendPlayersHand() {
+		getSomeTime();
 		if (player.hand.isEmpty()) {
 			server.sendStringToClient("empty", index);
 		} else {
@@ -141,7 +142,7 @@ public class GameLogic {
 	
 	public void getSomeTime() {
 		try {
-			Thread.sleep(500);
+			Thread.sleep(250);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
