@@ -120,8 +120,8 @@ public class GameLogic {
 			cleanUpPhase = new CleanUpPhase(this.player);
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
+			buyPhase.resetVariablesForBuyPhase();
 			sendABMPoints();
-			
 			getIndex();
 			theGame();
 			break; // block this monitor

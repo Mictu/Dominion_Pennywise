@@ -10,6 +10,7 @@ public class BuyPhase {
 	boolean payStarted = false;
 	boolean sendingHand = false;
 
+
 	public BuyPhase() {
 		buyThisCard = null;
 	}
@@ -39,14 +40,16 @@ public class BuyPhase {
 	// BONUS BUY BUTTON - DONT FORGET
 
 	public void buy() {
-		System.out.println("buy");
 		sendingHand = false;
 		cardChosen = true;
 		buyThisCard = cardName;
 		cost = getCost(cardName);
 		if (cost > player.getCashHand() + player.money) {
 			System.out.println("Not enough cash in your hand and money(buyphase)");
+		} else if (cost <= player.money){
+			doTheBuy();
 		}
+		
 	}
 
 	public void pay() {
@@ -90,7 +93,7 @@ public class BuyPhase {
 		cardName = null;
 		cardChosen = false;
 		payStarted = false;
-		player.money = 0;
+		player.money = player.money - cost;
 		cost = 0;
 		player.decreaseBuyPoints();
 		sendingHand = true;
@@ -98,6 +101,16 @@ public class BuyPhase {
 		if (cardHandled.equals("copper")) {
 			sendingHand = false;
 		}
+	}
+	
+	public void resetVariablesForBuyPhase() {
+		player.money = 0;
+		cost = 0;
+		buyThisCard = null;
+		cardName = null;
+		cardChosen = false;
+		payStarted = false;
+		sendingHand = true;
 	}
 
 	public boolean sendHandAgain() {
