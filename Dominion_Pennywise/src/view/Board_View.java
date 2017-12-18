@@ -133,12 +133,12 @@ public class Board_View {
 		bonusMoney.setId("btn");
 
 
-		HBox labels = new HBox(20);
-		Label firstPhase = new Label(t.getString("dominion.board.lbl.actionPhase"));
+		labels = new HBox(20);
+		firstPhase = new Label(t.getString("dominion.board.lbl.actionPhase"));
 		firstPhase.setId("phaseLabels");
-		Label secondPhase = new Label(t.getString("dominion.board.lbl.buyPhase"));
+		secondPhase = new Label(t.getString("dominion.board.lbl.buyPhase"));
 		secondPhase.setId("phaseLabels");
-		Label thirdPhase = new Label(t.getString("dominion.board.lbl.cleanupPhase"));
+		thirdPhase = new Label(t.getString("dominion.board.lbl.cleanupPhase"));
 		thirdPhase.setId("phaseLabels");
 		
 //		actionPoints = new Label(t.getString("dominion.board.lbl.actionPoints"));

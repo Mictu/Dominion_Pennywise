@@ -39,6 +39,7 @@ public class BuyPhase {
 	// BONUS BUY BUTTON - DONT FORGET
 
 	public void buy() {
+		System.out.println("buy");
 		sendingHand = false;
 		cardChosen = true;
 		buyThisCard = cardName;
