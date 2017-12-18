@@ -67,6 +67,7 @@ public class ClientHandler {
 				Platform.runLater(() -> {
 					openBoardView();
 					boardview.setCards();
+					boardview.changePhaseLabel();
 				});
 				break;
 			case "buy":
@@ -77,6 +78,7 @@ public class ClientHandler {
 				Platform.runLater(() -> {
 					boardview.setCards();
 					boardview.enableWindow();
+					boardview.changePhaseLabel();
 				});
 				break;
 			case "cleanup":

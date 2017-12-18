@@ -55,6 +55,9 @@ public class Board_View {
 	protected ArrayList<Button> treasure = new ArrayList<Button>();
 	protected ArrayList<Button> kingdom = new ArrayList<Button>();
 	protected ArrayList<Button> victory = new ArrayList<Button>();
+	
+	HBox labels;
+	Label firstPhase, secondPhase, thirdPhase;
 
 	// constructor
 	public Board_View(Stage s) {
@@ -129,19 +132,18 @@ public class Board_View {
 		bonusMoney = new Button("Bonusgeld: 0");
 		bonusMoney.setId("btn");
 
-
-		HBox labels = new HBox(20);
-		Label firstPhase = new Label(t.getString("dominion.board.lbl.actionPhase"));
+		labels = new HBox(20);
+		firstPhase = new Label(t.getString("dominion.board.lbl.actionPhase"));
 		firstPhase.setId("phaseLabels");
-		Label secondPhase = new Label(t.getString("dominion.board.lbl.buyPhase"));
+		secondPhase = new Label(t.getString("dominion.board.lbl.buyPhase"));
 		secondPhase.setId("phaseLabels");
-		Label thirdPhase = new Label(t.getString("dominion.board.lbl.cleanupPhase"));
+		thirdPhase = new Label(t.getString("dominion.board.lbl.cleanupPhase"));
 		thirdPhase.setId("phaseLabels");
-		
-//		actionPoints = new Label(t.getString("dominion.board.lbl.actionPoints"));
-//		buyPoints = new Label(t.getString("dominion.board.lbl.buyPoints"));
-//		money = new Label(t.getString("dominion.board.lbl.money"));
-		
+
+		// actionPoints = new Label(t.getString("dominion.board.lbl.actionPoints"));
+		// buyPoints = new Label(t.getString("dominion.board.lbl.buyPoints"));
+		// money = new Label(t.getString("dominion.board.lbl.money"));
+
 		aBMpoints = new TextArea();
 
 		Region reg = new Region();
@@ -151,7 +153,7 @@ public class Board_View {
 
 		labels.setAlignment(Pos.CENTER);
 
-		labels.getChildren().addAll(aBMpoints,firstPhase, secondPhase, thirdPhase, reg, bonusMoney, reg2, endPhase);
+		labels.getChildren().addAll(aBMpoints, firstPhase, secondPhase, thirdPhase, reg, bonusMoney, reg2, endPhase);
 
 		// bindings for the part in between of players hand and cards to buy
 		bindingsForContent(firstPhase, labels, 0.98, 0.16);
@@ -231,7 +233,7 @@ public class Board_View {
 		VBox vRight = new VBox(10);
 
 		HBox chatInput = new HBox(5);
-		chatText= new TextField();
+		chatText = new TextField();
 		send = new Button();
 		send.setId("sendButton");
 		send.setText(t.getString("dominion.lobby.btn.send"));
@@ -278,14 +280,31 @@ public class Board_View {
 		this.stage.hide();
 	}
 
+	public void changePhaseLabel() {
+		System.out.println("changeeeeeeeeeeeeeee");
+		if(ClientHandler.phase.equals("action")) {
+			firstPhase.setId("phaseLabelsEnable");
+			secondPhase.setId("phaseLabels");
+			thirdPhase.setId("phaseLabels");
+		}else if(ClientHandler.phase.equals("buy")) {
+			secondPhase.setId("phaseLabelsEnable");
+			firstPhase.setId("phaseLabels");
+			thirdPhase.setId("phaseLabels");
+		}else {
+			secondPhase.setId("phaseLabels");
+			firstPhase.setId("phaseLabels");
+			thirdPhase.setId("phaseLabelsEnable");
+		}
+	}
+	
 	public void setHand() {
 		handFromServer = ClientHandler.tempHandCard;
-		
+
 		if (handFromServer.size() > 5)
 			hBoxHand.setSpacing(20 - handFromServer.size() * 4);
-		else 
+		else
 			hBoxHand.setSpacing(20);
-		
+
 		this.hBoxHand.getChildren().clear();
 		while (handCards.size() < handFromServer.size()) {
 			Button b = new Button();
@@ -305,6 +324,7 @@ public class Board_View {
 		for (int i = 0; i < handFromServer.size(); i++) {
 			handCards.get(i).setId(handFromServer.get(i));
 		}
+		changePhaseLabel();
 		setCards();
 		for (int i = 0; i < handFromServer.size(); i++) {
 			this.hBoxHand.getChildren().add(handCards.get(i));
@@ -315,7 +335,6 @@ public class Board_View {
 
 	public void setCards() {
 
-		System.out.println(ClientHandler.phase);
 		if (ClientHandler.phase.equals("buy")) {
 			setCardsOnViewEnable();
 			for (Button b : handCards) {
@@ -324,15 +343,15 @@ public class Board_View {
 					b.setDisable(false);
 				} else {
 					b.setDisable(true);
-				
+
 				}
-	
-			} 
+
+			}
 		}
 		if (ClientHandler.phase.equals("action")) {
 			setCardsOnViewDisable();
 			for (Button b : handCards) {
-				
+
 				if (b.getId().equals("smith") || b.getId().equals("market") || b.getId().equals("laboratory")
 						|| b.getId().equals("funfair") || b.getId().equals("woodcutter")
 						|| b.getId().equals("village")) {
@@ -343,7 +362,7 @@ public class Board_View {
 
 			}
 		}
-		
+
 	}
 
 	// enables buttons while player is able to chose which card he wants to buy
@@ -377,7 +396,7 @@ public class Board_View {
 			n.setDisable(true);
 		}
 	}
-	
+
 	public void setEmptyHand() {
 		hBoxHand.getChildren().clear();
 	}
@@ -413,8 +432,8 @@ public class Board_View {
 		hBottom.setDisable(true);
 		endPhase.setDisable(true);
 		bonusMoney.setDisable(true);
-		
 	}
+
 	public void enableWindow() {
 		hCenter1.setDisable(false);
 		hCenter2.setDisable(false);
@@ -422,7 +441,6 @@ public class Board_View {
 		hBottom.setDisable(false);
 		endPhase.setDisable(false);
 		bonusMoney.setDisable(false);
-		
 	}
 
 }// close class

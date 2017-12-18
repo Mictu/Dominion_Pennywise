@@ -43,6 +43,15 @@
 	-fx-pref-width: 100;
 }
 
+#phaseLabelsEnable{
+	-fx-background-color: yellow;
+	-fx-border-radius: 1.30px;
+	-fx-background-radius: 1.30px;
+	-fx-text-alignment: center;
+	-fx-alignment: center;
+	-fx-font-weight: bold;
+	-fx-font-size: 12;
+}
 
 /*
  * TEXT-AREAs
