@@ -1,0 +1,13 @@
+#mainPaneResult {
+	-fx-background-image: url("Uncle_Sam.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: stretch;
+	-fx-max-height: 650;
+}
+
+#lblresult{
+	-fx-text-fill: #ff0000; 
+	-fx-font-weight: bold;
+	-fx-font-size: 30; 
+}

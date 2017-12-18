@@ -1,5 +1,6 @@
 package view;
 
+import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -7,7 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Result_View {
+public class Result_View  {
 
 	BorderPane mainPane;
 	Stage stage;
@@ -18,7 +19,9 @@ public class Result_View {
 	VBox vbox = new VBox();
 
 	public Result_View(Stage stage) {
-		this.stage = stage;
+	
+
+		
 		stage.setHeight(600.0);//
 		stage.setWidth(400.0);//
 //		stage.setResizable(false);
@@ -36,18 +39,21 @@ public class Result_View {
 		mainPane.setCenter(vbox);
 
 		Scene scene = new Scene(mainPane);
-		// scene.getStylesheets().add(getClass().getResource("Result.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("Result.css").toExternalForm());
 		stage.setScene(scene);
 
 	}
 
 	public void start() {
-		stage.setFullScreen(true);
+		stage.setFullScreen(false);
 		stage.show();
+		
 	}
 	
 	public void stop () {
 		stage.hide();
 	}
+
+
 	
 }
