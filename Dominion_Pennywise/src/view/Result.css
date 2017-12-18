@@ -1,5 +1,5 @@
 #mainPaneResult {
-	-fx-background-image: url("Uncle_Sam.jpg");
+	-fx-background-image: url("resultgif.gif");
 	-fx-background-position: center;
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: stretch;
@@ -10,4 +10,52 @@
 	-fx-text-fill: #ff0000; 
 	-fx-font-weight: bold;
 	-fx-font-size: 30; 
+}
+
+#ranglbl1{
+	-fx-text-fill: white; 
+	-fx-font-weight: bold;
+	-fx-font-size: 50; 
+	
+}
+
+#pointlbl1{
+	-fx-text-fill: white; 
+	-fx-font-weight: bold;
+	-fx-font-size: 50; 
+	
+}
+
+#namelbl1{
+	-fx-text-fill: white; 
+	-fx-font-weight: bold;
+	-fx-font-size: 50; 
+	
+}
+
+
+#ranglbl2{
+	-fx-text-fill: white; 
+	-fx-font-weight: bold;
+	-fx-font-size: 30; 
+	
+}
+#pointlbl2{
+	-fx-text-fill: white; 
+	-fx-font-weight: bold;
+	-fx-font-size: 30; 
+	
+}
+
+#namelbl2{
+	-fx-text-fill: white; 
+	-fx-font-weight: bold;
+	-fx-font-size: 30; 
+	
+}
+
+
+#resultvbox{
+	-fx-border-color: black;
+	
 }
