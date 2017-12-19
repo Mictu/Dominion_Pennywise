@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.application.Platform;
 import server_Models.Player;
 import view.Result_View;
 
@@ -15,7 +16,9 @@ public class Result_Controller {
 
 
 	public void showResultInView(String[] resultsPlayerAndPoints) {
-		//array im view anzeigen mit resultView."textarea oder was au immer du hesch"
+		Platform.runLater(() -> {
+			resultView.setRangList(resultsPlayerAndPoints);
+		});
 	}
 
 

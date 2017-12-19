@@ -92,6 +92,7 @@ public class Client {
 							ClientHandler.getWinPoints(win);
 						}else if(message.length() > 4 && message.substring(0, 6).equals("result")) {
 							results = message.substring(17); //message ohne result.winpoints.
+							System.out.println(results);
 							resultsPlayerAndPoints = results.split("\\.");
 							ClientHandler.getResultPoints(resultsPlayerAndPoints);
 						} else if (message.length() > 9 && message.substring(0, 9).equals("cardempty")) {
