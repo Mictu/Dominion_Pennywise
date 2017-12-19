@@ -99,19 +99,12 @@ public class Result_View {
 				ranglbl.setStyle("-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-font-size: 20; ");
 			}
 			namelbl = new Label();
-			namelbl.setText(Player.player.get(i).getName());
+			namelbl.setText(playerliste[i]);
 			namelbl.setId("namelbl" + (i + 1));
 			if (i >= 2) {
 				namelbl.setStyle("-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-font-size: 20; ");
 			}
-			pointlbl = new Label();
-			pointlbl.setId("pointlbl" + (i + 1));
-			if (i >= 2) {
-				pointlbl.setStyle("-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-font-size: 20; ");
-			}
-			String point = Integer.toString(Player.player.get(i).winPoint);
-			pointlbl.setText(point);
-			hbox.getChildren().addAll(ranglbl, namelbl, pointlbl);
+			hbox.getChildren().addAll(ranglbl, namelbl);
 			vbox.getChildren().add(hbox);
 		}
 	}
