@@ -1,8 +1,12 @@
 package controllers;
 
+import java.io.File;
+
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import view.Board_View;
 import view.Lobby_View;
@@ -36,6 +40,7 @@ public class Lobby_Controller {
 				if (!lobbyView.txtChatMessage.getText().trim().isEmpty()) {
 				Login_Controller.client.sendChatMessage(lobbyView.txtChatMessage.getText());
 				lobbyView.txtChatMessage.clear();
+				playSoundSend();
 				}
 			});
 
@@ -60,6 +65,13 @@ public class Lobby_Controller {
 	// ExitMethode for all Views
 	private void exit(Stage stage) {
 		stage.hide();
+	}
+	
+	public void playSoundSend() {
+		String musicFile = "pull-out.mp3"; // For example
+		Media sound = new Media(new File(musicFile).toURI().toString());
+		MediaPlayer mediaPlayer = new MediaPlayer(sound);
+		mediaPlayer.play();
 	}
 
 }

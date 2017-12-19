@@ -129,36 +129,36 @@ public class ClientHandler {
 
 		if (lMessage.substring(0, 4).equals("name") && (lMessage.length() > 4)) {
 			if (language.equalsIgnoreCase("de")) {
-				sendMessage = "Spieler " + lMessage.substring(4) + " ist am Zug.";
+				sendMessage = ">> "+"Spieler " + lMessage.substring(4) + " ist am Zug.";
 			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = "It's " + lMessage.substring(4) + "'s turn.";
+				sendMessage = ">> "+"It's " + lMessage.substring(4) + "'s turn.";
 			}
 		} else if (lMessage.equals("playaction")) {
 			if (language.equalsIgnoreCase("de")) {
-				sendMessage = "Aktionsphase hat gestartet.";
+				sendMessage = " "+"Aktionsphase hat gestartet.";
 			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = "Actionphase has started.";
+				sendMessage = " "+"Actionphase has started.";
 			}
 		} else if (lMessage.equals("playbuy")) {
 			if (language.equalsIgnoreCase("de")) {
-				sendMessage = "Kaufphase hat gestartet.";
+				sendMessage = " "+"Kaufphase hat gestartet.";
 			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = "Buyphase has started.";
+				sendMessage = " "+"Buyphase has started.";
 			}
 		} else if (lMessage.substring(0,2).equals("ac")) {
 			if (language.equalsIgnoreCase("de")) {
-				sendMessage = getGermanName(lMessage.substring(2))+" wurde gespielt";
+				sendMessage = " "+getGermanName(lMessage.substring(2))+" wurde gespielt";
 			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = lMessage.substring(2)+" has been played";
+				sendMessage = " "+lMessage.substring(2)+" has been played";
 			}
 		} else if (lMessage.substring(0,2).equals("bc")) {
 			if (language.equalsIgnoreCase("de")) {
-				sendMessage = getGermanName(lMessage.substring(2))+" wurde gekauft";
+				sendMessage = " "+getGermanName(lMessage.substring(2))+" wurde gekauft";
 			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = lMessage.substring(2)+" has been bought";
+				sendMessage = " "+lMessage.substring(2)+" has been bought";
 			}
 		}
-		boardC.showLoggerMsg("> " + sendMessage);
+		boardC.showLoggerMsg(">" + sendMessage);
 	}
 	
 	public String getGermanName(String cardPlayed) {
