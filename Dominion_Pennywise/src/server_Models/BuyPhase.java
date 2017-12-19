@@ -48,15 +48,16 @@ public class BuyPhase {
 	// BONUS BUY BUTTON - DONT FORGET
 
 	public void buy() {
-		sendingHand = false;
-		cardChosen = true;
 		buyThisCard = cardName;
+		sendingHand = false;
 		cost = getCost(cardName);
 		if (cost > player.getCashHand() + player.money) {
 			infoMessage = "not enough money";
 			sendInfo = true;
 		} else if (cost <= player.money){
 			doTheBuy();
+		} else {
+			cardChosen = true;
 		}
 		
 	}

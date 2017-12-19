@@ -13,7 +13,7 @@ public class GameLogic {
 	protected int countRounds;
 	protected final int START_MONEY = 7;
 	protected final int START_ESTATE = 3;
-
+	int starter;
 	protected String actualPhase;
 
 	ServerHandler serverHandler;
@@ -27,6 +27,7 @@ public class GameLogic {
 	// Constructor
 	public GameLogic(Server server) {
 		this.server = server;
+		starter = 0;
 		index = 0;
 		firstRound = true;
 		actualPhase = "action";
@@ -64,6 +65,10 @@ public class GameLogic {
 				server.sendStringToClient("cleanup", ind);
 			}
 			ind++;
+		}
+		if (starter == 0) {
+			sendWinPoints();
+			starter = 1;
 		}
 	}
 

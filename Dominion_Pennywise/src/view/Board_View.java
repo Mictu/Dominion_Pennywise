@@ -30,8 +30,8 @@ public class Board_View {
 	public Stage stage;
 	public BorderPane root;
 	/*
-	 * WRITE DYNAMIC HAND CARDS ARE COVERED IF HOVERED SET CHAT GOLDEN BORDER IF U
-	 * CAN PLAY CARDS DECK AND DISCARD DECK SHOULD BE SEEN FROM BEHIND
+	 * WRITE DYNAMIC HAND CARDS ARE COVERED IF HOVERED SET CHAT GOLDEN BORDER IF
+	 * U CAN PLAY CARDS DECK AND DISCARD DECK SHOULD BE SEEN FROM BEHIND
 	 */
 
 	// Initialize the GUI Content here
@@ -43,8 +43,8 @@ public class Board_View {
 	protected HBox hCenter1, hCenter2, hCenter3;
 	HBox hBottom;
 	String cardID;
-//	public Label actionPoints, buyPoints, money;
-	public TextArea aBMpoints; //action, buy, money 
+	// public Label actionPoints, buyPoints, money;
+	public TextArea aBMpoints; // action, buy, money
 	public TextArea logger;
 	public Label info;
 	public TextArea playerStats;
@@ -58,7 +58,7 @@ public class Board_View {
 	protected ArrayList<Button> treasure = new ArrayList<Button>();
 	protected ArrayList<Button> kingdom = new ArrayList<Button>();
 	protected ArrayList<Button> victory = new ArrayList<Button>();
-	
+
 	HBox labels;
 	Label firstPhase, secondPhase, thirdPhase;
 
@@ -109,7 +109,7 @@ public class Board_View {
 			victory.add(cdV.getEstateBtn());
 			victory.add(cdV.getDuchyBtn());
 			victory.add(cdV.getProvinceBtn());
-			
+
 			for (Button l : treasure) {
 				hCenter3.getChildren().add(l);
 				bindingsForContent(l, hCenter3, 1, 0.12);
@@ -122,9 +122,8 @@ public class Board_View {
 				hCenter1.getChildren().add(l);
 				bindingsForContent(l, hCenter1, 1, 0.12);
 			}
-			
 
-//			setCardsOnViewEnable();
+			// setCardsOnViewEnable();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -133,7 +132,6 @@ public class Board_View {
 		endPhase = new Button("Phase beenden");
 		endPhase.setId("endBtn");
 
-
 		labels = new HBox(20);
 		firstPhase = new Label(t.getString("dominion.board.lbl.actionPhase"));
 		firstPhase.setId("phaseLabels");
@@ -141,15 +139,16 @@ public class Board_View {
 		secondPhase.setId("phaseLabels");
 		thirdPhase = new Label(t.getString("dominion.board.lbl.cleanupPhase"));
 		thirdPhase.setId("phaseLabels");
-		
-//		actionPoints = new Label(t.getString("dominion.board.lbl.actionPoints"));
-//		buyPoints = new Label(t.getString("dominion.board.lbl.buyPoints"));
-//		money = new Label(t.getString("dominion.board.lbl.money"));
-		
+
+		// actionPoints = new
+		// Label(t.getString("dominion.board.lbl.actionPoints"));
+		// buyPoints = new Label(t.getString("dominion.board.lbl.buyPoints"));
+		// money = new Label(t.getString("dominion.board.lbl.money"));
+
 		aBMpoints = new TextArea();
 		aBMpoints.setId("playerStats");
 		aBMpoints.setEditable(false);
-		
+
 		Region reg = new Region();
 		Region reg2 = new Region();
 		reg.setPrefWidth(140);
@@ -157,7 +156,7 @@ public class Board_View {
 
 		labels.setAlignment(Pos.CENTER);
 
-		labels.getChildren().addAll(aBMpoints,firstPhase, secondPhase, thirdPhase, reg, reg2, endPhase);
+		labels.getChildren().addAll(aBMpoints, firstPhase, secondPhase, thirdPhase, reg, reg2, endPhase);
 
 		// bindings for the part in between of players hand and cards to buy
 		bindingsForContent(firstPhase, labels, 0.98, 0.16);
@@ -166,7 +165,7 @@ public class Board_View {
 		bindingsForContent(reg, labels, 0.98, 0.02);
 		bindingsForContent(reg2, labels, 0.98, 0.02);
 		bindingsForContent(endPhase, labels, 0.98, 0.16);
-		bindingsForContent(aBMpoints,labels, 2, 0.12);
+		bindingsForContent(aBMpoints, labels, 2, 0.12);
 
 		// CENTER BOTTOM
 
@@ -181,7 +180,8 @@ public class Board_View {
 
 		// testing the players hand
 
-		// hBoxHand.getChildren().addAll(cdV.getWoodcutterBtn(), cdV.getFunfairBtn(),
+		// hBoxHand.getChildren().addAll(cdV.getWoodcutterBtn(),
+		// cdV.getFunfairBtn(),
 		// cdV.getFunfairBtn(),
 		// cdV.getFunfairBtn(), cdV.getFunfairBtn());
 
@@ -222,16 +222,16 @@ public class Board_View {
 		playerStats = new TextArea();
 		playerStats.setEditable(false);
 		playerStats.setId("playerStats");
-		
+
 		info = new Label("");
 		info.setWrapText(true);
 		info.setId("infoLabel");
-		
+
 		Region regio = new Region();
 
 		VBox infoBox = new VBox();
 		infoBox.getChildren().addAll(info, regio);
-		
+
 		StackPane centerSP = new StackPane();
 		centerSP.getChildren().addAll(playerStats, infoBox, vCenter);
 		StackPane.setAlignment(playerStats, Pos.TOP_RIGHT);
@@ -245,12 +245,12 @@ public class Board_View {
 
 		bindingsForContent(info, infoBox, 0.2, 1);
 		bindingsForContent(regio, infoBox, 0.8, 1);
-		
+
 		// SET RIGHT
 		VBox vRight = new VBox();
 
 		HBox chatInput = new HBox(5);
-		chatText= new TextField();
+		chatText = new TextField();
 		send = new Button();
 		send.setId("sendButton");
 		send.setText(t.getString("dominion.lobby.btn.send"));
@@ -279,7 +279,7 @@ public class Board_View {
 
 		bindingsForContent(centerSP, root, 0.98, 0.79);
 		bindingsForContent(vRight, root, 0.98, 0.19);
-		
+
 		bindingsForContent(logger, vRight, 0.42, 1);
 		bindingsForContent(reg, vRight, 0.06, 1);
 		bindingsForContent(chat, vRight, 0.42, 1);
@@ -302,29 +302,29 @@ public class Board_View {
 	}
 
 	public void changePhaseLabel() {
-		if(ClientHandler.phase.equals("action")) {
+		if (ClientHandler.phase.equals("action")) {
 			firstPhase.setId("phaseLabelsEnable");
 			secondPhase.setId("phaseLabels");
 			thirdPhase.setId("phaseLabels");
-		}else if(ClientHandler.phase.equals("buy")) {
+		} else if (ClientHandler.phase.equals("buy")) {
 			secondPhase.setId("phaseLabelsEnable");
 			firstPhase.setId("phaseLabels");
 			thirdPhase.setId("phaseLabels");
-		}else {
+		} else {
 			secondPhase.setId("phaseLabels");
 			firstPhase.setId("phaseLabels");
 			thirdPhase.setId("phaseLabelsEnable");
 		}
 	}
-	
+
 	public void setHand() {
 		handFromServer = ClientHandler.tempHandCard;
-		
+
 		if (handFromServer.size() > 5)
 			hBoxHand.setSpacing(20 - handFromServer.size() * 4);
-		else 
+		else
 			hBoxHand.setSpacing(20);
-		
+
 		this.hBoxHand.getChildren().clear();
 		while (handCards.size() < handFromServer.size()) {
 			Button b = new Button();
@@ -332,8 +332,10 @@ public class Board_View {
 				try {
 					playSound();
 					cardID = "hand" + b.getId();
-					b.setDisable(true); // die Angeklickte karte sollte disabled oder in Discard geschickt werden
+					b.setDisable(true); // die Angeklickte karte sollte disabled
+										// oder in Discard geschickt werden
 					Login_Controller.client.sendToServer(cardID);
+					System.out.println("asdasds");
 				} catch (Exception e) {
 					System.out.println("Button der hand haben noch keine ID erhalten");
 				}
@@ -357,20 +359,18 @@ public class Board_View {
 		if (ClientHandler.phase.equals("buy")) {
 			setCardsOnViewEnable();
 			for (Button b : handCards) {
-
 				if (b.getId().equals("copper") || b.getId().equals("silver") || b.getId().equals("gold")) {
 					b.setDisable(false);
 				} else {
 					b.setDisable(true);
-				
+
 				}
-	
-			} 
+
+			}
 		}
 		if (ClientHandler.phase.equals("action")) {
 			setCardsOnViewDisable();
 			for (Button b : handCards) {
-				
 				if (b.getId().equals("smith") || b.getId().equals("market") || b.getId().equals("laboratory")
 						|| b.getId().equals("funfair") || b.getId().equals("woodcutter")
 						|| b.getId().equals("village")) {
@@ -381,7 +381,7 @@ public class Board_View {
 
 			}
 		}
-		
+
 	}
 
 	// enables buttons while player is able to chose which card he wants to buy
@@ -415,7 +415,7 @@ public class Board_View {
 			n.setDisable(true);
 		}
 	}
-	
+
 	public void setEmptyHand() {
 		hBoxHand.getChildren().clear();
 	}
