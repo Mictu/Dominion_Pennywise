@@ -8,12 +8,16 @@ import server_Models.Translator;
 import view.Board_View;
 import view.Lobby_View;
 import view.Login_View;
+import view.Result_View;
 
 public class ClientHandler {
 	static Lobby_Controller lobbyC;
 	Login_Controller loginC;
 	static Board_Controller boardC;
 	Result_Controller resultC;
+	Result_View resultView;
+	
+	
 //	CardDesign_View cdV;
 
 	public static ArrayList<String> tempHandCard = new ArrayList<String>();
@@ -54,6 +58,10 @@ public class ClientHandler {
 		}
 	}
 	
+	public static void sendToResult(String[] win){
+		
+	}
+	
 
 	public void getMessageFromClient(String msg) {
 		message = msg;
@@ -91,6 +99,9 @@ public class ClientHandler {
 					boardview.changePhaseLabel();
 					boardC.deleteInfo();
 				});
+				break;
+			case "gameover":
+				openResultView(); 
 				break;
 			case "buy":
 				phase = "buy";
@@ -219,6 +230,15 @@ public class ClientHandler {
 		} else {
 			boardC.showInfoMsg(lMessage);
 		}
+	}
+	
+	
+	public void openResultView(){
+		boardview.stop();
+		resultView = new Result_View(new Stage()); 
+		resultC = new Result_Controller(resultView);
+		resultView.start();
+
 	}
 
 }
