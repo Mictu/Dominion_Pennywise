@@ -50,6 +50,7 @@ public class GameLogic {
 	public void theGame() {
 		if(countRounds == 2){
 			server.sendToClient("gameover");
+			sendPointsForResult();
 		}else{
 		actualPhase = "action";
 //		server.sendToClient(actualPhase);
@@ -197,8 +198,14 @@ public class GameLogic {
 				+ player.getBuyPoints() + ".Money:" + player.getMoney(), index);
 
 	}
+	
+	public void sendPointsForResult() {
+		String result = "result.";
+		result = result.concat(sendWinPoints());
+		server.sendToClient(result);
+	}
 
-	public void sendWinPoints() {
+	public String sendWinPoints() {
 		int countWinP = 0;
 		String playersWinPoints = "winpoints.";
 		for (Player p : Player.player) {
@@ -216,6 +223,7 @@ public class GameLogic {
 			countWinP = 0;
 		}
 		server.sendToClient(playersWinPoints);
+		return playersWinPoints;
 	}
 
 	public int addWinPoints(int count, String card) {

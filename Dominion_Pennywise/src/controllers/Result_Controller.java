@@ -18,6 +18,11 @@ public class Result_Controller {
 	}
 
 
+	public void showResultInView(String[] resultsPlayerAndPoints) {
+		//array im view anzeigen mit resultView."textarea oder was au immer du hesch"
+	}
+
+
 	
 //	public Player getWinner(){	
 //		for(Player p : Player.player){

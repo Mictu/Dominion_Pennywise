@@ -25,11 +25,13 @@ public class Client {
 	Server server;
 	String namemsg;
 	String abmPoints;
-	String winPoints;
 	String[] abm;
+	String winPoints;
 	String[] names;
 	String loggerMessage;
 	String[] win;
+	String results;
+	String[] resultsPlayerAndPoints;
 
 	ClientHandler ch = new ClientHandler();
 
@@ -68,14 +70,13 @@ public class Client {
 							namemsg = message.substring(6);
 							names = namemsg.split("\\.");
 							Platform.runLater(() -> {
-//								for (String s : names) {
-//									s = s.concat(" Online");
-//								}
-//								setNames(names);
+								// for (String s : names) {
+								// s = s.concat(" Online");
+								// }
+								// setNames(names);
 								ClientHandler.getNamesFormClient(names);
 							});
-						}
-						else if (message.length() > 8 && message.substring(0,9).equals("abmpoints")) {
+						} else if (message.length() > 8 && message.substring(0, 9).equals("abmpoints")) {
 							abmPoints = message.substring(10);
 							abm = abmPoints.split("\\.");
 							ClientHandler.getABMpoints(abm);
@@ -85,14 +86,17 @@ public class Client {
 						} else if (message.length() > 4 && message.substring(0, 4).equals("info")) {
 							loggerMessage = message.substring(4);
 							ch.HandleInfoMessage(loggerMessage);
-						} else if (message.length() > 8 && message.substring(0,9).equals("winpoints")){
+						} else if (message.length() > 8 && message.substring(0, 9).equals("winpoints")) {
 							winPoints = message.substring(10);
 							win = winPoints.split("\\.");
 							ClientHandler.getWinPoints(win);
-							}else if(message.length() > 9 && message.substring(0, 9).equals("cardempty")){
+						}else if(message.length() > 4 && message.substring(0, 6).equals("result")) {
+							results = message.substring(17); //message ohne result.winpoints.
+							resultsPlayerAndPoints = results.split("\\.");
+							ClientHandler.getResultPoints(resultsPlayerAndPoints);
+						} else if (message.length() > 9 && message.substring(0, 9).equals("cardempty")) {
 							ch.getMessageFromClient(message);
-						}
-						else {
+						} else {
 							Platform.runLater(() -> {
 								ch.getMessageFromClient(message);
 							});

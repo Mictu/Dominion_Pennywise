@@ -8,21 +8,16 @@ import server_Models.Translator;
 import view.Board_View;
 import view.Lobby_View;
 import view.Login_View;
-import view.Result_View;
 
 public class ClientHandler {
 	static Lobby_Controller lobbyC;
 	Login_Controller loginC;
 	static Board_Controller boardC;
-	Result_Controller resultC;
-	Result_View resultView;
-	
-	
+	static Result_Controller resultC;
 //	CardDesign_View cdV;
 
 	public static ArrayList<String> tempHandCard = new ArrayList<String>();
 
-	Login_View loginV;
 	ServiceLocator sl = ServiceLocator.getServiceLocator();
 	Translator t = sl.getTranslator();
 
@@ -58,10 +53,9 @@ public class ClientHandler {
 		}
 	}
 	
-	public static void sendToResult(String[] win){
-		
+	public static void getResultPoints(String[] resultsPlayerAndPoints) {
+		resultC.showResultInView(resultsPlayerAndPoints);
 	}
-	
 
 	public void getMessageFromClient(String msg) {
 		message = msg;
@@ -99,9 +93,6 @@ public class ClientHandler {
 					boardview.changePhaseLabel();
 					boardC.deleteInfo();
 				});
-				break;
-			case "gameover":
-				openResultView(); 
 				break;
 			case "buy":
 				phase = "buy";
@@ -230,15 +221,6 @@ public class ClientHandler {
 		} else {
 			boardC.showInfoMsg(lMessage);
 		}
-	}
-	
-	
-	public void openResultView(){
-		boardview.stop();
-		resultView = new Result_View(new Stage()); 
-		resultC = new Result_Controller(resultView);
-		resultView.start();
-
 	}
 
 }
