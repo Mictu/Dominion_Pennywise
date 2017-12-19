@@ -194,10 +194,9 @@ public class GameLogic {
 		server.sendStringToClient("info" + infoMsg, index);
 	}
 
-	public void sendABMPoints() {
-		server.sendStringToClient("abmpoints.ActionPoints:" + player.getActionPoints() + ".BuyPoints:"
-				+ player.getBuyPoints() + ".Money:" + player.getMoney(), index);
-
+	public void sendABMPoints() { // action, buy, money
+		server.sendStringToClient(
+				"abmpoints." + player.getActionPoints() + "." + player.getBuyPoints() + "." + player.getMoney(), index);
 	}
 	
 	public void sendPointsForResult() {
@@ -220,7 +219,7 @@ public class GameLogic {
 				countWinP = addWinPoints(countWinP, card);
 			}
 			player.winPoint = countWinP;
-			playersWinPoints = playersWinPoints.concat(p.getName() + "s Points:" + player.winPoint + ".");
+			playersWinPoints = playersWinPoints.concat(p.getName() + "-" + player.winPoint + ".");
 			countWinP = 0;
 		}
 		server.sendToClient(playersWinPoints);

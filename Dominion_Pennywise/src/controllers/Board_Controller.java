@@ -56,26 +56,35 @@ public class Board_Controller {
 		//Action-, Buy-,Moneypoints update textarea
 		public void updateABMpoints(String s) {
 			Platform.runLater(()->{
-				boardView.aBMpoints.appendText(s + "\n");
+				if (boardView.aBMpoints.getText().equals("")) {
+					boardView.aBMpoints.setText(s);
+				} else {
+					boardView.aBMpoints.setText(boardView.aBMpoints.getText()+"\n"+s);
+				}
 			});
 		}
 
+// May be useless now
 		public void clearABMpoints() {
 			Platform.runLater(()-> {
-				boardView.aBMpoints.clear();
+				boardView.aBMpoints.setText("");
 			});	
 		}
 
-
+// May be useless now
 		public void clearWinPoints() {
 			Platform.runLater(()->{
-				boardView.playerStats.clear();
+				boardView.playerStats.setText("");
 			});	
 		}
 
 		public void updateWinPoints(String s) {
 			Platform.runLater(()-> {
-			boardView.playerStats.appendText(s + "\n");	
+				if (boardView.playerStats.getText().equals("")) {
+					boardView.playerStats.setText(s);
+				} else {
+					boardView.playerStats.setText(boardView.playerStats.getText()+"\n"+s);
+				}
 			});
 		}
 		

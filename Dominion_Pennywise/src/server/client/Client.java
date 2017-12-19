@@ -79,7 +79,7 @@ public class Client {
 						} else if (message.length() > 8 && message.substring(0, 9).equals("abmpoints")) {
 							abmPoints = message.substring(10);
 							abm = abmPoints.split("\\.");
-							ClientHandler.getABMpoints(abm);
+							ch.getABMpoints(abm);
 						} else if (message.length() > 6 && message.substring(0, 6).equals("logger")) {
 							loggerMessage = message.substring(6);
 							ch.HandleLoggerMsg(loggerMessage);
@@ -89,9 +89,10 @@ public class Client {
 						} else if (message.length() > 8 && message.substring(0, 9).equals("winpoints")) {
 							winPoints = message.substring(10);
 							win = winPoints.split("\\.");
-							ClientHandler.getWinPoints(win);
-						}else if(message.length() > 4 && message.substring(0, 6).equals("result")) {
-							results = message.substring(17); //message ohne result.winpoints.
+							ch.getWinPoints(win);
+						}else if(message.length() > 6 && message.substring(0, 6).equals("result")) {
+							if (message.length()>17)
+								results = message.substring(17); //message ohne result.winpoints.
 							System.out.println(results);
 							resultsPlayerAndPoints = results.split("\\.");
 							ClientHandler.getResultPoints(resultsPlayerAndPoints);

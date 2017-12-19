@@ -40,19 +40,6 @@ public class ClientHandler {
 		}
 	}
 
-	public static void getABMpoints(String[] points) {
-		boardC.clearABMpoints();
-		for (String s : points) {
-			boardC.updateABMpoints(s);
-		}
-	}
-
-	public static void getWinPoints(String[] win) {
-		boardC.clearWinPoints();
-		for (String s : win) {
-			boardC.updateWinPoints(s);
-		}
-	}
 
 	public void getMessageFromClient(String msg) {
 		message = msg;
@@ -116,9 +103,9 @@ public class ClientHandler {
 			}
 		}
 	}
-	
+
 	public static void getResultPoints(String[] resultsPlayerAndPoints) {
-		for(String s : resultsPlayerAndPoints) {
+		for (String s : resultsPlayerAndPoints) {
 			System.out.println(s);
 		}
 		resultC.showResultInView(resultsPlayerAndPoints);
@@ -136,12 +123,37 @@ public class ClientHandler {
 		resultC = new Result_Controller(resultView);
 		resultView.start();
 	}
+
 	public static void openBoardView() {
 		// lobbyV.stop();
 		Lobby_View.stop();
 		boardview = new Board_View(new Stage());
 		boardC = new Board_Controller(boardview);
 		boardview.start();
+	}
+
+	public void getWinPoints(String[] win) {
+		String[] winPoints;
+		boardC.clearWinPoints();
+		for (String s : win) {
+			winPoints = s.split("\\-");
+			boardC.updateWinPoints(winPoints[0] + " " + t.getString("dominion.board.points.winpoints") + ": " + winPoints[1]);
+		}
+	}
+
+	public void getABMpoints(String[] points) {
+		int i = 0;
+		boardC.clearABMpoints();
+		for (String s : points) {
+			if (i == 0) {
+				boardC.updateABMpoints(t.getString("dominion.board.points.action") + " " + s);
+			} else if (i == 1) {
+				boardC.updateABMpoints(t.getString("dominion.board.points.buy") + " " + s);
+			} else {
+				boardC.updateABMpoints(t.getString("dominion.board.points.money") + " " + s);
+			}
+			i++;
+		}
 	}
 
 	public void HandleLoggerMsg(String loggerMsg) {
