@@ -13,7 +13,7 @@ public class ClientHandler {
 	static Lobby_Controller lobbyC;
 	Login_Controller loginC;
 	static Board_Controller boardC;
-	Result_Controller resultC;
+	static Result_Controller resultC;
 	Result_View resultView;
 	// CardDesign_View cdV;
 
@@ -54,7 +54,7 @@ public class ClientHandler {
 		}
 	}
 
-	public void getResultPoints(String[] resultsPlayerAndPoints) {
+	public static void getResultPoints(String[] resultsPlayerAndPoints) {
 		resultC.showResultInView(resultsPlayerAndPoints);
 	}
 
