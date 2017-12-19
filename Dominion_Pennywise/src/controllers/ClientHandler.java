@@ -54,10 +54,6 @@ public class ClientHandler {
 		}
 	}
 
-	public static void getResultPoints(String[] resultsPlayerAndPoints) {
-		resultC.showResultInView(resultsPlayerAndPoints);
-	}
-
 	public void getMessageFromClient(String msg) {
 		message = msg;
 		// Get message to set the player hand view
@@ -119,6 +115,13 @@ public class ClientHandler {
 				break;
 			}
 		}
+	}
+	
+	public static void getResultPoints(String[] resultsPlayerAndPoints) {
+		for(String s : resultsPlayerAndPoints) {
+			System.out.println(s);
+		}
+		resultC.showResultInView(resultsPlayerAndPoints);
 	}
 
 	public void emptyCard(String message) {

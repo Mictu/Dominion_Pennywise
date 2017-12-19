@@ -31,7 +31,7 @@ public class Lobby_View {
 	public Button btnLeaveGame;
 	public Button btnStartGame;
 	
-	public Label lblLobby;
+	public Label lblLobby, lblChat, lblOnline;
 
 	public Lobby_View(Stage stage) {
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
@@ -48,20 +48,25 @@ public class Lobby_View {
 		lblLobby.setMinSize(Button.USE_PREF_SIZE, Button.USE_PREF_SIZE);
 		lblLobby.setId("lblLobby");
 		
+		lblChat = new Label(t.getString("dominion.lobby.lbl.chat"));
+		lblChat.setId("lbl");
+		lblOnline = new Label(t.getString("dominion.lobby.lbl.online"));
+		lblOnline.setId("lbl");
+		
 		txtConnectedPlayers.setEditable(false);
 		txtChatArea.setEditable(false);
 
 		HBox bottomChatBox = new HBox(txtChatMessage, btnSend);
 		bottomChatBox.getStyleClass().add("hboxBottom");
 		HBox.setHgrow(txtChatMessage, Priority.ALWAYS);
+		
+		HBox topBox = new HBox(btnStartGame, btnLeaveGame);
+		topBox.getStyleClass().add("topBox");
 
 		btnLeaveGame.getStyleClass().add("btn");
 		btnStartGame.getStyleClass().add("btn");
 
-		HBox topBox = new HBox(btnStartGame, btnLeaveGame);
-		topBox.getStyleClass().add("topBox");
-
-		VBox rightBox = new VBox(lblLobby, topBox, txtConnectedPlayers, txtChatArea, bottomChatBox);
+		VBox rightBox = new VBox(lblLobby, topBox, lblOnline, txtConnectedPlayers, lblChat, txtChatArea, bottomChatBox);
 		rightBox.setId("rightBox");
 		VBox.setVgrow(txtChatArea, Priority.ALWAYS);
 

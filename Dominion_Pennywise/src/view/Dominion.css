@@ -57,6 +57,13 @@
 	-fx-font-size: 15;
 	-fx-text-alignment: center;
 }
+#vRightLabel {
+	-fx-text-fill: black;
+	-fx-font-weight: bold;
+	-fx-font-size: 16;
+	-fx-background-color: burlywood;
+	-fx-opacity: 0.7;
+}
 
 /*
  * TEXT-AREAs

@@ -50,6 +50,7 @@ public class GameLogic {
 	public void theGame() {
 		if(countRounds == 2){
 			server.sendToClient("gameover");
+			getSomeTime();
 			sendPointsForResult();
 		}else{
 		actualPhase = "action";

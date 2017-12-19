@@ -3,7 +3,6 @@ package controllers;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import server_Models.Player;
 import view.Board_View;
 import view.CardDesign_View;
 import view.Lobby_View;
@@ -71,10 +70,8 @@ public class Board_Controller {
 		public void clearWinPoints() {
 			Platform.runLater(()->{
 				boardView.playerStats.clear();
-			});
-			
+			});	
 		}
-
 
 		public void updateWinPoints(String s) {
 			Platform.runLater(()-> {
