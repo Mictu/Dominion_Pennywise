@@ -148,7 +148,7 @@ public class Board_View {
 		aBMpoints = new TextArea();
 		aBMpoints.setId("playerStats");
 		aBMpoints.setEditable(false);
-
+		
 		Region reg = new Region();
 		Region reg2 = new Region();
 		reg.setPrefWidth(140);
