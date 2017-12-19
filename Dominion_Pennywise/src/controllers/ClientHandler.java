@@ -7,14 +7,15 @@ import main_Class.ServiceLocator;
 import server_Models.Translator;
 import view.Board_View;
 import view.Lobby_View;
-import view.Login_View;
+import view.Result_View;
 
 public class ClientHandler {
 	static Lobby_Controller lobbyC;
 	Login_Controller loginC;
 	static Board_Controller boardC;
-	static Result_Controller resultC;
-//	CardDesign_View cdV;
+	Result_Controller resultC;
+	Result_View resultView;
+	// CardDesign_View cdV;
 
 	public static ArrayList<String> tempHandCard = new ArrayList<String>();
 
@@ -45,15 +46,15 @@ public class ClientHandler {
 			boardC.updateABMpoints(s);
 		}
 	}
-	
+
 	public static void getWinPoints(String[] win) {
 		boardC.clearWinPoints();
-		for(String s: win) {
+		for (String s : win) {
 			boardC.updateWinPoints(s);
 		}
 	}
-	
-	public static void getResultPoints(String[] resultsPlayerAndPoints) {
+
+	public void getResultPoints(String[] resultsPlayerAndPoints) {
 		resultC.showResultInView(resultsPlayerAndPoints);
 	}
 
@@ -73,13 +74,13 @@ public class ClientHandler {
 				boardC.deleteInfo();
 			});
 		} else if (message.equals("empty")) {
-				Platform.runLater(() -> {
-					boardview.setEmptyHand();
-				});
-		} else if (message.contains("cardempty")){
+			Platform.runLater(() -> {
+				boardview.setEmptyHand();
+			});
+		} else if (message.contains("cardempty")) {
 			String emptyCardN = message.substring(9);
 			emptyCard(emptyCardN);
-			
+
 			Platform.runLater(() -> {
 				boardview.setEmptyHand();
 				boardC.deleteInfo();
@@ -93,6 +94,9 @@ public class ClientHandler {
 					boardview.changePhaseLabel();
 					boardC.deleteInfo();
 				});
+				break;
+			case "gameover":
+				openResultView();
 				break;
 			case "buy":
 				phase = "buy";
@@ -116,13 +120,19 @@ public class ClientHandler {
 			}
 		}
 	}
-	
-	public void emptyCard(String message){
+
+	public void emptyCard(String message) {
 		System.out.println(message);
 		String emptyCardN = message;
 		boardview.turnCardBack(emptyCardN);
 	}
-		
+
+	public void openResultView() {
+		boardview.stop();
+		resultView = new Result_View(new Stage());
+		resultC = new Result_Controller(resultView);
+		resultView.start();
+	}
 
 	public void HandleLoggerMsg(String loggerMsg) {
 		String lMessage = loggerMsg;
@@ -131,53 +141,77 @@ public class ClientHandler {
 
 		if (lMessage.substring(0, 4).equals("name") && (lMessage.length() > 4)) {
 			if (language.equalsIgnoreCase("de")) {
-				sendMessage = ">> "+"Spieler " + lMessage.substring(4) + " ist am Zug.";
+				sendMessage = ">> " + "Spieler " + lMessage.substring(4) + " ist am Zug.";
 			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = ">> "+"It's " + lMessage.substring(4) + "'s turn.";
+				sendMessage = ">> " + "It's " + lMessage.substring(4) + "'s turn.";
 			}
 		} else if (lMessage.equals("playaction")) {
 			if (language.equalsIgnoreCase("de")) {
-				sendMessage = " "+"Aktionsphase hat gestartet.";
+				sendMessage = " " + "Aktionsphase hat gestartet.";
 			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = " "+"Actionphase has started.";
+				sendMessage = " " + "Actionphase has started.";
 			}
 		} else if (lMessage.equals("playbuy")) {
 			if (language.equalsIgnoreCase("de")) {
-				sendMessage = " "+"Kaufphase hat gestartet.";
+				sendMessage = " " + "Kaufphase hat gestartet.";
 			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = " "+"Buyphase has started.";
+				sendMessage = " " + "Buyphase has started.";
 			}
-		} else if (lMessage.substring(0,2).equals("ac")) {
+		} else if (lMessage.substring(0, 2).equals("ac")) {
 			if (language.equalsIgnoreCase("de")) {
-				sendMessage = " "+getGermanName(lMessage.substring(2))+" wurde gespielt";
+				sendMessage = " " + getGermanName(lMessage.substring(2)) + " wurde gespielt";
 			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = " "+lMessage.substring(2)+" has been played";
+				sendMessage = " " + lMessage.substring(2) + " has been played";
 			}
-		} else if (lMessage.substring(0,2).equals("bc")) {
+		} else if (lMessage.substring(0, 2).equals("bc")) {
 			if (language.equalsIgnoreCase("de")) {
-				sendMessage = " "+getGermanName(lMessage.substring(2))+" wurde gekauft";
+				sendMessage = " " + getGermanName(lMessage.substring(2)) + " wurde gekauft";
 			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = " "+lMessage.substring(2)+" has been bought";
+				sendMessage = " " + lMessage.substring(2) + " has been bought";
 			}
 		}
 		boardC.showLoggerMsg(">" + sendMessage);
 	}
-	
+
 	public String getGermanName(String cardPlayed) {
 		String germanCard = cardPlayed;
-		switch(germanCard){
-		case "copper" : germanCard = "Kupfer"; break;
-		case "silver" : germanCard = "Silber"; break;
-		case "gold" : germanCard = "Gold"; break;
-		case "estate" : germanCard = "Anwesen"; break;
-		case "duchy" : germanCard = "Herzogtum"; break;
-		case "province" : germanCard = "Provinz"; break;
-		case "village" : germanCard = "Dorf"; break;
-		case "woodcutter" : germanCard = "Holzfäller"; break;
-		case "funfair" : germanCard = "Jahrmarkt"; break;
-		case "laboratory" : germanCard = "Laboratorium"; break;
-		case "market" : germanCard = "Markt"; break;
-		case "smith" : germanCard = "Schmiede"; break;
+		switch (germanCard) {
+		case "copper":
+			germanCard = "Kupfer";
+			break;
+		case "silver":
+			germanCard = "Silber";
+			break;
+		case "gold":
+			germanCard = "Gold";
+			break;
+		case "estate":
+			germanCard = "Anwesen";
+			break;
+		case "duchy":
+			germanCard = "Herzogtum";
+			break;
+		case "province":
+			germanCard = "Provinz";
+			break;
+		case "village":
+			germanCard = "Dorf";
+			break;
+		case "woodcutter":
+			germanCard = "Holzfäller";
+			break;
+		case "funfair":
+			germanCard = "Jahrmarkt";
+			break;
+		case "laboratory":
+			germanCard = "Laboratorium";
+			break;
+		case "market":
+			germanCard = "Markt";
+			break;
+		case "smith":
+			germanCard = "Schmiede";
+			break;
 		}
 		return germanCard;
 	}
@@ -194,7 +228,7 @@ public class ClientHandler {
 		String lMessage = loggerMessage;
 		String sendMessage = "";
 		String language = t.getCurrentLocale().getLanguage();
-		
+
 		if (language.equalsIgnoreCase("de")) {
 			if (lMessage.equalsIgnoreCase("not enough money")) {
 				sendMessage = "Nicht genug Geld";
@@ -212,11 +246,11 @@ public class ClientHandler {
 				sendMessage = "Karte bereits ausgewählt";
 				boardC.showInfoMsg(sendMessage);
 			} else if (lMessage.contains("cardischosen")) {
-				sendMessage = "Karte "+getGermanName(lMessage.substring(12))+" ausgewählt";
+				sendMessage = "Karte " + getGermanName(lMessage.substring(12)) + " ausgewählt";
 				boardC.showInfoMsg(sendMessage);
 			}
 		} else if (lMessage.contains("cardischosen")) {
-			sendMessage = "card "+lMessage.substring(12)+" chosen";
+			sendMessage = "card " + lMessage.substring(12) + " chosen";
 			boardC.showInfoMsg(sendMessage);
 		} else {
 			boardC.showInfoMsg(lMessage);

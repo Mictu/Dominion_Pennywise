@@ -93,7 +93,7 @@ public class Client {
 						}else if(message.length() > 4 && message.substring(0, 6).equals("result")) {
 							results = message.substring(17); //message ohne result.winpoints.
 							resultsPlayerAndPoints = results.split("\\.");
-							ClientHandler.getResultPoints(resultsPlayerAndPoints);
+							ch.getResultPoints(resultsPlayerAndPoints);
 						} else if (message.length() > 9 && message.substring(0, 9).equals("cardempty")) {
 							ch.getMessageFromClient(message);
 						} else {
