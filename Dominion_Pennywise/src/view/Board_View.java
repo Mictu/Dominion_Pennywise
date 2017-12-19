@@ -332,8 +332,8 @@ public class Board_View {
 				try {
 					playSound();
 					cardID = "hand" + b.getId();
-					b.setDisable(true); // die Angeklickte karte sollte disabled
-										// oder in Discard geschickt werden
+//					b.setDisable(true); // die Angeklickte karte sollte disabled
+//										// oder in Discard geschickt werden
 					Login_Controller.client.sendToServer(cardID);
 					System.out.println("asdasds");
 				} catch (Exception e) {

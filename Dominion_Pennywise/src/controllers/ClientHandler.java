@@ -196,7 +196,13 @@ public class ClientHandler {
 			} else if (lMessage.equalsIgnoreCase("card already picked")) {
 				sendMessage = "Karte bereits ausgewählt";
 				boardC.showInfoMsg(sendMessage);
+			} else if (lMessage.contains("cardischosen")) {
+				sendMessage = "Karte "+getGermanName(lMessage.substring(12))+" ausgewählt";
+				boardC.showInfoMsg(sendMessage);
 			}
+		} else if (lMessage.contains("cardischosen")) {
+			sendMessage = "card "+lMessage.substring(12)+" chosen";
+			boardC.showInfoMsg(sendMessage);
 		} else {
 			boardC.showInfoMsg(lMessage);
 		}

@@ -24,11 +24,11 @@ public class BuyPhase {
 		cardName = message;
 		sendInfo = false;
 		successfull = false;
-		if (cardName.equals("copper")) {
-			buyThisCard = "copper";
-			doTheBuy();
-		} else if (player.getBuyPoints() > 0) {
-			if (cardName.contains("hand") && cardChosen) {
+		if (player.getBuyPoints() > 0) {
+			if (!cardChosen && !payStarted && cardName.equals("copper")) {
+				buyThisCard = "copper";
+				doTheBuy();
+			} else if (cardName.contains("hand") && cardChosen) {
 				pay();
 			} else if (!cardName.contains("hand") && !payStarted) {
 				buy();
@@ -45,8 +45,6 @@ public class BuyPhase {
 		}
 	}
 
-	// BONUS BUY BUTTON - DONT FORGET
-
 	public void buy() {
 		buyThisCard = cardName;
 		sendingHand = false;
@@ -58,39 +56,35 @@ public class BuyPhase {
 			doTheBuy();
 		} else {
 			cardChosen = true;
+			infoMessage = "cardischosen"+buyThisCard;
+			sendInfo = true;
 		}
-		
 	}
 
 	public void pay() {
 		sendingHand = false;
 		payStarted = true;
-		if (buyThisCard == null) {
-			infoMessage = "no card selected";
-			sendInfo = true;
-		} else {
-			String card = cardName.substring(4);
-			switch (card) {
-			case "gold":
-				this.player.hand.remove(this.player.hand.lastIndexOf("gold"));
-				this.player.discard.add("gold");
-				player.money += 3;
-				break;
-			case "silver":
-				this.player.hand.remove(this.player.hand.lastIndexOf("silver"));
-				this.player.discard.add("silver");
-				player.money += 2;
-				break;
-			case "copper":
-				this.player.hand.remove(this.player.hand.lastIndexOf("copper"));
-				this.player.discard.add("copper");
-				player.money += 1;
-				break;
-			}
-			// Set everything to null for the next round
-			if (player.money >= cost) {
-				doTheBuy();
-			}
+		String card = cardName.substring(4);
+		switch (card) {
+		case "gold":
+			this.player.hand.remove(this.player.hand.lastIndexOf("gold"));
+			this.player.discard.add("gold");
+			player.money += 3;
+			break;
+		case "silver":
+			this.player.hand.remove(this.player.hand.lastIndexOf("silver"));
+			this.player.discard.add("silver");
+			player.money += 2;
+			break;
+		case "copper":
+			this.player.hand.remove(this.player.hand.lastIndexOf("copper"));
+			this.player.discard.add("copper");
+			player.money += 1;
+			break;
+		}
+		// Set everything to null for the next round
+		if (player.money >= cost) {
+			doTheBuy();
 		}
 	}
 
@@ -107,7 +101,6 @@ public class BuyPhase {
 		cost = 0;
 		player.decreaseBuyPoints();
 		sendingHand = true;
-
 		if (cardHandled.equals("copper")) {
 			sendingHand = false;
 		}

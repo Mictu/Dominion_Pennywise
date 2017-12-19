@@ -40,11 +40,9 @@ public class GameLogic {
 		for (int i = 0; i < START_MONEY; i++) {
 			player.discard.add("copper"); // don't forget to counter++
 		}
-
 		for (int i = 0; i < START_ESTATE; i++) {
 			player.discard.add("estate");
 		}
-
 		cleanPhase = new CleanUpPhase(player);
 	}
 
