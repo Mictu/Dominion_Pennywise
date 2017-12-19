@@ -13,7 +13,7 @@ public class GameLogic {
 	protected int countRounds;
 	protected final int START_MONEY = 7;
 	protected final int START_ESTATE = 3;
-
+	int starter;
 	protected String actualPhase;
 
 	ServerHandler serverHandler;
@@ -27,6 +27,7 @@ public class GameLogic {
 	// Constructor
 	public GameLogic(Server server) {
 		this.server = server;
+		starter = 0;
 		index = 0;
 		firstRound = true;
 		actualPhase = "action";
@@ -36,54 +37,68 @@ public class GameLogic {
 	} // Close Constructor
 
 	protected void gameStart(Player player) {
-		
+
 		for (int i = 0; i < START_MONEY; i++) {
 			player.discard.add("copper"); // don't forget to counter++
 		}
-
 		for (int i = 0; i < START_ESTATE; i++) {
 			player.discard.add("estate");
 		}
-
 		cleanPhase = new CleanUpPhase(player);
 	}
 
 	public void theGame() {
-		// if (firstRound == true) {
-		// firstRound = false;
-
 		actualPhase = "action";
+		server.sendToClient(actualPhase);
 		this.player = Player.player.get(index);
 		sendPlayersHand();
-
+		sendLoggerMessage("name" + this.player.getName());
+		this.player.startRound();
+		sendABMPoints();
 		int ind = 0;
 		for (Player p : Player.player) {
 			if (p.equals(this.player)) {
 				server.sendStringToClient("action", ind);
+				sendLoggerMessage("playaction");
 			} else {
 				server.sendStringToClient("cleanup", ind);
 			}
 			ind++;
 		}
-		// } else {
-		this.player.startRound();
-		// }
+		if (starter == 0) {
+			sendWinPoints();
+			starter = 1;
+		}
 	}
 
 	public void playCard(String message) {
 		switch (actualPhase) {
 		case "action":
 			actionPhase.chosenCard(message, this.player);
-			if (actionPhase.getActionMadeBoolean())
+			if (actionPhase.getActionMadeBoolean()) {
 				sendPlayersHand();
+				sendLoggerMessage("ac" + actionPhase.getPlayedCard());
+			} else if (actionPhase.getInfoMessage()) {
+				sendInfoMessage(actionPhase.getInfoString());
+			}
+			sendABMPoints();
 			break;
 		case "buy":
 			buyPhase.buyCard(message, this.player);
-			if (buyPhase.sendHandAgain())
+			if (buyPhase.sendHandAgain()) {
 				sendPlayersHand();
-			if(buyPhase.isFinished().contains("cardempty")){ 
-				server.sendToClient(buyPhase.isFinished());
+				if (buyPhase.isFinished().contains("cardempty")) {
+					server.sendToClient(buyPhase.isFinished());
+				}
 			}
+			if (buyPhase.buySuccessfull()) {
+				sendLoggerMessage("bc" + buyPhase.getBoughtCard());
+				sendWinPoints();
+			}
+			if (buyPhase.getInfoMsg()) {
+				sendInfoMessage(buyPhase.getInfoString());
+			}
+			sendABMPoints();
 			break;
 		}
 	}
@@ -111,15 +126,18 @@ public class GameLogic {
 		switch (actualPhase) {
 		case "action":
 			actualPhase = "buy";
+			sendLoggerMessage("playbuy");
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
+			// sendABMPoints();
 			break;
 		case "buy":
 			actualPhase = "cleanup";
 			cleanUpPhase = new CleanUpPhase(this.player);
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
-
+			buyPhase.resetVariablesForBuyPhase();
+			// sendABMPoints();
 			getIndex();
 			theGame();
 			break; // block this monitor
@@ -143,7 +161,7 @@ public class GameLogic {
 		}
 		getSomeTime();
 	}
-	
+
 	public void getSomeTime() {
 		try {
 			Thread.sleep(250);
@@ -158,6 +176,54 @@ public class GameLogic {
 
 	public Player getActualPlayer() {
 		return this.player;
+	}
+
+	public void sendLoggerMessage(String loggerMsg) {
+		server.sendToClient("logger" + loggerMsg);
+	}
+
+	public void sendInfoMessage(String infoMsg) {
+		server.sendStringToClient("info" + infoMsg, index);
+	}
+
+	public void sendABMPoints() {
+		server.sendStringToClient("abmpoints.ActionPoints:" + player.getActionPoints() + ".BuyPoints:"
+				+ player.getBuyPoints() + ".Money:" + player.getMoney(), index);
+
+	}
+
+	public void sendWinPoints() {
+		int countWinP = 0;
+		String playersWinPoints = "winpoints.";
+		for (Player p : Player.player) {
+			for (String card : p.deck) {
+				countWinP = addWinPoints(countWinP, card);
+			}
+			for (String card : p.discard) {
+				countWinP = addWinPoints(countWinP, card);
+			}
+			for (String card : p.hand) {
+				countWinP = addWinPoints(countWinP, card);
+			}
+			playersWinPoints = playersWinPoints.concat(p.getName() + "s Points:" + countWinP + ".");
+			countWinP = 0;
+		}
+		server.sendToClient(playersWinPoints);
+	}
+
+	public int addWinPoints(int count, String card) {
+		switch (card) {
+		case "estate":
+			count += 1;
+			break;
+		case "duchy":
+			count += 3;
+			break;
+		case "province":
+			count += 6;
+			break;
+		}
+		return count;
 	}
 
 }

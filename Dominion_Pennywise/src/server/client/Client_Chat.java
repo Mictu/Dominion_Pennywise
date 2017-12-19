@@ -7,6 +7,7 @@ import commons.ChatMsg;
 import commons.JoinMsg;
 import commons.Message;
 import commons.StringMsg;
+import javafx.application.Platform;
 import javafx.concurrent.Task;
 import server_Models.Player;
 

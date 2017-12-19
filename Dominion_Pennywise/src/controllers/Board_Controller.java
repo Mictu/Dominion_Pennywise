@@ -35,9 +35,6 @@ public class Board_Controller {
 			Login_Controller.client.sendToServer("endphase");
 		});
 		
-		boardView.bonusMoney.setOnAction((Event) -> {
-			Login_Controller.client.sendToServer("bonusmoney");
-		});
 		
 		//Chat 
 		boardView.chatText.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
@@ -57,11 +54,6 @@ public class Board_Controller {
 
 	}
 
-		public void setbonusMoneybtn(String text){
-			String bonusgeld = text; 
-			boardView.bonusMoney.setText("Bonusgeld: " + bonusgeld);
-		}
-
 		
 		//Action-, Buy-,Moneypoints update textarea
 		public void updateABMpoints(String s) {
@@ -75,6 +67,36 @@ public class Board_Controller {
 				boardView.aBMpoints.clear();
 			});	
 		}
+
+
+		public void clearWinPoints() {
+			Platform.runLater(()->{
+				boardView.playerStats.clear();
+			});
+			
+		}
+
+
+		public void updateWinPoints(String s) {
+			Platform.runLater(()-> {
+			boardView.playerStats.appendText(s + "\n");	
+			});
+		}
 		
+		public void showLoggerMsg(String message) {
+			Platform.runLater(()->{
+				boardView.logger.setText(boardView.logger.getText().concat("\n"+message));
+			});
+		}
+		public void showInfoMsg(String message) {
+			Platform.runLater(()->{
+				boardView.info.setText(message);
+			});
+		}
+		public void deleteInfo() {
+			Platform.runLater(()->{
+				boardView.info.setText("");
+			});
+		}
 
 }

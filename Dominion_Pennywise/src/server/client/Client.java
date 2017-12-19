@@ -51,7 +51,6 @@ public class Client {
 				System.out.println("Player " + playerName + " is connected");
 				sendToServer("lobby" + playerName);
 
-				// Kommentar und so
 				// Chat
 				while (true) {
 					Message msg = Message.receive(socket);

@@ -5,16 +5,15 @@ import view.CardDesign_View;
 public class BuyPhase {
 
 	int cost;
-	String cardName, card;
+	String cardName, card , infoMessage;
 	String buyThisCard;
+	String boughtCard;
 	Player player;
 	boolean cardChosen = false;
 	boolean payStarted = false;
 	boolean sendingHand = false;
 	
 	String empty;
-		
-	
 	
 	int aVCounter = 10; 
 	int aMCounter = 10; 
@@ -30,7 +29,9 @@ public class BuyPhase {
 	int dCounter = 12; 
 	int pCounter = 12;
 	
-	
+	boolean successfull = false;
+	boolean sendInfo = false;
+
 	public BuyPhase() {
 		buyThisCard = null;
 	}
@@ -39,69 +40,72 @@ public class BuyPhase {
 	public void buyCard(String message, Player player) {
 		this.player = player;
 		cardName = message;
+		sendInfo = false;
+		successfull = false;
 		if (player.getBuyPoints() > 0) {
-			if (cardName.contains("hand") && cardChosen) {
+			if (!cardChosen && !payStarted && cardName.equals("copper")) {
+				buyThisCard = "copper";
+				doTheBuy();
+			} else if (cardName.contains("hand") && cardChosen) {
 				pay();
 			} else if (!cardName.contains("hand") && !payStarted) {
 				buy();	
 			} else if (cardChosen) {
-				System.out.println("Card already picked");
+				infoMessage = "card already picked";
+				sendInfo = true;
 			} else {
-				System.out.println("No Card picked to buy");
+				infoMessage = "no card selected";
+				sendInfo = true;
 			}
 		} else {
-			System.out.println("not enough buy-points");
+			infoMessage = "not enough buy - points";
+			sendInfo = true;
 		}
 	}
 
-	// BONUS BUY BUTTON - DONT FORGET
-
-	
 	public void buy() {
-		System.out.println("buy");
-		sendingHand = false;
-		cardChosen = true;
 		buyThisCard = cardName;
+		sendingHand = false;
 		cost = getCost(cardName);
-		if (cost > player.getCashHand()+player.money) {
-			System.out.println("Not enough cash in your hand and money(buyphase)");
+		if (cost > player.getCashHand() + player.money) {
+			infoMessage = "not enough money";
+			sendInfo = true;
+		} else if (cost <= player.money){
+			doTheBuy();
+		} else {
+			cardChosen = true;
+			infoMessage = "cardischosen"+buyThisCard;
+			sendInfo = true;
 		}
 	}
-	
-	
+
 	public void pay() {
 		sendingHand = false;
 		payStarted = true;
-		System.out.println("pay");
-		if (buyThisCard == null) {
-			System.out.println("Zuerst eine Karte zum kaufen auswählen");
-		} else {
-			String card = cardName.substring(4);
-			switch (card) {
-			case "gold":
-				this.player.hand.remove(this.player.hand.lastIndexOf("gold"));
-				this.player.discard.add("gold");
-				player.money += 3;
-				System.out.println("PAY() PlayerMoney: " + player.money);
-				break;
-			case "silver":
-				this.player.hand.remove(this.player.hand.lastIndexOf("silver"));
-				this.player.discard.add("silver");
-				player.money += 2;
-				System.out.println("PAY() PlayerMoney: " + player.money);
-				break;
-			case "copper":
-				this.player.hand.remove(this.player.hand.lastIndexOf("copper"));
-				this.player.discard.add("copper");
-				player.money += 1;
-				System.out.println("PAY() PlayerMoney: " + player.money);
-				break;
-			}
-			// Set everything to null for the next round
+		String card = cardName.substring(4);
+		switch (card) {
+		case "gold":
+			this.player.hand.remove(this.player.hand.lastIndexOf("gold"));
+			this.player.discard.add("gold");
+			player.money += 3;
+			break;
+		case "silver":
+			this.player.hand.remove(this.player.hand.lastIndexOf("silver"));
+			this.player.discard.add("silver");
+			player.money += 2;
+			break;
+		case "copper":
+			this.player.hand.remove(this.player.hand.lastIndexOf("copper"));
+			this.player.discard.add("copper");
+			player.money += 1;
+			break;
+		}
+		// Set everything to null for the next round
+		if (player.money >= cost) {
 			doTheBuy();
 		}
 	}
-	
+
 	public void doTheBuy() {
 		if (player.money >= cost) {
 			decreaseCard(buyThisCard);
@@ -117,13 +121,22 @@ public class BuyPhase {
 		}
 	}
 	
+	public void resetVariablesForBuyPhase() {
+		player.money = 0;
+		cost = 0;
+		buyThisCard = null;
+		cardName = null;
+		cardChosen = false;
+		payStarted = false;
+		sendingHand = true;
+	}
+
 	public boolean sendHandAgain() {
 		if (payStarted)
 			return payStarted;
 		else
 			return sendingHand;
 	}
-
 
 	// get the costs of every card
 	public int getCost(String cardName) {
@@ -237,6 +250,22 @@ public class BuyPhase {
 	
 
 
+	public boolean buySuccessfull() {
+		return this.successfull;
+	}
+	
+	public String getBoughtCard() {
+		return this.boughtCard;
+	}
+	
+	public String getInfoString() {
+		return this.infoMessage;
+	}
+	
+	public boolean getInfoMsg() {
+		return this.sendInfo;
+	}
+	
 }
 
 // Written by Patrick
