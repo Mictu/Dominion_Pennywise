@@ -2,9 +2,15 @@
 	-fx-spacing: 10px;
 }
 
+.topBox {
+	-fx-padding: 10px 40px 10px 40px;
+	-fx-spacing: 10px;
+	-fx-alignment: center;
+}
+
 #rightBox {
 	-fx-padding: 50px 50px 50px 50px;
-	-fx-spacing: 20px;
+	-fx-spacing: 5px;
 	-fx-alignment: center;
 }
 
@@ -15,10 +21,10 @@
 	-fx-alignment: center;
 }
 
-.topBox {
-	-fx-padding: 10px 40px 10px 40px;
-	-fx-spacing: 10px;
-	-fx-alignment: center;
+#lbl {
+	-fx-text-fill: black; 
+	-fx-font-weight: bold;
+	-fx-font-size: 20; 
 }
 
 .btn {

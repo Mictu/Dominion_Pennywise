@@ -286,12 +286,18 @@ public class Board_View {
 
 		logger = new TextArea();
 		logger.setEditable(false);
+		logger.setStyle("-fx-font-size: 12px; -fx-font-weight: bold;");
+		logger.setText("");
 		chat = new TextArea();
 		chat.setEditable(false);
+		chat.setStyle("-fx-font-size: 12px; -fx-font-weight: bold;");
 
-		reg = new Region();
-
-		vRight.getChildren().addAll(logger, reg, chat, chatInput);
+		Label chatLbl = new Label("Chat:");
+		Label loggerLbl = new Label("Info:");
+		chatLbl.setId("vRightLabel");
+		loggerLbl.setId("vRightLabel");
+		
+		vRight.getChildren().addAll(loggerLbl, logger, chatLbl, chat, chatInput);
 
 		root.setRight(vRight);
 
@@ -305,9 +311,10 @@ public class Board_View {
 		bindingsForContent(centerSP, root, 0.98, 0.79);
 		bindingsForContent(vRight, root, 0.98, 0.19);
 
-		bindingsForContent(logger, vRight, 0.42, 1);
-		bindingsForContent(reg, vRight, 0.06, 1);
-		bindingsForContent(chat, vRight, 0.42, 1);
+		bindingsForContent(loggerLbl, vRight, 0.05, 1);
+		bindingsForContent(logger, vRight, 0.4, 1);
+		bindingsForContent(chatLbl, vRight, 0.05, 1);
+		bindingsForContent(chat, vRight, 0.4, 1);
 		bindingsForContent(chatInput, vRight, 0.1, 1);
 
 		setStageBindings(root, stage, 0.98, 0.98);
