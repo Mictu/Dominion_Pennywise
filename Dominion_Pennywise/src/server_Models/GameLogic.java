@@ -10,7 +10,7 @@ public class GameLogic {
 	ActionPhase actionPhase = new ActionPhase();
 	BuyPhase buyPhase = new BuyPhase();
 
-	protected int countRounds;
+	protected int countRounds = 0;
 	protected final int START_MONEY = 7;
 	protected final int START_ESTATE = 3;
 	int starter;
@@ -48,6 +48,9 @@ public class GameLogic {
 	}
 
 	public void theGame() {
+		if(countRounds == 2){
+			server.sendToClient("gameover");
+		}else{
 		actualPhase = "action";
 //		server.sendToClient(actualPhase);
 		this.player = Player.player.get(index);
@@ -68,6 +71,8 @@ public class GameLogic {
 		if (starter == 0) {
 			sendWinPoints();
 			starter = 1;
+		}
+		countRounds++;
 		}
 	}
 
@@ -206,7 +211,8 @@ public class GameLogic {
 			for (String card : p.hand) {
 				countWinP = addWinPoints(countWinP, card);
 			}
-			playersWinPoints = playersWinPoints.concat(p.getName() + "s Points:" + countWinP + ".");
+			player.winPoint = countWinP;
+			playersWinPoints = playersWinPoints.concat(p.getName() + "s Points:" + player.winPoint + ".");
 			countWinP = 0;
 		}
 		server.sendToClient(playersWinPoints);

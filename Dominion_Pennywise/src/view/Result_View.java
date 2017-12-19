@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import server.client.Client;
 import server_Models.Player;
 
 public class Result_View {
@@ -24,8 +25,8 @@ public class Result_View {
 	Label pointlbl;
 
 
-		 public Result_View(Stage stage ) {
-
+		 public Result_View(Stage stage) {
+		this.stage = stage; 
 		
 		stage.setHeight(600.0);//
 		stage.setWidth(400.0);//
@@ -78,7 +79,6 @@ public class Result_View {
 		 }
 		
 	public void start() {
-		stage.setFullScreen(true);
 		stage.show();
 
 	}

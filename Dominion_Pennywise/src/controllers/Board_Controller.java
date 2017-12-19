@@ -13,7 +13,6 @@ public class Board_Controller {
 	Lobby_View lobbyView; 
 	Board_View boardView; 
 	CardDesign_View cardView; 
-	Player player; 
 	
 	public Board_Controller(Board_View boardView){
 		this.boardView = boardView;

@@ -37,18 +37,19 @@ public class ServerHandler {
 		message = msg;
 
 		if (message.equals("start")) {
-			// if (Player.player.size() > 1 && Player.player.size() < 5) {
-			server.sendToClient("openboardview");
-			gamelogic = new GameLogic(this.server);
-			gamelogic.theGame();
+			if (Player.player.size() > 1 && Player.player.size() < 3) {
+				server.sendToClient("openboardview");
+				gamelogic = new GameLogic(this.server);
+				gamelogic.theGame();
+			}
+//			System.out.println("Not enough player");
 		}
-
+			
 		else if (message.contains("endphase")) {
 			gamelogic.endPhase();
 		} else {
 			gamelogic.playCard(message);
 		}
 	}
-
 
 }
