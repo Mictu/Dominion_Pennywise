@@ -43,7 +43,52 @@ public class Result_View {
 		vbox.setAlignment(Pos.CENTER);
 		vbox.setId("resultvbox");
 
-		for (int i = 0; i < Player.player.size(); i++) {
+//		for (int i = 0; i < Player.player.size(); i++) {
+//			hbox = new HBox();
+//			hbox.setAlignment(Pos.CENTER);
+//			hbox.setSpacing(50);
+//
+//			Label ranglbl = new Label("Platz: " + (i + 1));
+//			ranglbl.setId("ranglbl" + (i + 1));
+//			if (i >= 2) {
+//				ranglbl.setStyle("-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-font-size: 20; ");
+//			}
+//			namelbl = new Label();
+//			namelbl.setText(Player.player.get(i).getName());
+//			namelbl.setId("namelbl" + (i + 1));
+//			if (i >= 2) {
+//				namelbl.setStyle("-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-font-size: 20; ");
+//			}
+//			pointlbl = new Label();
+//			pointlbl.setId("pointlbl" + (i + 1));
+//			if (i >= 2) {
+//				pointlbl.setStyle("-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-font-size: 20; ");
+//			}
+//			String point = Integer.toString(Player.player.get(i).winPoint);
+//			pointlbl.setText(point);
+//			hbox.getChildren().addAll(ranglbl, namelbl, pointlbl);
+//			vbox.getChildren().add(hbox);
+//		}
+
+		mainPane.setCenter(vbox);
+
+		Scene scene = new Scene(mainPane);
+		scene.getStylesheets().add(getClass().getResource("Result.css").toExternalForm());
+		stage.setScene(scene);
+
+		 }
+		
+	public void start() {
+		stage.show();
+
+	}
+
+	public void stop() {
+		stage.hide();
+	}
+	
+	public void setRangList(String[] playerliste){
+		for(int i = 0; i < playerliste.length; i++){
 			hbox = new HBox();
 			hbox.setAlignment(Pos.CENTER);
 			hbox.setSpacing(50);
@@ -69,22 +114,6 @@ public class Result_View {
 			hbox.getChildren().addAll(ranglbl, namelbl, pointlbl);
 			vbox.getChildren().add(hbox);
 		}
-
-		mainPane.setCenter(vbox);
-
-		Scene scene = new Scene(mainPane);
-		scene.getStylesheets().add(getClass().getResource("Result.css").toExternalForm());
-		stage.setScene(scene);
-
-		 }
-		
-	public void start() {
-		stage.show();
-
-	}
-
-	public void stop() {
-		stage.hide();
 	}
 
 
