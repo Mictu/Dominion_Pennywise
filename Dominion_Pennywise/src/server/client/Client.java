@@ -27,6 +27,7 @@ public class Client {
 	String abmPoints;
 	String[] abm;
 	String[] names;
+	String loggerMessage;
 
 	ClientHandler ch = new ClientHandler();
 
@@ -66,10 +67,6 @@ public class Client {
 							namemsg = message.substring(6);
 							names = namemsg.split("\\.");
 							Platform.runLater(() -> {
-//								for (String s : names) {
-//									s = s.concat(" Online");
-//								}
-//								setNames(names);
 								ClientHandler.getNamesFormClient(names);
 							});
 						}
@@ -77,6 +74,12 @@ public class Client {
 							abmPoints = message.substring(9);
 							abm = abmPoints.split("\\.");
 							ClientHandler.getABMpoints(abm);
+						} else if (message.length() > 6 && message.substring(0, 6).equals("logger")) {
+							loggerMessage = message.substring(6);
+							ch.HandleLoggerMsg(loggerMessage);
+						} else if (message.length() > 4 && message.substring(0, 4).equals("info")) {
+							loggerMessage = message.substring(4);
+							ch.HandleInfoMessage(loggerMessage);
 						} else {
 							Platform.runLater(() -> {
 								ch.getMessageFromClient(message);

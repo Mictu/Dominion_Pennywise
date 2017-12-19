@@ -6,6 +6,8 @@ public class ActionPhase {
 
 	// initialize sector
 	boolean madeAnAction = false; 
+	boolean sendInfo = false; 
+	String playedCard, info;
 	
 	// Constructor
 	public ActionPhase() {
@@ -16,8 +18,10 @@ public class ActionPhase {
 	
 	// choose this method if a card is pressed
 	public void chosenCard(String message, Player player) {
-		madeAnAction = false; 
+		sendInfo = false;
+		madeAnAction = false;
 		String cardName = message.substring(4);
+		this.playedCard = cardName;
 		if(player.getActionPoints() >0 ) {
 			switch (cardName) {
 			case "village":
@@ -44,14 +48,14 @@ public class ActionPhase {
 				actionSmith(player);
 				reloadHand(cardName, player);
 				break;
-			}
+			} 
 			
 			System.out.println("ActionPhase: player " + player.getName() + " has buypoints: " + player.getBuyPoints() + "and moeny: " + player.getMoney());
+		} else {
+			sendInfo = true;
+			
 		}
-//		server.sendToClient(""+player.getActionPoints());
-//		server.sendToClient(""+player.getBuyPoints());
-//		server.sendToClient(""+player.getBonusBuyMoney());
-	}
+	} 
 
 	public boolean getActionMadeBoolean(){
 		return madeAnAction; 
@@ -110,11 +114,24 @@ public class ActionPhase {
 			// shuffles Cards if deck is empty
 		}
 	}
+	
+	public String getPlayedCard() {
+		return this.playedCard;
+	}
+	
+	public boolean getInfoMessage() {
+		info = "not enough action - points";
+		return this.sendInfo;
+	}
+	
+	public String getInfoString() {
+		return this.info;
+	}
 
 	public void reloadHand(String card, Player player) {
 		player.discard.add(player.hand.get(player.hand.lastIndexOf(card)));
 		player.hand.remove(player.hand.lastIndexOf(card));
-		madeAnAction = true; 
+		madeAnAction = true;
 		player.decreaseActionPoints();
 	}
 } 

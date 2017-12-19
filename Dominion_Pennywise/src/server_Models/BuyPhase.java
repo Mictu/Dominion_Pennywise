@@ -3,12 +3,15 @@ package server_Models;
 public class BuyPhase {
 
 	int cost;
-	String cardName, card;
+	String cardName, card , infoMessage;
 	String buyThisCard;
+	String boughtCard;
 	Player player;
 	boolean cardChosen = false;
 	boolean payStarted = false;
 	boolean sendingHand = false;
+	boolean successfull = false;
+	boolean sendInfo = false;
 
 	public BuyPhase() {
 		buyThisCard = null;
@@ -18,6 +21,8 @@ public class BuyPhase {
 	public void buyCard(String message, Player player) {
 		this.player = player;
 		cardName = message;
+		sendInfo = false;
+		successfull = false;
 		if (cardName.equals("copper")) {
 			buyThisCard = "copper";
 			doTheBuy();
@@ -27,12 +32,15 @@ public class BuyPhase {
 			} else if (!cardName.contains("hand") && !payStarted) {
 				buy();
 			} else if (cardChosen) {
-				System.out.println("Card already picked");
+				infoMessage = "card already picked";
+				sendInfo = true;
 			} else {
-				System.out.println("No Card picked to buy");
+				infoMessage = "no card selected";
+				sendInfo = true;
 			}
 		} else {
-			System.out.println("not enough buy-points");
+			infoMessage = "not enough buy - points";
+			sendInfo = true;
 		}
 	}
 
@@ -44,7 +52,8 @@ public class BuyPhase {
 		buyThisCard = cardName;
 		cost = getCost(cardName);
 		if (cost > player.getCashHand() + player.money) {
-			System.out.println("Not enough cash in your hand and money(buyphase)");
+			infoMessage = "not enough money";
+			sendInfo = true;
 		}
 	}
 
@@ -52,7 +61,8 @@ public class BuyPhase {
 		sendingHand = false;
 		payStarted = true;
 		if (buyThisCard == null) {
-			System.out.println("Zuerst eine Karte zum kaufen auswählen");
+			infoMessage = "no card selected";
+			sendInfo = true;
 		} else {
 			String card = cardName.substring(4);
 			switch (card) {
@@ -83,6 +93,8 @@ public class BuyPhase {
 	}
 
 	public void doTheBuy() {
+		successfull = true;
+		boughtCard = buyThisCard;
 		String cardHandled = buyThisCard;
 		this.player.discard.add(buyThisCard);
 		buyThisCard = null;
@@ -154,7 +166,23 @@ public class BuyPhase {
 		}
 		return costs;
 	}
-
+	
+	public boolean buySuccessfull() {
+		return this.successfull;
+	}
+	
+	public String getBoughtCard() {
+		return this.boughtCard;
+	}
+	
+	public String getInfoString() {
+		return this.infoMessage;
+	}
+	
+	public boolean getInfoMsg() {
+		return this.sendInfo;
+	}
+	
 }
 
 // Written by Patrick

@@ -19,10 +19,9 @@
  */
 
 #handLabel {
-	-fx-background-color: darkgrey;
+	-fx-background-color: darkslategray;
 	-fx-border-radius: 1.30px;
 	-fx-background-radius: 1.30px;
-	-fx-opacity: 0.7;
 	-fx-alignment: top_center;
 	-fx-text-fill: black;
 	-fx-font-weight: bold;
@@ -49,6 +48,14 @@
 	-fx-font-weight: bold;
 	-fx-font-size: 12;
 	-fx-text-fill: black;
+}
+
+#infoLabel {
+	-fx-background-color: transparent;
+	-fx-text-fill: orange;
+	-fx-font-weight: bold;
+	-fx-font-size: 15;
+	-fx-text-alignment: center;
 }
 
 /*

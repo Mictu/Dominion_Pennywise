@@ -48,17 +48,16 @@ public class GameLogic {
 	}
 
 	public void theGame() {
-		// if (firstRound == true) {
-		// firstRound = false;
-
 		actualPhase = "action";
 		this.player = Player.player.get(index);
 		sendPlayersHand();
-
+		sendLoggerMessage("name"+this.player.getName());
+		
 		int ind = 0;
 		for (Player p : Player.player) {
 			if (p.equals(this.player)) {
 				server.sendStringToClient("action", ind);
+				sendLoggerMessage("playaction");
 			} else {
 				server.sendStringToClient("cleanup", ind);
 			}
@@ -73,13 +72,24 @@ public class GameLogic {
 		switch (actualPhase) {
 		case "action":
 			actionPhase.chosenCard(message, this.player);
-			if (actionPhase.getActionMadeBoolean())
+			if (actionPhase.getActionMadeBoolean()) {
 				sendPlayersHand();
+				sendLoggerMessage("ac"+actionPhase.getPlayedCard());
+			} else if (actionPhase.getInfoMessage()) {
+				sendInfoMessage(actionPhase.getInfoString());
+			}
 			break;
 		case "buy":
 			buyPhase.buyCard(message, this.player);
-			if (buyPhase.sendHandAgain())
+			if (buyPhase.sendHandAgain()) {
 				sendPlayersHand();
+			}
+			if (buyPhase.buySuccessfull()) {
+				sendLoggerMessage("bc"+buyPhase.getBoughtCard());
+			}
+			if (buyPhase.getInfoMsg()) {
+				sendInfoMessage(buyPhase.getInfoString());
+			}
 			break;
 		}
 	}
@@ -107,6 +117,7 @@ public class GameLogic {
 		switch (actualPhase) {
 		case "action":
 			actualPhase = "buy";
+			sendLoggerMessage("playbuy");
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
 			break;
@@ -115,7 +126,6 @@ public class GameLogic {
 			cleanUpPhase = new CleanUpPhase(this.player);
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
-
 			getIndex();
 			theGame();
 			break; // block this monitor
@@ -154,6 +164,14 @@ public class GameLogic {
 
 	public Player getActualPlayer() {
 		return this.player;
+	}
+	
+	public void sendLoggerMessage(String loggerMsg) {
+		server.sendToClient("logger"+loggerMsg);
+	}
+	
+	public void sendInfoMessage(String infoMsg) {
+		server.sendStringToClient("info"+infoMsg, index);
 	}
 
 }

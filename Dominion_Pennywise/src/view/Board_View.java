@@ -45,6 +45,8 @@ public class Board_View {
 	String cardID;
 //	public Label actionPoints, buyPoints, money;
 	public TextArea aBMpoints; //action, buy, money 
+	public TextArea logger;
+	public Label info;
 
 	protected int soundCounter = 0;
 	protected DropShadow shadow = new DropShadow();
@@ -221,16 +223,30 @@ public class Board_View {
 		TextArea playerStats = new TextArea();
 		playerStats.setEditable(false);
 		playerStats.setId("playerStats");
+		
+		info = new Label("");
+		info.setWrapText(true);
+		info.setId("infoLabel");
+		
+		Region regio = new Region();
 
+		VBox infoBox = new VBox();
+		infoBox.getChildren().addAll(info, regio);
+		
 		StackPane centerSP = new StackPane();
-		centerSP.getChildren().addAll(playerStats, vCenter);
+		centerSP.getChildren().addAll(playerStats, infoBox, vCenter);
 		StackPane.setAlignment(playerStats, Pos.TOP_RIGHT);
+		StackPane.setAlignment(infoBox, Pos.BOTTOM_LEFT);
 
 		root.setCenter(centerSP);
 
 		bindingsForContent(playerStats, centerSP, 0.15, 0.15);
+		bindingsForContent(infoBox, centerSP, 0.5, 0.3);
 		bindingsForContent(vCenter, centerSP, 1, 1);
 
+		bindingsForContent(info, infoBox, 0.2, 1);
+		bindingsForContent(regio, infoBox, 0.8, 1);
+		
 		// SET RIGHT
 		VBox vRight = new VBox();
 
@@ -244,7 +260,7 @@ public class Board_View {
 		chatInput.setAlignment(Pos.CENTER);
 		HBox.setHgrow(chatText, Priority.ALWAYS);
 
-		TextArea logger = new TextArea();
+		logger = new TextArea();
 		logger.setEditable(false);
 		chat = new TextArea();
 		chat.setEditable(false);

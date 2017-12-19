@@ -76,5 +76,20 @@ public class Board_Controller {
 			});	
 		}
 		
+		public void showLoggerMsg(String message) {
+			Platform.runLater(()->{
+				boardView.logger.setText(boardView.logger.getText().concat("\n"+message));
+			});
+		}
+		public void showInfoMsg(String message) {
+			Platform.runLater(()->{
+				boardView.info.setText(message);
+			});
+		}
+		public void deleteInfo() {
+			Platform.runLater(()->{
+				boardView.info.setText("");
+			});
+		}
 
 }
