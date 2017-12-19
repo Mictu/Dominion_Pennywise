@@ -1,12 +1,8 @@
 package controllers;
 
-import java.io.File;
-
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import server_Models.Player;
 import view.Board_View;
 import view.CardDesign_View;
@@ -20,7 +16,6 @@ public class Board_Controller {
 	Player player; 
 	
 	public Board_Controller(Board_View boardView){
-		//
 		this.boardView = boardView;
 
 		
@@ -50,7 +45,7 @@ public class Board_Controller {
 			if (!boardView.chatText.getText().trim().isEmpty()) {
 			Login_Controller.client.sendChatMessage(boardView.chatText.getText());
 			boardView.chatText.clear();
-			playSoundSend();
+			Button_Sounds.playSendSound();
 			}
 		});
 		
@@ -89,8 +84,8 @@ public class Board_Controller {
 		}
 		
 		public void showLoggerMsg(String message) {
+			Button_Sounds.playLoggerSound();
 			Platform.runLater(()->{
-//				boardView.logger.setText(boardView.logger.getText().concat("\n"+message));
 				boardView.logger.appendText("\n"+message);
 			});
 		}
@@ -103,13 +98,6 @@ public class Board_Controller {
 			Platform.runLater(()->{
 				boardView.info.setText("");
 			});
-		}
-		
-		public void playSoundSend() {
-			String musicFile = "pull-out.mp3"; // For example
-			Media sound = new Media(new File(musicFile).toURI().toString());
-			MediaPlayer mediaPlayer = new MediaPlayer(sound);
-			mediaPlayer.play();
 		}
 
 }

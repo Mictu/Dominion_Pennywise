@@ -40,7 +40,7 @@ public class Lobby_Controller {
 				if (!lobbyView.txtChatMessage.getText().trim().isEmpty()) {
 				Login_Controller.client.sendChatMessage(lobbyView.txtChatMessage.getText());
 				lobbyView.txtChatMessage.clear();
-				playSoundSend();
+				Button_Sounds.playSendSound();
 				}
 			});
 

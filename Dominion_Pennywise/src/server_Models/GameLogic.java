@@ -180,6 +180,7 @@ public class GameLogic {
 
 	public void sendLoggerMessage(String loggerMsg) {
 		server.sendToClient("logger" + loggerMsg);
+		getSomeTime();
 	}
 
 	public void sendInfoMessage(String infoMsg) {

@@ -1,8 +1,8 @@
 package view;
 
-import java.io.File;
 import java.util.ArrayList;
 import controllers.Board_Controller;
+import controllers.Button_Sounds;
 import controllers.ClientHandler;
 import controllers.Login_Controller;
 import javafx.geometry.Insets;
@@ -19,8 +19,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import main_Class.ServiceLocator;
 import server_Models.Translator;
@@ -79,7 +77,6 @@ public class Board_View {
 
 	// constructor
 	public Board_View(Stage s) {
-		playSound();
 		cdV = new CardDesign_View();
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 		Translator t = sl.getTranslator();
@@ -358,7 +355,7 @@ public class Board_View {
 			Button b = new Button();
 			b.setOnAction((event) -> {
 				try {
-					playSound();
+					Button_Sounds.playCardSound();
 					cardID = "hand" + b.getId();
 					Login_Controller.client.sendToServer(cardID);
 					System.out.println("asdasds");
@@ -445,16 +442,6 @@ public class Board_View {
 
 	public void setEmptyHand() {
 		hBoxHand.getChildren().clear();
-	}
-
-	// play a sound if card is pressed
-	public void playSound() {
-		String musicFile = "clicksound.mp3"; // For example
-		Media sound = new Media(new File(musicFile).toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(sound);
-		if (soundCounter == 1)
-			mediaPlayer.play();
-		soundCounter = 1;
 	}
 
 	protected void bindingsForContent(Region child, Region parent, double heightMultiply, double widthMultiply) {
