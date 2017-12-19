@@ -105,6 +105,7 @@ public class CardDesign_View {
 		soundCounter=1;
 	}
 	
+
 	
 	// Activate every created Button (Card) and send string to server handler
 	protected void setForAction(Button x) {

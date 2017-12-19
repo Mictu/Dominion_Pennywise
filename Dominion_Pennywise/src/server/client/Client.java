@@ -77,7 +77,12 @@ public class Client {
 							abmPoints = message.substring(9);
 							abm = abmPoints.split("\\.");
 							ClientHandler.getABMpoints(abm);
-						} else {
+						}
+						else 
+							if(message.length() > 9 && message.substring(0, 9).equals("cardempty")){
+							ch.getMessageFromClient(message);
+						}
+						else {
 							Platform.runLater(() -> {
 								ch.getMessageFromClient(message);
 							});

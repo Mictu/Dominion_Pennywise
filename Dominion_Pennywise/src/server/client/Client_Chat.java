@@ -45,7 +45,7 @@ public class Client_Chat {
 						playerNameList = playerNameList.concat(pname + ".");
 					}
 					server.sendToClient(playerNameList);
-				}else {
+				}else{
 					sh.getMessageFromServer(message);
 				}
 			}

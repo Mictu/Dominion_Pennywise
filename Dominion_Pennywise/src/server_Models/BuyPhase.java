@@ -1,5 +1,7 @@
 package server_Models;
 
+import view.CardDesign_View;
+
 public class BuyPhase {
 
 	int cost;
@@ -9,7 +11,26 @@ public class BuyPhase {
 	boolean cardChosen = false;
 	boolean payStarted = false;
 	boolean sendingHand = false;
-
+	
+	String empty;
+		
+	
+	
+	int aVCounter = 10; 
+	int aMCounter = 10; 
+	int aSCounter = 10; 
+	int aWCounter = 10; 
+	int aFCounter = 10; 
+	int aLCounter = 10; 
+	
+	int cCounter = 60;
+	int sCounter = 40; 
+	int gCounter = 10; 
+	int eCounter = 24; 
+	int dCounter = 12; 
+	int pCounter = 12;
+	
+	
 	public BuyPhase() {
 		buyThisCard = null;
 	}
@@ -22,7 +43,7 @@ public class BuyPhase {
 			if (cardName.contains("hand") && cardChosen) {
 				pay();
 			} else if (!cardName.contains("hand") && !payStarted) {
-				buy();
+				buy();	
 			} else if (cardChosen) {
 				System.out.println("Card already picked");
 			} else {
@@ -83,6 +104,7 @@ public class BuyPhase {
 	
 	public void doTheBuy() {
 		if (player.money >= cost) {
+			decreaseCard(buyThisCard);
 			this.player.discard.add(buyThisCard);
 			buyThisCard = null;
 			cardName = null;
@@ -151,6 +173,69 @@ public class BuyPhase {
 		}
 		return costs;
 	}
+	
+	public void decreaseCard(String cardName){
+		switch (cardName) {
+		case "village":
+			aVCounter--;
+			isFinished();
+			break;
+		case "woodcutter":
+			aWCounter--;
+			break;
+		case "funfair":
+			aFCounter--;
+			break;
+		case "laboratory":
+			aLCounter--;
+			break;
+		case "market":
+			aMCounter--;
+			break;
+		case "smith":
+			aSCounter--;
+			break;
+		case "copper":
+			cCounter--;
+			break;
+		case "silver":
+			sCounter--;
+			break;
+		case "gold":
+			gCounter--;
+			break;
+		case "estate":
+			eCounter--;
+			break;
+		case "duchy":
+			dCounter--;
+			break;
+		case "province":
+			pCounter--;
+			break;
+		}
+	}
+	
+	public String isFinished(){
+		empty = ""; 
+		if( aVCounter == 0 ){empty = "cardemptyvillage";}
+		if( aWCounter == 0 ){empty = "cardemptywoodcutter";}
+		if( aFCounter == 0 ){empty = "cardemptyfunfair";}
+		if( aLCounter == 0 ){empty = "cardemptylaboratory";}
+		if( aMCounter == 0 ){empty = "cardemptymarket";}
+		if( aSCounter == 0 ){empty = "cardemptysmith";}
+		if( cCounter == 0 ){empty = "cardemptycopper";}
+		if( sCounter == 0 ){empty = "cardemptysilver";}
+		if( gCounter == 0 ){empty = "cardemptygold";}
+		if( eCounter == 0 ){empty = "cardemptyestate";}
+		if( dCounter == 0 ){empty = "cardemptyduchy";}
+		if( pCounter == 0 ){empty = "cardemptyprovince";}
+		return empty;
+		
+	}
+
+	
+
 
 }
 

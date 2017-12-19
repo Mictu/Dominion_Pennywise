@@ -36,6 +36,7 @@ public class GameLogic {
 	} // Close Constructor
 
 	protected void gameStart(Player player) {
+		
 		for (int i = 0; i < START_MONEY; i++) {
 			player.discard.add("copper"); // don't forget to counter++
 		}
@@ -80,6 +81,9 @@ public class GameLogic {
 			buyPhase.buyCard(message, this.player);
 			if (buyPhase.sendHandAgain())
 				sendPlayersHand();
+			if(buyPhase.isFinished().contains("cardempty")){ 
+				server.sendToClient(buyPhase.isFinished());
+			}
 			break;
 		}
 	}

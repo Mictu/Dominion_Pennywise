@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import view.Board_View;
+import view.CardDesign_View;
 import view.Lobby_View;
 import view.Login_View;
 
@@ -12,6 +13,7 @@ public class ClientHandler {
 	Login_Controller loginC;
 	static Board_Controller boardC;
 	Result_Controller resultC;
+//	CardDesign_View cdV;
 
 	public static ArrayList<String> tempHandCard = new ArrayList<String>();
 
@@ -61,6 +63,10 @@ public class ClientHandler {
 				Platform.runLater(() -> {
 					boardview.setEmptyHand();
 				});
+		} else if (message.contains("cardempty")){
+			String emptyCardN = message.substring(9);
+			emptyCard(emptyCardN);
+			
 		} else {
 			switch (message) {
 			case "openboardview":
@@ -88,6 +94,15 @@ public class ClientHandler {
 			}
 		}
 	}
+	
+	public void emptyCard(String message){
+		System.out.println("Kommt im Client handler an ");
+		System.out.println(message);
+		String emptyCardN = message;
+		boardview.turnCardBack(emptyCardN);
+	}
+		
+
 
 	public static void openBoardView() {
 		// lobbyV.stop();

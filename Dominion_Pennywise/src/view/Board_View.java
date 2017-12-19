@@ -30,8 +30,8 @@ public class Board_View {
 	public Stage stage;
 	public BorderPane root;
 	/*
-	 * WRITE DYNAMIC HAND CARDS ARE COVERED IF HOVERED SET CHAT GOLDEN BORDER IF U
-	 * CAN PLAY CARDS DECK AND DISCARD DECK SHOULD BE SEEN FROM BEHIND
+	 * WRITE DYNAMIC HAND CARDS ARE COVERED IF HOVERED SET CHAT GOLDEN BORDER IF
+	 * U CAN PLAY CARDS DECK AND DISCARD DECK SHOULD BE SEEN FROM BEHIND
 	 */
 
 	// Initialize the GUI Content here
@@ -43,8 +43,8 @@ public class Board_View {
 	protected HBox hCenter1, hCenter2, hCenter3;
 	HBox hBottom;
 	String cardID;
-//	public Label actionPoints, buyPoints, money;
-	public TextArea aBMpoints; //action, buy, money 
+	// public Label actionPoints, buyPoints, money;
+	public TextArea aBMpoints; // action, buy, money
 
 	protected int soundCounter = 0;
 	protected DropShadow shadow = new DropShadow();
@@ -52,14 +52,29 @@ public class Board_View {
 	protected ArrayList<Button> handCards = new ArrayList<Button>();
 	protected ArrayList<String> handFromServer = new ArrayList<String>();
 
-	protected ArrayList<Button> treasure = new ArrayList<Button>();
-	protected ArrayList<Button> kingdom = new ArrayList<Button>();
-	protected ArrayList<Button> victory = new ArrayList<Button>();
+	public ArrayList<Button> treasure = new ArrayList<Button>();
+	public ArrayList<Button> kingdom = new ArrayList<Button>();
+	public ArrayList<Button> victory = new ArrayList<Button>();
+
+	CardDesign_View cdV;
+
+	Button village = new Button();
+	Button market = new Button();
+	Button funfair = new Button();
+	Button woodcutter = new Button();
+	Button smith = new Button();
+	Button laboratory = new Button();
+	Button copper = new Button();
+	Button silver = new Button();
+	Button gold = new Button();
+	Button estate = new Button();
+	Button duchy = new Button();
+	Button province = new Button();
 
 	// constructor
 	public Board_View(Stage s) {
 		playSound();
-		CardDesign_View cdV = new CardDesign_View();
+		cdV = new CardDesign_View();
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 		Translator t = sl.getTranslator();
 
@@ -90,20 +105,32 @@ public class Board_View {
 		hCenter3.setId("boxes");
 
 		try {
-
-			treasure.add(cdV.getCopperBtn());
-			treasure.add(cdV.getSilverBtn());
-			treasure.add(cdV.getGoldBtn());
-			kingdom.add(cdV.getFunfairBtn());
-			kingdom.add(cdV.getLaboratoryBtn());
-			kingdom.add(cdV.getMarketBtn());
-			kingdom.add(cdV.getSmithBtn());
-			kingdom.add(cdV.getVillageBtn());
-			kingdom.add(cdV.getWoodcutterBtn());
-			victory.add(cdV.getEstateBtn());
-			victory.add(cdV.getDuchyBtn());
-			victory.add(cdV.getProvinceBtn());
+			this.copper = cdV.getCopperBtn();
+			this.silver = cdV.getSilverBtn();
+			this.gold = cdV.getGoldBtn();
+			this.funfair = cdV.getFunfairBtn();
+			this.laboratory = cdV.getLaboratoryBtn();
+			this.market = cdV.getMarketBtn();
+			this.smith = cdV.getSmithBtn();
+			this.village = cdV.getVillageBtn();
+			this.woodcutter = cdV.getWoodcutterBtn();
+			this.estate = cdV.getEstateBtn();
+			this.duchy = cdV.getDuchyBtn();
+			this.province = cdV.getProvinceBtn();
 			
+			treasure.add(copper);
+			treasure.add(silver);
+			treasure.add(gold);
+			kingdom.add(funfair);
+			kingdom.add(laboratory);
+			kingdom.add(market);
+			kingdom.add(smith);
+			kingdom.add(village);
+			kingdom.add(woodcutter);
+			victory.add(estate);
+			victory.add(duchy);
+			victory.add(province);
+
 			for (Button l : treasure) {
 				hCenter3.getChildren().add(l);
 				bindingsForContent(l, hCenter3, 1, 0.12);
@@ -116,9 +143,8 @@ public class Board_View {
 				hCenter1.getChildren().add(l);
 				bindingsForContent(l, hCenter1, 1, 0.12);
 			}
-			
 
-//			setCardsOnViewEnable();
+			// setCardsOnViewEnable();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -129,7 +155,6 @@ public class Board_View {
 		bonusMoney = new Button("Bonusgeld: 0");
 		bonusMoney.setId("btn");
 
-
 		HBox labels = new HBox(20);
 		Label firstPhase = new Label(t.getString("dominion.board.lbl.actionPhase"));
 		firstPhase.setId("phaseLabels");
@@ -137,11 +162,12 @@ public class Board_View {
 		secondPhase.setId("phaseLabels");
 		Label thirdPhase = new Label(t.getString("dominion.board.lbl.cleanupPhase"));
 		thirdPhase.setId("phaseLabels");
-		
-//		actionPoints = new Label(t.getString("dominion.board.lbl.actionPoints"));
-//		buyPoints = new Label(t.getString("dominion.board.lbl.buyPoints"));
-//		money = new Label(t.getString("dominion.board.lbl.money"));
-		
+
+		// actionPoints = new
+		// Label(t.getString("dominion.board.lbl.actionPoints"));
+		// buyPoints = new Label(t.getString("dominion.board.lbl.buyPoints"));
+		// money = new Label(t.getString("dominion.board.lbl.money"));
+
 		aBMpoints = new TextArea();
 
 		Region reg = new Region();
@@ -151,7 +177,7 @@ public class Board_View {
 
 		labels.setAlignment(Pos.CENTER);
 
-		labels.getChildren().addAll(aBMpoints,firstPhase, secondPhase, thirdPhase, reg, bonusMoney, reg2, endPhase);
+		labels.getChildren().addAll(aBMpoints, firstPhase, secondPhase, thirdPhase, reg, bonusMoney, reg2, endPhase);
 
 		// bindings for the part in between of players hand and cards to buy
 		bindingsForContent(firstPhase, labels, 0.98, 0.16);
@@ -161,7 +187,7 @@ public class Board_View {
 		bindingsForContent(bonusMoney, labels, 0.98, 0.16);
 		bindingsForContent(reg2, labels, 0.98, 0.02);
 		bindingsForContent(endPhase, labels, 0.98, 0.16);
-		bindingsForContent(aBMpoints,labels, 2, 0.12);
+		bindingsForContent(aBMpoints, labels, 2, 0.12);
 
 		// CENTER BOTTOM
 
@@ -176,7 +202,8 @@ public class Board_View {
 
 		// testing the players hand
 
-		// hBoxHand.getChildren().addAll(cdV.getWoodcutterBtn(), cdV.getFunfairBtn(),
+		// hBoxHand.getChildren().addAll(cdV.getWoodcutterBtn(),
+		// cdV.getFunfairBtn(),
 		// cdV.getFunfairBtn(),
 		// cdV.getFunfairBtn(), cdV.getFunfairBtn());
 
@@ -231,7 +258,7 @@ public class Board_View {
 		VBox vRight = new VBox(10);
 
 		HBox chatInput = new HBox(5);
-		chatText= new TextField();
+		chatText = new TextField();
 		send = new Button();
 		send.setId("sendButton");
 		send.setText(t.getString("dominion.lobby.btn.send"));
@@ -280,12 +307,12 @@ public class Board_View {
 
 	public void setHand() {
 		handFromServer = ClientHandler.tempHandCard;
-		
+
 		if (handFromServer.size() > 5)
 			hBoxHand.setSpacing(20 - handFromServer.size() * 4);
-		else 
+		else
 			hBoxHand.setSpacing(20);
-		
+
 		this.hBoxHand.getChildren().clear();
 		while (handCards.size() < handFromServer.size()) {
 			Button b = new Button();
@@ -293,7 +320,8 @@ public class Board_View {
 				try {
 					playSound();
 					cardID = "hand" + b.getId();
-					b.setDisable(true); // die Angeklickte karte sollte disabled oder in Discard geschickt werden
+					b.setDisable(true); // die Angeklickte karte sollte disabled
+										// oder in Discard geschickt werden
 					Login_Controller.client.sendToServer(cardID);
 				} catch (Exception e) {
 					System.out.println("Button der hand haben noch keine ID erhalten");
@@ -324,15 +352,15 @@ public class Board_View {
 					b.setDisable(false);
 				} else {
 					b.setDisable(true);
-				
+
 				}
-	
-			} 
+
+			}
 		}
 		if (ClientHandler.phase.equals("action")) {
 			setCardsOnViewDisable();
 			for (Button b : handCards) {
-				
+
 				if (b.getId().equals("smith") || b.getId().equals("market") || b.getId().equals("laboratory")
 						|| b.getId().equals("funfair") || b.getId().equals("woodcutter")
 						|| b.getId().equals("village")) {
@@ -343,7 +371,7 @@ public class Board_View {
 
 			}
 		}
-		
+
 	}
 
 	// enables buttons while player is able to chose which card he wants to buy
@@ -377,7 +405,7 @@ public class Board_View {
 			n.setDisable(true);
 		}
 	}
-	
+
 	public void setEmptyHand() {
 		hBoxHand.getChildren().clear();
 	}
@@ -413,8 +441,9 @@ public class Board_View {
 		hBottom.setDisable(true);
 		endPhase.setDisable(true);
 		bonusMoney.setDisable(true);
-		
+
 	}
+
 	public void enableWindow() {
 		hCenter1.setDisable(false);
 		hCenter2.setDisable(false);
@@ -422,7 +451,62 @@ public class Board_View {
 		hBottom.setDisable(false);
 		endPhase.setDisable(false);
 		bonusMoney.setDisable(false);
-		
+
+	}
+
+	public void turnCardBack(String message) {
+		String cardName = message;
+		switch (cardName) {
+		case "village":
+			this.village.setId("back");
+			this.village.setDisable(true);
+			break;
+		case "woodcutter":
+			this.woodcutter.setId("back");
+			this.woodcutter.setDisable(true);
+			break;
+		case "funfair":
+			this.funfair.setId("back");
+			this.funfair.setDisable(true);
+			break;
+		case "laboratory":
+			this.laboratory.setId("back");
+			this.laboratory.setDisable(true);
+			break;
+		case "market":
+			this.market.setId("back");
+			this.market.setDisable(true);
+			break;
+		case "smith":
+			this.smith.setId("back");
+			this.smith.setDisable(true);
+			break;
+		case "copper":
+			this.copper.setId("back");
+			this.copper.setDisable(true);
+			break;
+		case "silver":
+			this.silver.setId("back");
+			this.silver.setDisable(true);
+			break;
+		case "gold":
+			this.gold.setId("back");
+			this.gold.setDisable(true);
+			break;
+		case "estate":
+			this.estate.setId("back");
+			this.estate.setDisable(true);
+			break;
+		case "duchy":
+			this.duchy.setId("back");
+			this.duchy.setDisable(true);
+			break;
+		case "province":
+			this.province.setId("back");
+			this.province.setDisable(true);
+			break;
+		}
+
 	}
 
 }// close class
