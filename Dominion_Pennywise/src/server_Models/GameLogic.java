@@ -49,7 +49,7 @@ public class GameLogic {
 
 	public void theGame() {
 		actualPhase = "action";
-		server.sendToClient(actualPhase);
+//		server.sendToClient(actualPhase);
 		this.player = Player.player.get(index);
 		sendPlayersHand();
 		sendLoggerMessage("name" + this.player.getName());
@@ -136,8 +136,8 @@ public class GameLogic {
 			cleanUpPhase = new CleanUpPhase(this.player);
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
-			buyPhase.resetVariablesForBuyPhase();
-			// sendABMPoints();
+			buyPhase.resetVariablesForBuyPhase(this.player);
+//			sendABMPoints();
 			getIndex();
 			theGame();
 			break; // block this monitor

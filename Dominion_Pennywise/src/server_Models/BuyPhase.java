@@ -121,7 +121,7 @@ public class BuyPhase {
 		}
 	}
 	
-	public void resetVariablesForBuyPhase() {
+	public void resetVariablesForBuyPhase(Player player) {
 		player.money = 0;
 		cost = 0;
 		buyThisCard = null;

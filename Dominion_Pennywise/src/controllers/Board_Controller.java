@@ -85,7 +85,8 @@ public class Board_Controller {
 		
 		public void showLoggerMsg(String message) {
 			Platform.runLater(()->{
-				boardView.logger.setText(boardView.logger.getText().concat("\n"+message));
+//				boardView.logger.setText(boardView.logger.getText().concat("\n"+message));
+				boardView.logger.appendText("\n"+message);
 			});
 		}
 		public void showInfoMsg(String message) {
