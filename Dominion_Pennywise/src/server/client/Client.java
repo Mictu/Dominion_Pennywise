@@ -25,9 +25,11 @@ public class Client {
 	Server server;
 	String namemsg;
 	String abmPoints;
+	String winPoints;
 	String[] abm;
 	String[] names;
 	String loggerMessage;
+	String[] win;
 
 	ClientHandler ch = new ClientHandler();
 
@@ -52,7 +54,6 @@ public class Client {
 				System.out.println("Player " + playerName + " is connected");
 				sendToServer("lobby" + playerName);
 
-				// Kommentar und so
 				// Chat
 				while (true) {
 					Message msg = Message.receive(socket);
@@ -70,8 +71,8 @@ public class Client {
 								ClientHandler.getNamesFormClient(names);
 							});
 						}
-						else if (message.length() > 8 && message.substring(0,8).equals("abmpoints")) {
-							abmPoints = message.substring(9);
+						else if (message.length() > 8 && message.substring(0,9).equals("abmpoints")) {
+							abmPoints = message.substring(10);
 							abm = abmPoints.split("\\.");
 							ClientHandler.getABMpoints(abm);
 						} else if (message.length() > 6 && message.substring(0, 6).equals("logger")) {
@@ -80,7 +81,11 @@ public class Client {
 						} else if (message.length() > 4 && message.substring(0, 4).equals("info")) {
 							loggerMessage = message.substring(4);
 							ch.HandleInfoMessage(loggerMessage);
-						} else {
+						} else if (message.length() > 8 && message.substring(0,9).equals("winpoints")){
+							winPoints = message.substring(10);
+							win = winPoints.split("\\.");
+							ClientHandler.getWinPoints(win);
+						}else {
 							Platform.runLater(() -> {
 								ch.getMessageFromClient(message);
 							});

@@ -1,8 +1,6 @@
 package controllers;
 
 import java.util.ArrayList;
-import java.util.Locale;
-
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import main_Class.ServiceLocator;
@@ -14,7 +12,7 @@ import view.Login_View;
 public class ClientHandler {
 	static Lobby_Controller lobbyC;
 	Login_Controller loginC;
-	static Board_Controller boardController;
+	static Board_Controller boardC;
 	Result_Controller resultC;
 
 	public static ArrayList<String> tempHandCard = new ArrayList<String>();
@@ -42,15 +40,22 @@ public class ClientHandler {
 	}
 
 	public static void getABMpoints(String[] points) {
-		boardController.clearABMpoints();
+		boardC.clearABMpoints();
 		for (String s : points) {
-			boardController.updateABMpoints(s);
+			boardC.updateABMpoints(s);
 		}
 	}
+	
+	public static void getWinPoints(String[] win) {
+		boardC.clearWinPoints();
+		for(String s: win) {
+			boardC.updateWinPoints(s);
+		}
+	}
+	
 
 	public void getMessageFromClient(String msg) {
 		message = msg;
-
 		// Get message to set the player hand view
 		if (message.length() > 4 && message.substring(0, 4).equals("hand")) {
 			message = message.substring(5);
@@ -62,12 +67,12 @@ public class ClientHandler {
 			}
 			Platform.runLater(() -> {
 				boardview.setHand();
-				boardController.deleteInfo();
+				boardC.deleteInfo();
 			});
 		} else if (message.equals("empty")) {
 			Platform.runLater(() -> {
 				boardview.setEmptyHand();
-				boardController.deleteInfo();
+				boardC.deleteInfo();
 			});
 		} else {
 			switch (message) {
@@ -76,7 +81,7 @@ public class ClientHandler {
 					openBoardView();
 					boardview.setCards();
 					boardview.changePhaseLabel();
-					boardController.deleteInfo();
+					boardC.deleteInfo();
 				});
 				break;
 			case "buy":
@@ -88,19 +93,21 @@ public class ClientHandler {
 					boardview.setCards();
 					boardview.enableWindow();
 					boardview.changePhaseLabel();
-					boardController.deleteInfo();
+					boardC.deleteInfo();
 				});
 				break;
 			case "cleanup":
 				phase = "cleanup";
 				Platform.runLater(() -> {
-					boardController.deleteInfo();
+					boardC.deleteInfo();
 					boardview.blockWindow();
 				});
 				break;
 			}
 		}
 	}
+	
+	
 
 	public void HandleLoggerMsg(String loggerMsg) {
 		String lMessage = loggerMsg;
@@ -138,7 +145,7 @@ public class ClientHandler {
 				sendMessage = lMessage.substring(2)+" has been bought";
 			}
 		}
-		boardController.showLoggerMsg("> " + sendMessage);
+		boardC.showLoggerMsg("> " + sendMessage);
 	}
 	
 	public String getGermanName(String cardPlayed) {
@@ -164,7 +171,7 @@ public class ClientHandler {
 		// lobbyV.stop();
 		Lobby_View.stop();
 		boardview = new Board_View(new Stage());
-		boardController = new Board_Controller(boardview);
+		boardC = new Board_Controller(boardview);
 		boardview.start();
 	}
 
@@ -176,22 +183,22 @@ public class ClientHandler {
 		if (language.equalsIgnoreCase("de")) {
 			if (lMessage.equalsIgnoreCase("not enough money")) {
 				sendMessage = "Nicht genug Geld";
-				boardController.showInfoMsg(sendMessage);
+				boardC.showInfoMsg(sendMessage);
 			} else if (lMessage.equalsIgnoreCase("not enough action - points")) {
 				sendMessage = "Nicht genug Aktionspunkte";
-				boardController.showInfoMsg(sendMessage);
+				boardC.showInfoMsg(sendMessage);
 			} else if (lMessage.equalsIgnoreCase("not enough buy - points")) {
 				sendMessage = "Nicht genug Kaufpunkte";
-				boardController.showInfoMsg(sendMessage);
+				boardC.showInfoMsg(sendMessage);
 			} else if (lMessage.equalsIgnoreCase("no card selected")) {
 				sendMessage = "Keine Karte ausgewählt";
-				boardController.showInfoMsg(sendMessage);
+				boardC.showInfoMsg(sendMessage);
 			} else if (lMessage.equalsIgnoreCase("card already picked")) {
 				sendMessage = "Karte bereits ausgewählt";
-				boardController.showInfoMsg(sendMessage);
+				boardC.showInfoMsg(sendMessage);
 			}
 		} else {
-			boardController.showInfoMsg(lMessage);
+			boardC.showInfoMsg(lMessage);
 		}
 	}
 

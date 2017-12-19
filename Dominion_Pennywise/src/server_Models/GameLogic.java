@@ -49,10 +49,12 @@ public class GameLogic {
 
 	public void theGame() {
 		actualPhase = "action";
+		server.sendToClient(actualPhase);
 		this.player = Player.player.get(index);
 		sendPlayersHand();
 		sendLoggerMessage("name"+this.player.getName());
-		
+		this.player.startRound();
+		sendABMPoints();
 		int ind = 0;
 		for (Player p : Player.player) {
 			if (p.equals(this.player)) {
@@ -63,9 +65,6 @@ public class GameLogic {
 			}
 			ind++;
 		}
-		// } else {
-		this.player.startRound();
-		// }
 	}
 
 	public void playCard(String message) {
@@ -78,6 +77,7 @@ public class GameLogic {
 			} else if (actionPhase.getInfoMessage()) {
 				sendInfoMessage(actionPhase.getInfoString());
 			}
+			sendABMPoints();
 			break;
 		case "buy":
 			buyPhase.buyCard(message, this.player);
@@ -86,10 +86,12 @@ public class GameLogic {
 			}
 			if (buyPhase.buySuccessfull()) {
 				sendLoggerMessage("bc"+buyPhase.getBoughtCard());
+				sendWinPoints();
 			}
 			if (buyPhase.getInfoMsg()) {
 				sendInfoMessage(buyPhase.getInfoString());
 			}
+			sendABMPoints();
 			break;
 		}
 	}
@@ -120,12 +122,15 @@ public class GameLogic {
 			sendLoggerMessage("playbuy");
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
+//			sendABMPoints();
 			break;
 		case "buy":
 			actualPhase = "cleanup";
 			cleanUpPhase = new CleanUpPhase(this.player);
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
+			buyPhase.resetVariablesForBuyPhase();
+//			sendABMPoints();
 			getIndex();
 			theGame();
 			break; // block this monitor
@@ -149,7 +154,7 @@ public class GameLogic {
 		}
 		getSomeTime();
 	}
-	
+
 	public void getSomeTime() {
 		try {
 			Thread.sleep(250);
@@ -172,6 +177,46 @@ public class GameLogic {
 	
 	public void sendInfoMessage(String infoMsg) {
 		server.sendStringToClient("info"+infoMsg, index);
+	}
+
+	public void sendABMPoints() {
+		server.sendStringToClient("abmpoints.ActionPoints:" + player.getActionPoints() + ".BuyPoints:"
+				+ player.getBuyPoints() + ".Money:" + player.getMoney(), index);
+
+	}
+
+	public void sendWinPoints() {
+		int countWinP = 0;
+		String playersWinPoints = "winpoints.";
+		for (Player p : Player.player) {
+			for (String card : p.deck) {
+				countWinP = addWinPoints(countWinP,card);
+			}
+			for (String card : p.discard) {
+				countWinP = addWinPoints(countWinP,card);
+			}
+			for (String card : p.hand) {
+				countWinP = addWinPoints(countWinP,card);
+			}
+			playersWinPoints = playersWinPoints.concat(p.getName() + "s Points:" + countWinP + ".");
+			countWinP = 0;
+		}
+		server.sendToClient(playersWinPoints);
+	}
+
+	public int addWinPoints(int count, String card) {
+		switch (card) {
+		case "estate":
+			count += 1;
+			break;
+		case "duchy":
+			count += 3;
+			break;
+		case "province":
+			count += 6;
+			break;
+		}
+		return count;
 	}
 
 }

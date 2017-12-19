@@ -35,7 +35,7 @@ public class Board_View {
 	 */
 
 	// Initialize the GUI Content here
-	public Button endPhase, bonusMoney, send;
+	public Button endPhase, send;
 	public HBox hBoxHand;
 	public TextField chatText;
 	public TextArea chat;
@@ -47,6 +47,7 @@ public class Board_View {
 	public TextArea aBMpoints; //action, buy, money 
 	public TextArea logger;
 	public Label info;
+	public TextArea playerStats;
 
 	protected int soundCounter = 0;
 	protected DropShadow shadow = new DropShadow();
@@ -131,8 +132,7 @@ public class Board_View {
 
 		endPhase = new Button("Phase beenden");
 		endPhase.setId("endBtn");
-		bonusMoney = new Button("Bonusgeld: 0");
-		bonusMoney.setId("btn");
+
 
 		labels = new HBox(20);
 		firstPhase = new Label(t.getString("dominion.board.lbl.actionPhase"));
@@ -141,11 +141,11 @@ public class Board_View {
 		secondPhase.setId("phaseLabels");
 		thirdPhase = new Label(t.getString("dominion.board.lbl.cleanupPhase"));
 		thirdPhase.setId("phaseLabels");
-
-		// actionPoints = new Label(t.getString("dominion.board.lbl.actionPoints"));
-		// buyPoints = new Label(t.getString("dominion.board.lbl.buyPoints"));
-		// money = new Label(t.getString("dominion.board.lbl.money"));
-
+		
+//		actionPoints = new Label(t.getString("dominion.board.lbl.actionPoints"));
+//		buyPoints = new Label(t.getString("dominion.board.lbl.buyPoints"));
+//		money = new Label(t.getString("dominion.board.lbl.money"));
+		
 		aBMpoints = new TextArea();
 		aBMpoints.setId("playerStats");
 		aBMpoints.setEditable(false);
@@ -157,14 +157,13 @@ public class Board_View {
 
 		labels.setAlignment(Pos.CENTER);
 
-		labels.getChildren().addAll(aBMpoints, firstPhase, secondPhase, thirdPhase, reg, bonusMoney, reg2, endPhase);
+		labels.getChildren().addAll(aBMpoints,firstPhase, secondPhase, thirdPhase, reg, reg2, endPhase);
 
 		// bindings for the part in between of players hand and cards to buy
 		bindingsForContent(firstPhase, labels, 0.98, 0.16);
 		bindingsForContent(secondPhase, labels, 0.98, 0.16);
 		bindingsForContent(thirdPhase, labels, 0.98, 0.16);
 		bindingsForContent(reg, labels, 0.98, 0.02);
-		bindingsForContent(bonusMoney, labels, 0.98, 0.16);
 		bindingsForContent(reg2, labels, 0.98, 0.02);
 		bindingsForContent(endPhase, labels, 0.98, 0.16);
 		bindingsForContent(aBMpoints,labels, 2, 0.12);
@@ -220,7 +219,7 @@ public class Board_View {
 		bindingsForContent(reg2, vCenter, 0.005, 0.65);
 		bindingsForContent(hBottom, vCenter, 0.25, 0.8);
 
-		TextArea playerStats = new TextArea();
+		playerStats = new TextArea();
 		playerStats.setEditable(false);
 		playerStats.setId("playerStats");
 		
@@ -251,7 +250,7 @@ public class Board_View {
 		VBox vRight = new VBox();
 
 		HBox chatInput = new HBox(5);
-		chatText = new TextField();
+		chatText= new TextField();
 		send = new Button();
 		send.setId("sendButton");
 		send.setText(t.getString("dominion.lobby.btn.send"));
@@ -320,12 +319,12 @@ public class Board_View {
 	
 	public void setHand() {
 		handFromServer = ClientHandler.tempHandCard;
-
+		
 		if (handFromServer.size() > 5)
 			hBoxHand.setSpacing(20 - handFromServer.size() * 4);
-		else
+		else 
 			hBoxHand.setSpacing(20);
-
+		
 		this.hBoxHand.getChildren().clear();
 		while (handCards.size() < handFromServer.size()) {
 			Button b = new Button();
@@ -355,7 +354,6 @@ public class Board_View {
 	}
 
 	public void setCards() {
-
 		if (ClientHandler.phase.equals("buy")) {
 			setCardsOnViewEnable();
 			for (Button b : handCards) {
@@ -364,15 +362,15 @@ public class Board_View {
 					b.setDisable(false);
 				} else {
 					b.setDisable(true);
-
+				
 				}
-
-			}
+	
+			} 
 		}
 		if (ClientHandler.phase.equals("action")) {
 			setCardsOnViewDisable();
 			for (Button b : handCards) {
-
+				
 				if (b.getId().equals("smith") || b.getId().equals("market") || b.getId().equals("laboratory")
 						|| b.getId().equals("funfair") || b.getId().equals("woodcutter")
 						|| b.getId().equals("village")) {
@@ -383,7 +381,7 @@ public class Board_View {
 
 			}
 		}
-
+		
 	}
 
 	// enables buttons while player is able to chose which card he wants to buy
@@ -417,7 +415,7 @@ public class Board_View {
 			n.setDisable(true);
 		}
 	}
-
+	
 	public void setEmptyHand() {
 		hBoxHand.getChildren().clear();
 	}
@@ -452,7 +450,6 @@ public class Board_View {
 		hCenter3.setDisable(true);
 		hBottom.setDisable(true);
 		endPhase.setDisable(true);
-		bonusMoney.setDisable(true);
 	}
 
 	public void enableWindow() {
@@ -461,7 +458,6 @@ public class Board_View {
 		hCenter3.setDisable(false);
 		hBottom.setDisable(false);
 		endPhase.setDisable(false);
-		bonusMoney.setDisable(false);
 	}
 
 }// close class

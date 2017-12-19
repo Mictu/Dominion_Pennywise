@@ -13,6 +13,7 @@ public class BuyPhase {
 	boolean successfull = false;
 	boolean sendInfo = false;
 
+
 	public BuyPhase() {
 		buyThisCard = null;
 	}
@@ -54,7 +55,10 @@ public class BuyPhase {
 		if (cost > player.getCashHand() + player.money) {
 			infoMessage = "not enough money";
 			sendInfo = true;
+		} else if (cost <= player.money){
+			doTheBuy();
 		}
+		
 	}
 
 	public void pay() {
@@ -70,19 +74,16 @@ public class BuyPhase {
 				this.player.hand.remove(this.player.hand.lastIndexOf("gold"));
 				this.player.discard.add("gold");
 				player.money += 3;
-				System.out.println("PAY() PlayerMoney: " + player.money);
 				break;
 			case "silver":
 				this.player.hand.remove(this.player.hand.lastIndexOf("silver"));
 				this.player.discard.add("silver");
 				player.money += 2;
-				System.out.println("PAY() PlayerMoney: " + player.money);
 				break;
 			case "copper":
 				this.player.hand.remove(this.player.hand.lastIndexOf("copper"));
 				this.player.discard.add("copper");
 				player.money += 1;
-				System.out.println("PAY() PlayerMoney: " + player.money);
 				break;
 			}
 			// Set everything to null for the next round
@@ -101,7 +102,7 @@ public class BuyPhase {
 		cardName = null;
 		cardChosen = false;
 		payStarted = false;
-		player.money = 0;
+		player.money = player.money - cost;
 		cost = 0;
 		player.decreaseBuyPoints();
 		sendingHand = true;
@@ -109,6 +110,16 @@ public class BuyPhase {
 		if (cardHandled.equals("copper")) {
 			sendingHand = false;
 		}
+	}
+	
+	public void resetVariablesForBuyPhase() {
+		player.money = 0;
+		cost = 0;
+		buyThisCard = null;
+		cardName = null;
+		cardChosen = false;
+		payStarted = false;
+		sendingHand = true;
 	}
 
 	public boolean sendHandAgain() {

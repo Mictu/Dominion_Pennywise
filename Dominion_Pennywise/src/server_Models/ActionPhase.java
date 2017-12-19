@@ -2,19 +2,20 @@ package server_Models;
 
 import java.util.Collections;
 
+import server.client.Server;
+
 public class ActionPhase {
 
 	// initialize sector
 	boolean madeAnAction = false; 
+
 	boolean sendInfo = false; 
 	String playedCard, info;
+	Server server;
 	
 	// Constructor
 	public ActionPhase() {
 	} // Close Constructors
-	
-					// Show player stats on boardView
-	
 	
 	// choose this method if a card is pressed
 	public void chosenCard(String message, Player player) {
@@ -49,11 +50,8 @@ public class ActionPhase {
 				reloadHand(cardName, player);
 				break;
 			} 
-			
-			System.out.println("ActionPhase: player " + player.getName() + " has buypoints: " + player.getBuyPoints() + "and moeny: " + player.getMoney());
 		} else {
 			sendInfo = true;
-			
 		}
 	} 
 
