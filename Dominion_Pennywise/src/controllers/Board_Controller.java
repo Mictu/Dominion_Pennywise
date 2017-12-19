@@ -67,6 +67,21 @@ public class Board_Controller {
 				boardView.aBMpoints.clear();
 			});	
 		}
+
+
+		public void clearWinPoints() {
+			Platform.runLater(()->{
+				boardView.playerStats.clear();
+			});
+			
+		}
+
+
+		public void updateWinPoints(String s) {
+			Platform.runLater(()-> {
+			boardView.playerStats.appendText(s + "\n");	
+			});
+		}
 		
 
 }

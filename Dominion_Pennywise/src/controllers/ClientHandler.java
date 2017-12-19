@@ -41,6 +41,13 @@ public class ClientHandler {
 		}
 	}
 	
+	public static void getWinPoints(String[] win) {
+		boardC.clearWinPoints();
+		for(String s: win) {
+			boardC.updateWinPoints(s);
+		}
+	}
+	
 
 	public void getMessageFromClient(String msg) {
 		message = msg;

@@ -25,8 +25,10 @@ public class Client {
 	Server server;
 	String namemsg;
 	String abmPoints;
+	String winPoints;
 	String[] abm;
 	String[] names;
+	String[] win;
 
 	ClientHandler ch = new ClientHandler();
 
@@ -77,7 +79,11 @@ public class Client {
 							abmPoints = message.substring(10);
 							abm = abmPoints.split("\\.");
 							ClientHandler.getABMpoints(abm);
-						} else {
+						} else if (message.length() > 8 && message.substring(0,9).equals("winpoints")){
+							winPoints = message.substring(10);
+							win = winPoints.split("\\.");
+							ClientHandler.getWinPoints(win);
+						}else {
 							Platform.runLater(() -> {
 								ch.getMessageFromClient(message);
 							});

@@ -45,6 +45,7 @@ public class Board_View {
 	String cardID;
 //	public Label actionPoints, buyPoints, money;
 	public TextArea aBMpoints; //action, buy, money 
+	public TextArea playerStats;
 
 	protected int soundCounter = 0;
 	protected DropShadow shadow = new DropShadow();
@@ -216,7 +217,7 @@ public class Board_View {
 		bindingsForContent(reg2, vCenter, 0.005, 0.65);
 		bindingsForContent(hBottom, vCenter, 0.25, 0.8);
 
-		TextArea playerStats = new TextArea();
+		playerStats = new TextArea();
 		playerStats.setEditable(false);
 		playerStats.setId("playerStats");
 

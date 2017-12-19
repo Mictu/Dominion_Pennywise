@@ -50,7 +50,7 @@ public class GameLogic {
 	public void theGame() {
 		// if (firstRound == true) {
 		// firstRound = false;
-		
+
 		actualPhase = "action";
 		server.sendToClient(actualPhase);
 		this.player = Player.player.get(index);
@@ -67,7 +67,7 @@ public class GameLogic {
 			ind++;
 		}
 		// } else {
-		
+
 		// }
 	}
 
@@ -77,13 +77,13 @@ public class GameLogic {
 			actionPhase.chosenCard(message, this.player);
 			if (actionPhase.getActionMadeBoolean())
 				sendPlayersHand();
-				sendABMPoints();
+			sendABMPoints();
 			break;
 		case "buy":
 			buyPhase.buyCard(message, this.player);
 			if (buyPhase.sendHandAgain())
 				sendPlayersHand();
-				sendABMPoints();
+			sendABMPoints();
 			break;
 		}
 	}
@@ -121,6 +121,7 @@ public class GameLogic {
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
 			buyPhase.resetVariablesForBuyPhase();
+			sendWinPoints();
 			sendABMPoints();
 			getIndex();
 			theGame();
@@ -145,7 +146,7 @@ public class GameLogic {
 		}
 		getSomeTime();
 	}
-	
+
 	public void getSomeTime() {
 		try {
 			Thread.sleep(250);
@@ -161,10 +162,45 @@ public class GameLogic {
 	public Player getActualPlayer() {
 		return this.player;
 	}
-	
+
 	public void sendABMPoints() {
-		server.sendStringToClient("abmpoints.ActionPoints:" + player.getActionPoints() + ".BuyPoints:" + player.getBuyPoints() + ".Money:"  + player.getMoney(), index);
-		
+		server.sendStringToClient("abmpoints.ActionPoints:" + player.getActionPoints() + ".BuyPoints:"
+				+ player.getBuyPoints() + ".Money:" + player.getMoney(), index);
+
+	}
+
+	public void sendWinPoints() {
+		int countWinP = 0;
+		String playersWinPoints = "winpoints.";
+		for (Player p : Player.player) {
+			for (String card : p.deck) {
+				countWinP = addWinPoints(countWinP,card);
+			}
+			for (String card : p.discard) {
+				countWinP = addWinPoints(countWinP,card);
+			}
+			for (String card : p.hand) {
+				countWinP = addWinPoints(countWinP,card);
+			}
+			playersWinPoints = playersWinPoints.concat(p.getName() + "s Points:" + countWinP + ".");
+			countWinP = 0;
+		}
+		server.sendToClient(playersWinPoints);
+	}
+
+	public int addWinPoints(int count, String card) {
+		switch (card) {
+		case "estate":
+			count += 1;
+			break;
+		case "duchy":
+			count += 3;
+			break;
+		case "province":
+			count += 6;
+			break;
+		}
+		return count;
 	}
 
 }
