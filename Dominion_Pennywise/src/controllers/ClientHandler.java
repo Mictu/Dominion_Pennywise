@@ -6,7 +6,6 @@ import javafx.stage.Stage;
 import main_Class.ServiceLocator;
 import server_Models.Translator;
 import view.Board_View;
-import view.CardDesign_View;
 import view.Lobby_View;
 import view.Login_View;
 

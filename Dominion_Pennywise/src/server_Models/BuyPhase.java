@@ -1,7 +1,5 @@
 package server_Models;
 
-import view.CardDesign_View;
-
 public class BuyPhase {
 
 	int cost;
@@ -11,8 +9,9 @@ public class BuyPhase {
 	Player player;
 	boolean cardChosen = false;
 	boolean payStarted = false;
+	boolean successfull = false;
+	boolean sendInfo = false;
 	boolean sendingHand = false;
-	
 	String empty;
 	
 	int aVCounter = 10; 
@@ -28,9 +27,7 @@ public class BuyPhase {
 	int eCounter = 24; 
 	int dCounter = 12; 
 	int pCounter = 12;
-	
-	boolean successfull = false;
-	boolean sendInfo = false;
+
 
 	public BuyPhase() {
 		buyThisCard = null;
@@ -107,17 +104,21 @@ public class BuyPhase {
 	}
 
 	public void doTheBuy() {
-		if (player.money >= cost) {
-			decreaseCard(buyThisCard);
-			this.player.discard.add(buyThisCard);
-			buyThisCard = null;
-			cardName = null;
-			cardChosen = false;
-			payStarted = false;
-			player.money = 0;
-			cost = 0;
-			player.decreaseBuyPoints();
-			sendingHand = true;
+		successfull = true;
+		boughtCard = buyThisCard;
+		String cardHandled = buyThisCard;
+		decreaseCard(buyThisCard);
+		this.player.discard.add(buyThisCard);
+		buyThisCard = null;
+		cardName = null;
+		payStarted = false;
+		cardChosen = false;
+		player.money = player.money - cost;
+		cost = 0;
+		player.decreaseBuyPoints();
+		sendingHand = true;
+		if (cardHandled.equals("copper")) {
+			sendingHand = false;
 		}
 	}
 	
