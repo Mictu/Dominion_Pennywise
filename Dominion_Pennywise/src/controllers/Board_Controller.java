@@ -91,7 +91,11 @@ public class Board_Controller {
 		public void showLoggerMsg(String message) {
 			Button_Sounds.playLoggerSound();
 			Platform.runLater(()->{
-				boardView.logger.appendText("\n"+message);
+				if (boardView.logger.getText().equals("")) {
+					boardView.logger.appendText(message);
+				} else {
+					boardView.logger.appendText("\n"+message);
+				}
 			});
 		}
 		public void showInfoMsg(String message) {

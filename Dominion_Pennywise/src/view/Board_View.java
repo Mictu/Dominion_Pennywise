@@ -44,7 +44,7 @@ public class Board_View {
 	// public Label actionPoints, buyPoints, money;
 	public Label aBMpoints; // action, buy, money
 	public TextArea logger;
-	public Label info;
+	public Label info, cardInfo;
 	public Label playerStats;
 
 	protected int soundCounter = 0;
@@ -52,7 +52,9 @@ public class Board_View {
 
 	protected ArrayList<Button> handCards = new ArrayList<Button>();
 	protected ArrayList<String> handFromServer = new ArrayList<String>();
-
+	ArrayList<Label> labelCountStack = new ArrayList<Label>();
+	ArrayList<StackPane> cardCountStack = new ArrayList<StackPane>();
+	
 	public ArrayList<Button> treasure = new ArrayList<Button>();
 	public ArrayList<Button> kingdom = new ArrayList<Button>();
 	public ArrayList<Button> victory = new ArrayList<Button>();
@@ -134,19 +136,38 @@ public class Board_View {
 			victory.add(duchy);
 			victory.add(province);
 
-			for (Button l : treasure) {
-				hCenter3.getChildren().add(l);
-				bindingsForContent(l, hCenter3, 1, 0.12);
+			// Add some CardCounters via StackPanes
+			for (int i = 0; i < 12; i++) {
+				StackPane cardStack = new StackPane();
+				Label labelStack = new Label();
+				labelStack.setId("cardcounter");
+				labelStack.setText("0");
+				labelCountStack.add(labelStack);
+				cardStack.setAlignment(Pos.TOP_LEFT);
+				cardCountStack.add(cardStack);
 			}
-			for (Button l : kingdom) {
-				hCenter2.getChildren().add(l);
-				bindingsForContent(l, hCenter2, 1, 0.12);
+			for (int i = 0; i < 3; i++) { // victory
+				cardCountStack.get(i).getChildren().addAll(victory.get(i), labelCountStack.get(i));
+				bindingsForContent(cardCountStack.get(i), hCenter1, 1, 0.12);
+				bindingsForContent(labelCountStack.get(i), cardCountStack.get(i), 0.15, 0.25);
+				bindingsForContent(victory.get(i), cardCountStack.get(i), 1, 1);
+				hCenter1.getChildren().add(cardCountStack.get(i));
 			}
-			for (Button l : victory) {
-				hCenter1.getChildren().add(l);
-				bindingsForContent(l, hCenter1, 1, 0.12);
+			for (int i = 0; i < 6; i++) { // kingdom
+				cardCountStack.get(i + 3).getChildren().addAll(kingdom.get(i), labelCountStack.get(i + 3));
+				bindingsForContent(cardCountStack.get(i + 3), hCenter2, 1, 0.12);
+				bindingsForContent(labelCountStack.get(i + 3), cardCountStack.get(i + 3), 0.15, 0.25);
+				bindingsForContent(kingdom.get(i), cardCountStack.get(i + 3), 1, 1);
+				hCenter2.getChildren().add(cardCountStack.get(i + 3));
 			}
-
+			for (int i = 0; i < 3; i++) { // treasure
+				cardCountStack.get(i + 9).getChildren().addAll(treasure.get(i), labelCountStack.get(i + 9));
+				bindingsForContent(cardCountStack.get(i + 9), hCenter3, 1, 0.12);
+				bindingsForContent(labelCountStack.get(i + 9), cardCountStack.get(i + 9), 0.15, 0.25);
+				bindingsForContent(treasure.get(i), cardCountStack.get(i + 9), 1, 1);
+				hCenter3.getChildren().add(cardCountStack.get(i + 9));
+			}
+			
 			// setCardsOnViewEnable();
 
 		} catch (Exception e) {
@@ -249,25 +270,36 @@ public class Board_View {
 		info = new Label("");
 		info.setWrapText(true);
 		info.setId("infoLabel");
-
+		
 		Region regio = new Region();
-
 		VBox infoBox = new VBox();
 		infoBox.getChildren().addAll(info, regio);
+		
+		cardInfo = new Label("");
+		cardInfo.setWrapText(true);
+		cardInfo.setId("cardInfo");
+		
+		Region regio2 = new Region();
+		VBox cardBox = new VBox();
+		cardBox.getChildren().addAll(cardInfo, regio2);
 
 		StackPane centerSP = new StackPane();
-		centerSP.getChildren().addAll(playerStats, infoBox, vCenter);
+		centerSP.getChildren().addAll(playerStats, infoBox, cardBox, vCenter);
 		StackPane.setAlignment(playerStats, Pos.TOP_RIGHT);
 		StackPane.setAlignment(infoBox, Pos.BOTTOM_LEFT);
+		StackPane.setAlignment(cardBox, Pos.BOTTOM_RIGHT);
 
 		root.setCenter(centerSP);
 
 		bindingsForContent(playerStats, centerSP, 0.15, 0.2);
 		bindingsForContent(infoBox, centerSP, 0.5, 0.3);
+		bindingsForContent(cardBox, centerSP, 0.55, 0.2);
 		bindingsForContent(vCenter, centerSP, 1, 1);
 
 		bindingsForContent(info, infoBox, 0.2, 1);
 		bindingsForContent(regio, infoBox, 0.8, 1);
+		bindingsForContent(cardInfo, cardBox, 0.32, 1);
+		bindingsForContent(regio2, cardBox, 0.68, 1);
 
 		// SET RIGHT
 		VBox vRight = new VBox();
@@ -415,33 +447,15 @@ public class Board_View {
 
 	// enables buttons while player is able to chose which card he wants to buy
 	public void setCardsOnViewEnable() {
-		for (Button l : victory) {
-			l.setEffect(null);
-			l.setDisable(false);
-		}
-		for (Button m : kingdom) {
-			m.setEffect(null);
-			m.setDisable(false);
-		}
-		for (Button n : treasure) {
-			n.setEffect(null);
-			n.setDisable(false);
+		for (StackPane sP : cardCountStack) {
+			sP.setDisable(false);
 		}
 	}
 
 	// disables buttons while player is in action phase
 	public void setCardsOnViewDisable() {
-		for (Button l : victory) {
-			l.setEffect(shadow);
-			l.setDisable(true);
-		}
-		for (Button m : kingdom) {
-			m.setEffect(shadow);
-			m.setDisable(true);
-		}
-		for (Button n : treasure) {
-			n.setEffect(shadow);
-			n.setDisable(true);
+		for (StackPane sP : cardCountStack) {
+			sP.setDisable(true);
 		}
 	}
 

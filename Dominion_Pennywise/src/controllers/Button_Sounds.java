@@ -17,17 +17,14 @@ public class Button_Sounds {
 
 	public static void playCardSound() {
 		new MediaPlayer(soundCard).play();
-		System.out.println("cardsound");
 	}
 	
 	public static void playSendSound() {
 		new MediaPlayer(soundSend).play();
-		System.out.println("sendsound");
 	}
 	
 	public static void playLoggerSound() {
 		new MediaPlayer(soundLogger).play();
-		System.out.println("loggersound");
 	}
 	
 	
