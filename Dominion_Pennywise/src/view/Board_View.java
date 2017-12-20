@@ -1,7 +1,6 @@
 package view;
 
 import java.util.ArrayList;
-import controllers.Board_Controller;
 import controllers.Button_Sounds;
 import controllers.ClientHandler;
 import controllers.Login_Controller;
@@ -37,14 +36,14 @@ public class Board_View {
 	public HBox hBoxHand;
 	public TextField chatText;
 	public TextArea chat;
-	Board_Controller bcontroller;
 	protected HBox hCenter1, hCenter2, hCenter3;
 	HBox hBottom;
 	String cardID;
 	// public Label actionPoints, buyPoints, money;
 	public Label aBMpoints; // action, buy, money
 	public TextArea logger;
-	public Label info, cardInfo;
+	public Label info;
+	public static Label cardInfo;
 	public Label playerStats;
 
 	protected int soundCounter = 0;

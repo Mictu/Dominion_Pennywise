@@ -61,8 +61,8 @@
 #cardInfo {
 	-fx-text-fill: orange;
 	-fx-font-weight: bold;
-	-fx-font-size: 15;
-	-fx-text-alignment: center;
+	-fx-font-size: 12;
+	-fx-text-alignment: left;
 	-fx-alignment: center;
 }
 #vRightLabel {

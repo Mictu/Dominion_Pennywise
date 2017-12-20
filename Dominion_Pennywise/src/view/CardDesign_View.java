@@ -2,19 +2,24 @@ package view;
 
 import java.io.File;
 
+import controllers.Board_Controller;
 import controllers.Login_Controller;
 import javafx.scene.control.Button;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import main_Class.ServiceLocator;
+import server_Models.Translator;
 
 public class CardDesign_View {
 
 	Board_View bV;
+	Board_Controller bc;
 	// private Button cardBtn;
 	protected Button copperBtn, duchyBtn, estateBtn, funfairBtn, goldBtn, laboratoryBtn;
 	protected Button marketBtn, provinceBtn, silverBtn, smithBtn, villageBtn, woodcutterBtn;
 	protected int soundCounter = 0;
-
+	ServiceLocator sl = ServiceLocator.getServiceLocator();
+	Translator t = sl.getTranslator();
 	public CardDesign_View() {
 		playSound();
 		// client.run();
@@ -116,6 +121,17 @@ public class CardDesign_View {
 			String cardID = x.getId();
 			Login_Controller.client.sendToServer(cardID);
 		});
+		x.setOnMouseEntered((Event) -> {
+			Board_Controller.showCard(getCardInfo(x.getId()));
+		});
+		x.setOnMouseExited((Event) -> {
+			Board_Controller.deleteCard();
+		});
+	}
+	
+	public String getCardInfo(String card) {
+		String info = t.getString("dominion.board.cardInfo."+card);
+		return info;
 	}
 
 } // close class

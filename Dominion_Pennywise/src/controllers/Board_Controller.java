@@ -108,5 +108,16 @@ public class Board_Controller {
 				boardView.info.setText("");
 			});
 		}
+		public static void showCard(String cardInfo) {
+			Platform.runLater(()->{
+				Board_View.cardInfo.setText(cardInfo);
+			});
+		}
+		public static void deleteCard() {
+			Platform.runLater(()->{
+				Board_View.cardInfo.setText("");
+			});
+		}
+		
 
 }
