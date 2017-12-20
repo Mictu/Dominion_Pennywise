@@ -49,7 +49,7 @@ public class GameLogic {
 	}
 
 	public void theGame() {
-		if(countRounds == 4){
+		if(countRounds == 20){
 			Collections.sort(Player.player);
 			getSomeTime();
 			server.sendToClient("gameover");
