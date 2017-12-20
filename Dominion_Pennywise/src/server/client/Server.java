@@ -24,7 +24,7 @@ public class Server extends Application {
 
 	Player player;
 	ArrayList<String> fromServer;
-
+	private volatile boolean stop = false;
 	Server_View serverView;
 
 	protected SimpleStringProperty newestMsg = new SimpleStringProperty();
@@ -46,13 +46,15 @@ public class Server extends Application {
 		primaryStage.setOnCloseRequest(event -> stopServer());
 	}
 
-	private void stopServer() {
+	
+	public void stopServer() {
+		for (Client_Chat c : clients) c.stop();
+		stop = true;
 		if (server != null) {
 			try {
 				server.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				// Uninteresting
 			}
 		}
 	}
@@ -72,18 +74,18 @@ public class Server extends Application {
 			InetAddress iAddress = InetAddress.getLocalHost();
 			// System.out.println("Server IP address : " + iAddress.getHostAddress());
 			serverView.updateServerView(newestMsg, "Server IP address : " + iAddress.getHostAddress());
-			while(true) {
+			while(!stop) {
 			Socket socket = server.accept();
 
 			
 			Client_Chat clientC = new Client_Chat(Server.this, socket);
 			clients.add(clientC);
-			
 
 //			serverView.updateServerView(newestMsg, "Connection received from: " );
 			serverView.updateServerView(newestMsg,
 					"Connection received from: " + socket.getInetAddress().getHostName());
 			}
+			return null;
 		}
 
 	};

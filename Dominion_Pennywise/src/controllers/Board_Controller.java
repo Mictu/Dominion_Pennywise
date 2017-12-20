@@ -50,6 +50,7 @@ public class Board_Controller {
 		Login_Controller.client.newestMessage
 		.addListener((o, oldValue, newValue) -> boardView.chat.appendText(newValue + "\n"));
 
+		boardView.stage.setOnCloseRequest(event -> Login_Controller.client.disconnectClient());
 	}
 
 		

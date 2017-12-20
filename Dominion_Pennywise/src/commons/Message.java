@@ -29,7 +29,7 @@ public abstract class Message {
 	public static Message receive(Socket socket) {
 		BufferedReader in;
 		Message msg = null;
-		
+		if(socket != null) {
 		try {
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String msgText = in.readLine();
@@ -42,9 +42,12 @@ public abstract class Message {
 				msg = new ChatMsg(parts[1], parts[2]);
 			} else if (parts[0].equals(MessageType.String.toString())) {
 				msg = new StringMsg(parts[1],parts[2]);
+			} else if (parts[0].equals(MessageType.Close.toString())) {
+				msg = new CloseMsg(parts[1], parts[2]);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
 		}
 		return msg;
 	}

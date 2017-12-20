@@ -1,5 +1,5 @@
 package commons;
 
 public enum MessageType {
-	Join, Chat, String;
+	Join, Chat, String, Close;
 }

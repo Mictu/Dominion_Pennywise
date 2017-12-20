@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import commons.ChatMsg;
+import commons.CloseMsg;
 import commons.JoinMsg;
 import commons.Message;
 import commons.StringMsg;
@@ -39,6 +40,7 @@ public class Client {
 
 	public SimpleStringProperty newestMessage = new SimpleStringProperty();
 	protected String playerName;
+	private volatile boolean close = false;
 
 	public Client(String playerName) {
 		this.playerName = playerName;
@@ -57,14 +59,17 @@ public class Client {
 				sendToServer("lobby" + playerName);
 
 				// Chat
-				while (true) {
+				while (!close) {
 					Message msg = Message.receive(socket);
 					if (msg instanceof ChatMsg) {
 						ChatMsg chatMsg = (ChatMsg) msg;
 						Platform.runLater(() -> {
 							newestMessage.set(chatMsg.getPlayerName() + ": " + chatMsg.getContent());
 						});
-					} else if (msg instanceof StringMsg) {
+					} else if(msg instanceof CloseMsg) {
+						socket.close();
+						close = true;
+					}else if (msg instanceof StringMsg) {
 						String message = ((StringMsg) msg).getContent();
 						if (message.length() > 4 && message.substring(0, 5).equals("lobby")) {
 							namemsg = message.substring(6);
@@ -90,9 +95,9 @@ public class Client {
 							winPoints = message.substring(10);
 							win = winPoints.split("\\.");
 							ch.getWinPoints(win);
-						}else if(message.length() > 6 && message.substring(0, 6).equals("result")) {
-							if (message.length()>17)
-								results = message.substring(17); //message ohne result.winpoints.
+						} else if (message.length() > 6 && message.substring(0, 6).equals("result")) {
+							if (message.length() > 17)
+								results = message.substring(17); // message ohne result.winpoints.
 							System.out.println(results);
 							resultsPlayerAndPoints = results.split("\\.");
 							ClientHandler.getResultPoints(resultsPlayerAndPoints);
@@ -113,8 +118,8 @@ public class Client {
 				// socket.close();
 				// System.out.println("Client closed");
 			}
-			Message jmsgForServer = new JoinMsg(playerName);
-			jmsgForServer.send(socket);
+//			Message jmsgForServer = new JoinMsg(playerName);
+//			jmsgForServer.send(socket);
 			return null;
 		}
 
@@ -138,16 +143,19 @@ public class Client {
 		msg.send(socket);
 	}
 
+	public void sendCloseMessage(String message) {
+		Message msg = new CloseMsg(playerName, message);
+		msg.send(socket);
+
+	}
+
 	public String receiveMessage() {
 		return newestMessage.get();
 	}
 
-	public void disconnectClient() {
-		try {
-			socket.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void disconnectClient(){
+		
+		sendCloseMessage("close");
 	}
 
 	public String getPlayerName() {

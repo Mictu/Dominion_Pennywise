@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import server.client.Client;
 import view.Board_View;
 import view.Lobby_View;
 import view.Login_View;
@@ -26,6 +27,7 @@ public class Lobby_Controller {
 		});
 
 		lobbyView.btnLeaveGame.setOnAction((event) -> {
+			Login_Controller.client.disconnectClient();
 			exit(lobbyView.getStage());
 		});
 
@@ -35,29 +37,30 @@ public class Lobby_Controller {
 				lobbyView.btnSend.fire();
 			}
 		});
-		
-			lobbyView.btnSend.setOnAction(event -> {
-				if (!lobbyView.txtChatMessage.getText().trim().isEmpty()) {
+
+		lobbyView.btnSend.setOnAction(event -> {
+			if (!lobbyView.txtChatMessage.getText().trim().isEmpty()) {
 				Login_Controller.client.sendChatMessage(lobbyView.txtChatMessage.getText());
 				lobbyView.txtChatMessage.clear();
 				Button_Sounds.playSendSound();
-				}
-			});
+			}
+		});
 
 		Login_Controller.client.newestMessage
 				.addListener((o, oldValue, newValue) -> lobbyView.txtChatArea.appendText(newValue + "\n"));
 
-		// lobbyView.stage.setOnCloseRequest( event -> client.disconnectClient());
+		lobbyView.stage.setOnCloseRequest(event -> Login_Controller.client.disconnectClient());
+
 	}// Close Constructor
 
 	public void updateConnectedPlayers(String s) {
-		Platform.runLater(()-> {
+		Platform.runLater(() -> {
 			lobbyView.txtConnectedPlayers.appendText(s + "\n");
 		});
 	}
 
 	public void clearConnectedP() {
-		Platform.runLater(()-> {
+		Platform.runLater(() -> {
 			lobbyView.txtConnectedPlayers.clear();
 		});
 	}
@@ -66,7 +69,7 @@ public class Lobby_Controller {
 	private void exit(Stage stage) {
 		stage.hide();
 	}
-	
+
 	public void playSoundSend() {
 		String musicFile = "pull-out.mp3"; // For example
 		Media sound = new Media(new File(musicFile).toURI().toString());
