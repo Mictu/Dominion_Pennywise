@@ -19,18 +19,31 @@ public class ServerHandler {
 	Client_Chat ClientC;
 	Server server;
 	public String message;
+	int playerCounter=1;
 
 	public ArrayList<String> handCards = new ArrayList<String>();
+	public ArrayList<String> playerName = new ArrayList<String>();
 
 	public ServerHandler(Server server) {
 		this.server = server;
 	}
 
+	
 	public void addPlayerToList(String name) {
-		player = new Player(name);
-		Player.player.add(player);
-		// Collections.shuffle(Player.player);
+		for (Player player : Player.player) {
+			playerName.add(player.getName());
+		}
+		
+		if(playerName.contains(name)) {
+			player = new Player(name+playerCounter);
+			Player.player.add(player);
+			playerCounter++;
+		}else {
+			player = new Player(name);
+			Player.player.add(player);
+		}
 	}
+	
 
 	// Get Strings from Server
 	public void getMessageFromServer(String msg) {
@@ -42,9 +55,9 @@ public class ServerHandler {
 				gamelogic = new GameLogic(this.server);
 				gamelogic.theGame();
 			}
-//			System.out.println("Not enough player");
+			// System.out.println("Not enough player");
 		}
-			
+
 		else if (message.contains("endphase")) {
 			gamelogic.endPhase();
 		} else {
