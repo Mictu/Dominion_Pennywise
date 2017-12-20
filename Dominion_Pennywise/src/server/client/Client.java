@@ -95,6 +95,8 @@ public class Client {
 							winPoints = message.substring(10);
 							win = winPoints.split("\\.");
 							ch.getWinPoints(win);
+						} else if (message.length() > 7 && message.substring(0, 7).equals("amount.")) {
+							ch.HandleCardAmount(message.substring(7));
 						} else if (message.length() > 6 && message.substring(0, 6).equals("result")) {
 							if (message.length() > 17)
 								results = message.substring(17); // message ohne result.winpoints.
@@ -154,7 +156,6 @@ public class Client {
 	}
 
 	public void disconnectClient(){
-		
 		sendCloseMessage("close");
 	}
 

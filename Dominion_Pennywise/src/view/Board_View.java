@@ -51,7 +51,7 @@ public class Board_View {
 
 	protected ArrayList<Button> handCards = new ArrayList<Button>();
 	protected ArrayList<String> handFromServer = new ArrayList<String>();
-	ArrayList<Label> labelCountStack = new ArrayList<Label>();
+	public ArrayList<Label> labelCountStack = new ArrayList<Label>();
 	ArrayList<StackPane> cardCountStack = new ArrayList<StackPane>();
 	
 	public ArrayList<Button> treasure = new ArrayList<Button>();
@@ -394,7 +394,6 @@ public class Board_View {
 					Button_Sounds.playCardSound();
 					cardID = "hand" + b.getId();
 					Login_Controller.client.sendToServer(cardID);
-					System.out.println("asdasds");
 				} catch (Exception e) {
 					System.out.println("Button der hand haben noch keine ID erhalten");
 				}

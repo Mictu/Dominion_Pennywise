@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.application.Platform;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import view.Board_View;
@@ -117,6 +118,13 @@ public class Board_Controller {
 		public static void deleteCard() {
 			Platform.runLater(()->{
 				Board_View.cardInfo.setText("");
+			});
+		}
+		public void setCardCounters(String[] amounts) {
+			Platform.runLater(()->{
+				for (int i = 0; i < 12; i++) {
+					boardView.labelCountStack.get(i).setText(amounts[i]);
+				}
 			});
 		}
 		
