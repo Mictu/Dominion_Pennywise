@@ -63,11 +63,12 @@ public class ClientHandler {
 		} else if (message.contains("cardempty")) {
 			String emptyCardN = message.substring(9);
 			emptyCard(emptyCardN);
-
-			Platform.runLater(() -> {
-				boardview.setEmptyHand();
-				boardC.deleteInfo();
-			});
+			
+//
+//			Platform.runLater(() -> {
+//				boardview.setEmptyHand();
+//				boardC.deleteInfo();
+//			});
 		} else {
 			switch (message) {
 			case "openboardview":
