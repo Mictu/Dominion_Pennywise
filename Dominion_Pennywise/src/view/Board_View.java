@@ -394,7 +394,6 @@ public class Board_View {
 					Button_Sounds.playCardSound();
 					cardID = "hand" + b.getId();
 					Login_Controller.client.sendToServer(cardID);
-					System.out.println("asdasds");
 				} catch (Exception e) {
 					System.out.println("Button der hand haben noch keine ID erhalten");
 				}
