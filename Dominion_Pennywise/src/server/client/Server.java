@@ -1,9 +1,12 @@
 package server.client;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.URL;
 import java.util.ArrayList;
 
 import Splash.Server_View;
@@ -21,7 +24,8 @@ public class Server extends Application {
 	public final ObservableList<Client_Chat> clients = FXCollections.observableArrayList();
 
 	ServerSocket server;
-
+	String ip;
+	BufferedReader in;
 	Player player;
 	ArrayList<String> fromServer;
 	private volatile boolean stop = false;
@@ -66,7 +70,8 @@ public class Server extends Application {
 	final Task<Void> startServer = new Task<Void>() {
 		@Override
 		protected Void call() throws Exception {
-
+			
+			getExternalIp();
 			server = new ServerSocket(2303, 10);
 			// System.out.println("Waiting for Connection");
 			serverView.updateServerView(newestMsg, "Waiting for Connection...");
@@ -116,5 +121,18 @@ public class Server extends Application {
 	public SimpleStringProperty getNewestMsg() {
 		return newestMsg;
 	}
+
+	// Get your external IP here to be able to play online (over different networks)
+		public String getExternalIp() {
+			try {
+			URL whatismyip = new URL("http://checkip.amazonaws.com");
+			in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
+			ip = in.readLine(); //get the IP as a String (send to website and get answer with ip)
+			} catch (Exception e) {
+				System.out.println(e.toString());
+			}
+			System.out.println("type this into your client to play online: "+ip);
+			return ip;
+		}
 
 }
