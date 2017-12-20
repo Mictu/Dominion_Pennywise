@@ -11,7 +11,8 @@ public class Result_Controller {
 	
 	
 	public Result_Controller (Result_View resultView){
-		this.resultView = resultView;	
+		this.resultView = resultView;
+		resultView.stage.setOnCloseRequest(event -> Login_Controller.client.disconnectClient());
 	}
 
 
