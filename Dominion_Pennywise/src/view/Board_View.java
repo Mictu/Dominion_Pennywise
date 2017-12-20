@@ -278,7 +278,7 @@ public class Board_View {
 		cardInfo = new Label("");
 		cardInfo.setWrapText(true);
 		cardInfo.setId("cardInfo");
-		 
+		
 		Region regio2 = new Region();
 		VBox cardBox = new VBox();
 		cardBox.getChildren().addAll(cardInfo, regio2);
