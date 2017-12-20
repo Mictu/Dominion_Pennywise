@@ -51,7 +51,7 @@ public class Board_View {
 
 	protected ArrayList<Button> handCards = new ArrayList<Button>();
 	protected ArrayList<String> handFromServer = new ArrayList<String>();
-	ArrayList<Label> labelCountStack = new ArrayList<Label>();
+	public ArrayList<Label> labelCountStack = new ArrayList<Label>();
 	ArrayList<StackPane> cardCountStack = new ArrayList<StackPane>();
 	
 	public ArrayList<Button> treasure = new ArrayList<Button>();

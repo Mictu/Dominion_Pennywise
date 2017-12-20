@@ -14,12 +14,12 @@ public class BuyPhase {
 	boolean sendingHand = false;
 	String empty;
 	
-	int aVCounter = 1; 
-	int aMCounter = 1; 
-	int aSCounter = 1; 
-	int aWCounter = 1; 
-	int aFCounter = 1; 
-	int aLCounter = 1; 
+	int aVCounter = 10; 
+	int aMCounter = 10; 
+	int aSCounter = 10; 
+	int aWCounter = 10; 
+	int aFCounter = 10; 
+	int aLCounter = 10; 
 	
 	int cCounter = 60;
 	int sCounter = 40; 
@@ -232,25 +232,27 @@ public class BuyPhase {
 	
 	public String isFinished(){
 		empty = ""; 
-		if( aVCounter == 0 ){empty = "cardemptyvillage";}
-		if( aWCounter == 0 ){empty = "cardemptywoodcutter";}
-		if( aFCounter == 0 ){empty = "cardemptyfunfair";}
-		if( aLCounter == 0 ){empty = "cardemptylaboratory";}
-		if( aMCounter == 0 ){empty = "cardemptymarket";}
-		if( aSCounter == 0 ){empty = "cardemptysmith";}
-		if( cCounter == 0 ){empty = "cardemptycopper";}
-		if( sCounter == 0 ){empty = "cardemptysilver";}
-		if( gCounter == 0 ){empty = "cardemptygold";}
-		if( eCounter == 0 ){empty = "cardemptyestate";}
-		if( dCounter == 0 ){empty = "cardemptyduchy";}
-		if( pCounter == 0 ){empty = "cardemptyprovince";}
+		if( aVCounter == 0 ){empty = "cardemptyvillage";aVCounter = 1;}
+		if( aWCounter == 0 ){empty = "cardemptywoodcutter";aWCounter = 1;}
+		if( aFCounter == 0 ){empty = "cardemptyfunfair"; aFCounter = 1;}
+		if( aLCounter == 0 ){empty = "cardemptylaboratory";aLCounter = 1;}
+		if( aMCounter == 0 ){empty = "cardemptymarket";aMCounter = 1;}
+		if( aSCounter == 0 ){empty = "cardemptysmith";aSCounter = 1;}
+		if( cCounter == 0 ){empty = "cardemptycopper";cCounter = 1;}
+		if( sCounter == 0 ){empty = "cardemptysilver";sCounter = 1;}
+		if( gCounter == 0 ){empty = "cardemptygold";gCounter = 1;}
+		if( eCounter == 0 ){empty = "cardemptyestate";eCounter = 1;}
+		if( dCounter == 0 ){empty = "cardemptyduchy";dCounter = 1;}
+		if( pCounter == 0 ){empty = "cardemptyprovince";pCounter = 1;}
 		return empty;
-		
 	}
 
+	public String sendRestCards() {
+		String nums = "amount"+"."+eCounter+"."+dCounter+"."+pCounter+"."+aFCounter+"."+aLCounter+"."+aMCounter+
+				"."+aSCounter+"."+aVCounter+"."+aWCounter+"."+cCounter+"."+sCounter+"."+gCounter;
+		return nums;
+	}
 	
-
-
 	public boolean buySuccessfull() {
 		return this.successfull;
 	}

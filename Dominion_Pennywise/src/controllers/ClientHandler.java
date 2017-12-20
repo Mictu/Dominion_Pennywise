@@ -59,16 +59,11 @@ public class ClientHandler {
 		} else if (message.equals("empty")) {
 			Platform.runLater(() -> {
 				boardview.setEmptyHand();
+				boardC.deleteInfo();
 			});
 		} else if (message.contains("cardempty")) {
 			String emptyCardN = message.substring(9);
 			emptyCard(emptyCardN);
-			
-//
-//			Platform.runLater(() -> {
-//				boardview.setEmptyHand();
-//				boardC.deleteInfo();
-//			});
 		} else {
 			switch (message) {
 			case "openboardview":
@@ -115,7 +110,9 @@ public class ClientHandler {
 	public void emptyCard(String message) {
 		System.out.println(message);
 		String emptyCardN = message;
-		boardview.turnCardBack(emptyCardN);
+		Platform.runLater(() -> {
+			boardview.turnCardBack(emptyCardN);
+		});
 	}
 
 	public void openResultView() {
@@ -155,6 +152,11 @@ public class ClientHandler {
 			}
 			i++;
 		}
+	}
+	
+	public void HandleCardAmount(String amounts) {
+		String[] amount = amounts.split("\\.");
+		boardC.setCardCounters(amount);
 	}
 
 	public void HandleLoggerMsg(String loggerMsg) {

@@ -79,6 +79,11 @@ public class GameLogic {
 		}
 		countRounds++;
 		}
+		if (firstRound) {
+			server.sendToClient(buyPhase.sendRestCards());
+			getSomeTime();
+			firstRound = false;
+		}
 	}
 
 	public void playCard(String message) {
@@ -97,11 +102,14 @@ public class GameLogic {
 			buyPhase.buyCard(message, this.player);
 			if (buyPhase.sendHandAgain()) {
 				sendPlayersHand();
-				if (buyPhase.isFinished().contains("cardempty")) {
-					server.sendToClient(buyPhase.isFinished());
-				}
 			}
 			if (buyPhase.buySuccessfull()) {
+				if (buyPhase.isFinished().contains("cardempty")) {
+					server.sendToClient(buyPhase.isFinished());
+					getSomeTime();
+				}
+				server.sendToClient(buyPhase.sendRestCards());
+				getSomeTime();
 				sendLoggerMessage("bc" + buyPhase.getBoughtCard());
 				sendWinPoints();
 			}
