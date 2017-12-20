@@ -27,7 +27,7 @@ public class ServiceLocator {
     
     
     // Supported locales (for translations)
-    final private Locale[] locales = new Locale[] { new Locale("de"), new Locale("en") };
+    final private Locale[] locales = new Locale[] { new Locale("de"), new Locale("en"),  new Locale("se"),  new Locale("ch") };
 
     // Resources
     private Configuration configuration;

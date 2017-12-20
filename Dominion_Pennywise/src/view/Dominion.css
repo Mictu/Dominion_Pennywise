@@ -64,6 +64,32 @@
 	-fx-background-color: burlywood;
 	-fx-opacity: 0.7;
 }
+#playerPoints {
+	-fx-background-color: darkslategray;
+	-fx-border-width: 3;
+	-fx-border-radius: 10;
+	-fx-border-color: goldenrod;
+	-fx-background-radius: 10;
+	-fx-text-fill: beige;
+	-fx-font-weight: bold;
+	-fx-font-size: 14;
+	-fx-wrap-text: true;
+	-fx-text-alignment: center;
+	-fx-alignment: center;
+}
+#playerStats {
+	-fx-background-color: burlywood;
+	-fx-border-width: 3;
+	-fx-border-radius: 10;
+	-fx-border-color: black;
+	-fx-background-radius: 10;
+	-fx-text-fill: black;
+	-fx-font-weight: bold;
+	-fx-font-size: 14;
+	-fx-wrap-text: true;
+	-fx-text-alignment: center;
+	-fx-alignment: center;
+}
 
 /*
  * TEXT-AREAs
@@ -80,18 +106,6 @@
 }
 .text-area .viewport {
     -fx-opacity: 0.7;
-}
-#playerStats {
-	-fx-pref-width: 1.360px;
-	-fx-pref-height: 300px;
-	-fx-background-color: transparent;
-	-fx-text-fill: black;
-	-fx-font-weight: bold;
-	-fx-font-size: 10;
-	-fx-wrap-text: true;
-}
-#playerStats .viewport {
-    -fx-opacity: 0.5;
 }
 
 /*

@@ -40,19 +40,6 @@ public class ClientHandler {
 		}
 	}
 
-	public static void getABMpoints(String[] points) {
-		boardC.clearABMpoints();
-		for (String s : points) {
-			boardC.updateABMpoints(s);
-		}
-	}
-
-	public static void getWinPoints(String[] win) {
-		boardC.clearWinPoints();
-		for (String s : win) {
-			boardC.updateWinPoints(s);
-		}
-	}
 
 	public void getMessageFromClient(String msg) {
 		message = msg;
@@ -116,9 +103,9 @@ public class ClientHandler {
 			}
 		}
 	}
-	
+
 	public static void getResultPoints(String[] resultsPlayerAndPoints) {
-		for(String s : resultsPlayerAndPoints) {
+		for (String s : resultsPlayerAndPoints) {
 			System.out.println(s);
 		}
 		resultC.showResultInView(resultsPlayerAndPoints);
@@ -137,88 +124,6 @@ public class ClientHandler {
 		resultView.start();
 	}
 
-	public void HandleLoggerMsg(String loggerMsg) {
-		String lMessage = loggerMsg;
-		String sendMessage = "";
-		String language = t.getCurrentLocale().getLanguage();
-
-		if (lMessage.substring(0, 4).equals("name") && (lMessage.length() > 4)) {
-			if (language.equalsIgnoreCase("de")) {
-				sendMessage = ">> " + "Spieler " + lMessage.substring(4) + " ist am Zug.";
-			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = ">> " + "It's " + lMessage.substring(4) + "'s turn.";
-			}
-		} else if (lMessage.equals("playaction")) {
-			if (language.equalsIgnoreCase("de")) {
-				sendMessage = " " + "Aktionsphase hat gestartet.";
-			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = " " + "Actionphase has started.";
-			}
-		} else if (lMessage.equals("playbuy")) {
-			if (language.equalsIgnoreCase("de")) {
-				sendMessage = " " + "Kaufphase hat gestartet.";
-			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = " " + "Buyphase has started.";
-			}
-		} else if (lMessage.substring(0, 2).equals("ac")) {
-			if (language.equalsIgnoreCase("de")) {
-				sendMessage = " " + getGermanName(lMessage.substring(2)) + " wurde gespielt";
-			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = " " + lMessage.substring(2) + " has been played";
-			}
-		} else if (lMessage.substring(0, 2).equals("bc")) {
-			if (language.equalsIgnoreCase("de")) {
-				sendMessage = " " + getGermanName(lMessage.substring(2)) + " wurde gekauft";
-			} else if (language.equalsIgnoreCase("en")) {
-				sendMessage = " " + lMessage.substring(2) + " has been bought";
-			}
-		}
-		boardC.showLoggerMsg(">" + sendMessage);
-	}
-
-	public String getGermanName(String cardPlayed) {
-		String germanCard = cardPlayed;
-		switch (germanCard) {
-		case "copper":
-			germanCard = "Kupfer";
-			break;
-		case "silver":
-			germanCard = "Silber";
-			break;
-		case "gold":
-			germanCard = "Gold";
-			break;
-		case "estate":
-			germanCard = "Anwesen";
-			break;
-		case "duchy":
-			germanCard = "Herzogtum";
-			break;
-		case "province":
-			germanCard = "Provinz";
-			break;
-		case "village":
-			germanCard = "Dorf";
-			break;
-		case "woodcutter":
-			germanCard = "Holzfäller";
-			break;
-		case "funfair":
-			germanCard = "Jahrmarkt";
-			break;
-		case "laboratory":
-			germanCard = "Laboratorium";
-			break;
-		case "market":
-			germanCard = "Markt";
-			break;
-		case "smith":
-			germanCard = "Schmiede";
-			break;
-		}
-		return germanCard;
-	}
-
 	public static void openBoardView() {
 		// lobbyV.stop();
 		Lobby_View.stop();
@@ -227,36 +132,66 @@ public class ClientHandler {
 		boardview.start();
 	}
 
+	public void getWinPoints(String[] win) {
+		String[] winPoints;
+		boardC.clearWinPoints();
+		for (String s : win) {
+			winPoints = s.split("\\-");
+			boardC.updateWinPoints(winPoints[0] + " " + t.getString("dominion.board.points.winpoints") + ": " + winPoints[1]);
+		}
+	}
+
+	public void getABMpoints(String[] points) {
+		int i = 0;
+		boardC.clearABMpoints();
+		for (String s : points) {
+			if (i == 0) {
+				boardC.updateABMpoints(t.getString("dominion.board.points.action") + " " + s);
+			} else if (i == 1) {
+				boardC.updateABMpoints(t.getString("dominion.board.points.buy") + " " + s);
+			} else {
+				boardC.updateABMpoints(t.getString("dominion.board.points.money") + " " + s);
+			}
+			i++;
+		}
+	}
+
+	public void HandleLoggerMsg(String loggerMsg) {
+		String lMessage = loggerMsg;
+		if ((lMessage.length() > 4) && lMessage.substring(0, 4).equals("name")) {
+			boardC.showLoggerMsg(">>> " + lMessage.substring(4) + " " + t.getString("dominion.board.logger.Nr1"));
+		} else if (lMessage.equals("playaction")) {
+			boardC.showLoggerMsg("> " + t.getString("dominion.board.logger.Nr2"));
+		} else if (lMessage.equals("playbuy")) {
+			boardC.showLoggerMsg("> " + t.getString("dominion.board.logger.Nr3"));
+		} else if (lMessage.substring(0, 2).equals("ac")) {
+			boardC.showLoggerMsg("> " + t.getString("dominion.board.card." + lMessage.substring(2)) + " "
+					+ t.getString("dominion.board.logger.Nr4"));
+		} else if (lMessage.substring(0, 2).equals("bc")) {
+			boardC.showLoggerMsg("> " + t.getString("dominion.board.card." + lMessage.substring(2)) + " "
+					+ t.getString("dominion.board.logger.Nr4"));
+		} else {
+			System.out.println("Fehler (ClientHandler / HandleLoggerMsg)");
+		}
+	}
+
 	public void HandleInfoMessage(String loggerMessage) {
 		String lMessage = loggerMessage;
-		String sendMessage = "";
-		String language = t.getCurrentLocale().getLanguage();
-
-		if (language.equalsIgnoreCase("de")) {
-			if (lMessage.equalsIgnoreCase("not enough money")) {
-				sendMessage = "Nicht genug Geld";
-				boardC.showInfoMsg(sendMessage);
-			} else if (lMessage.equalsIgnoreCase("not enough action - points")) {
-				sendMessage = "Nicht genug Aktionspunkte";
-				boardC.showInfoMsg(sendMessage);
-			} else if (lMessage.equalsIgnoreCase("not enough buy - points")) {
-				sendMessage = "Nicht genug Kaufpunkte";
-				boardC.showInfoMsg(sendMessage);
-			} else if (lMessage.equalsIgnoreCase("no card selected")) {
-				sendMessage = "Keine Karte ausgewählt";
-				boardC.showInfoMsg(sendMessage);
-			} else if (lMessage.equalsIgnoreCase("card already picked")) {
-				sendMessage = "Karte bereits ausgewählt";
-				boardC.showInfoMsg(sendMessage);
-			} else if (lMessage.contains("cardischosen")) {
-				sendMessage = "Karte " + getGermanName(lMessage.substring(12)) + " ausgewählt";
-				boardC.showInfoMsg(sendMessage);
-			}
+		if (lMessage.equalsIgnoreCase("not enough money")) {
+			boardC.showInfoMsg(t.getString("dominion.board.info.Nr1"));
+		} else if (lMessage.equalsIgnoreCase("not enough action - points")) {
+			boardC.showInfoMsg(t.getString("dominion.board.info.Nr2"));
+		} else if (lMessage.equalsIgnoreCase("not enough buy - points")) {
+			boardC.showInfoMsg(t.getString("dominion.board.info.Nr3"));
+		} else if (lMessage.equalsIgnoreCase("no card selected")) {
+			boardC.showInfoMsg(t.getString("dominion.board.info.Nr4"));
+		} else if (lMessage.equalsIgnoreCase("card already picked")) {
+			boardC.showInfoMsg(t.getString("dominion.board.info.Nr5"));
 		} else if (lMessage.contains("cardischosen")) {
-			sendMessage = "card " + lMessage.substring(12) + " chosen";
-			boardC.showInfoMsg(sendMessage);
+			boardC.showInfoMsg(t.getString("dominion.board.card." + lMessage.substring(12)) + " "
+					+ t.getString("dominion.board.info.Nr6"));
 		} else {
-			boardC.showInfoMsg(lMessage);
+			System.out.println("Fehler (ClientHandler / HandleInfoMsg)");
 		}
 	}
 

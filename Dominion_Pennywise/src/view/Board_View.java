@@ -42,10 +42,10 @@ public class Board_View {
 	HBox hBottom;
 	String cardID;
 	// public Label actionPoints, buyPoints, money;
-	public TextArea aBMpoints; // action, buy, money
+	public Label aBMpoints; // action, buy, money
 	public TextArea logger;
 	public Label info;
-	public TextArea playerStats;
+	public Label playerStats;
 
 	protected int soundCounter = 0;
 	protected DropShadow shadow = new DropShadow();
@@ -153,7 +153,7 @@ public class Board_View {
 			e.printStackTrace();
 		}
 
-		endPhase = new Button("Phase beenden");
+		endPhase = new Button(t.getString("dominion.board.btn.endphase"));
 		endPhase.setId("endBtn");
 
 		HBox labels = new HBox(20);
@@ -170,9 +170,8 @@ public class Board_View {
 		// buyPoints = new Label(t.getString("dominion.board.lbl.buyPoints"));
 		// money = new Label(t.getString("dominion.board.lbl.money"));
 
-		aBMpoints = new TextArea();
-		aBMpoints.setId("playerStats");
-		aBMpoints.setEditable(false);
+		aBMpoints = new Label();
+		aBMpoints.setId("playerPoints");
 		
 		Region reg = new Region();
 		Region reg2 = new Region();
@@ -181,16 +180,16 @@ public class Board_View {
 
 		labels.setAlignment(Pos.CENTER);
 
-		labels.getChildren().addAll(aBMpoints, firstPhase, secondPhase, thirdPhase, reg, reg2, endPhase);
+		labels.getChildren().addAll(aBMpoints, reg, firstPhase, secondPhase, thirdPhase, reg2, endPhase);
 
 		// bindings for the part in between of players hand and cards to buy
-		bindingsForContent(firstPhase, labels, 0.98, 0.16);
-		bindingsForContent(secondPhase, labels, 0.98, 0.16);
-		bindingsForContent(thirdPhase, labels, 0.98, 0.16);
-		bindingsForContent(reg, labels, 0.98, 0.02);
-		bindingsForContent(reg2, labels, 0.98, 0.02);
+		bindingsForContent(firstPhase, labels, 0.98, 0.18);
+		bindingsForContent(secondPhase, labels, 0.98, 0.18);
+		bindingsForContent(thirdPhase, labels, 0.98, 0.18);
+		bindingsForContent(reg, labels, 0.98, 0.08);
+		bindingsForContent(reg2, labels, 0.98, 0.08);
 		bindingsForContent(endPhase, labels, 0.98, 0.16);
-		bindingsForContent(aBMpoints, labels, 2, 0.12);
+		bindingsForContent(aBMpoints, labels, 2.5, 0.18);
 
 		// CENTER BOTTOM
 
@@ -244,8 +243,7 @@ public class Board_View {
 		bindingsForContent(reg2, vCenter, 0.005, 0.65);
 		bindingsForContent(hBottom, vCenter, 0.25, 0.8);
 
-		playerStats = new TextArea();
-		playerStats.setEditable(false);
+		playerStats = new Label();
 		playerStats.setId("playerStats");
 
 		info = new Label("");
@@ -264,7 +262,7 @@ public class Board_View {
 
 		root.setCenter(centerSP);
 
-		bindingsForContent(playerStats, centerSP, 0.15, 0.15);
+		bindingsForContent(playerStats, centerSP, 0.15, 0.2);
 		bindingsForContent(infoBox, centerSP, 0.5, 0.3);
 		bindingsForContent(vCenter, centerSP, 1, 1);
 
@@ -471,7 +469,8 @@ public class Board_View {
 		hCenter3.setDisable(true);
 		hBottom.setDisable(true);
 		endPhase.setDisable(true);
-
+		aBMpoints.setDisable(true);
+		playerStats.setDisable(true);
 	}
 
 	public void enableWindow() {
@@ -480,7 +479,8 @@ public class Board_View {
 		hCenter3.setDisable(false);
 		hBottom.setDisable(false);
 		endPhase.setDisable(false);
-
+		aBMpoints.setDisable(false);
+		playerStats.setDisable(false);
 	}
 
 	public void turnCardBack(String message) {

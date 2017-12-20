@@ -1,8 +1,6 @@
 package view;
 
 import java.util.Locale;
-
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
