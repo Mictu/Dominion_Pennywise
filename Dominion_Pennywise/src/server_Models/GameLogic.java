@@ -1,5 +1,8 @@
 package server_Models;
 
+import java.util.Collections;
+import java.util.List;
+
 import server.client.Server;
 import server.client.ServerHandler;
 
@@ -48,7 +51,9 @@ public class GameLogic {
 	}
 
 	public void theGame() {
-		if(countRounds == 2){
+		if(countRounds == 6){
+			Collections.sort(Player.player);
+			getSomeTime();
 			server.sendToClient("gameover");
 			getSomeTime();
 			sendPointsForResult();
@@ -220,6 +225,7 @@ public class GameLogic {
 				countWinP = addWinPoints(countWinP, card);
 			}
 			player.winPoint = countWinP;
+		
 			playersWinPoints = playersWinPoints.concat(p.getName() + "s Points:" + player.winPoint + ".");
 			countWinP = 0;
 		}
