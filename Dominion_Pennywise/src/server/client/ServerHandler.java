@@ -27,7 +27,6 @@ public class ServerHandler {
 	public ServerHandler(Server server) {
 		this.server = server;
 	}
-
 	
 	public void addPlayerToList(String name) {
 		for (Player player : Player.player) {

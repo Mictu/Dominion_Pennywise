@@ -14,19 +14,19 @@ public class BuyPhase {
 	boolean sendingHand = false;
 	String empty;
 	
-	int aVCounter = 10; 
-	int aMCounter = 10; 
-	int aSCounter = 10; 
-	int aWCounter = 10; 
-	int aFCounter = 10; 
-	int aLCounter = 10; 
+	int aVCounter = 1; 
+	int aMCounter = 1; 
+	int aSCounter = 1; 
+	int aWCounter = 1; 
+	int aFCounter = 1; 
+	int aLCounter = 1; 
 	
-	int cCounter = 60;
-	int sCounter = 40; 
-	int gCounter = 10; 
-	int eCounter = 24; 
-	int dCounter = 12; 
-	int pCounter = 12;
+	int cCounter = 1;
+	int sCounter = 1; 
+	int gCounter = 1; 
+	int eCounter = 1; 
+	int dCounter = 1; 
+	int pCounter = 1;
 
 
 	public BuyPhase() {
