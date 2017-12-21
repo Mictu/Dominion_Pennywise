@@ -1,6 +1,8 @@
 package server_Models;
 
+import java.util.Arrays;
 import java.util.Collections;
+
 import server.client.Server;
 import server.client.ServerHandler;
 
@@ -24,6 +26,8 @@ public class GameLogic {
 	int rounds = 0;
 	boolean firstRound;
 	int finishedCardStack = 0;
+	
+	int[] resultPoints = {};
 
 	Player player;
 
@@ -46,22 +50,25 @@ public class GameLogic {
 		for (int i = 0; i < START_ESTATE; i++) {
 			player.discard.add("estate");
 		}
+		
 		cleanPhase = new CleanUpPhase(player);
+		
+		
 	}
 
 	public void theGame() {
 		if(turn >= Player.player.size()*30 || finishedCardStack >= 3 || buyPhase.pCounter == -1){
+			sendWinPoints();
 			Collections.sort(Player.player);
 			server.sendToClient("gameover");
 			getSomeTime();
 			sendPointsForResult();
+//			sortPlayersResult();
 		}else{
 		actualPhase = "action";
 		this.player = Player.player.get(index);
 		sendPlayersHand();
-		getSomeTime();
 		sendLoggerMessage("name" + this.player.getName());
-		getSomeTime();
 		this.player.startRound();
 		sendABMPoints();
 		getSomeTime();
@@ -90,6 +97,43 @@ public class GameLogic {
 				firstRound = false;
 			}
 		}
+	}
+	
+	public String sortPlayersResult() {
+		String resultString = "result.";
+		for(Player p : Player.player) {
+			for(int i = 0; i < Player.player.size(); i++) {
+				resultPoints[i] = p.getWinPoints();
+			}
+		}
+		
+		Arrays.sort(resultPoints);
+		
+		for(int i : resultPoints) {
+			System.out.println(i);
+		}
+		
+		//Revers the array
+		for(int i = 0; i < resultPoints.length / 2; i++)
+		{
+		    int temp = resultPoints[i];
+		    resultPoints[i] = resultPoints[resultPoints.length - i - 1];
+		    resultPoints[resultPoints.length - i - 1] = temp;
+		}
+		
+		for(int i : resultPoints) {
+			System.out.println(i);
+		}
+		
+		for(int i : resultPoints) {
+			for(Player pl : Player.player) {
+				if(i == pl.getWinPoints()) {
+					resultString = resultString.concat(pl.getName() + "-" + i + ".");
+				}
+			}
+		}
+		System.out.println(resultString);
+		return resultString;
 	}
 
 	public void playCard(String message) {
@@ -174,6 +218,7 @@ public class GameLogic {
 			break; // block this monitor
 		}
 	}
+	
 
 	// This method should actualize the hand on the view (e.g. call it in buy
 	// phase
@@ -223,15 +268,33 @@ public class GameLogic {
 				"abmpoints." + player.getActionPoints() + "." + player.getBuyPoints() + "." + player.getMoney(), index);
 	}
 	
+//	public void sendPointsForResult() {
+//		String result = "";
+//		for(Player p : Player.player){
+//			result = p.getName()+"-"+p.getWinPoints()+".";
+//			for(Player pl : Player.player) {
+//				if(p.winPoint > pl.winPoint) {
+//					result = result + pl.getName()+"-"+pl.getWinPoints()+".";
+//				} else {
+//					result = pl.getName()+"-"+pl.getWinPoints()+"."+result;
+//				}
+//			}
+//		}
+//		System.out.println(result);
+//		server.sendToClient("result.".concat(result));
+//	}
+
+
 	public void sendPointsForResult() {
 		String result = "result.";
-		for(Player p : Player.player){
+		for(Player p : Player.player) {
 			result = result.concat(p.getName() + "-" + p.getWinPoints() + ".");
 		}
-//		result = result.concat(sendWinPoints());
+		System.out.println(result);
 		server.sendToClient(result);
 	}
 
+	
 	public String sendWinPoints() {
 		int countWinP = 0;
 		String playersWinPoints = "winpoints.";
@@ -245,9 +308,9 @@ public class GameLogic {
 			for (String card : p.hand) {
 				countWinP = addWinPoints(countWinP, card);
 			}
-			player.winPoint = countWinP;
+			p.winPoint = countWinP;
 		
-			playersWinPoints = playersWinPoints.concat(p.getName() + "-" + player.winPoint + ".");
+			playersWinPoints = playersWinPoints.concat(p.getName() + "-" + p.winPoint + ".");
 			countWinP = 0;
 		}
 		server.sendToClient(playersWinPoints);

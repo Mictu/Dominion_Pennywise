@@ -4,7 +4,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import server.client.Server;
 
-public class Player implements Comparable<Player>  {
+public class Player implements Comparable<Player> {
 
 	// initialize sector here
 	public int winPoint, money,countMoneyForHand, amountOfTurns;
@@ -137,12 +137,10 @@ public class Player implements Comparable<Player>  {
 		return this.hand;
 	}
 
+	@Override
 	public int compareTo(Player OPlayer) {
 		return OPlayer.winPoint - this.winPoint;
 	}
-	
-
-
 }
 
 // Patrick
