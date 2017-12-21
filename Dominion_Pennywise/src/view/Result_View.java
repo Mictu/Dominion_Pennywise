@@ -29,8 +29,10 @@ public class Result_View {
 		stage.setWidth(400.0);//
 		// stage.setResizable(false);
 		stage.setTitle("WINNER");
+		stage.setFullScreen(true);
 		mainPane = new BorderPane();
 		mainPane.setId("mainPaneResult");
+		
 
 		// congratulation = new Label("CONGRATULATION");
 		// congratulation.setId("lblresult");

@@ -1,7 +1,6 @@
 package controllers;
 
 import javafx.application.Platform;
-import server_Models.Player;
 import view.Result_View;
 
 public class Result_Controller {
@@ -17,24 +16,10 @@ public class Result_Controller {
 
 
 	public void showResultInView(String[] resultsPlayerAndPoints) {
-
 		Platform.runLater(() -> {
 			resultView.setRangList(resultsPlayerAndPoints);
 		});
 	}
 
-
-	
-//	public Player getWinner(){	
-//		for(Player p : Player.player){
-//			int minPoint = Integer.MIN_VALUE; 
-//			if(p.winPoint > minPoint){
-//				minPoint = p.winPoint;
-//				winner = p; 
-//			}
-//		}
-//		return winner;	
-//	}
-//	
 
 }

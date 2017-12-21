@@ -53,7 +53,7 @@ public class Client {
 		protected Void call() throws Exception {
 			try {
 
-				socket = new Socket("192.168.43.121", 2303);
+				socket = new Socket("localhost", 2303);
 				System.out.println("Player " + playerName + " is connected");
 				sendToServer("lobby" + playerName);
 
@@ -99,11 +99,9 @@ public class Client {
 						} else if (message.length() > 7 && message.substring(0, 7).equals("amount.")) {
 							ch.HandleCardAmount(message.substring(7));
 						} else if (message.length() > 6 && message.substring(0, 6).equals("result")) {
-							if (message.length() > 17)
-								results = message.substring(17); // message ohne result.winpoints.
-							System.out.println(results);
+							results = message.substring(7);
 							resultsPlayerAndPoints = results.split("\\.");
-							ClientHandler.getResultPoints(resultsPlayerAndPoints);
+							ch.getResultPoints(resultsPlayerAndPoints);
 						} else if (message.length() > 9 && message.substring(0, 9).equals("cardempty")) {
 							ch.getMessageFromClient(message);
 						} else {

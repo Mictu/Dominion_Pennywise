@@ -51,9 +51,8 @@ public class GameLogic {
 	}
 
 	public void theGame() {
-		if(turn >= Player.player.size()*20 || finishedCardStack >= 3){
+		if(turn >= Player.player.size()*1 || finishedCardStack >= 3){
 			Collections.sort(Player.player);
-			getSomeTime();
 			server.sendToClient("gameover");
 			getSomeTime();
 			sendPointsForResult();
@@ -63,8 +62,10 @@ public class GameLogic {
 		sendPlayersHand();
 		getSomeTime();
 		sendLoggerMessage("name" + this.player.getName());
+		getSomeTime();
 		this.player.startRound();
 		sendABMPoints();
+		getSomeTime();
 		int ind = 0;
 		for (Player p : Player.player) {
 			if (p.equals(this.player)) {
@@ -76,6 +77,7 @@ public class GameLogic {
 			}
 			ind++;
 		}
+		getSomeTime();
 		if (starter == 0) {
 			sendWinPoints();
 			getSomeTime();
@@ -83,11 +85,11 @@ public class GameLogic {
 			starter = 1;
 		}
 		turn++;
-		}
-		if (firstRound) {
-			server.sendToClient(buyPhase.sendRestCards());
-			getSomeTime();
-			firstRound = false;
+			if (firstRound) {
+				server.sendToClient(buyPhase.sendRestCards());
+				getSomeTime();
+				firstRound = false;
+			}
 		}
 	}
 
@@ -120,11 +122,12 @@ public class GameLogic {
 				getSomeTime();
 				sendLoggerMessage("bc" + buyPhase.getBoughtCard());
 				sendWinPoints();
+				getSomeTime();
+				sendABMPoints();
 			}
 			if (buyPhase.getInfoMsg()) {
 				sendInfoMessage(buyPhase.getInfoString());
 			}
-			sendABMPoints();
 			break;
 		}
 	}
@@ -160,7 +163,7 @@ public class GameLogic {
 			actualPhase = "cleanup";
 			cleanUpPhase = new CleanUpPhase(this.player);
 			server.sendStringToClient(actualPhase, index);
-			sendPlayersHand();
+//			sendPlayersHand();
 			if(turn % Player.player.size() == 0) {
 				rounds++;
 			}
@@ -193,7 +196,7 @@ public class GameLogic {
 
 	public void getSomeTime() {
 		try {
-			Thread.sleep(350);
+			Thread.sleep(250);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -223,7 +226,10 @@ public class GameLogic {
 	
 	public void sendPointsForResult() {
 		String result = "result.";
-		result = result.concat(sendWinPoints());
+		for(Player p : Player.player){
+			result = result.concat(p.getName() + "-" + p.getWinPoints() + ".");
+		}
+//		result = result.concat(sendWinPoints());
 		server.sendToClient(result);
 	}
 
@@ -241,7 +247,6 @@ public class GameLogic {
 				countWinP = addWinPoints(countWinP, card);
 			}
 			player.winPoint = countWinP;
-
 		
 			playersWinPoints = playersWinPoints.concat(p.getName() + "-" + player.winPoint + ".");
 			countWinP = 0;

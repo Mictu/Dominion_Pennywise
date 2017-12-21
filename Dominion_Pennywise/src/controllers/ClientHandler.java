@@ -100,10 +100,7 @@ public class ClientHandler {
 		}
 	}
 
-	public static void getResultPoints(String[] resultsPlayerAndPoints) {
-		for (String s : resultsPlayerAndPoints) {
-			System.out.println(s);
-		}
+	public void getResultPoints(String[] resultsPlayerAndPoints) {
 		resultC.showResultInView(resultsPlayerAndPoints);
 	}
 
