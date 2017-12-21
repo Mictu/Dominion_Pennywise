@@ -49,7 +49,7 @@ public class GameLogic {
 	}
 
 	public void theGame() {
-		if(countRounds == 4){
+		if(countRounds == 20){
 			Collections.sort(Player.player);
 			getSomeTime();
 			server.sendToClient("gameover");
@@ -60,6 +60,7 @@ public class GameLogic {
 //		server.sendToClient(actualPhase);
 		this.player = Player.player.get(index);
 		sendPlayersHand();
+		getSomeTime();
 		sendLoggerMessage("name" + this.player.getName());
 		this.player.startRound();
 		sendABMPoints();
@@ -92,6 +93,7 @@ public class GameLogic {
 			actionPhase.chosenCard(message, this.player);
 			if (actionPhase.getActionMadeBoolean()) {
 				sendPlayersHand();
+				
 				sendLoggerMessage("ac" + actionPhase.getPlayedCard());
 			} else if (actionPhase.getInfoMessage()) {
 				sendInfoMessage(actionPhase.getInfoString());
