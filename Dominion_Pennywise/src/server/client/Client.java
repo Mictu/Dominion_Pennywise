@@ -86,6 +86,8 @@ public class Client {
 							abmPoints = message.substring(10);
 							abm = abmPoints.split("\\.");
 							ch.getABMpoints(abm);
+						} else if (message.length() > 6 && message.substring(0, 6).equals("rounds")) {
+							ch.showRoundCounter(message.substring(6));
 						} else if (message.length() > 6 && message.substring(0, 6).equals("logger")) {
 							loggerMessage = message.substring(6);
 							ch.HandleLoggerMsg(loggerMessage);

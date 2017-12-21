@@ -154,6 +154,10 @@ public class ClientHandler {
 		}
 	}
 	
+	public void showRoundCounter(String roundAmount) {
+		boardC.showRoundCounter(t.getString("round.board") + " " + roundAmount + " / 20");
+	}
+	
 	public void HandleCardAmount(String amounts) {
 		String[] amount = amounts.split("\\.");
 		for (int i = 0; i < amount.length; i++) {

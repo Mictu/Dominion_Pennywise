@@ -44,7 +44,7 @@ public class Board_View {
 	public TextArea logger;
 	public Label info;
 	public static Label cardInfo;
-	public Label playerStats;
+	public Label playerStats, roundCounter;
 
 	protected int soundCounter = 0;
 	protected DropShadow shadow = new DropShadow();
@@ -281,18 +281,23 @@ public class Board_View {
 		Region regio2 = new Region();
 		VBox cardBox = new VBox();
 		cardBox.getChildren().addAll(cardInfo, regio2);
+		
+		roundCounter = new Label();
+		roundCounter.setId("roundLabel");
 
 		StackPane centerSP = new StackPane();
-		centerSP.getChildren().addAll(playerStats, infoBox, cardBox, vCenter);
+		centerSP.getChildren().addAll(playerStats, roundCounter, infoBox, cardBox, vCenter);
 		StackPane.setAlignment(playerStats, Pos.TOP_RIGHT);
 		StackPane.setAlignment(infoBox, Pos.BOTTOM_LEFT);
 		StackPane.setAlignment(cardBox, Pos.BOTTOM_RIGHT);
+		StackPane.setAlignment(roundCounter, Pos.TOP_LEFT);
 
 		root.setCenter(centerSP);
 
 		bindingsForContent(playerStats, centerSP, 0.15, 0.2);
 		bindingsForContent(infoBox, centerSP, 0.5, 0.3);
 		bindingsForContent(cardBox, centerSP, 0.55, 0.2);
+		bindingsForContent(roundCounter, centerSP, 0.2, 0.4);
 		bindingsForContent(vCenter, centerSP, 1, 1);
 
 		bindingsForContent(info, infoBox, 0.2, 1);
