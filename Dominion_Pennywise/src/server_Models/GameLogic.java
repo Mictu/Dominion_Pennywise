@@ -163,7 +163,7 @@ public class GameLogic {
 			actualPhase = "cleanup";
 			cleanUpPhase = new CleanUpPhase(this.player);
 			server.sendStringToClient(actualPhase, index);
-//			sendPlayersHand();
+			sendPlayersHand();
 			if(turn % Player.player.size() == 0) {
 				rounds++;
 			}

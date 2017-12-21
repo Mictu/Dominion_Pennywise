@@ -53,7 +53,7 @@ public class Client {
 		protected Void call() throws Exception {
 			try {
 
-				socket = new Socket("localhost", 2303);
+				socket = new Socket("192.168.43.121", 2303);
 				System.out.println("Player " + playerName + " is connected");
 				sendToServer("lobby" + playerName);
 
