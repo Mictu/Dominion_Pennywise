@@ -30,6 +30,7 @@ public class Result_View {
 		// stage.setResizable(false);
 		stage.setTitle("WINNER");
 		stage.setFullScreen(true);
+		stage.setFullScreenExitHint("");
 		mainPane = new BorderPane();
 		mainPane.setId("mainPaneResult");
 		
