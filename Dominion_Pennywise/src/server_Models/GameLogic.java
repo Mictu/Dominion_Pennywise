@@ -11,7 +11,7 @@ public class GameLogic {
 	ActionPhase actionPhase = new ActionPhase();
 	BuyPhase buyPhase = new BuyPhase();
 
-	protected int countRounds = 0;
+	protected int turn = 0;
 	protected final int START_MONEY = 7;
 	protected final int START_ESTATE = 3;
 	int starter;
@@ -21,7 +21,9 @@ public class GameLogic {
 	Server server;
 	CleanUpPhase cleanPhase;
 	int index;
+	int rounds = 0;
 	boolean firstRound;
+	int finishedCardStack = 0;
 
 	Player player;
 
@@ -49,7 +51,7 @@ public class GameLogic {
 	}
 
 	public void theGame() {
-		if(countRounds == 20){
+		if(turn >= Player.player.size()*20 || finishedCardStack >= 3){
 			Collections.sort(Player.player);
 			getSomeTime();
 			server.sendToClient("gameover");
@@ -57,7 +59,6 @@ public class GameLogic {
 			sendPointsForResult();
 		}else{
 		actualPhase = "action";
-//		server.sendToClient(actualPhase);
 		this.player = Player.player.get(index);
 		sendPlayersHand();
 		getSomeTime();
@@ -78,7 +79,7 @@ public class GameLogic {
 			sendWinPoints();
 			starter = 1;
 		}
-		countRounds++;
+		turn++;
 		}
 		if (firstRound) {
 			server.sendToClient(buyPhase.sendRestCards());
@@ -109,6 +110,7 @@ public class GameLogic {
 				String isFinished = buyPhase.isFinished();
 				if (isFinished.contains("cardempty")) {
 					server.sendToClient(isFinished);
+					finishedCardStack++;
 					getSomeTime();
 				}
 				server.sendToClient(buyPhase.sendRestCards());
@@ -150,15 +152,17 @@ public class GameLogic {
 			sendLoggerMessage("playbuy");
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
-			// sendABMPoints();
 			break;
 		case "buy":
 			actualPhase = "cleanup";
 			cleanUpPhase = new CleanUpPhase(this.player);
 			server.sendStringToClient(actualPhase, index);
 			sendPlayersHand();
+			if(turn % Player.player.size() == 0) {
+				rounds++;
+			}
+			server.sendToClient(""+rounds);
 			buyPhase.resetVariablesForBuyPhase(this.player);
-//			sendABMPoints();
 			getIndex();
 			theGame();
 			break; // block this monitor
