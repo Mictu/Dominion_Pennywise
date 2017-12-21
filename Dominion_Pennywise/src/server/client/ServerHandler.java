@@ -29,17 +29,31 @@ public class ServerHandler {
 	}
 	
 	public void addPlayerToList(String name) {
-		for (Player player : Player.player) {
-			playerName.add(player.getName());
-		}
-		
-		if(playerName.contains(name)) {
-			player = new Player(name+playerCounter);
+		if(name.equalsIgnoreCase("sojo")) {
+			player = new Player("Socket Sojo");
 			Player.player.add(player);
-			playerCounter++;
+		}else if(name.equalsIgnoreCase("michi")) {
+			player = new Player("Sperma Michi");
+			Player.player.add(player);
+		}else if(name.equalsIgnoreCase("pätte")) {
+			player = new Player("Switch Pätte");
+			Player.player.add(player);
+		}else if(name.equalsIgnoreCase("yujia")) {
+			player = new Player("Debugg Yujia");
+			Player.player.add(player);
 		}else {
-			player = new Player(name);
-			Player.player.add(player);
+			for (Player player : Player.player) {
+				playerName.add(player.getName());
+			}
+			
+			if(playerName.contains(name)) {
+				player = new Player(name+playerCounter);
+				Player.player.add(player);
+				playerCounter++;
+			}else {
+				player = new Player(name);
+				Player.player.add(player);
+			}
 		}
 	}
 	
@@ -49,7 +63,7 @@ public class ServerHandler {
 		message = msg;
 
 		if (message.equals("start")) {
-			if (Player.player.size() > 1 && Player.player.size() < 3) {
+			if (Player.player.size() > 1 && Player.player.size() < 5) {
 				server.sendToClient("openboardview");
 				gamelogic = new GameLogic(this.server);
 				gamelogic.theGame();
