@@ -297,7 +297,7 @@ public class Board_View {
 		bindingsForContent(playerStats, centerSP, 0.15, 0.2);
 		bindingsForContent(infoBox, centerSP, 0.5, 0.3);
 		bindingsForContent(cardBox, centerSP, 0.55, 0.2);
-		bindingsForContent(roundCounter, centerSP, 0.2, 0.4);
+		bindingsForContent(roundCounter, centerSP, 0.1, 0.4);
 		bindingsForContent(vCenter, centerSP, 1, 1);
 
 		bindingsForContent(info, infoBox, 0.2, 1);
