@@ -12,9 +12,9 @@ public class BuyPhase {
 	private Player player;
 	private boolean cardChosen = false, payStarted = false, successfull = false, sendInfo = false, sendingHand = false;
 
-	public String card;
 	public int aVCounter = 10, aMCounter = 10, aSCounter = 10 ,aWCounter = 10, aFCounter = 10, aLCounter = 10;
 	public int cCounter = 60, sCounter = 40, gCounter = 30, eCounter = 24, dCounter = 12, pCounter = 12;
+	public String card;
 
 	public BuyPhase() {
 		buyThisCard = null;
