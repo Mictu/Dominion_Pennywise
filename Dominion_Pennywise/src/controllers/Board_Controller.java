@@ -128,5 +128,10 @@ public class Board_Controller {
 			});
 		}
 		
+		public void showRoundCounter(String roundNumber) {
+			Platform.runLater(()->{
+				boardView.roundCounter.setText(roundNumber);
+			});
+		}
 
 }
