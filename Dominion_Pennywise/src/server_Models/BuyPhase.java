@@ -3,7 +3,7 @@ package server_Models;
 public class BuyPhase {
 
 	int cost;
-	String cardName, card , infoMessage;
+	String cardName, card, infoMessage;
 	String buyThisCard;
 	String boughtCard;
 	Player player;
@@ -13,23 +13,21 @@ public class BuyPhase {
 	boolean sendInfo = false;
 	boolean sendingHand = false;
 	String empty;
-	
-	int aVCounter = 10; 
-	int aMCounter = 10; 
-	int aSCounter = 10; 
-	int aWCounter = 10; 
-	int aFCounter = 10; 
-	int aLCounter = 10; 
-	
+
+	int aVCounter = 10;
+	int aMCounter = 10;
+	int aSCounter = 10;
+	int aWCounter = 10;
+	int aFCounter = 10;
+	int aLCounter = 10;
+
 	int cCounter = 60;
-	int sCounter = 40; 
-	int gCounter = 30; 
-	int eCounter = 24; 
-	int dCounter = 12; 
+	int sCounter = 40;
+	int gCounter = 30;
+	int eCounter = 24;
+	int dCounter = 12;
 	int pCounter = 12;
 
-	
-	
 	public BuyPhase() {
 		buyThisCard = null;
 	}
@@ -47,7 +45,7 @@ public class BuyPhase {
 			} else if (cardName.contains("hand") && cardChosen) {
 				pay();
 			} else if (!cardName.contains("hand") && !payStarted) {
-				buy();	
+				buy();
 			} else if (cardChosen) {
 				infoMessage = "card already picked";
 				sendInfo = true;
@@ -68,11 +66,11 @@ public class BuyPhase {
 		if (cost > player.getCashHand() + player.money) {
 			infoMessage = "not enough money";
 			sendInfo = true;
-		} else if (cost <= player.money){
+		} else if (cost <= player.money) {
 			doTheBuy();
 		} else {
 			cardChosen = true;
-			infoMessage = "cardischosen"+buyThisCard;
+			infoMessage = "cardischosen" + buyThisCard;
 			sendInfo = true;
 		}
 	}
@@ -122,7 +120,7 @@ public class BuyPhase {
 			sendingHand = false;
 		}
 	}
-	
+
 	public void resetVariablesForBuyPhase(Player player) {
 		player.money = 0;
 		cost = 0;
@@ -188,8 +186,8 @@ public class BuyPhase {
 		}
 		return costs;
 	}
-	
-	public void decreaseCard(String cardName){
+
+	public void decreaseCard(String cardName) {
 		switch (cardName) {
 		case "village":
 			aVCounter--;
@@ -229,47 +227,84 @@ public class BuyPhase {
 			break;
 		}
 	}
-	
-	public String isFinished(){
-		empty = ""; 
-		if( aVCounter == 0 ){empty = "cardemptyvillage"; aVCounter = -1;}
-		if( aWCounter == 0 ){empty = "cardemptywoodcutter"; aWCounter = -1;}
-		if( aFCounter == 0 ){empty = "cardemptyfunfair"; aFCounter = -1;}
-		if( aLCounter == 0 ){empty = "cardemptylaboratory"; aLCounter = -1;}
-		if( aMCounter == 0 ){empty = "cardemptymarket"; aMCounter = -1;}
-		if( aSCounter == 0 ){empty = "cardemptysmith"; aSCounter = -1;}
-		if( cCounter == 0 ){empty = "cardemptycopper"; cCounter = -1;}
-		if( sCounter == 0 ){empty = "cardemptysilver"; sCounter = -1;}
-		if( gCounter == 0 ){empty = "cardemptygold"; gCounter = -1;}
-		if( eCounter == 0 ){empty = "cardemptyestate"; eCounter = -1;} 
-		if( dCounter == 0 ){empty = "cardemptyduchy"; dCounter = -1;}
-		if( pCounter == 0 ){empty = "cardemptyprovince"; pCounter = -1;}
-		
-		return empty; 
+
+	public String isFinished() {
+		empty = "";
+		if (aVCounter == 0) {
+			empty = "cardemptyvillage";
+			aVCounter = -1;
+		}
+		if (aWCounter == 0) {
+			empty = "cardemptywoodcutter";
+			aWCounter = -1;
+		}
+		if (aFCounter == 0) {
+			empty = "cardemptyfunfair";
+			aFCounter = -1;
+		}
+		if (aLCounter == 0) {
+			empty = "cardemptylaboratory";
+			aLCounter = -1;
+		}
+		if (aMCounter == 0) {
+			empty = "cardemptymarket";
+			aMCounter = -1;
+		}
+		if (aSCounter == 0) {
+			empty = "cardemptysmith";
+			aSCounter = -1;
+		}
+		if (cCounter == 0) {
+			empty = "cardemptycopper";
+			cCounter = -1;
+		}
+		if (sCounter == 0) {
+			empty = "cardemptysilver";
+			sCounter = -1;
+		}
+		if (gCounter == 0) {
+			empty = "cardemptygold";
+			gCounter = -1;
+		}
+		if (eCounter == 0) {
+			empty = "cardemptyestate";
+			eCounter = -1;
+		}
+		if (dCounter == 0) {
+			empty = "cardemptyduchy";
+			dCounter = -1;
+		}
+		if (pCounter == 0) {
+			empty = "cardemptyprovince";
+			pCounter = -1;
+		}
+
+		return empty;
 	}
 
 	public String sendRestCards() {
-		String nums = "amount"+"."+eCounter+"."+dCounter+"."+pCounter+"."+aFCounter+"."+aLCounter+"."+aMCounter+
-				"."+aSCounter+"."+aVCounter+"."+aWCounter+"."+cCounter+"."+sCounter+"."+gCounter;
+		String nums = "amount" + "." + eCounter + "." + dCounter + "." + pCounter + "." + aFCounter + "." + aLCounter
+				+ "." + aMCounter + "." + aSCounter + "." + aVCounter + "." + aWCounter + "." + cCounter + "."
+				+ sCounter + "." + gCounter;
 		return nums;
 	}
-	
+
 	public boolean buySuccessfull() {
 		return this.successfull;
 	}
-	
+
 	public String getBoughtCard() {
 		return this.boughtCard;
 	}
-	
+
 	public String getInfoString() {
 		return this.infoMessage;
 	}
-	
+
 	public boolean getInfoMsg() {
 		return this.sendInfo;
 	}
-	
+
 }
 
 // Written by Patrick

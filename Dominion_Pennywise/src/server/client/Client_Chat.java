@@ -42,13 +42,15 @@ public class Client_Chat {
 						String message = ((StringMsg) msg).getContent();
 						if (message.length() > 4 && message.substring(0, 5).equals("lobby")) {
 							playerName = message.substring(5);
-							sh.addPlayerToList(playerName);
-							for (Player p : Player.player) {
-								String pname = p.getName();
-								playerNameList = playerNameList.concat(pname + ".");
-								System.out.println(playerNameList);
+							if (Player.player.size() < 4) {
+									sh.addPlayerToList(playerName);
+								for (Player p : Player.player) {
+									String pname = p.getName();
+									playerNameList = playerNameList.concat(pname + ".");
+									System.out.println(playerNameList);
+								}
+								server.sendToClient(playerNameList);
 							}
-							server.sendToClient(playerNameList);
 						} else {
 							sh.getMessageFromServer(message);
 						}

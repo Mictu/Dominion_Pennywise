@@ -21,35 +21,32 @@ public class Login_Controller {
 		this.loginView = loginView;
 		
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
-		Translator t = sl.getTranslator();
-
+		
 		// LOGIN
 		// Open Lobby
 
 		loginView.lobbyBtn.setOnAction((Event) -> {
 			playerName = loginView.nameTxtfield.getText();
-			if (!playerName.isEmpty() && !playerName.contains(".") && playerName.length() < 15) {
+			Translator t = sl.getTranslator();
+			if (playerName.isEmpty()) {
+				loginView.warning.setText(t.getString("dominion.login.warning1"));
+			} else if (playerName.contains(".")) {
+				loginView.warning.setText(t.getString("dominion.login.warning2"));
+			} else if (playerName.length() > 15) {
+				loginView.warning.setText(t.getString("dominion.login.warning3"));
+			} else {
 				lobbyView = new Lobby_View(loginView.getStage());
-				
 				Login_Controller.client = new Client(playerName);
 				Login_Controller.client.run();
-//				lobbyController = new Lobby_Controller(lobbyView, client);
 				ch.initializeLobbyController(lobbyView);
 				lobbyView.start();
-
-				// Open Lobby
-
-			} else {
-				loginView.warning.setText(t.getString("dominion.login.warning"));
 			}
 
 		});
-
 		loginView.exitBtn.setOnAction((event) -> {
 			exit(loginView.getStage());
 		});
-
-	}// Close Constructore
+	}
 
 	// ExitMethode for all Views
 

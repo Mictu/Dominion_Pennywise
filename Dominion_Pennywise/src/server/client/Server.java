@@ -44,15 +44,14 @@ public class Server extends Application {
 			connect();
 		});
 		serverView.start();
-		
+
 		newestMsg.addListener((o, oldvalue, newValue) -> serverView.txtClientArea.appendText(newValue + "\n"));
-//		clients.addListener((ListChangeListener) (event -> serverView.updateClients()));
 		primaryStage.setOnCloseRequest(event -> stopServer());
 	}
 
-	
 	public void stopServer() {
-		for (Client_Chat c : clients) c.stop();
+		for (Client_Chat c : clients)
+			c.stop();
 		stop = true;
 		if (server != null) {
 			try {
@@ -70,42 +69,37 @@ public class Server extends Application {
 	final Task<Void> startServer = new Task<Void>() {
 		@Override
 		protected Void call() throws Exception {
-			
+
 			getExternalIp();
-			server = new ServerSocket(2303, 10);
-			// System.out.println("Waiting for Connection");
+			server = new ServerSocket(2303, 4);
 			serverView.updateServerView(newestMsg, "Waiting for Connection...");
 
 			InetAddress iAddress = InetAddress.getLocalHost();
-			// System.out.println("Server IP address : " + iAddress.getHostAddress());
 			serverView.updateServerView(newestMsg, "Server IP address : " + iAddress.getHostAddress());
-			while(!stop) {
-			Socket socket = server.accept();
-
-			
-			Client_Chat clientC = new Client_Chat(Server.this, socket);
-			clients.add(clientC);
-
-//			serverView.updateServerView(newestMsg, "Connection received from: " );
-			serverView.updateServerView(newestMsg,
-					"Connection received from: " + socket.getInetAddress().getHostName());
+			while (!stop) {
+				Socket socket = server.accept();
+				if (clients.size() < 4) {
+					Client_Chat clientC = new Client_Chat(Server.this, socket);
+					clients.add(clientC);
+				}
+				serverView.updateServerView(newestMsg,
+						"Connection received from: " + socket.getInetAddress().getHostName());
 			}
 			return null;
 		}
 
 	};
 
-
 	public void setMessage(ArrayList<String> message) {
 		this.fromServer = message;
 	}
-	
+
 	public void sendToClient(String msg) {
-		for(Client_Chat c : clients) {
+		for (Client_Chat c : clients) {
 			c.sendStringMsgToClient(msg);
 		}
 	}
-	
+
 	public void sendStringToClient(String msg, int index) {
 		clients.get(index).sendStringMsgToClient(msg);
 	}
@@ -122,17 +116,19 @@ public class Server extends Application {
 		return newestMsg;
 	}
 
-	// Get your external IP here to be able to play online (over different networks)
-		public String getExternalIp() {
-			try {
+	// Get your external IP here to be able to play online (over different
+	// networks)
+	public String getExternalIp() {
+		try {
 			URL whatismyip = new URL("http://checkip.amazonaws.com");
 			in = new BufferedReader(new InputStreamReader(whatismyip.openStream()));
-			ip = in.readLine(); //get the IP as a String (send to website and get answer with ip)
-			} catch (Exception e) {
-				System.out.println(e.toString());
-			}
-			System.out.println("type this into your client to play online: "+ip);
-			return ip;
+			ip = in.readLine(); // get the IP as a String (send to website and
+								// get answer with ip)
+		} catch (Exception e) {
+			System.out.println(e.toString());
 		}
+		System.out.println("type this into your client to play online: " + ip);
+		return ip;
+	}
 
 }
