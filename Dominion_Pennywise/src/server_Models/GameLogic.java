@@ -51,7 +51,7 @@ public class GameLogic {
 	}
 
 	public void theGame() {
-		if(turn >= Player.player.size()*1 || finishedCardStack >= 3){
+		if(turn >= Player.player.size()*10 || finishedCardStack >= 3){
 			Collections.sort(Player.player);
 			server.sendToClient("gameover");
 			getSomeTime();
