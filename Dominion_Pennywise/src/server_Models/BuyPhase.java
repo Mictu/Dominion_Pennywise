@@ -14,12 +14,12 @@ public class BuyPhase {
 	boolean sendingHand = false;
 	String empty;
 	
-	int aVCounter = 1; 
-	int aMCounter = 1; 
-	int aSCounter = 1; 
-	int aWCounter = 1; 
-	int aFCounter = 1; 
-	int aLCounter = 1; 
+	int aVCounter = 10; 
+	int aMCounter = 10; 
+	int aSCounter = 10; 
+	int aWCounter = 10; 
+	int aFCounter = 10; 
+	int aLCounter = 10; 
 	
 	int cCounter = 60;
 	int sCounter = 40; 
