@@ -69,6 +69,7 @@ public class GameLogic {
 		for (Player p : Player.player) {
 			if (p.equals(this.player)) {
 				server.sendStringToClient("action", ind);
+				getSomeTime();
 				sendLoggerMessage("playaction");
 			} else {
 				server.sendStringToClient("cleanup", ind);
@@ -164,6 +165,7 @@ public class GameLogic {
 				rounds++;
 			}
 			server.sendToClient("rounds"+rounds);
+			getSomeTime();
 			buyPhase.resetVariablesForBuyPhase(this.player);
 			getIndex();
 			theGame();

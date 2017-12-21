@@ -46,6 +46,7 @@ public class Client_Chat {
 							for (Player p : Player.player) {
 								String pname = p.getName();
 								playerNameList = playerNameList.concat(pname + ".");
+								System.out.println(playerNameList);
 							}
 							server.sendToClient(playerNameList);
 						} else {

@@ -29,19 +29,6 @@ public class ServerHandler {
 	}
 	
 	public void addPlayerToList(String name) {
-		if(name.equalsIgnoreCase("sojo")) {
-			player = new Player("Socket Sojo");
-			Player.player.add(player);
-		}else if(name.equalsIgnoreCase("michi")) {
-			player = new Player("Sperma Michi");
-			Player.player.add(player);
-		}else if(name.equalsIgnoreCase("pätte")) {
-			player = new Player("Switch Pätte");
-			Player.player.add(player);
-		}else if(name.equalsIgnoreCase("yujia")) {
-			player = new Player("Debugg Yujia");
-			Player.player.add(player);
-		}else {
 			for (Player player : Player.player) {
 				playerName.add(player.getName());
 			}
@@ -54,7 +41,6 @@ public class ServerHandler {
 				player = new Player(name);
 				Player.player.add(player);
 			}
-		}
 	}
 	
 
