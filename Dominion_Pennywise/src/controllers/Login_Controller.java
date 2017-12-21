@@ -28,7 +28,7 @@ public class Login_Controller {
 
 		loginView.lobbyBtn.setOnAction((Event) -> {
 			playerName = loginView.nameTxtfield.getText();
-			if (!playerName.isEmpty() && !playerName.contains(".")) {
+			if (!playerName.isEmpty() && !playerName.contains(".") && playerName.length() < 15) {
 				lobbyView = new Lobby_View(loginView.getStage());
 				
 				Login_Controller.client = new Client(playerName);
