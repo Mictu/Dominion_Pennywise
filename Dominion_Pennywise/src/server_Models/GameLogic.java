@@ -22,6 +22,7 @@ public class GameLogic {
 	CleanUpPhase cleanPhase;
 	int index;
 	boolean firstRound;
+	int finishedCardStack = 0;
 
 	Player player;
 
@@ -49,7 +50,7 @@ public class GameLogic {
 	}
 
 	public void theGame() {
-		if(countRounds == 20){
+		if(countRounds >= Player.player.size()*20 || finishedCardStack >= 3){
 			Collections.sort(Player.player);
 			getSomeTime();
 			server.sendToClient("gameover");
@@ -57,7 +58,6 @@ public class GameLogic {
 			sendPointsForResult();
 		}else{
 		actualPhase = "action";
-//		server.sendToClient(actualPhase);
 		this.player = Player.player.get(index);
 		sendPlayersHand();
 		getSomeTime();
@@ -109,6 +109,7 @@ public class GameLogic {
 				String isFinished = buyPhase.isFinished();
 				if (isFinished.contains("cardempty")) {
 					server.sendToClient(isFinished);
+					finishedCardStack++;
 					getSomeTime();
 				}
 				server.sendToClient(buyPhase.sendRestCards());
