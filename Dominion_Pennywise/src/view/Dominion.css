@@ -60,9 +60,9 @@
 }
 #roundLabel {
 	-fx-background-color: transparent;
-	-fx-text-fill: orange;
+	-fx-text-fill: darkred;
 	-fx-font-weight: bold;
-	-fx-font-size: 15;
+	-fx-font-size: 20;
 }
 #cardInfo {
 	-fx-text-fill: orange;
