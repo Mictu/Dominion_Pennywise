@@ -54,6 +54,7 @@ public class Client {
 		@Override
 		protected Void call() throws Exception {
 			try {
+
 				socket = new Socket("localhost", 2303);
 				System.out.println("Player " + playerName + " is connected");
 				sendToServer("lobby" + playerName);
