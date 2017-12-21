@@ -193,7 +193,7 @@ public class GameLogic {
 
 	public void getSomeTime() {
 		try {
-			Thread.sleep(250);
+			Thread.sleep(350);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
