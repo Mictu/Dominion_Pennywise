@@ -14,7 +14,7 @@ import server_Models.Player;
 public class Result_View {
 
 	BorderPane mainPane;
-	Stage stage;
+	public Stage stage;
 
 	Label congratulation;
 	Label youwon;
