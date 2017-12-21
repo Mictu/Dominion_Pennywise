@@ -28,7 +28,8 @@ public class BuyPhase {
 	int dCounter = 1; 
 	int pCounter = 1;
 
-
+	
+	
 	public BuyPhase() {
 		buyThisCard = null;
 	}
@@ -192,7 +193,6 @@ public class BuyPhase {
 		switch (cardName) {
 		case "village":
 			aVCounter--;
-			isFinished();
 			break;
 		case "woodcutter":
 			aWCounter--;
@@ -232,19 +232,20 @@ public class BuyPhase {
 	
 	public String isFinished(){
 		empty = ""; 
-		if( aVCounter == 0 ){empty = "cardemptyvillage";aVCounter = 1;}
-		if( aWCounter == 0 ){empty = "cardemptywoodcutter";aWCounter = 1;}
-		if( aFCounter == 0 ){empty = "cardemptyfunfair"; aFCounter = 1;}
-		if( aLCounter == 0 ){empty = "cardemptylaboratory";aLCounter = 1;}
-		if( aMCounter == 0 ){empty = "cardemptymarket";aMCounter = 1;}
-		if( aSCounter == 0 ){empty = "cardemptysmith";aSCounter = 1;}
-		if( cCounter == 0 ){empty = "cardemptycopper";cCounter = 1;}
-		if( sCounter == 0 ){empty = "cardemptysilver";sCounter = 1;}
-		if( gCounter == 0 ){empty = "cardemptygold";gCounter = 1;}
-		if( eCounter == 0 ){empty = "cardemptyestate";eCounter = 1;}
-		if( dCounter == 0 ){empty = "cardemptyduchy";dCounter = 1;}
-		if( pCounter == 0 ){empty = "cardemptyprovince";pCounter = 1;}
-		return empty;
+		if( aVCounter == 0 ){empty = "cardemptyvillage"; aVCounter = -1;}
+		if( aWCounter == 0 ){empty = "cardemptywoodcutter"; aWCounter = -1;}
+		if( aFCounter == 0 ){empty = "cardemptyfunfair"; aFCounter = -1;}
+		if( aLCounter == 0 ){empty = "cardemptylaboratory"; aLCounter = -1;}
+		if( aMCounter == 0 ){empty = "cardemptymarket"; aMCounter = -1;}
+		if( aSCounter == 0 ){empty = "cardemptysmith"; aSCounter = -1;}
+		if( cCounter == 0 ){empty = "cardemptycopper"; cCounter = -1;}
+		if( sCounter == 0 ){empty = "cardemptysilver"; sCounter = -1;}
+		if( gCounter == 0 ){empty = "cardemptygold"; gCounter = -1;}
+		if( eCounter == 0 ){empty = "cardemptyestate"; eCounter = -1;} 
+		if( dCounter == 0 ){empty = "cardemptyduchy"; dCounter = -1;}
+		if( pCounter == 0 ){empty = "cardemptyprovince"; pCounter = -1;}
+		
+		return empty; 
 	}
 
 	public String sendRestCards() {

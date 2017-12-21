@@ -156,22 +156,26 @@ public class ClientHandler {
 	
 	public void HandleCardAmount(String amounts) {
 		String[] amount = amounts.split("\\.");
+		for (int i = 0; i < amount.length; i++) {
+			if (amount[i].equals("-1"))
+				amount[i] = "0";
+		}
 		boardC.setCardCounters(amount);
 	}
 
 	public void HandleLoggerMsg(String loggerMsg) {
 		String lMessage = loggerMsg;
 		if ((lMessage.length() > 4) && lMessage.substring(0, 4).equals("name")) {
-			boardC.showLoggerMsg(">>> " + lMessage.substring(4) + " " + t.getString("dominion.board.logger.Nr1"));
+			boardC.showLoggerMsg(lMessage.substring(4) + " " + t.getString("dominion.board.logger.Nr1"));
 		} else if (lMessage.equals("playaction")) {
-			boardC.showLoggerMsg("> " + t.getString("dominion.board.logger.Nr2"));
+			boardC.showLoggerMsg(">> " + t.getString("dominion.board.logger.Nr2"));
 		} else if (lMessage.equals("playbuy")) {
-			boardC.showLoggerMsg("> " + t.getString("dominion.board.logger.Nr3"));
+			boardC.showLoggerMsg(">> " + t.getString("dominion.board.logger.Nr3"));
 		} else if (lMessage.substring(0, 2).equals("ac")) {
-			boardC.showLoggerMsg("> " + t.getString("dominion.board.card." + lMessage.substring(2)) + " "
+			boardC.showLoggerMsg("++ " + t.getString("dominion.board.card." + lMessage.substring(2)) + " "
 					+ t.getString("dominion.board.logger.Nr5"));
 		} else if (lMessage.substring(0, 2).equals("bc")) {
-			boardC.showLoggerMsg("> " + t.getString("dominion.board.card." + lMessage.substring(2)) + " "
+			boardC.showLoggerMsg("++ " + t.getString("dominion.board.card." + lMessage.substring(2)) + " "
 					+ t.getString("dominion.board.logger.Nr4"));
 		} else {
 			System.out.println("Fehler (ClientHandler / HandleLoggerMsg)");

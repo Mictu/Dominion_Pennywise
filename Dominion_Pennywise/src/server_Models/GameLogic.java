@@ -106,8 +106,9 @@ public class GameLogic {
 				sendPlayersHand();
 			}
 			if (buyPhase.buySuccessfull()) {
-				if (buyPhase.isFinished().contains("cardempty")) {
-					server.sendToClient(buyPhase.isFinished());
+				String isFinished = buyPhase.isFinished();
+				if (isFinished.contains("cardempty")) {
+					server.sendToClient(isFinished);
 					getSomeTime();
 				}
 				server.sendToClient(buyPhase.sendRestCards());
