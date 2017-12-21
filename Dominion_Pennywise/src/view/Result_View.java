@@ -1,6 +1,5 @@
 package view;
 
-import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -8,8 +7,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import server.client.Client;
-import server_Models.Player;
 
 public class Result_View {
 
@@ -25,7 +22,7 @@ public class Result_View {
 	Label pointlbl;
 
 
-		 public Result_View(Stage stage) {
+		public Result_View(Stage stage) {
 		this.stage = stage; 
 		
 		stage.setHeight(600.0);//

@@ -93,7 +93,7 @@ public class GameLogic {
 			actionPhase.chosenCard(message, this.player);
 			if (actionPhase.getActionMadeBoolean()) {
 				sendPlayersHand();
-				
+				getSomeTime();
 				sendLoggerMessage("ac" + actionPhase.getPlayedCard());
 			} else if (actionPhase.getInfoMessage()) {
 				sendInfoMessage(actionPhase.getInfoString());

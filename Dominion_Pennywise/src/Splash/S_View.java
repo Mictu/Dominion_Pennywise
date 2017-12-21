@@ -12,7 +12,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import main_Class.ServiceLocator;
 import server.client.Server;
+import server_Models.Translator;
 import view.Login_View;
 
 public class S_View {
@@ -26,6 +28,9 @@ public class S_View {
     protected boolean startTheServer;
     protected double percent;
 
+    ServiceLocator sl = ServiceLocator.getServiceLocator();
+	Translator t = sl.getTranslator();
+    
     public S_View() {
     	percent = 0.00;
     	
@@ -40,7 +45,7 @@ public class S_View {
     	VBox vB = new VBox(280);
     	vB.setAlignment(Pos.CENTER);
     	
-    	lblText = new Label("Karten werden gemischt");
+    	lblText = new Label(t.getString("dominion.splash.mixing"));
     	lblText.setId("ownLable");
     	vB.getChildren().add(lblText);
     	

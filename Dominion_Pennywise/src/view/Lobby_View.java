@@ -15,8 +15,11 @@ import server_Models.Translator;
 
 public class Lobby_View {
 
+	ServiceLocator sl = ServiceLocator.getServiceLocator();
+	Translator t = sl.getTranslator();
+	
 	public static Stage stage;
-
+	
 	BorderPane mainPane;
 
 	// connected Players and online players area
@@ -25,7 +28,7 @@ public class Lobby_View {
 	// Chat area and its controlls
 	public TextArea txtChatArea = new TextArea();
 	public TextField txtChatMessage = new TextField();
-	public Button btnSend = new Button("Send");
+	public Button btnSend = new Button(t.getString("dominion.lobby.btn.send"));
 
 	// controls button
 	public Button btnLeaveGame;

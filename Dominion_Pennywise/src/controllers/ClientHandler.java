@@ -169,7 +169,7 @@ public class ClientHandler {
 			boardC.showLoggerMsg("> " + t.getString("dominion.board.logger.Nr3"));
 		} else if (lMessage.substring(0, 2).equals("ac")) {
 			boardC.showLoggerMsg("> " + t.getString("dominion.board.card." + lMessage.substring(2)) + " "
-					+ t.getString("dominion.board.logger.Nr4"));
+					+ t.getString("dominion.board.logger.Nr5"));
 		} else if (lMessage.substring(0, 2).equals("bc")) {
 			boardC.showLoggerMsg("> " + t.getString("dominion.board.card." + lMessage.substring(2)) + " "
 					+ t.getString("dominion.board.logger.Nr4"));
