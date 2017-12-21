@@ -23,7 +23,7 @@ public class BuyPhase {
 	
 	int cCounter = 60;
 	int sCounter = 40; 
-	int gCounter = 10; 
+	int gCounter = 30; 
 	int eCounter = 24; 
 	int dCounter = 12; 
 	int pCounter = 12;

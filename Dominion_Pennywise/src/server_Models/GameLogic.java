@@ -40,7 +40,6 @@ public class GameLogic {
 	} // Close Constructor
 
 	protected void gameStart(Player player) {
-
 		for (int i = 0; i < START_MONEY; i++) {
 			player.discard.add("copper"); // don't forget to counter++
 		}
@@ -51,7 +50,7 @@ public class GameLogic {
 	}
 
 	public void theGame() {
-		if(turn >= Player.player.size()*10 || finishedCardStack >= 3){
+		if(turn >= Player.player.size()*30 || finishedCardStack >= 3 || buyPhase.pCounter == -1){
 			Collections.sort(Player.player);
 			server.sendToClient("gameover");
 			getSomeTime();

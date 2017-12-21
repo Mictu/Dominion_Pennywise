@@ -152,7 +152,7 @@ public class ClientHandler {
 	}
 	
 	public void showRoundCounter(String roundAmount) {
-		boardC.showRoundCounter(t.getString("round.board") + " " + roundAmount + " / 20");
+		boardC.showRoundCounter(t.getString("round.board") + " " + roundAmount + " / 30");
 	}
 	
 	public void HandleCardAmount(String amounts) {
