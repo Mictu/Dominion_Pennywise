@@ -77,6 +77,8 @@ public class GameLogic {
 		}
 		if (starter == 0) {
 			sendWinPoints();
+			getSomeTime();
+			server.sendToClient("rounds"+rounds);
 			starter = 1;
 		}
 		turn++;
@@ -161,7 +163,7 @@ public class GameLogic {
 			if(turn % Player.player.size() == 0) {
 				rounds++;
 			}
-			server.sendToClient(""+rounds);
+			server.sendToClient("rounds"+rounds);
 			buyPhase.resetVariablesForBuyPhase(this.player);
 			getIndex();
 			theGame();
