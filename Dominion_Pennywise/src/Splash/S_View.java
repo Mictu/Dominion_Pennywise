@@ -71,13 +71,9 @@ public class S_View {
 		Task<Void> initializer = new Task<Void>() {
 			protected Void call() throws Exception {
 				Integer i = 0;
-//				for (; i < 1000000000; i++) {
-//					if ((i % 20) == 0)										// Set LoadSpeed
-//						this.updateProgress(i, 1000000000);
-//				}
-				for (; i < 100000000; i++) {
-					if ((i % 20) == 0)										// Splash screen loading a lot faster in here
-						this.updateProgress(i, 100000000);
+				for (; i < 1000000000; i++) {
+					if ((i % 20) == 0)										// Set LoadSpeed
+						this.updateProgress(i, 1000000000);
 				}
 				return null;
 			}

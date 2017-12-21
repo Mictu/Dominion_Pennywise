@@ -1,32 +1,20 @@
 package server_Models;
 
+/**
+ * 
+ * 
+ * @author Yujia, Sojo, Patrick
+ */
 public class BuyPhase {
 
-	int cost;
-	String cardName, card, infoMessage;
-	String buyThisCard;
-	String boughtCard;
-	Player player;
-	boolean cardChosen = false;
-	boolean payStarted = false;
-	boolean successfull = false;
-	boolean sendInfo = false;
-	boolean sendingHand = false;
-	String empty;
+	private int cost;
+	private String cardName, infoMessage, buyThisCard, boughtCard, empty;
+	private Player player;
+	private boolean cardChosen = false, payStarted = false, successfull = false, sendInfo = false, sendingHand = false;
 
-	int aVCounter = 10;
-	int aMCounter = 10;
-	int aSCounter = 10;
-	int aWCounter = 10;
-	int aFCounter = 10;
-	int aLCounter = 10;
-
-	int cCounter = 60;
-	int sCounter = 40;
-	int gCounter = 30;
-	int eCounter = 24;
-	int dCounter = 12;
-	int pCounter = 12;
+	public String card;
+	public int aVCounter = 10, aMCounter = 10, aSCounter = 10 ,aWCounter = 10, aFCounter = 10, aLCounter = 10;
+	public int cCounter = 60, sCounter = 40, gCounter = 30, eCounter = 24, dCounter = 12, pCounter = 12;
 
 	public BuyPhase() {
 		buyThisCard = null;
