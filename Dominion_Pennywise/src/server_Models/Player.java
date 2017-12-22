@@ -4,25 +4,36 @@ import java.net.Socket;
 import java.util.ArrayList;
 import server.client.Server;
 
+/**
+ * Player class contains and saves all the data from a player handles the
+ * players data
+ * 
+ * @author Michael Tu
+ * @author Patrick Ziörjen
+ * @author Sojo Nagaroor
+ * @author Yujia Shi
+ */
 public class Player implements Comparable<Player> {
 
-	// initialize sector here
-	public int winPoint, money,countMoneyForHand, amountOfTurns;
+	public int winPoint, money, countMoneyForHand, amountOfTurns;
 	public int actionPoint, buyPoint, bonusBuyPoint;
 	public boolean turn = false;
 
-	
 	public String name;
 	Server server;
 	Socket socket;
-	
+
 	public ArrayList<String> hand = new ArrayList<String>();
 	protected ArrayList<String> deck = new ArrayList<String>();
 	protected ArrayList<String> discard = new ArrayList<String>();
 	public static ArrayList<Player> player = new ArrayList<Player>();
-	
 
-	// Constructor
+	/**
+	 * initialize all variables in Player.java
+	 * 
+	 * @param name
+	 *            - name from Login_View that the player typed in
+	 */
 	public Player(String name) {
 		this.name = name;
 		winPoint = 0;
@@ -30,18 +41,26 @@ public class Player implements Comparable<Player> {
 		money = 0;
 		actionPoint = 0;
 		buyPoint = 0;
-	} // Close Constructor
+	}
 
-	// set up for a new round
+	/**
+	 * set the start capital
+	 * 
+	 * @author Patrick Ziörjen
+	 */
 	protected void startRound() {
 		amountOfTurns++;
 		actionPoint = 1;
 		buyPoint = 1;
-		bonusBuyPoint = 0;														// button (increase over kingdom-card)
-//		money = getCashHand(); // Get money you have in your hands
+		bonusBuyPoint = 0;
 	}
 
-	// Get how many money you have in your hands to buy something
+	/**
+	 * check the cards on the hand and calculate the cash in the hand
+	 * 
+	 * @author Patrick Ziörjen
+	 * @return countMoneyForHand - total cash
+	 */
 	protected int getCashHand() {
 		countMoneyForHand = 0;
 		for (String x : this.hand) {
@@ -57,8 +76,6 @@ public class Player implements Comparable<Player> {
 		}
 		return countMoneyForHand;
 	}
-
-	// Increase the stats of the player in the following lines
 
 	// increase the amount of actions for the player
 	protected void increaseActionPoints(int points) {
@@ -88,9 +105,9 @@ public class Player implements Comparable<Player> {
 	// increase money in the same round
 	protected void increaseMoney(int money) {
 		this.money += money;
-//		this.bonusBuyPoint += money;
+		// this.bonusBuyPoint += money;
 	}
-	
+
 	// decrease money from hands (Buy-phase)
 	protected void decreaseMoney(int money) {
 		this.money -= money;
@@ -101,46 +118,42 @@ public class Player implements Comparable<Player> {
 		this.name = name;
 	}
 
-	// Get stats of the Player in the following lines
-
-	// get the name (easter eggs, player with same name)
 	public String getName() {
 		return this.name;
 	}
 
-	// Get the money which the player has in his hands
 	protected int getMoney() {
 		return this.money;
 	}
 
-	// return action-points
 	protected int getActionPoints() {
 		return this.actionPoint;
 	}
-	
-	// get money which u store on the bonus button
+
 	protected int getBonusBuyMoney() {
 		return this.bonusBuyPoint;
 	}
 
-	// return win - points
 	protected int getWinPoints() {
 		return this.winPoint;
 	}
 
-	// return buy - points
 	protected int getBuyPoints() {
 		return this.buyPoint;
 	}
-	
+
 	public ArrayList<String> getHand() {
 		return this.hand;
 	}
 
+	/**
+	 * compareTo method for collections sort. used in GameLogic.java
+	 * 
+	 * @author Sojo Nagaroor
+	 * @param OPlayer
+	 */
 	@Override
 	public int compareTo(Player OPlayer) {
 		return OPlayer.winPoint - this.winPoint;
 	}
 }
-
-// Patrick
