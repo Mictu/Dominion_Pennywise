@@ -6,27 +6,27 @@ import server.client.Server;
 
 /**
  * Play an action-phase and reset the used content for the next player. This
- * class only starts while actual player is in action-phase.
+ * class only starts while actual player is in action-phase. Contains everything
+ * it needed for a proper Action Phase in game
  * 
- * @author Patrick
+ * @author Patrick Ziörjen
  */
 
 public class ActionPhase {
 
-	// initialize sector
 	private boolean madeAnAction = false;
 	private boolean sendInfo = false;
 	private String playedCard, info;
 	public Server server;
 
 	/**
-	 * Handle the card which a client has chosen to play. Compare the card
-	 * (string) with all action-cards and if it contains the same string, start
-	 * the method for this action-card. Also set two booleans, so the gamelogic
-	 * knows when to send a string to all clients to update the infobox on the
-	 * boardview and also when an action - card was player (to send players hand
-	 * again)
+	 * Handle the card which a client has chosen to play. Compare the card (string)
+	 * with all action-cards and if it contains the same string, start the method
+	 * for this action-card. Also set two booleans, so the gamelogic knows when to
+	 * send a string to all clients to update the infobox on the boardview and also
+	 * when an action - card was player (to send players hand again)
 	 * 
+	 * @author Patrick Ziörjen
 	 * @param message
 	 *            - get the name of the played card from client-side
 	 * @param player
@@ -69,11 +69,6 @@ public class ActionPhase {
 		}
 	}
 
-	/**
-	 * Return a boolean to find out if an action was successfully made
-	 * 
-	 * @return boolean if action was executed
-	 */
 	public boolean getActionMadeBoolean() {
 		return madeAnAction;
 	}
@@ -81,6 +76,7 @@ public class ActionPhase {
 	/**
 	 * Call the actions for a smith action-card
 	 * 
+	 * @author Patrick Ziörjen
 	 * @param player
 	 *            - get actual player who has his turn
 	 */
@@ -91,6 +87,7 @@ public class ActionPhase {
 	/**
 	 * Call the actions for a market action-card
 	 * 
+	 * @author Patrick Ziörjen
 	 * @param player
 	 *            - get actual player who has his turn
 	 */
@@ -104,6 +101,7 @@ public class ActionPhase {
 	/**
 	 * Call the actions for a laboratory action-card
 	 * 
+	 * @author Patrick Ziörjen
 	 * @param player
 	 *            - get actual player who has his turn
 	 */
@@ -115,6 +113,7 @@ public class ActionPhase {
 	/**
 	 * Call the actions for a funfair action-card
 	 * 
+	 * @author Patrick Ziörjen
 	 * @param player
 	 *            - get actual player who has his turn
 	 */
@@ -127,6 +126,7 @@ public class ActionPhase {
 	/**
 	 * Call the actions for a woodcutter action-card
 	 * 
+	 * @author Patrick Ziörjen
 	 * @param player
 	 *            - get actual player who has his turn
 	 */
@@ -138,6 +138,7 @@ public class ActionPhase {
 	/**
 	 * Call the actions for a village action-card
 	 * 
+	 * @author Patrick Ziörjen
 	 * @param player
 	 *            - get actual player who has his turn
 	 */
@@ -147,14 +148,15 @@ public class ActionPhase {
 	}
 
 	/**
-	 * Method gets called for every action card which increases the cards amount
-	 * for the actual players hand.
+	 * Method gets called for every action card which increases the cards amount for
+	 * the actual players hand.
 	 * 
-	 * Get cards from actual players deck to fill in players hand. Control if
-	 * the deck has enough cards to do this action and if not - shuffle the
-	 * discard deck of the player and swap it into the player deck to get the
-	 * remaining cards for the player hand.
+	 * Get cards from actual players deck to fill in players hand. Control if the
+	 * deck has enough cards to do this action and if not - shuffle the discard deck
+	 * of the player and swap it into the player deck to get the remaining cards for
+	 * the player hand.
 	 * 
+	 * @author Patrick Ziörjen
 	 * @param amount
 	 *            - amount of cards which should be added to players hand
 	 * @param player
@@ -177,7 +179,6 @@ public class ActionPhase {
 			}
 			player.hand.add(player.deck.get(0));
 			player.deck.remove(0);
-			// shuffles Cards if deck is empty
 		}
 	}
 
@@ -199,6 +200,8 @@ public class ActionPhase {
 	 * hand and add it to the discard deck. Set a boolean to true to let the
 	 * gamelogic know if players hand should be send again. Also decrease the
 	 * current players action points.
+	 * 
+	 * @author Patrick Ziörjen
 	 * 
 	 * @param card
 	 *            - played action card from current player
