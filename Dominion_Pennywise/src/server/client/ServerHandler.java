@@ -7,6 +7,13 @@ import server_Models.CleanUpPhase;
 import server_Models.GameLogic;
 import server_Models.Player;
 
+/**
+ * Handle the messages on the server side and send messages to client or receive
+ * message from client
+ * 
+ * @author Yujia Shi
+ *
+ */
 public class ServerHandler {
 
 	BuyPhase buyphase;
@@ -19,7 +26,7 @@ public class ServerHandler {
 	Client_Chat ClientC;
 	Server server;
 	public String message;
-	int playerCounter=1;
+	int playerCounter = 1;
 
 	public ArrayList<String> handCards = new ArrayList<String>();
 	public ArrayList<String> playerName = new ArrayList<String>();
@@ -27,24 +34,40 @@ public class ServerHandler {
 	public ServerHandler(Server server) {
 		this.server = server;
 	}
-	
-	public void addPlayerToList(String name) {
-			for (Player player : Player.player) {
-				playerName.add(player.getName());
-			}
-			
-			if(playerName.contains(name)) {
-				player = new Player(name+playerCounter);
-				Player.player.add(player);
-				playerCounter++;
-			}else {
-				player = new Player(name);
-				Player.player.add(player);
-			}
-	}
-	
 
-	// Get Strings from Server
+	/**
+	 * get Playername from Server, create a new player and add player to the player
+	 * list. check if the playername is already use. if it is already used, add a
+	 * name addition to the name.
+	 * 
+	 * @author Yujia Shi
+	 * 
+	 * @param name
+	 *            - playername from server
+	 */
+	public void addPlayerToList(String name) {
+		for (Player player : Player.player) {
+			playerName.add(player.getName());
+		}
+
+		if (playerName.contains(name)) {
+			player = new Player(name + playerCounter);
+			Player.player.add(player);
+			playerCounter++;
+		} else {
+			player = new Player(name);
+			Player.player.add(player);
+		}
+	}
+
+	/**
+	 * handle messages from server and start the gamelogic. gives the data to the
+	 * gamelogic
+	 * 
+	 * @author Yujia Shi
+	 * @param msg
+	 *            - message from server
+	 */
 	public void getMessageFromServer(String msg) {
 		message = msg;
 
@@ -54,7 +77,6 @@ public class ServerHandler {
 				gamelogic = new GameLogic(this.server);
 				gamelogic.theGame();
 			}
-			// System.out.println("Not enough player");
 		}
 
 		else if (message.contains("endphase")) {
