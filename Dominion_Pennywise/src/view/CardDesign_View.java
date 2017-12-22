@@ -125,7 +125,7 @@ public class CardDesign_View {
 			Board_Controller.showCard(getCardInfo(x.getId()));
 		});
 		x.setOnMouseExited((Event) -> {
-			Board_Controller.deleteCard();
+			Board_Controller.deleteCardInfo();
 		});
 	}
 	
