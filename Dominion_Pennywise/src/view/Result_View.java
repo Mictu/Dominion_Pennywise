@@ -8,92 +8,73 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * Creates the result-view and adds the players in the right order to the view
+ * 
+ * @author Sojo Nagaroor
+ *
+ */
 public class Result_View {
 
-	BorderPane mainPane;
+	private Scene scene;
 	public Stage stage;
+	private BorderPane mainPane;
 
-	Label congratulation;
-	Label youwon;
+	private VBox vbox;
+	private HBox hbox;
+	private Label namelbl;
+	private Label ranglbl;
 
-	VBox vbox = new VBox();
-	HBox hbox;
-	Label namelbl;
-	Label pointlbl;
+	/**
+	 * Design of the resultView
+	 * 
+	 * @param stage
+	 *            new stage created in the client-handler class
+	 */
+	public Result_View(Stage stage) {
+		this.stage = stage;
 
-
-		public Result_View(Stage stage) {
-		this.stage = stage; 
-		
-		stage.setHeight(600.0);//
-		stage.setWidth(400.0);//
-		// stage.setResizable(false);
+		stage.setHeight(600.0);
+		stage.setWidth(400.0);
 		stage.setTitle("WINNER");
 		stage.setFullScreen(true);
 		stage.setFullScreenExitHint("");
 		mainPane = new BorderPane();
 		mainPane.setId("mainPaneResult");
-		
 
-		// congratulation = new Label("CONGRATULATION");
-		// congratulation.setId("lblresult");
-		// youwon = new Label("You Won!!!!");
-		// youwon.setId("lblresult");
-		// vbox.getChildren().addAll(congratulation, youwon);
+		vbox = new VBox();
 		vbox.setAlignment(Pos.CENTER);
 		vbox.setId("resultvbox");
 
-//		for (int i = 0; i < Player.player.size(); i++) {
-//			hbox = new HBox();
-//			hbox.setAlignment(Pos.CENTER);
-//			hbox.setSpacing(50);
-//
-//			Label ranglbl = new Label("Platz: " + (i + 1));
-//			ranglbl.setId("ranglbl" + (i + 1));
-//			if (i >= 2) {
-//				ranglbl.setStyle("-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-font-size: 20; ");
-//			}
-//			namelbl = new Label();
-//			namelbl.setText(Player.player.get(i).getName());
-//			namelbl.setId("namelbl" + (i + 1));
-//			if (i >= 2) {
-//				namelbl.setStyle("-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-font-size: 20; ");
-//			}
-//			pointlbl = new Label();
-//			pointlbl.setId("pointlbl" + (i + 1));
-//			if (i >= 2) {
-//				pointlbl.setStyle("-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-font-size: 20; ");
-//			}
-//			String point = Integer.toString(Player.player.get(i).winPoint);
-//			pointlbl.setText(point);
-//			hbox.getChildren().addAll(ranglbl, namelbl, pointlbl);
-//			vbox.getChildren().add(hbox);
-//		}
-
 		mainPane.setCenter(vbox);
 
-		Scene scene = new Scene(mainPane);
+		scene = new Scene(mainPane);
 		scene.getStylesheets().add(getClass().getResource("Result.css").toExternalForm());
 		stage.setScene(scene);
+	}
 
-		 }
-		
+	/**
+	 * Opens the result-view (called in client handler)
+	 */
 	public void start() {
 		stage.show();
-
 	}
 
-	public void stop() {
-		stage.hide();
-	}
-	
-	public void setRangList(String[] playerliste){
-		for(int i = 0; i < playerliste.length; i++){
+	/**
+	 * Creates for every player an HBox. The text is set to a label (name /
+	 * points) and added to the HBox. Also changes the font-size for place 2 - 4
+	 * so the winners text will be shown bigger.
+	 * 
+	 * @param playerliste
+	 *            Array with the players from first to last place
+	 */
+	public void setRangList(String[] playerliste) {
+		for (int i = 0; i < playerliste.length; i++) {
 			hbox = new HBox();
 			hbox.setAlignment(Pos.CENTER);
 			hbox.setSpacing(50);
 
-			Label ranglbl = new Label("Platz: " + (i + 1));
+			ranglbl = new Label("Platz: " + (i + 1));
 			ranglbl.setId("ranglbl" + (i + 1));
 			if (i >= 2) {
 				ranglbl.setStyle("-fx-text-fill: white;" + "-fx-font-weight: bold;" + "-fx-font-size: 20; ");
@@ -108,6 +89,5 @@ public class Result_View {
 			vbox.getChildren().add(hbox);
 		}
 	}
-
 
 }
