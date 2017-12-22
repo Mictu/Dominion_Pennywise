@@ -20,7 +20,7 @@ import view.Login_View;
  * Create a splash - screen to show that the game is loading. The screen shows
  * up before the login-view.
  * 
- * @author Richard Bradley
+ * @author Richards Brad
  * @author Patrick Ziörjen (handled code to fit in project)
  */
 public class S_View {
