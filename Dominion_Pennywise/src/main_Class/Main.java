@@ -4,16 +4,30 @@ import Splash.S_View;
 import Splash.Server_View;
 import controllers.Login_Controller;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.stage.Stage;
 import server.client.Server;
 import server_Models.Configuration;
 import server_Models.Translator;
-import view.Login_View;
-import view.Lobby_View;
 import view.Board_View;
+import view.Lobby_View;
+import view.Login_View;
 import view.Result_View;
 
+/**
+ * Main Class of the IT Project Dominion
+ * 
+ * Starts the project
+ * 
+ * @version final version
+ * @endDate 22.12.2017
+ * @projectteam Pennywise
+ * 
+ * @author Michael Tu
+ * @author Patrick Ziörjen
+ * @author Sojo Nagaroor
+ * @author Yujia Shi
+ *
+ */
 public class Main extends Application {
 
 	Login_View loginView;
@@ -27,22 +41,19 @@ public class Main extends Application {
 	Server_View serverView;
 	Server server;
 
-	// MVC STARTS THE PROGRAMM AND INITIALIZES THE MVC-CLASSES (MODEL, VIEW,
-	// CONTROLLER)
-
 	public static void main(String[] args) {
 		launch(args);
 	}
 
-	// Maybe initialize something (e.g.DATABASE or NETWORK SERVER)
-	public void init() {
-	}
-
+	/**
+	 * The method which starts the game
+	 * 
+	 * @author Patrick Ziörjen
+	 * @param primaryStage
+	 *            - Primary Stage from Splash
+	 * @return -
+	 */
 	public void start(Stage primaryStage) {
-
-		// decide if a Server needs to get started, then start Splashscreen
-		// serverView = new Server_View(primaryStage);
-
 		serviceLocator = ServiceLocator.getServiceLocator();
 		serviceLocator.setConfiguration(new Configuration());
 		String language = serviceLocator.getConfiguration().getOption("Language");
@@ -52,23 +63,4 @@ public class Main extends Application {
 		splashScreen.run(primaryStage);
 
 	}
-
-	public void stop() {
-		serviceLocator.getConfiguration().save();
-
-		if (loginView != null) {
-			loginView.stop();
-		}
-		if (lobbyView != null) {
-			Lobby_View.stop();
-		}
-		if (boardView != null) {
-			boardView.stop();
-		}
-		if (resultView != null) {
-			resultView.stop();
-		}
-		Platform.exit(); // Close Server if it is running
-	}
-
 }
