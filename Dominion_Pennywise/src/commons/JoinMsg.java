@@ -1,5 +1,10 @@
 package commons;
 
+/**
+ * @Source ChatLab SoftwareEngineering2
+ * @author Brad Richards
+ *
+ */
 public class JoinMsg extends Message{
 	private String playerName;
 	

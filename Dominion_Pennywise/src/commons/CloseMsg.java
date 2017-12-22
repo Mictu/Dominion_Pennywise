@@ -1,5 +1,12 @@
 package commons;
-
+/**
+ * Close Message for disconnect clients from server if they close.
+ * 
+ * @Source Pattern taken from ChatLab SoftwareEngineering2 
+ * 
+ * @author Michael Tu
+ * @author Brad Richards
+ */
 public class CloseMsg extends Message{
 
 	private String content;

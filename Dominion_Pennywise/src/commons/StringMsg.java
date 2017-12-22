@@ -1,5 +1,14 @@
 package commons;
 
+
+/**
+ * String Message for sending different strings to client and server.
+ * 
+ * @Source Pattern taken from ChatLab SoftwareEngineering2 
+ * 
+ * @author Michael Tu
+ * @author Brad Richards
+ */
 public class StringMsg extends Message{
 	private String content;
 	private String playerName;

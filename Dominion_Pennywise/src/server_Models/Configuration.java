@@ -22,7 +22,10 @@ import main_Class.ServiceLocator;
  * (changed by the user) are saved to a file. Program constants can be defined
  * by defining options that the user has no way to change.
  * 
+ * Changed applicationname and added few more Locales by Michael Tu
+ * 
  * @author Brad Richards
+ * @Michael Tu
  */
 public class Configuration {
     ServiceLocator sl = ServiceLocator.getServiceLocator();  // for easy reference                       // for easy reference
