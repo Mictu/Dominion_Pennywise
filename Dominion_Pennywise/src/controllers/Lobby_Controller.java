@@ -71,7 +71,7 @@ public class Lobby_Controller {
 		Login_Controller.client.newestMessage
 				.addListener((o, oldValue, newValue) -> lobbyView.txtChatArea.appendText(newValue + "\n"));
 
-		lobbyView.stage.setOnCloseRequest(event -> Login_Controller.client.disconnectClient());
+		Lobby_View.stage.setOnCloseRequest(event -> Login_Controller.client.disconnectClient());
 
 	}
 
