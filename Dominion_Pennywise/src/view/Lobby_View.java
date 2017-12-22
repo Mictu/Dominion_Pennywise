@@ -13,6 +13,11 @@ import javafx.stage.Stage;
 import main_Class.ServiceLocator;
 import server_Models.Translator;
 
+/**
+ * Lobby_View
+ * 
+ * @author Michael Tu
+ */
 public class Lobby_View {
 
 	ServiceLocator sl = ServiceLocator.getServiceLocator();
@@ -34,8 +39,15 @@ public class Lobby_View {
 	public Button btnLeaveGame;
 	public Button btnStartGame;
 	
+	// labels
 	public Label lblLobby, lblChat, lblOnline;
 
+	/**
+	 * constructor for Lobby_View. Made in a BoarderPane with Hbox and Vbox
+	 * 
+	 * @param stage
+	 * @author Michael Tu
+	 */
 	public Lobby_View(Stage stage) {
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 		Translator t = sl.getTranslator();
@@ -69,13 +81,13 @@ public class Lobby_View {
 		btnLeaveGame.getStyleClass().add("btn");
 		btnStartGame.getStyleClass().add("btn");
 
-		VBox rightBox = new VBox(lblLobby, topBox, lblOnline, txtConnectedPlayers, lblChat, txtChatArea, bottomChatBox);
-		rightBox.setId("rightBox");
+		VBox vBox = new VBox(lblLobby, topBox, lblOnline, txtConnectedPlayers, lblChat, txtChatArea, bottomChatBox);
+		vBox.setId("rightBox");
 		VBox.setVgrow(txtChatArea, Priority.ALWAYS);
 
 
 		mainPane = new BorderPane();
-		mainPane.setCenter(rightBox);
+		mainPane.setCenter(vBox);
 		mainPane.getStyleClass().add("mainPane");
 
 		Scene scene = new Scene(mainPane);
