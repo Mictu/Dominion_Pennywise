@@ -11,18 +11,24 @@ import java.util.Collections;
  */
 public class CleanUpPhase {
 
-	// initialize section
-	Player player;
-	final int HAND_SIZE = 5;
+	private Player player;
 
-	// Constructor
+	/**
+	 * Starts the methods in the right order to clean up after a player ends his
+	 * buy-phase (clear hand - get cards for the hand).
+	 * 
+	 * @param player
+	 *            current player which has his turn
+	 */
 	public CleanUpPhase(Player player) {
 		this.player = player;
 		throwCard();
 		drawCard();
-	} // close constructor
+	}
 
-	// clears the hand of the player (push cards on to discard deck)
+	/**
+	 * Clears the hand of the player (push cards on to discard deck)
+	 */
 	public void throwCard() {
 		for (int i = 1; i <= player.hand.size(); i = 1) {
 			player.discard.add(player.hand.get(0));
@@ -30,7 +36,11 @@ public class CleanUpPhase {
 		}
 	}
 
-	// get cards from your deck into your hand (5 in the end)
+	/**
+	 * Get cards from players deck into the hand (5 in the end). If the deck is
+	 * empty, the shuffle-method will be called to shuffle the discards and add
+	 * the cards to the deck.
+	 */
 	public void drawCard() {
 		for (int i = 1; i <= 5; i++) {
 			if (player.deck.isEmpty()) {
@@ -41,7 +51,9 @@ public class CleanUpPhase {
 		}
 	}
 
-	// shuffles the discard-deck and adds the cards to the deck
+	/**
+	 * Shuffles the discard-deck and adds the cards to the deck.
+	 */
 	public void shuffle() {
 		Collections.shuffle(player.discard);
 		for (int i = 1; i <= player.discard.size(); i = 1) {
@@ -49,4 +61,4 @@ public class CleanUpPhase {
 			player.discard.remove(0);
 		}
 	}
-} 
+}
