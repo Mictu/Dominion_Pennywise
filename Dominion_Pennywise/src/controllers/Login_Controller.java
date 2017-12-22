@@ -7,6 +7,14 @@ import server_Models.Translator;
 import view.Lobby_View;
 import view.Login_View;
 
+/**
+ * Controller Class for Login_View Handle the texfield and initialize the game
+ * Start the connection from a client to server
+ * 
+ * @author Patrick Ziörjen
+ * @author Sojo Nagaroor
+ * @author Yujia Shi
+ */
 public class Login_Controller {
 
 	Login_View loginView;
@@ -16,12 +24,11 @@ public class Login_Controller {
 	Lobby_Controller lobbyController;
 	ClientHandler ch = new ClientHandler();
 
-	
 	public Login_Controller(Login_View loginView) {
 		this.loginView = loginView;
-		
+
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
-		
+
 		// LOGIN
 		// Open Lobby
 
@@ -53,10 +60,9 @@ public class Login_Controller {
 	private void exit(Stage stage) {
 		stage.hide();
 	}
-	
+
 	public String getPlayerName() {
 		return playerName;
 	}
-	
-	
+
 }
