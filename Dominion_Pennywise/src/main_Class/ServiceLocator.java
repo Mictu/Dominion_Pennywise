@@ -1,5 +1,10 @@
 package main_Class;
 
+import java.util.Locale;
+
+import server_Models.Configuration;
+import server_Models.Translator;
+
 /**
  * Copyright 2015, FHNW, Prof. Dr. Brad Richards. All rights reserved. This code
  * is licensed under the terms of the BSD 3-clause license (see the file
@@ -9,15 +14,11 @@ package main_Class;
  * used by the program. It also defines application-global constants, such as
  * the application name.
  * 
+ * Changed applicationname and added few more Locales by Michael Tu
+ * 
  * @author Brad Richards
+ * 
  */
-
-import java.util.Locale;
-
-import server_Models.Configuration;
-import server_Models.Translator;
-
-
 public class ServiceLocator {
     private static ServiceLocator serviceLocator; // singleton
 
