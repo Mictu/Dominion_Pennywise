@@ -4,7 +4,6 @@ import java.net.Socket;
 
 import commons.ChatMsg;
 import commons.CloseMsg;
-import commons.JoinMsg;
 import commons.Message;
 import commons.StringMsg;
 import javafx.application.Platform;
@@ -12,6 +11,12 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.concurrent.Task;
 import controllers.ClientHandler;
 
+/**
+ * Client Class handles the communication on client side.
+ * 
+ * @author Michael Tu
+ *
+ */
 public class Client {
 
 	Socket socket;
@@ -75,7 +80,7 @@ public class Client {
 
 				// Chat
 				while (!close) {
-					Message msg = Message.receive(socket);
+					Message msg = Message.receive(socket); //receiving messages
 					if (msg instanceof ChatMsg) { // for chat message it will set this message to newestMessage
 						ChatMsg chatMsg = (ChatMsg) msg;
 						Platform.runLater(() -> {
@@ -123,13 +128,10 @@ public class Client {
 						}
 					}
 				}
-
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Verbindung fehlgeschlagen");
 			}
-			Message jmsgForServer = new JoinMsg(playerName);
-			jmsgForServer.send(socket);
 			return null;
 		}
 	};

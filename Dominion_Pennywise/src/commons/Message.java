@@ -22,6 +22,7 @@ public abstract class Message {
 
 	/**
 	 * Message Constructor, define type
+	 * 
 	 * @param type
 	 * @author Brad Richards
 	 */
@@ -48,8 +49,9 @@ public abstract class Message {
 	}
 
 	/**
-	 * Message receive() in Message abstract class. This method receive messages
-//	 * either on client or server and checks what type the message is. Then it sets the Message: Type|Name|message
+	 * Message receive() in Message abstract class. This method receive messages //
+	 * * either on client or server and checks what type the message is. Then it
+	 * sets the Message: Type|Name|message
 	 * 
 	 * @param socket
 	 * @return msg
@@ -67,9 +69,7 @@ public abstract class Message {
 				System.out.println("Receiving: " + msgText);
 				// Parse message
 				String[] parts = msgText.split("\\|");
-				if (parts[0].equals(MessageType.Join.toString())) {
-					msg = new JoinMsg(parts[1]);
-				} else if (parts[0].equals(MessageType.Chat.toString())) {
+				if (parts[0].equals(MessageType.Chat.toString())) {
 					msg = new ChatMsg(parts[1], parts[2]);
 				} else if (parts[0].equals(MessageType.String.toString())) {
 					msg = new StringMsg(parts[1], parts[2]);

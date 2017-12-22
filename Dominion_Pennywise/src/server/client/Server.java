@@ -22,7 +22,8 @@ import javafx.stage.Stage;
  * Server class is in the same time the main server class.
  * 
  * @author Michael Tu
- * @author Brad Richards
+ *
+ * @Source pattern for communication is taken from ChatLab SoftwareEngineering2
  */
 public class Server extends Application {
 
