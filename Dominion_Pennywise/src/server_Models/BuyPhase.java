@@ -1,9 +1,13 @@
 package server_Models;
 
 /**
+ * Play an buy-phase and reset the used content for the next player. This class
+ * only starts while actual player is in buy-phase. Contains everything it
+ * needed for a proper buy Phase in game
  * 
- * 
- * @author Yujia, Sojo, Patrick
+ * @author Patrick Ziörjen
+ * @author Sojo Nagaroor
+ * @author Yujia Shi
  */
 public class BuyPhase {
 
@@ -12,7 +16,7 @@ public class BuyPhase {
 	private Player player;
 	private boolean cardChosen = false, payStarted = false, successfull = false, sendInfo = false, sendingHand = false;
 
-	public int aVCounter = 10, aMCounter = 10, aSCounter = 10 ,aWCounter = 10, aFCounter = 10, aLCounter = 10;
+	public int aVCounter = 10, aMCounter = 10, aSCounter = 10, aWCounter = 10, aFCounter = 10, aLCounter = 10;
 	public int cCounter = 60, sCounter = 40, gCounter = 30, eCounter = 24, dCounter = 12, pCounter = 12;
 	public String card;
 
@@ -20,7 +24,17 @@ public class BuyPhase {
 		buyThisCard = null;
 	}
 
-	// Add Card to discard deck of player
+	/**
+	 * Handle the buyphase. Get cardName and the actualplayer from ServerHandler
+	 * Check if he player has enough buypoints. Check if the card is already picked.
+	 * Check a card is selected. Check start the buy and pay phase of buyphase.
+	 * 
+	 * @author Patrick Ziörjen
+	 * @param message
+	 *            - cardName of the card that has been chose
+	 * @param player
+	 *            - acutal player from ServerHanlder
+	 */
 	public void buyCard(String message, Player player) {
 		this.player = player;
 		cardName = message;
@@ -47,6 +61,12 @@ public class BuyPhase {
 		}
 	}
 
+	/**
+	 * Handle buy phase of buyphase of the game. Check if the player has enough
+	 * money
+	 * 
+	 * @author Sojo Nagaroor
+	 */
 	public void buy() {
 		buyThisCard = cardName;
 		sendingHand = false;
@@ -63,6 +83,13 @@ public class BuyPhase {
 		}
 	}
 
+	/**
+	 * Handle pay phase of buyphase of the game. remove the hand card if the player
+	 * used the card to pay for the card he want buy. Increase the money if the
+	 * player clicks on a card in his hand.
+	 * 
+	 * @author Yujia Shi
+	 */
 	public void pay() {
 		sendingHand = false;
 		payStarted = true;
@@ -84,12 +111,16 @@ public class BuyPhase {
 			player.money += 1;
 			break;
 		}
-		// Set everything to null for the next round
 		if (player.money >= cost) {
 			doTheBuy();
 		}
 	}
 
+	/**
+	 * Reset all variables for buyphase reset bonusmoney, card chosen...etc.
+	 * 
+	 * @author Yujia Shi
+	 */
 	public void doTheBuy() {
 		successfull = true;
 		boughtCard = buyThisCard;
@@ -109,6 +140,13 @@ public class BuyPhase {
 		}
 	}
 
+	/**
+	 * Reset the variables for every buyphase for the acutal player
+	 * 
+	 * @author Sojo Nagaroor
+	 * @param player
+	 *            - actual player from GameLogic
+	 */
 	public void resetVariablesForBuyPhase(Player player) {
 		player.money = 0;
 		cost = 0;
@@ -126,7 +164,14 @@ public class BuyPhase {
 			return sendingHand;
 	}
 
-	// get the costs of every card
+	/**
+	 * get Cost from all cards that can be bought
+	 * 
+	 * @author Patrick Ziörjen
+	 * @param cardName
+	 *            - name of the card that has been chosed
+	 * @return costs - the cost of the card that has been chosed
+	 */
 	public int getCost(String cardName) {
 		int costs = 0;
 
@@ -175,6 +220,13 @@ public class BuyPhase {
 		return costs;
 	}
 
+	/**
+	 * decrease the cards from cardpile if a card has been chosed.
+	 * 
+	 * @author Yujia Shi
+	 * @param cardName
+	 *            - name of the card that has been chosen
+	 */
 	public void decreaseCard(String cardName) {
 		switch (cardName) {
 		case "village":
@@ -216,6 +268,13 @@ public class BuyPhase {
 		}
 	}
 
+	/**
+	 * check if the counter from decrease card is 0. if there are no cards anymore
+	 * on a cardpile, send tell the server, that he should flip the cardpile on
+	 * client side
+	 * 
+	 * @author Sojo Nagaroor
+	 */
 	public String isFinished() {
 		empty = "";
 		if (aVCounter == 0) {
@@ -270,6 +329,13 @@ public class BuyPhase {
 		return empty;
 	}
 
+	/**
+	 * send the cards that are left on a cardpile to clientside to display the
+	 * cardpile counter correctly
+	 * 
+	 * @author Patrick Ziörjen
+	 * @return nums - String with left cards number
+	 */
 	public String sendRestCards() {
 		String nums = "amount" + "." + eCounter + "." + dCounter + "." + pCounter + "." + aFCounter + "." + aLCounter
 				+ "." + aMCounter + "." + aSCounter + "." + aVCounter + "." + aWCounter + "." + cCounter + "."
@@ -294,5 +360,3 @@ public class BuyPhase {
 	}
 
 }
-
-// Written by Patrick
