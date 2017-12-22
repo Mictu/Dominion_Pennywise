@@ -399,7 +399,7 @@ public class Board_View {
 		handFromServer = ClientHandler.tempHandCard;
 
 		if (handFromServer.size() > 5)
-			hBoxHand.setSpacing(20 - handFromServer.size() * 4);
+			hBoxHand.setSpacing(20 - handFromServer.size() * 4.5);
 		else
 			hBoxHand.setSpacing(20);
 
