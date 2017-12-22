@@ -1,27 +1,20 @@
 package server.client;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.net.Socket;
 
 import commons.ChatMsg;
 import commons.CloseMsg;
+import commons.JoinMsg;
 import commons.Message;
 import commons.StringMsg;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.concurrent.Task;
-import java.util.ArrayList;
 import controllers.ClientHandler;
 
 public class Client {
 
 	Socket socket;
-
-	DataOutputStream output;
-	DataInputStream input;
-	String info;
-	Server server;
 	String namemsg;
 	String abmPoints;
 	String[] abm;
@@ -34,20 +27,43 @@ public class Client {
 
 	ClientHandler ch = new ClientHandler();
 
-	ArrayList<String> deck = new ArrayList<String>();
-
 	public SimpleStringProperty newestMessage = new SimpleStringProperty();
 	protected String playerName;
 	private volatile boolean close = false;
 
+	/**
+	 * Client Constructor contains playerName.
+	 * 
+	 * @param playerName
+	 * 
+	 * @author Michael Tu
+	 * @author Brad Richards
+	 * 
+	 * @Source Class pattern taken from ChatLab SoftwareEngineering 2
+	 */
 	public Client(String playerName) {
 		this.playerName = playerName;
 	}
 
+	/**
+	 * starts thread with startClient task
+	 * 
+	 * @author Michael Tu
+	 */
 	public void run() {
 		new Thread(startClient).start();
 	}
 
+	/**
+	 * Starts client to connect to server. If client is connected to the server, the
+	 * client will send its playerName to the server. It also receives messages and
+	 * check which type it is and act accordingly.
+	 * 
+	 * 
+	 * @author Michael Tu
+	 * @author Brad Richards
+	 * @Source ChatLab SoftwareEngineering2
+	 */
 	final Task<Void> startClient = new Task<Void>() {
 		@Override
 		protected Void call() throws Exception {
@@ -60,24 +76,20 @@ public class Client {
 				// Chat
 				while (!close) {
 					Message msg = Message.receive(socket);
-					if (msg instanceof ChatMsg) {
+					if (msg instanceof ChatMsg) { // for chat message it will set this message to newestMessage
 						ChatMsg chatMsg = (ChatMsg) msg;
 						Platform.runLater(() -> {
 							newestMessage.set(chatMsg.getPlayerName() + ": " + chatMsg.getContent());
 						});
-					} else if(msg instanceof CloseMsg) {
+					} else if (msg instanceof CloseMsg) { // for close message it will close the socket
 						socket.close();
 						close = true;
-					}else if (msg instanceof StringMsg) {
+					} else if (msg instanceof StringMsg) {
 						String message = ((StringMsg) msg).getContent();
 						if (message.length() > 4 && message.substring(0, 5).equals("lobby")) {
 							namemsg = message.substring(6);
 							names = namemsg.split("\\.");
 							Platform.runLater(() -> {
-								// for (String s : names) {
-								// s = s.concat(" Online");
-								// }
-								// setNames(names);
 								ClientHandler.getNamesFormClient(names);
 							});
 						} else if (message.length() > 8 && message.substring(0, 9).equals("abmpoints")) {
@@ -115,16 +127,66 @@ public class Client {
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println("Verbindung fehlgeschlagen");
-				// } finally {
-				// socket.close();
-				// System.out.println("Client closed");
 			}
-//			Message jmsgForServer = new JoinMsg(playerName);
-//			jmsgForServer.send(socket);
+			Message jmsgForServer = new JoinMsg(playerName);
+			jmsgForServer.send(socket);
 			return null;
 		}
-
 	};
+
+	/**
+	 * send String messsage to server
+	 * 
+	 * @param msg
+	 * 
+	 * @author Michael Tu
+	 * 
+	 * @Source pattern taken form ChatLab SoftwareEngineering2
+	 */
+	public void sendToServer(String msg) {
+		Message stringMsg = new StringMsg(playerName, msg);
+		stringMsg.send(socket);
+	}
+
+	/**
+	 * send chat message to server
+	 * 
+	 * @param message
+	 * 
+	 * @author Brad Richards
+	 */
+	public void sendChatMessage(String message) {
+		Message msg = new ChatMsg(playerName, message);
+		msg.send(socket);
+	}
+
+	/**
+	 * send close message to server
+	 * 
+	 * @param message
+	 * 
+	 * @author Michael Tu
+	 * @author Brad Richards
+	 * 
+	 * @Source pattern taken from ChatLab SoftwareEngineering2
+	 */
+	public void sendCloseMessage(String message) {
+		Message msg = new CloseMsg(playerName, message);
+		msg.send(socket);
+
+	}
+
+	/**
+	 * method to send "close" message, consists sendCloseMessage();
+	 * @author Michael Tu
+	 */
+	public void disconnectClient() {
+		sendCloseMessage("close");
+	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
 
 	public void setNames(String[] names) {
 		this.names = names;
@@ -132,33 +194,5 @@ public class Client {
 
 	public String[] getNames() {
 		return names;
-	}
-
-	public void sendToServer(String msg) {
-		Message stringMsg = new StringMsg(playerName, msg);
-		stringMsg.send(socket);
-	}
-
-	public void sendChatMessage(String message) {
-		Message msg = new ChatMsg(playerName, message);
-		msg.send(socket);
-	}
-
-	public void sendCloseMessage(String message) {
-		Message msg = new CloseMsg(playerName, message);
-		msg.send(socket);
-
-	}
-
-	public String receiveMessage() {
-		return newestMessage.get();
-	}
-
-	public void disconnectClient(){
-		sendCloseMessage("close");
-	}
-
-	public String getPlayerName() {
-		return playerName;
 	}
 }
