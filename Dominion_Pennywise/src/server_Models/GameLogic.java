@@ -201,6 +201,7 @@ public class GameLogic {
 	 * cards on the hand
 	 * 
 	 * @author Yujia Shi
+	 * @author Patrick Ziörjen
 	 */
 	public void endPhase() {
 		switch (actualPhase) {

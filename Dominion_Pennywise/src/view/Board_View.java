@@ -23,14 +23,18 @@ import javafx.stage.Stage;
 import main_Class.ServiceLocator;
 import server_Models.Translator;
 
+/**
+ * View for the game field. shows all elements of the game field
+ * 
+ * @author Patrick Ziörjen
+ * @author Sojo Nagaroor
+ * @author Yujia Shi
+ *
+ */
 public class Board_View {
 
 	public Stage stage;
 	public BorderPane root;
-	/*
-	 * WRITE DYNAMIC HAND CARDS ARE COVERED IF HOVERED SET CHAT GOLDEN BORDER IF
-	 * U CAN PLAY CARDS DECK AND DISCARD DECK SHOULD BE SEEN FROM BEHIND
-	 */
 
 	// Initialize the GUI Content here
 	public Button endPhase, send;
@@ -40,8 +44,7 @@ public class Board_View {
 	protected HBox hCenter1, hCenter2, hCenter3;
 	HBox hBottom;
 	String cardID;
-	// public Label actionPoints, buyPoints, money;
-	public Label aBMpoints; // action, buy, money
+	public Label aBMpoints;
 	public TextArea logger;
 	public Label info;
 	public static Label cardInfo;
@@ -54,14 +57,14 @@ public class Board_View {
 	protected ArrayList<String> handFromServer = new ArrayList<String>();
 	public ArrayList<Label> labelCountStack = new ArrayList<Label>();
 	ArrayList<StackPane> cardCountStack = new ArrayList<StackPane>();
-	
+
 	public ArrayList<Button> treasure = new ArrayList<Button>();
 	public ArrayList<Button> kingdom = new ArrayList<Button>();
 	public ArrayList<Button> victory = new ArrayList<Button>();
 
 	ServiceLocator sl = ServiceLocator.getServiceLocator();
 	Translator t = sl.getTranslator();
-	
+
 	CardDesign_View cdV;
 
 	Button village = new Button();
@@ -80,7 +83,15 @@ public class Board_View {
 	HBox labels;
 	Label firstPhase, secondPhase, thirdPhase;
 
-	// constructor
+	/**
+	 * initialize all elements on boardview and display them.
+	 * 
+	 * @author Patrick Ziörjen
+	 * @author Sobo Nagaroor
+	 * @author Yujia Shi
+	 * @param s
+	 *            - stage from boardController
+	 */
 	public Board_View(Stage s) {
 		cdV = new CardDesign_View();
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
@@ -97,6 +108,7 @@ public class Board_View {
 		root.autosize();
 		root.layoutBoundsProperty();
 		stage.setFullScreenExitHint("");
+		stage.setFullScreen(true);
 
 		// SET TOP
 		// SET CENTER
@@ -125,7 +137,7 @@ public class Board_View {
 			this.estate = cdV.getEstateBtn();
 			this.duchy = cdV.getDuchyBtn();
 			this.province = cdV.getProvinceBtn();
-			
+
 			treasure.add(copper);
 			treasure.add(silver);
 			treasure.add(gold);
@@ -170,8 +182,6 @@ public class Board_View {
 				bindingsForContent(treasure.get(i), cardCountStack.get(i + 9), 1, 1);
 				hCenter3.getChildren().add(cardCountStack.get(i + 9));
 			}
-			
-			// setCardsOnViewEnable();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -189,14 +199,9 @@ public class Board_View {
 		thirdPhase = new Label(t.getString("dominion.board.lbl.cleanupPhase"));
 		thirdPhase.setId("phaseLabels");
 
-		// actionPoints = new
-		// Label(t.getString("dominion.board.lbl.actionPoints"));
-		// buyPoints = new Label(t.getString("dominion.board.lbl.buyPoints"));
-		// money = new Label(t.getString("dominion.board.lbl.money"));
-
 		aBMpoints = new Label();
 		aBMpoints.setId("playerPoints");
-		
+
 		Region reg = new Region();
 		Region reg2 = new Region();
 		reg.setPrefWidth(140);
@@ -216,7 +221,6 @@ public class Board_View {
 		bindingsForContent(aBMpoints, labels, 2.5, 0.18);
 
 		// CENTER BOTTOM
-
 		StackPane stackPane = new StackPane();
 		stackPane.setPadding(new Insets(0, 10, 0, 0));
 
@@ -225,13 +229,6 @@ public class Board_View {
 
 		hBoxHand = new HBox();
 		hBoxHand.setAlignment(Pos.CENTER);
-
-		// testing the players hand
-
-		// hBoxHand.getChildren().addAll(cdV.getWoodcutterBtn(),
-		// cdV.getFunfairBtn(),
-		// cdV.getFunfairBtn(),
-		// cdV.getFunfairBtn(), cdV.getFunfairBtn());
 
 		Button deck = new Button();
 		deck.setId("back");
@@ -273,19 +270,19 @@ public class Board_View {
 		info = new Label("");
 		info.setWrapText(true);
 		info.setId("infoLabel");
-		
+
 		Region regio = new Region();
 		VBox infoBox = new VBox();
 		infoBox.getChildren().addAll(info, regio);
-		
+
 		cardInfo = new Label("");
 		cardInfo.setWrapText(true);
 		cardInfo.setId("cardInfo");
-		
+
 		Region regio2 = new Region();
 		VBox cardBox = new VBox();
 		cardBox.getChildren().addAll(cardInfo, regio2);
-		
+
 		roundCounter = new Label();
 		roundCounter.setId("roundLabel");
 
@@ -334,7 +331,7 @@ public class Board_View {
 		Label loggerLbl = new Label("Info:");
 		chatLbl.setId("vRightLabel");
 		loggerLbl.setId("vRightLabel");
-		
+
 		vRight.getChildren().addAll(loggerLbl, logger, chatLbl, chat, chatInput);
 
 		root.setRight(vRight);
@@ -356,10 +353,9 @@ public class Board_View {
 		bindingsForContent(chatInput, vRight, 0.1, 1);
 
 		setStageBindings(root, stage, 0.98, 0.98);
-	} // Close the Constructor
+	}
 
 	public void start() {
-		stage.setFullScreen(true);
 		stage.show();
 	}
 
@@ -371,6 +367,12 @@ public class Board_View {
 		this.stage.hide();
 	}
 
+	/**
+	 * change labels with the actual phase that comes from the server. enable the
+	 * phase label if its the actual phase
+	 * 
+	 * @author Yujia Shi
+	 */
 	public void changePhaseLabel() {
 		if (ClientHandler.phase.equals("action")) {
 			firstPhase.setId("phaseLabelsEnable");
@@ -387,6 +389,12 @@ public class Board_View {
 		}
 	}
 
+	/**
+	 * get Hand from server and display the cards in a button. create new buttons
+	 * for hand.
+	 * 
+	 * @author Sojo Nagaroor
+	 */
 	public void setHand() {
 		handFromServer = ClientHandler.tempHandCard;
 
@@ -405,11 +413,11 @@ public class Board_View {
 					Login_Controller.client.sendToServer(cardID);
 				} catch (Exception e) {
 					System.out.println("Button der hand haben noch keine ID erhalten");
-				}	
-				
+				}
+
 			});
 			b.setOnMouseEntered((Event) -> {
-				cardInfo.setText(t.getString("dominion.board.cardInfo."+b.getId()));
+				cardInfo.setText(t.getString("dominion.board.cardInfo." + b.getId()));
 			});
 			b.setOnMouseExited((Event) -> {
 				cardInfo.setText("");
@@ -429,6 +437,12 @@ public class Board_View {
 		ClientHandler.tempHandCard.clear();
 	}
 
+	/**
+	 * disable and enable cards that can be used in a specific phase
+	 * 
+	 * @author Sojo Nagaroor
+	 * @author Patrick Ziörjen
+	 */
 	public void setCards() {
 		if (ClientHandler.phase.equals("buy")) {
 			setCardsOnViewEnable();
@@ -459,14 +473,22 @@ public class Board_View {
 
 	}
 
-	// enables buttons while player is able to chose which card he wants to buy
+	/**
+	 * enables buttons while player is able to chose which card he wants to buy
+	 * 
+	 * @author Patrick Ziörjen
+	 */
 	public void setCardsOnViewEnable() {
 		for (StackPane sP : cardCountStack) {
 			sP.setDisable(false);
 		}
 	}
 
-	// disables buttons while player is in action phase
+	/**
+	 * disables buttons while player is in action phase
+	 * 
+	 * @author Patrick Ziörjen
+	 */
 	public void setCardsOnViewDisable() {
 		for (StackPane sP : cardCountStack) {
 			sP.setDisable(true);
@@ -477,6 +499,22 @@ public class Board_View {
 		hBoxHand.getChildren().clear();
 	}
 
+	/**
+	 * Bind the child to parent so the child resizes analog to the parent node
+	 * 
+	 * @author Patrick Ziörjen
+	 * 
+	 * @param child
+	 *            get the child node which should be binded
+	 * @param stage2
+	 *            get parent node to bind child to it
+	 * @param heightMultiply
+	 *            get factor to multiply the height of the child-node with the
+	 *            parents height
+	 * @param widthMultiply
+	 *            get factor to multiply the width of the child-node with the
+	 *            parents width
+	 */
 	protected void bindingsForContent(Region child, Region parent, double heightMultiply, double widthMultiply) {
 		child.maxHeightProperty().bind(parent.heightProperty().multiply(heightMultiply));
 		child.maxWidthProperty().bind(parent.widthProperty().multiply(widthMultiply));
@@ -484,6 +522,22 @@ public class Board_View {
 		child.minWidthProperty().bind(parent.widthProperty().multiply(widthMultiply));
 	}
 
+	/**
+	 * Bind the child to parent so the content inside the window resizes analog to
+	 * the window size
+	 * 
+	 * @author Patrick Ziörjen
+	 * @param child
+	 *            get the child node which should be binded
+	 * @param stage2
+	 *            get parent node to bind child to it
+	 * @param heightMultiply
+	 *            get factor to multiply the height of the child-node with the
+	 *            parents height
+	 * @param widthMultiply
+	 *            get factor to multiply the width of the child-node with the
+	 *            parents width
+	 */
 	protected void setStageBindings(Region child, Stage stage2, double heightMultiply, double widthMultiply) {
 		child.maxHeightProperty().bind(stage2.heightProperty().multiply(heightMultiply));
 		child.maxWidthProperty().bind(stage2.widthProperty().multiply(widthMultiply));
@@ -491,6 +545,11 @@ public class Board_View {
 		child.minWidthProperty().bind(stage2.widthProperty().multiply(widthMultiply));
 	}
 
+	/**
+	 * block the players window if it is not his turn
+	 * 
+	 * @author Sojo Nagaroor
+	 */
 	public void blockWindow() {
 		hCenter1.setDisable(true);
 		hCenter2.setDisable(true);
@@ -501,6 +560,11 @@ public class Board_View {
 		playerStats.setDisable(true);
 	}
 
+	/**
+	 * enable the window for player if it is his turn
+	 * 
+	 * @author Sojo Nagaroor
+	 */
 	public void enableWindow() {
 		hCenter1.setDisable(false);
 		hCenter2.setDisable(false);
@@ -511,6 +575,15 @@ public class Board_View {
 		playerStats.setDisable(false);
 	}
 
+	/**
+	 * check which cardpile is empty. if a cardpile is empty turn the card back -->
+	 * backside
+	 * 
+	 * @author Sojo Nagaroor
+	 * @author Yujia Shi
+	 * @param message
+	 *            - cardName
+	 */
 	public void turnCardBack(String message) {
 		String cardName = message;
 		switch (cardName) {
@@ -564,7 +637,4 @@ public class Board_View {
 			break;
 		}
 	}
-
-}// close class
-
-// Written by Patrick
+}
