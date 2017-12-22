@@ -101,7 +101,7 @@ public class Client {
 						} else if (message.length() > 6 && message.substring(0, 6).equals("result")) {
 							results = message.substring(7);
 							resultsPlayerAndPoints = results.split("\\.");
-							ch.getResultPoints(resultsPlayerAndPoints);
+							ch.sendResultPointsToDisplay(resultsPlayerAndPoints);
 						} else if (message.length() > 9 && message.substring(0, 9).equals("cardempty")) {
 							ch.getMessageFromClient(message);
 						} else {
