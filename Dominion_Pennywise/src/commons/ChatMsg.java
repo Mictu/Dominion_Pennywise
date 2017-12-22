@@ -1,5 +1,11 @@
 package commons;
-
+/**
+ * Chat Message for the chat.
+ * 
+ * @Source Pattern taken from ChatLab SoftwareEngineering2
+ * 
+ * @author Brad Richards
+ */
 public class ChatMsg extends Message{
 	
 	private String playerName;
