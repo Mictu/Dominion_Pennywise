@@ -23,7 +23,7 @@ public class GameLogic {
 	Server server;
 	CleanUpPhase cleanPhase;
 	int index;
-	int rounds = 0;
+	int rounds = 1;
 	boolean firstRound;
 	int finishedCardStack = 0;
 	
