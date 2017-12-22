@@ -1,6 +1,8 @@
 package view;
 
 import java.util.ArrayList;
+
+import controllers.Board_Controller;
 import controllers.Button_Sounds;
 import controllers.ClientHandler;
 import controllers.Login_Controller;
@@ -58,6 +60,9 @@ public class Board_View {
 	public ArrayList<Button> kingdom = new ArrayList<Button>();
 	public ArrayList<Button> victory = new ArrayList<Button>();
 
+	ServiceLocator sl = ServiceLocator.getServiceLocator();
+	Translator t = sl.getTranslator();
+	
 	CardDesign_View cdV;
 
 	Button village = new Button();
@@ -401,7 +406,14 @@ public class Board_View {
 					Login_Controller.client.sendToServer(cardID);
 				} catch (Exception e) {
 					System.out.println("Button der hand haben noch keine ID erhalten");
-				}
+				}	
+				
+			});
+			b.setOnMouseEntered((Event) -> {
+				cardInfo.setText(t.getString("dominion.board.cardInfo."+b.getId()));
+			});
+			b.setOnMouseExited((Event) -> {
+				cardInfo.setText("");
 			});
 			bindingsForContent(b, hBoxHand, 1, 0.16);
 			handCards.add(b);
