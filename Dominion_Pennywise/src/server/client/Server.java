@@ -41,6 +41,7 @@ public class Server extends Application {
 	}
 
 	public void start(Stage primaryStage) {
+		//ActionHandlers
 		serverView = new Server_View(primaryStage);
 		serverView.withServer.setOnAction(event -> {
 			serverView.withServer.setDisable(true);
