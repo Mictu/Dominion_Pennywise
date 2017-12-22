@@ -24,14 +24,23 @@ public class Login_Controller {
 	Lobby_Controller lobbyController;
 	ClientHandler ch = new ClientHandler();
 
+	/**
+	 * Constructor from Login_Controller Contains setOnActions for the elements from
+	 * Login_View. Tell the program what it should do after clicking an element on
+	 * Login_View.
+	 * 
+	 * @param loginView
+	 *            - get the correct loginView from ClientHandler to handle the view
+	 * @author Patrick Ziörjen
+	 * @author Yujia Shi
+	 * @return -
+	 */
 	public Login_Controller(Login_View loginView) {
 		this.loginView = loginView;
-
 		ServiceLocator sl = ServiceLocator.getServiceLocator();
 
-		// LOGIN
-		// Open Lobby
-
+		// setOnAction for button lobby
+		// starts the game if the conditions for oben lobbyview are true
 		loginView.lobbyBtn.setOnAction((Event) -> {
 			playerName = loginView.nameTxtfield.getText();
 			Translator t = sl.getTranslator();
@@ -50,19 +59,22 @@ public class Login_Controller {
 			}
 
 		});
+
+		// setOnAction for button exit game
 		loginView.exitBtn.setOnAction((event) -> {
 			exit(loginView.getStage());
 		});
 	}
 
-	// ExitMethode for all Views
-
+	/**
+	 * Close the Login_View if Lobby_View starts
+	 * 
+	 * @author Sojo Nagaroor
+	 * @param stage
+	 *            - get Stage from Login_View
+	 * @return -
+	 */
 	private void exit(Stage stage) {
 		stage.hide();
 	}
-
-	public String getPlayerName() {
-		return playerName;
-	}
-
 }

@@ -27,7 +27,7 @@ public class Lobby_Controller {
 	Login_View loginView;
 
 	/**
-	 * Constructor from Board_Controller Contains setOnActions for the elements from
+	 * Constructor from Lobby_Controller Contains setOnActions for the elements from
 	 * Lobby_View Tell the program what it should do after clicking an element on
 	 * Lobby_View
 	 * 
