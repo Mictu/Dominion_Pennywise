@@ -51,8 +51,8 @@ public class ClientHandler {
 	}
 
 	/**
-	 * Get the names of the clients from the client class after they connected to
-	 * the server. Display it on the Lobby_View in a list
+	 * Get the names of the clients from the client class after they connected
+	 * to the server. Display it on the Lobby_View in a list
 	 * 
 	 * @author Michael Tu
 	 * @param clientNames
@@ -69,10 +69,10 @@ public class ClientHandler {
 	/**
 	 * Method to handle all the messages that are received by the client. This
 	 * method opens views after receving specific messages from the server. This
-	 * method refresh cards after receving specific messages. This method update the
-	 * infos on Board_View after receving specific messages. This method switch
-	 * phases on client side after reciving specific messages. This method close
-	 * views after receving specific messages.
+	 * method refresh cards after receving specific messages. This method update
+	 * the infos on Board_View after receving specific messages. This method
+	 * switch phases on client side after reciving specific messages. This
+	 * method close views after receving specific messages.
 	 * 
 	 * @author Michael Tu
 	 * @author Patrick Ziörjen
@@ -155,8 +155,8 @@ public class ClientHandler {
 	}
 
 	/**
-	 * Send the empty cardpile to Board_View to turn back the cardpile if the pile
-	 * is empty.
+	 * Send the empty cardpile to Board_View to turn back the cardpile if the
+	 * pile is empty.
 	 * 
 	 * @author Yujia Shi
 	 * @param emptyCardName
@@ -199,8 +199,8 @@ public class ClientHandler {
 	}
 
 	/**
-	 * Split the Array with the winpoints and update the Board_Controller to display
-	 * it on Board_View.
+	 * Split the Array with the winpoints and update the Board_Controller to
+	 * display it on Board_View.
 	 * 
 	 * @author Michael Tu
 	 * @param winP
@@ -275,9 +275,9 @@ public class ClientHandler {
 	}
 
 	/**
-	 * Handle the logger message from the server. Check which message it is and send
-	 * it to Board_Controller so Board_Controller can send it to Board_View to
-	 * display it in the Logger box
+	 * Handle the logger message from the server. Check which message it is and
+	 * send it to Board_Controller so Board_Controller can send it to Board_View
+	 * to display it in the Logger box
 	 * 
 	 * @author Yujia Shi
 	 * @param loggerMsg
@@ -304,9 +304,9 @@ public class ClientHandler {
 	}
 
 	/**
-	 * Handle the info message from the server. Check which message it is and send
-	 * it to Board_Controller so Board_Controller can send it to Board_View to
-	 * display it in the Logger box
+	 * Handle the info message from the server. Check which message it is and
+	 * send it to Board_Controller so Board_Controller can send it to Board_View
+	 * to display it in the Logger box
 	 * 
 	 * @author Yujia Shi
 	 * @param infoMessage
